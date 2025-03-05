@@ -19,7 +19,7 @@ export const $firestore = getFirestore(app)
 setGlobalOptions({
   region: 'europe-west3',
   memory: '256MiB',
-  serviceAccount: 'function-invoker@circle-bot-a5808.iam.gserviceaccount.com',
+  serviceAccount: 'function-invocer@price-it-85b3e.iam.gserviceaccount.com',
 })
 
 export const api = onRequest(async (req, res) => {

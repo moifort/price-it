@@ -1,5 +1,5 @@
 {
-  "name": "circle-back",
+  "name": "price-it-back",
   "module": "index.ts",
   "scripts": {
     "postinstall": "if [[ -z \"$CI\" || -n \"$FIREBASE_TOOLS\" ]]; then bun install --global firebase-tools@13.32.0; fi",

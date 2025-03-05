@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "circle",
+      "name": "price-it",
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
       },
