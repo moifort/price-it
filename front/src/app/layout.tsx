@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Circle',
-  description: 'Circle a Polymarket bot 🤖',
+  title: 'Price It',
+  description: 'Telegram mini app',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
