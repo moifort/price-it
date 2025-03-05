@@ -1,0 +1,78 @@
+name: Back Continuous Integration
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lint:
+    name: 👮 Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🥟 Install bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.2.2'
+      - name: 🔓 Unlock secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: bun install --cwd back
+      - run: bun --cwd back biome ci
+
+  test-unit:
+    name: 🐇 Test Unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🥟 Install bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.2.2'
+      - name: 🔓 Unlock secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: bun install --cwd back
+      - run: bun --cwd back test:unit
+
+  test-int:
+    name: 🐢 Test Integration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🥟 Install bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.2.2'
+      - name: 🔓 Unlock secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: bun install --cwd back
+      - run: bun --cwd back test:int
+
+
+  test-feat:
+    name: 🐌 Test Feature
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOOLS: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🥟 Install bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.2.2'
+      - name: 🔓 Unlock secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.3.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: bun install --cwd back
+      - run: bun --cwd back test:feat
+
+
