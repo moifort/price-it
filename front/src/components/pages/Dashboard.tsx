@@ -10,7 +10,7 @@ import { GameStartButton } from '../organisms/dashboard/GameStartButton'
 import { ScoreCard } from '../organisms/dashboard/ScoreCard'
 import { Dashboard as DashboardTemplate } from '../templates/Dashboard'
 
-export const Dashboard = () => (
+export const Dashboard = ({ onStartGame }: { onStartGame: () => void }) => (
   <DashboardTemplate
     title={
       <div className="flex items-center justify-center w-full gap-2">
@@ -23,14 +23,12 @@ export const Dashboard = () => (
     body={
       <div className="flex flex-col gap-6">
         <ScoreCard score={0 as Score} />
-
         <div className="grid grid-cols-2 gap-4">
           <DailyRunsCard current={10} total={10} />
-
           <BestTimeCard time={8 as Seconde} />
         </div>
       </div>
     }
-    action={<GameStartButton />}
+    action={<GameStartButton onClick={onStartGame} />}
   />
 )
