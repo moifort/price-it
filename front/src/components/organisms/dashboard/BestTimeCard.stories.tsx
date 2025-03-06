@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Seconde } from '../../../../../back/src/utils/index.validator'
+import type { Seconde } from '../../../../../back/src/utils/index.type'
 import { BestTimeCard } from './BestTimeCard'
 
 const meta = {
@@ -11,5 +11,5 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { time: Seconde(8) },
+  args: { time: 8 as Seconde },
 }
