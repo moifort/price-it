@@ -6,4 +6,4 @@ export type Product = {
   price: number
 }
 
-export type GameState = 'playing' | 'guessed' | 'timeout' 
+export type GameState = 'playing' | 'guessed' | 'timeout'
