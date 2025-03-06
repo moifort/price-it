@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/atoms/card'
 import { Trophy } from 'lucide-react'
-import type { Score } from '../../../../back/src/score/index.type'
+import type { Score } from '../../../../../back/src/score/index.type'
 
 export const ScoreCard = ({ score }: { score: Score }) => (
   <Card className="relative overflow-hidden">

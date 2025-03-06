@@ -1,11 +1,13 @@
 'use client'
 
 import { Button } from '@/components/atoms/button'
-import { Card, CardContent } from '@/components/atoms/card'
-import { Clock, Play, Star } from 'lucide-react'
+import {} from '@/components/atoms/card'
+import { BestTimeCard } from '@/components/organisms/dashboard/BestTimeCard'
+import { Play, Star } from 'lucide-react'
 import type { Score } from '../../../../back/src/score/index.type'
-import { DailyRunsCard } from '../organisms/DailyRunsCard'
-import { ScoreCard } from '../organisms/ScoreCard'
+import type { Seconde } from '../../../../back/src/utils/index.type'
+import { DailyRunsCard } from '../organisms/dashboard/DailyRunsCard'
+import { ScoreCard } from '../organisms/dashboard/ScoreCard'
 import { Dashboard as DashboardTemplate } from '../templates/Dashboard'
 
 export const Dashboard = () => (
@@ -25,15 +27,7 @@ export const Dashboard = () => (
         <div className="grid grid-cols-2 gap-4">
           <DailyRunsCard current={10} total={10} />
 
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex flex-col items-center gap-2">
-                <Clock className="w-8 h-8 text-green-500" />
-                <h3 className="text-lg font-semibold">Best Time</h3>
-                <p className="text-3xl font-bold text-primary">8.5s</p>
-              </div>
-            </CardContent>
-          </Card>
+          <BestTimeCard time={0 as Seconde} />
         </div>
 
         <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
