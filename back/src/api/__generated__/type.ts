@@ -1,6 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
-import type { GraphQLResolveInfo } from 'graphql';
+import type { Score } from '../../score/index.type';
+import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../index.type';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -16,6 +17,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  Score: { input: Score; output: Score; }
   _FieldSet: { input: any; output: any; }
 };
 
@@ -104,6 +106,7 @@ export type ResolversTypes = {
   Book: ResolverTypeWrapper<Book>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Query: ResolverTypeWrapper<{}>;
+  Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
 
@@ -112,6 +115,7 @@ export type ResolversParentTypes = {
   Book: Book;
   String: Scalars['String']['output'];
   Query: {};
+  Score: Scalars['Score']['output'];
   Boolean: Scalars['Boolean']['output'];
 };
 
@@ -125,8 +129,13 @@ export type QueryResolvers<ContextType = GraphQlContext, ParentType extends Reso
   books?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
 };
 
+export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Score'], any> {
+  name: 'Score';
+}
+
 export type Resolvers<ContextType = GraphQlContext> = {
   Book?: BookResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Score?: GraphQLScalarType;
 };
 

@@ -27,8 +27,8 @@ generates:
 #        OrderBy: '../../kpi/index.type#OrderBy'
 #        CountryId: '../../country/index.type#CountryId'
 #        Currency: 'FiatCurrency'
-#      scalars:
-#        DepartmentId: '../../department/index.type#DepartmentId'
+      scalars:
+        Score: '../../score/index.type#Score'
 #        ImageUrl: '../../model/index.type#ImageUrl'
 #        Rank: '../../model/index.type#Rank'
 #        Limit: 'number'

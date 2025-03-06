@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint } from './index.validator'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde } from './index.validator'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
@@ -53,6 +53,24 @@ describe('Minute', () => {
   it('should reject non-integer numbers', () => {
     expect(() => Minute(1.5)).toThrow()
     expect(() => Minute(0.1)).toThrow()
+  })
+})
+
+describe('Seconde', () => {
+  it('should validate positive integers', () => {
+    expect(() => Seconde(5)).not.toThrow()
+    expect(() => Seconde(0)).not.toThrow()
+    expect(() => Seconde(60)).not.toThrow()
+  })
+
+  it('should reject negative numbers', () => {
+    expect(() => Seconde(-1)).toThrow()
+    expect(() => Seconde(-60)).toThrow()
+  })
+
+  it('should reject non-integer numbers', () => {
+    expect(() => Seconde(1.5)).toThrow()
+    expect(() => Seconde(0.1)).toThrow()
   })
 })
 
