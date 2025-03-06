@@ -6,4 +6,4 @@ export const GameStartButton = () => (
     <Play className="w-6 h-6" />
     Start Game
   </Button>
-) 
+)
