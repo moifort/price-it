@@ -1,10 +1,10 @@
 overwrite: true
-schema: src/**/graphql/*
+schema: src/**/graphql/typedefs.ts
 generates:
   src/api/__generated__/graphql.schema.json:
     plugins:
       - introspection
-  src/api/__generated__/type.ts:
+  src/api/__generated__/types.ts:
     plugins:
       - typescript
       - typescript-resolvers
@@ -17,8 +17,8 @@ generates:
       useTypeImports: true
       enumsAsTypes: true
       federation: true
-      contextType: '../index.type#GraphQlContext'
-      resolverTypeWrapperSignature: 'PartialDeep<T> | Promise<PartialDeep<T>>'
+      contextType: '../types#GraphQlContext'
+#      resolverTypeWrapperSignature: 'PartialDeep<T> | Promise<PartialDeep<T>>'
 #      enumValues:
 #        KpiId: '../../kpi/index.type#KpiId'
 #        Channel: '../../kpi/index.type#Channel'
@@ -28,7 +28,7 @@ generates:
 #        CountryId: '../../country/index.type#CountryId'
 #        Currency: 'FiatCurrency'
       scalars:
-        Score: '../../score/index.type#Score'
+        Score: '../../score/types#Score'
 #        ImageUrl: '../../model/index.type#ImageUrl'
 #        Rank: '../../model/index.type#Rank'
 #        Limit: 'number'

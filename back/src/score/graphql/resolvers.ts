@@ -1,8 +1,8 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
-import type { Resolvers } from '../../api/__generated__/type'
-import type { Score as ScoreType } from '../index.type'
-import { Score } from '../index.validator'
+import type { Resolvers } from '../../api/__generated__/types'
+import type { Score as ScoreType } from '../types'
+import { Score } from '../validators'
 
 const ScoreScalar = new GraphQLScalarType({
   name: 'Score',
@@ -15,9 +15,6 @@ const ScoreScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   Score: ScoreScalar,
   Query: {
-    books: () => [
-      { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-      { title: 'Moby', author: 'Herman Melville' },
-    ],
+    currentScore: () => Score(0),
   },
 }
