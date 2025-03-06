@@ -3,7 +3,7 @@
 import {} from '@/components/atoms/card'
 import { BestTimeCard } from '@/components/organisms/dashboard/BestTimeCard'
 import { Star } from 'lucide-react'
-import type { Score } from '../../../../back/src/score/index.type'
+import type { Score } from '../../../../back/src/score/types'
 import type { Seconde } from '../../../../back/src/utils/index.type'
 import { DailyRunsCard } from '../organisms/dashboard/DailyRunsCard'
 import { GameStartButton } from '../organisms/dashboard/GameStartButton'

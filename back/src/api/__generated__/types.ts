@@ -1,8 +1,8 @@
 /* eslint-disable */
 // @ts-nocheck
-import type { Score } from '../../score/index.type';
+import type { Score } from '../../score/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
-import type { GraphQlContext } from '../index.type';
+import type { GraphQlContext } from '../types';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -21,20 +21,14 @@ export type Scalars = {
   _FieldSet: { input: any; output: any; }
 };
 
-export type Book = {
-  __typename?: 'Book';
-  author: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-};
-
 export type Query = {
   __typename?: 'Query';
-  books: Array<Book>;
+  currentScore: Scalars['Score']['output'];
 };
 
 
 
-export type ResolverTypeWrapper<T> = PartialDeep<T> | Promise<PartialDeep<T>>;
+export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
@@ -103,30 +97,22 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Book: ResolverTypeWrapper<Book>;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
   Query: ResolverTypeWrapper<{}>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Book: Book;
-  String: Scalars['String']['output'];
   Query: {};
   Score: Scalars['Score']['output'];
   Boolean: Scalars['Boolean']['output'];
-};
-
-export type BookResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
-  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+  String: Scalars['String']['output'];
 };
 
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  books?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
+  currentScore?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
 };
 
 export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Score'], any> {
@@ -134,7 +120,6 @@ export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 }
 
 export type Resolvers<ContextType = GraphQlContext> = {
-  Book?: BookResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Score?: GraphQLScalarType;
 };
