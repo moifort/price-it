@@ -3,6 +3,7 @@
 import { Button } from '@/components/atoms/button'
 import { Card, CardContent } from '@/components/atoms/card'
 import { Clock, Play, Star, Target } from 'lucide-react'
+import type { Score } from '../../../../back/src/score/index.type'
 import { ScoreCard } from '../organisms/ScoreCard'
 import { Dashboard as DashboardTemplate } from '../templates/Dashboard'
 
@@ -18,7 +19,7 @@ export const Dashboard = () => (
     }
     body={
       <div className="flex flex-col gap-6">
-        <ScoreCard score={0} />
+        <ScoreCard score={0 as Score} />
 
         <div className="grid grid-cols-2 gap-4">
           <Card>
