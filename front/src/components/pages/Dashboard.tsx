@@ -2,8 +2,9 @@
 
 import { Button } from '@/components/atoms/button'
 import { Card, CardContent } from '@/components/atoms/card'
-import { Clock, Play, Star, Target } from 'lucide-react'
+import { Clock, Play, Star } from 'lucide-react'
 import type { Score } from '../../../../back/src/score/index.type'
+import { DailyRunsCard } from '../organisms/DailyRunsCard'
 import { ScoreCard } from '../organisms/ScoreCard'
 import { Dashboard as DashboardTemplate } from '../templates/Dashboard'
 
@@ -22,18 +23,7 @@ export const Dashboard = () => (
         <ScoreCard score={0 as Score} />
 
         <div className="grid grid-cols-2 gap-4">
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex flex-col items-center gap-2">
-                <Target className="w-8 h-8 text-blue-500" />
-                <h3 className="text-lg font-semibold">Daily Runs</h3>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-primary">10</span>
-                  <span className="text-sm text-muted-foreground">/10</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <DailyRunsCard current={10} total={10} />
 
           <Card>
             <CardContent className="pt-6">
