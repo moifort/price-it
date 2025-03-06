@@ -2,10 +2,6 @@
 
 import { Button } from '@/components/atoms/button'
 import { Play } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-
-export const GameStartButton = () => {
-  const router = useRouter()
 
 export const GameStartButton = ({ onClick }: { onClick: () => void }) => {
   return (
