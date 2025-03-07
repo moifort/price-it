@@ -1,5 +1,5 @@
 import { Button } from '@/components/atoms/button'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import type { ReactNode } from 'react'
 
 export const ActionButton = ({

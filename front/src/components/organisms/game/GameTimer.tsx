@@ -1,5 +1,5 @@
 import { Card } from '@/components/atoms/card'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import { Clock } from 'lucide-react'
 import type { Seconde } from '../../../../../back/src/utils/index.type'
 
