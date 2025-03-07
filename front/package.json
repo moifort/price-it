@@ -10,7 +10,8 @@
     "clean": "bunx biome check --write",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:test": "test-storybook"
+    "storybook:test": "bunx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"bun storybook:build --docs --quiet && bunx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:127.0.0.1:6006 && bun test-storybook --browsers chromium --maxWorkers=2\"",
+    "test:all": "bun storybook:test"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "1.1.3",
