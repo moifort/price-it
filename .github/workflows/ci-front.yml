@@ -32,7 +32,4 @@ jobs:
       - name: 📖 Build Storybook
         run: bun --cwd front storybook:build
       - name: Serve Storybook and run tests
-        run: |
-          bunx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "bunx http-server front/storybook-static --port 6006 --silent" \
-            "bunx wait-on tcp:127.0.0.1:6006 && bun --cwd front storybook:test"
+        run: bun --cwd front storybook:test
