@@ -1,12 +1,9 @@
 import { Card } from '@/components/atoms/card'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import { Clock } from 'lucide-react'
+import type { Seconde } from '../../../../../back/src/utils/index.type'
 
-type GameTimerProps = {
-  timer: number
-}
-
-export const GameTimer = ({ timer }: GameTimerProps) => (
+export const GameTimer = ({ timer }: { timer: Seconde }) => (
   <Card
     className={cn(
       'w-full transition-colors border-2',
