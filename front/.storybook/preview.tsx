@@ -19,6 +19,11 @@ const preview: Preview = {
     docs: {
       theme: { ...themes.dark, ...darkUIStorybook, ...commonTheme },
     },
+    options: {
+      storySort: {
+        order: ['atoms', ['Index', '*'], 'molecules', 'organisms', 'templates', 'pages', 'recipes', '*'],
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {

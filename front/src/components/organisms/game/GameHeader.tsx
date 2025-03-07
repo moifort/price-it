@@ -2,14 +2,8 @@ import { Button } from '@/components/atoms/button'
 import { ArrowLeft, Trophy } from 'lucide-react'
 import type { Score } from '../../../../../back/src/score/types'
 
-type GameHeaderProps = {
-  score: Score
-  runsLeft: number
-  onExit: () => void
-}
-
-export const GameHeader = ({ score, runsLeft, onExit }: GameHeaderProps) => (
-  <>
+export const GameHeader = ({ score, runsLeft, onExit }: { score: Score; runsLeft: number; onExit: () => void }) => (
+  <div className="flex items-center justify-between">
     <Button
       variant="outline"
       onClick={onExit}
@@ -18,6 +12,7 @@ export const GameHeader = ({ score, runsLeft, onExit }: GameHeaderProps) => (
       <ArrowLeft className="w-4 h-4" />
       Exit Game
     </Button>
+
     <div className="flex items-center gap-4 bg-card p-2 px-4 rounded-full shadow-md">
       <div className="flex items-center gap-1.5">
         <Trophy className="w-5 h-5 text-yellow-500" />
@@ -28,5 +23,5 @@ export const GameHeader = ({ score, runsLeft, onExit }: GameHeaderProps) => (
         Runs: <span className="text-foreground font-semibold">{runsLeft}</span>
       </div>
     </div>
-  </>
+  </div>
 )

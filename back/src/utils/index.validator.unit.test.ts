@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde } from './index.validator'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from './index.validator'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
@@ -84,5 +84,20 @@ describe('PercentagePoint', () => {
   it('should throw error for invalid percentage points', () => {
     expect(() => PercentagePoint(-0.1)).toThrow()
     expect(() => PercentagePoint(1.1)).toThrow()
+  })
+})
+
+describe('Url', () => {
+  it('should validate valid URLs', () => {
+    expect(() => Url('https://example.com')).not.toThrow()
+    expect(() => Url('http://localhost:3000')).not.toThrow()
+    expect(() => Url('https://sub.domain.com/path?query=string')).not.toThrow()
+  })
+
+  it('should reject invalid URLs', () => {
+    expect(() => Url('not-a-url')).toThrow()
+    expect(() => Url('http://')).toThrow()
+    expect(() => Url('ftp://invalid-protocol.com')).not.toThrow() // Valid URL with ftp protocol
+    expect(() => Url('')).toThrow()
   })
 })

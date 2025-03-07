@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import type { Amount } from '../../../../../back/src/utils/index.type'
 import { ActionButtons } from './ActionButtons'
 
 const meta = {
@@ -8,23 +9,18 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Playing: Story = {
+export const Default: Story = {
   args: {
-    gameState: 'playing',
+    isActive: true,
     onGuess: (guess) => console.log(`User guessed: ${guess}`),
+    displayPrice: 299.99 as Amount,
   },
 }
 
 export const Disabled: Story = {
   args: {
-    gameState: 'guessed',
+    isActive: false,
     onGuess: (guess) => console.log(`User guessed: ${guess}`),
-  },
-}
-
-export const Timeout: Story = {
-  args: {
-    gameState: 'timeout',
-    onGuess: (guess) => console.log(`User guessed: ${guess}`),
+    displayPrice: 299.99 as Amount,
   },
 }

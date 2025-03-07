@@ -1,19 +1,14 @@
-import type { Product } from '@/app/game/types'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
+import { Card, CardHeader, CardTitle } from '@/components/atoms/card'
 import Image from 'next/image'
+import type { Url } from '../../../../../back/src/utils/index.type'
 
-type ProductCardProps = {
-  product: Product
-}
-
-export const ProductCard = ({ product }: ProductCardProps) => (
+export const ProductCard = ({ name, imageUrl }: { name: string; imageUrl: Url }) => (
   <>
-    {/* Product Image */}
-    <Card className="w-full overflow-hidden shadow-lg border-2 border-primary/20 bg-card/90">
+    <Card className="w-full overflow-hidden shadow-lg border-2 border-primary/20 bg-card/90 rounded-b-none">
       <div className="relative w-full h-72 md:h-96">
         <Image
-          src={product.imageUrl}
-          alt={product.name}
+          src={imageUrl}
+          alt={name}
           fill
           unoptimized
           priority
@@ -22,16 +17,12 @@ export const ProductCard = ({ product }: ProductCardProps) => (
       </div>
     </Card>
 
-    {/* Product Info */}
-    <Card className="w-full">
-      <CardHeader className="pb-2">
+    <Card className="w-full rounded-t-none">
+      <CardHeader>
         <CardTitle className="text-2xl text-center font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-          {product.name}
+          {name}
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <p className="text-center text-muted-foreground">{product.description}</p>
-      </CardContent>
     </Card>
   </>
 )

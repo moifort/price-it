@@ -7,6 +7,7 @@ import type {
   PercentagePoint as PercentagePointType,
   Percentage as PercentageType,
   Seconde as SecondeType,
+  Url as UrlType,
 } from './index.type'
 
 export const Limit = make<LimitType>((value) => z.number().int().min(1).max(1000).parse(value))
@@ -15,3 +16,4 @@ export const Amount = make<AmountType>((value) => z.number().min(0).parse(value)
 export const Minute = make<MinuteType>((value) => z.number().int().min(0).parse(value))
 export const Seconde = make<SecondeType>((value) => z.number().int().min(0).parse(value))
 export const PercentagePoint = make<PercentagePointType>((value) => z.number().min(0).max(1).parse(value))
+export const Url = make<UrlType>((value) => z.string().url().parse(value))
