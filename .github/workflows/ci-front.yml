@@ -28,7 +28,7 @@ jobs:
           bun-version: '1.2.2'
       - run: bun install --cwd front
       - name: 🖥️ Install Playwright
-        run: npx playwright install --with-deps
+        run: bun --cwd front storybook:test:install
       - name: 📖 Build Storybook
         run: bun --cwd front storybook:build
       - name: Serve Storybook and run tests

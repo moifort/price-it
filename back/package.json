@@ -2,7 +2,7 @@
   "name": "price-it-back",
   "module": "index.ts",
   "scripts": {
-    "postinstall": "if [[ -z \"$CI\" || -n \"$FIREBASE_TOOLS\" ]]; then bun install --global firebase-tools@13.32.0; fi",
+    "postinstall": "if [[ -z \"$CI\" || -n \"$FIREBASE_TOOLS\" ]]; then bun install --global firebase-tools@13.33.0; fi",
     "lint": "bun biome check",
     "check": "bun tsc",
     "build": "pnpm tsc",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@eslint/js": "9.21.0",
+    "@eslint/js": "9.22.0",
     "@firebase/rules-unit-testing": "4.0.1",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.5",
