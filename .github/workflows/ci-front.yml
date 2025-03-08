@@ -26,9 +26,9 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: '1.2.2'
-      - name: 🖥️ Install Playwright
-        run: bunx playwright install --with-deps
       - run: bun install --cwd front
+      - name: 🖥️ Install Playwright
+        run: bun --cwd front storybook:test:install
       - name: 📖 Build Storybook
         run: bun --cwd front storybook:build
       - name: Serve Storybook and run tests
