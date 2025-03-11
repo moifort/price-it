@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      GQL_HOST: process.env.GQL_HOST ?? 'https://api-6zdezivzkq-ey.a.run.app',
+      GQL_HOST: process.env.GQL_HOST ?? 'http://127.0.0.1:5001/price-it-85b3e/europe-west3/api',
     },
   },
 })
