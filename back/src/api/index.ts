@@ -14,6 +14,7 @@ export const graphQlServer = async () => {
   const typeDefFiles = loadFilesSync(path.join(__dirname, '../**/graphql/typedefs.*'))
   const resolverFiles = loadFilesSync(path.join(__dirname, '../**/graphql/resolvers.*'))
   const server = new ApolloServer({
+    introspection: true,
     typeDefs: mergeTypeDefs(typeDefFiles),
     resolvers: mergeResolvers<unknown, BaseContext>(resolverFiles),
     plugins: [ApolloServerPluginLandingPageLocalDefault()],
