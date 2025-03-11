@@ -24,7 +24,7 @@
     "singleProjectMode": true
   },
   "hosting": {
-    "public": "front/.output",
+    "public": "front/.output/public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
