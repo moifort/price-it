@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:https": "nuxt dev --https --ssl-cert certificates/localhost.pem --ssl-key certificates/localhost-key.pem --host 127.0.0.1",
+    "dev:https": "nuxt dev --https --ssl-cert ../certificates/localhost.pem --ssl-key ../certificates/localhost-key.pem --host 127.0.0.1",
     "clean": "bunx biome check --write",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
