@@ -10,8 +10,7 @@ import {
 import type { LaunchParams } from '@telegram-apps/sdk-vue'
 
 export default defineNuxtPlugin(async (isDev) => {
-  if (isDev) {
-    if (await isTMA()) return
+  if (isDev && !(await isTMA())) {
     let lp: LaunchParams | undefined
     try {
       lp = retrieveLaunchParams()
