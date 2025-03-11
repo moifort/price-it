@@ -22,15 +22,5 @@
       "enabled": true
     },
     "singleProjectMode": true
-  },
-  "hosting": {
-    "public": "front/.output/public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
   }
 }

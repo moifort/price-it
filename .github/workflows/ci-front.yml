@@ -7,6 +7,8 @@ jobs:
   lint:
     name: 👮 Lint
     runs-on: ubuntu-latest
+    env:
+      GQL_HOST: https://api-6zdezivzkq-ey.a.run.app
     steps:
       - uses: actions/checkout@v4
       - name: 🥟 Install bun
