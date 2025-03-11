@@ -15,6 +15,6 @@ const ScoreScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   Score: ScoreScalar,
   Query: {
-    currentScore: () => Score(0),
+    currentScore: () => Score(309874),
   },
 }

@@ -29,5 +29,6 @@ jobs:
         uses: w9jds/firebase-action@v13.33.0
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GQL_HOST: https://api-6zdezivzkq-ey.a.run.app
         with:
           args: deploy --force
