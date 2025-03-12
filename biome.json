@@ -37,5 +37,18 @@
       "quoteStyle": "single",
       "semicolons": "asNeeded"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["*.vue"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          }
+        }
+      }
+    }
+  ]
 }
