@@ -5,6 +5,5 @@ export type PlayerId = TelegramUserId
 export type Player = {
   id: PlayerId
   firstName: string
-  lastName: string | undefined
   score: Score
 }

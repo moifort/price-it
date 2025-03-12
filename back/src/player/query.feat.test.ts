@@ -1,0 +1,29 @@
+import { describe, expect, it } from 'bun:test'
+import { Score } from '../score/validators'
+import { $testDatabase } from '../utils/setup.test'
+import { PlayerQuery } from './query'
+import { PlayerId } from './validators'
+
+describe('get', () => {
+  it('should retrieve a player', async () => {
+    // Given
+    await $testDatabase
+      .collection('players')
+      .doc('8153383238')
+      .create({
+        id: PlayerId('8153383238'),
+        firstName: 'Alice',
+        score: Score(15),
+      })
+
+    // When
+    const player = await PlayerQuery.get($testDatabase)(PlayerId('8153383238'))
+
+    // Then
+    expect(player).toEqual({
+      id: PlayerId('8153383238'),
+      firstName: 'Alice',
+      score: Score(15),
+    })
+  })
+})
