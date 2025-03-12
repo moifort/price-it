@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Score, Point } from './validators'
+import { Point, Score } from './validators'
 
 describe('Score', () => {
   it('should accept valid non-negative integers', () => {
