@@ -30,6 +30,7 @@ generates:
       scalars:
         Score: '../../score/types#Score'
         PlayerId: '../../player/types#PlayerId'
+        Point: '../../score/types#Point'
 #        ImageUrl: '../../model/index.type#ImageUrl'
 #        Rank: '../../model/index.type#Rank'
 #        Limit: 'number'

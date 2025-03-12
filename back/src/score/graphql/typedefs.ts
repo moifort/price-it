@@ -1,7 +1,8 @@
 export default `#graphql 
 scalar Score
+scalar Point
 
-type Query {
-    currentScore: Score!
+type Mutation {
+    addPointsToScore(points: Point!): Boolean
 }
 `

@@ -3,3 +3,7 @@ query Player {
     score
   }
 }
+
+mutation PlayerScore($points: Point!) {
+  addPointsToScore(points: $points)
+}
