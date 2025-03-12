@@ -12,6 +12,7 @@ export default defineNuxtConfig({
       scalars: {
         PlayerId: '../../../back/src/player/types#PlayerId',
         Score: '../../../back/src/score/types#Score',
+        Point: '../../score/types#Point',
       },
     },
     clients: {

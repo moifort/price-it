@@ -1,8 +1,9 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import type { Score as ScoreType } from '../types'
-import { Score } from '../validators'
+import { ScoreCommand } from '../command'
+import type { Point as PointType, Score as ScoreType } from '../types'
+import { Point, Score } from '../validators'
 
 const ScoreScalar = new GraphQLScalarType({
   name: 'Score',
@@ -12,9 +13,21 @@ const ScoreScalar = new GraphQLScalarType({
   parseLiteral: (ast) => (ast.kind === Kind.INT ? Score(ast.value) : null),
 })
 
+const PointScalar = new GraphQLScalarType({
+  name: 'Point',
+  description: 'The `Point` scalar type represents points as a positive integer greater than zero.',
+  parseValue: (value: unknown): PointType => Point(value),
+  serialize: (value: unknown) => Point(value),
+  parseLiteral: (ast) => (ast.kind === Kind.INT ? Point(ast.value) : null),
+})
+
 export const resolvers: Resolvers = {
   Score: ScoreScalar,
-  Query: {
-    currentScore: (_, __, { database }) => Score(309874),
+  Point: PointScalar,
+  Mutation: {
+    addPointsToScore: async (_, { points }, { userId, database }) => {
+      await ScoreCommand.addPoints(database)(userId, points)
+      return true
+    },
   },
 }

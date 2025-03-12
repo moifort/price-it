@@ -7,6 +7,7 @@ type Player {
     lastName: String
     score: Score!
 }
+
 type Mutation {
     createPlayerIfNotExist: PlayerId!
 }
