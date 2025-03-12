@@ -8,7 +8,7 @@ import type {
   Percentage as PercentageType,
   Seconde as SecondeType,
   Url as UrlType,
-} from './index.type'
+} from './types'
 
 export const Limit = make<LimitType>((value) => z.number().int().min(1).max(1000).parse(value))
 export const Percentage = make<PercentageType>((value) => z.number().parse(value))

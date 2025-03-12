@@ -8,7 +8,7 @@
     "build": "pnpm tsc",
     "clean": "bunx biome check --write",
     "clear": "rm -rf lib && rm -rf src/api/__generated__",
-    "dev": "firebase emulators:exec --import .emulators --ui --only functions,firestore 'bun graphql:gen -w src/**/graphql/* & bun tsc --watch'",
+    "dev": "bun clear && firebase emulators:exec --import .emulators --ui --only functions,firestore 'bun graphql:gen -w src/**/graphql/* & bun tsc --watch'",
     "test:all": "bun test:unit && bun test:int && bun test:feat",
     "test:unit": "bun test unit",
     "test:int": "bun test int",

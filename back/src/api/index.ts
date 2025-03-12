@@ -12,8 +12,8 @@ import { isValid, parse } from '@telegram-apps/init-data-node'
 import cors from 'cors'
 import type { Express } from 'express'
 import express from 'express'
-import type { TelegramToken } from '../utils/telegram.type'
-import { TelegramUserId } from '../utils/telegram.validator'
+import type { TelegramToken } from '../utils/telegram/types'
+import { TelegramUserId } from '../utils/telegram/validators'
 import { AuthenticationError, type GraphQlContext } from './types'
 
 let instance: Express | null = null
@@ -58,7 +58,11 @@ export const graphQlServer = async (
         if (!isValid(authData, token, { expiresIn: isDev ? undefined : 3600 })) throw new AuthenticationError()
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()
-        return Promise.resolve({ userId: TelegramUserId(user.id), database })
+        return Promise.resolve({
+          userId: TelegramUserId(user.id),
+          user: { firstName: user.first_name, lastName: user.last_name },
+          database,
+        })
       },
     }),
   )

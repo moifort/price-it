@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { TelegramToken, TelegramUserId } from './telegram.validator'
+import { TelegramToken, TelegramUserId } from './validators'
 
 describe('TelegramToken', () => {
   it('should validate proper Telegram token format', () => {
@@ -25,6 +25,11 @@ describe('TelegramUserId', () => {
     expect(() => TelegramUserId(9999999999)).not.toThrow()
   })
 
+  it('should validate string user IDs containing only digits', () => {
+    expect(() => TelegramUserId('123456789')).not.toThrow()
+    expect(() => TelegramUserId('9999999999')).not.toThrow()
+  })
+
   it('should reject negative numbers', () => {
     expect(() => TelegramUserId(-1)).toThrow()
     expect(() => TelegramUserId(-123456789)).toThrow()
@@ -37,5 +42,14 @@ describe('TelegramUserId', () => {
   it('should reject non-integer numbers', () => {
     expect(() => TelegramUserId(1.5)).toThrow()
     expect(() => TelegramUserId(123.456)).toThrow()
+  })
+
+  it('should reject invalid string inputs', () => {
+    expect(() => TelegramUserId('')).toThrow()
+    expect(() => TelegramUserId('abc')).toThrow()
+    expect(() => TelegramUserId('123abc')).toThrow()
+    expect(() => TelegramUserId('123.456')).toThrow()
+    expect(() => TelegramUserId('-123')).toThrow()
+    expect(() => TelegramUserId('0')).toThrow()
   })
 })

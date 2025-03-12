@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Guesser</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--tg-theme-bg-color, #fff);
+            color: var(--tg-theme-text-color, #000);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .timer {
+            margin-top: 10px;
+            height: 4px;
+            background-color: #ddd;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .timer-bar {
+            height: 100%;
+            width: 100%;
+            background-color: var(--tg-theme-button-color, #2481cc);
+            transition: width 0.1s linear;
+        }
+
+        .product-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-name {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .buttons.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .btn {
+            flex: 1;
+            margin: 0 5px;
+            padding: 15px 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .btn-less {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+
+        .btn-price {
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000);
+            font-size: 18px;
+        }
+
+        .btn-more {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+
+        .btn-back {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: calc(100% - 10px);
+            margin: 5px;
+            padding: 15px;
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000);
+            z-index: 10;
+        }
+
+        .result {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            height: 24px;
+        }
+
+        .result-correct {
+            color: #4CAF50;
+        }
+
+        .result-wrong {
+            color: #F44336;
+        }
+
+        .actual-price {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .actual-price.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .actual-price .price-value {
+            color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            margin: 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .category-btn.active {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+
+        .difficulty {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .difficulty-btn {
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .difficulty-btn.active {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+
+        .game-screen,
+        .home-screen {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .home-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .home-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .game-over {
+            text-align: center;
+        }
+
+        .game-over h2 {
+            margin-bottom: 20px;
+        }
+
+        .game-over .score {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons {
+            display: none;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-buttons.show {
+            display: flex;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.1s;
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+            opacity: 0.9;
+        }
+
+        .btn-next {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+
+        .btn-checkout {
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            color: var(--tg-theme-text-color, #000);
+        }
+
+        .game-screen {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 70px;
+        }
+
+        .home-score {
+            text-align: center;
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .score-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--tg-theme-secondary-bg-color, #f0f0f0);
+            border-radius: 12px;
+        }
+
+        .score-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #2481cc);
+            line-height: 1.2;
+        }
+
+        .score-label {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+            color: var(--tg-theme-text-color, #000);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-sublabel {
+            font-size: 14px;
+            opacity: 0.6;
+            color: var(--tg-theme-hint-color, #999);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Home Screen -->
+        <div class="home-screen visible">
+            <div class="header">
+                <h1>Price Guesser</h1>
+                <p>Guess if products are priced higher or lower than shown</p>
+            </div>
+            
+            <div class="home-score">
+                <div class="score-block">
+                    <div class="score-label">Daily Runs Left</div>
+                    <div class="score-value" id="home-runs">10</div>
+                    <div class="score-sublabel">Resets in: <span id="reset-countdown">00:00:00</span></div>
+                </div>
+                <div class="score-block">
+                    <div class="score-label">Total Score</div>
+                    <div class="score-value" id="home-score">0</div>
+                </div>
+            </div>
+            
+            <div class="home-buttons">
+                <button class="home-btn" id="start-game">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="game-screen">
+            <div class="header">
+                <div class="score">Time: <span id="timer-seconds">10</span>s | Score: <span id="score">0</span> | Runs: <span id="game-runs">10</span></div>
+                <div class="timer">
+                    <div class="timer-bar" id="timer-bar"></div>
+                </div>
+            </div>
+            
+            <div class="product-container">
+                <img src="" alt="Product" class="product-image" id="product-image">
+                <div class="product-name" id="product-name"></div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-less" id="btn-less">LESS</button>
+                <button class="btn btn-price" id="btn-price">0€</button>
+                <button class="btn btn-more" id="btn-more">MORE</button>
+            </div>
+            
+            <div class="result" id="result"></div>
+            <div class="actual-price" id="actual-price">Actual Price: <span id="actual-price-value">0€</span></div>
+            <div class="action-buttons" id="action-buttons">
+                <button class="action-btn btn-checkout" id="btn-checkout">CHECK OUT</button>
+                <button class="action-btn btn-next" id="btn-next">NEXT</button>
+            </div>
+            
+            <button class="btn btn-back" id="btn-back">BACK TO HOME</button>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div class="game-over" style="display: none;">
+            <h2>Game Over!</h2>
+            <div class="score">Final Score: <span id="final-score">0</span></div>
+            <div class="home-buttons">
+                <button class="home-btn" id="play-again">Play Again</button>
+                <button class="home-btn" id="share-result">Share Result</button>
+                <button class="home-btn" id="back-to-home">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Telegram WebApp
+        const tgApp = window.Telegram.WebApp;
+        tgApp.expand();
+        tgApp.ready();
+
+        // DOM Elements
+        const homeScreen = document.querySelector('.home-screen');
+        const gameScreen = document.querySelector('.game-screen');
+        const gameOverScreen = document.querySelector('.game-over');
+        const startGameBtn = document.getElementById('start-game');
+        const productImage = document.getElementById('product-image');
+        const productName = document.getElementById('product-name');
+        const btnLess = document.getElementById('btn-less');
+        const btnPrice = document.getElementById('btn-price');
+        const btnMore = document.getElementById('btn-more');
+        const scoreElement = document.getElementById('score');
+        const homeScoreElement = document.getElementById('home-score');
+        const timerSecondsElement = document.getElementById('timer-seconds');
+        const finalScoreElement = document.getElementById('final-score');
+        const resultElement = document.getElementById('result');
+        const timerBar = document.getElementById('timer-bar');
+        const playAgainBtn = document.getElementById('play-again');
+        const shareResultBtn = document.getElementById('share-result');
+        const backToHomeBtn = document.getElementById('back-to-home');
+        const actualPrice = document.getElementById('actual-price');
+        const actualPriceValue = document.getElementById('actual-price-value');
+        const actionButtons = document.getElementById('action-buttons');
+        const btnCheckout = document.getElementById('btn-checkout');
+        const btnNext = document.getElementById('btn-next');
+
+        // Game State
+        let score = 0;
+        let currentProductIndex = 0;
+        let selectedCategory = 'all';
+        let selectedDifficulty = 'easy';
+        let timeLeft = 100;
+        let timerInterval = null;
+        let currentProducts = [];
+        let runsLeft = 10;
+        let currentProductUrl = '';
+        let lastResetDate = null;
+        let countdownInterval = null;
+
+        // Products Database
+        const productsDB = [
+            { id: 1, name: "Mini Spy Hidden Camera", image: "https://cdn.thisiswhyimbroke.com/thumb/mini-spy-hidden-camera_400x333.jpg", price: 28.99, category: "gadgets", url: "https://www.amazon.com/dp/B07GKY23D7/?tag=097-20&ascsubtag=default" },
+            { id: 2, name: "The Inflatable Speed Boat", image: "https://cdn.thisiswhyimbroke.com/thumb/inflatable-speed-boat_400x333.jpg", price: 800.00, category: "vehicles", url: "https://www.amazon.com/dp/B07NQ3GTTW/?tag=097-20&ascsubtag=default" },
+            { id: 3, name: "Giant Ten Pound Toblerone Bar", image: "https://cdn.thisiswhyimbroke.com/thumb/giant-ten-pound-toblerone-bar_400x333.jpg", price: 130.99, category: "food", url: "https://www.amazon.com/dp/B004INT01A/?tag=097-20&ascsubtag=default&th=1" },
+            { id: 4, name: "Moon House", image: "https://cdn.thisiswhyimbroke.com/thumb/moon-house_400x333.jpg", price: 14995.00, category: "real estate", url: "https://www.amazon.com/dp/B09MBXW7G2/?tag=097-20&ascsubtag=default" },
+            { id: 5, name: "Dolphin Power Boat", image: "https://cdn.thisiswhyimbroke.com/thumb/dolphin-power-boat_400x333.jpg", price: 65000.00, category: "vehicles", url: "https://seabreacher.com/?utm_source=thisiswhyimbroke.com&utm_medium=referral" },
+            { id: 6, name: "Extreme Above Ground Emergency Shelter", image: "https://cdn.thisiswhyimbroke.com/thumb/above-ground-emergency-shelter_400x333.jpg", price: 5450.00, category: "survival", url: "https://www.amazon.com/dp/B00S1NP0JE/?tag=097-20&ascsubtag=default" },
+            { id: 7, name: "UFO Spaceship Airbnb", image: "https://cdn.thisiswhyimbroke.com/thumb/ufo-spaceship-airbnb_400x333.jpg", price: 128.00, category: "travel", url: "https://fr.airbnb.com/rooms/51165983?utm_source=thisiswhyimbroke.com&utm_medium=referral&_set_bev_on_new_domain=1740461234_EANTZiNzYwOGQ2NG&source_impression_id=p3_1741002978_P3iCgSWG0g-ZnVFF" },
+            { id: 8, name: "Dwarf 2 Smart Telescope", image: "https://cdn.thisiswhyimbroke.com/images/dwarf-ii-smart-telescope.gif", price: 493.00, category: "gadgets", url: "https://www.amazon.com/dp/B0CCDS43N4/?tag=097-20&ascsubtag=default&th=1" }
+        ];
+
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            const diff = tomorrow - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const countdownElement = document.getElementById('reset-countdown');
+            countdownElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Initialize game data and load from storage if available
+        function initGame() {
+            checkAndResetDailyRuns();
+            loadGameState();
+            
+            // Start countdown timer
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // Add event listeners for home screen
+            startGameBtn.addEventListener('click', () => {
+                if (runsLeft <= 0) {
+                    alert('No more runs left today. Come back tomorrow!');
+                    return;
+                }
+                startGame();
+            });
+            
+            // Add event listeners for game screen
+            btnLess.addEventListener('click', () => checkAnswer('less'));
+            btnPrice.addEventListener('click', () => checkAnswer('equal'));
+            btnMore.addEventListener('click', () => checkAnswer('more'));
+            document.getElementById('btn-back').addEventListener('click', () => {
+                clearInterval(timerInterval);
+                showScreen('home');
+            });
+            
+            // Add event listeners for next and checkout buttons
+            btnNext.addEventListener('click', () => {
+                if (runsLeft > 0) {
+                    resultElement.textContent = '';
+                    nextProduct();
+                } else {
+                    endGame();
+                }
+            });
+            
+            // Add event listeners for game over screen
+            playAgainBtn.addEventListener('click', startGame);
+            shareResultBtn.addEventListener('click', shareResult);
+            backToHomeBtn.addEventListener('click', backToHome);
+        }
+
+        // Save and load game state
+        function saveGameState() {
+            const gameState = {
+                score,
+                runsLeft,
+                lastResetDate: lastResetDate?.toISOString(),
+                highScore: score > (localStorage.getItem('highScore') || 0) ? score : (localStorage.getItem('highScore') || 0)
+            };
+            localStorage.setItem('priceGuesserState', JSON.stringify(gameState));
+            document.getElementById('home-runs').textContent = runsLeft;
+        }
+
+        function loadGameState() {
+            const gameState = JSON.parse(localStorage.getItem('priceGuesserState') || '{}');
+            score = gameState.score || 0;
+            runsLeft = gameState.runsLeft ?? 10;
+            lastResetDate = gameState.lastResetDate ? new Date(gameState.lastResetDate) : null;
+            homeScoreElement.textContent = score;
+            document.getElementById('home-runs').textContent = runsLeft;
+            updateScoreDisplay();
+        }
+
+        function checkAndResetDailyRuns() {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            if (!lastResetDate || lastResetDate < today) {
+                runsLeft = 10;
+                lastResetDate = today;
+                saveGameState();
+            }
+        }
+
+        // Show/hide screens
+        function showScreen(screen) {
+            homeScreen.style.display = 'none';
+            gameScreen.style.display = 'none';
+            gameOverScreen.style.display = 'none';
+            
+            if (screen === 'home') {
+                homeScreen.style.display = 'block';
+                homeScoreElement.textContent = score;
+                document.getElementById('home-runs').textContent = runsLeft;
+                checkAndResetDailyRuns();
+                updateCountdown();
+            } else if (screen === 'game') {
+                gameScreen.style.display = 'block';
+            } else if (screen === 'gameOver') {
+                gameOverScreen.style.display = 'block';
+            }
+        }
+
+        // Start the game
+        function startGame() {
+            try {
+                console.log('Starting game...');
+                // Keep the existing score instead of resetting it
+                scoreElement.textContent = score;
+                resultElement.textContent = '';
+                resultElement.className = 'result';
+                
+                // Filter products by category
+                currentProducts = [...productsDB];
+                
+                // Shuffle products
+                currentProducts = shuffleArray(currentProducts);
+                
+                currentProductIndex = 0;
+                showScreen('game');
+                updateScoreDisplay();
+                nextProduct();
+            } catch (error) {
+                console.error('Error in startGame:', error);
+            }
+        }
+
+        function updateScoreDisplay() {
+            document.getElementById('game-runs').textContent = runsLeft;
+            document.getElementById('home-runs').textContent = runsLeft;
+            homeScoreElement.textContent = score;
+            scoreElement.textContent = score;
+        }
+
+        // Shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Load next product
+        function nextProduct() {
+            try {
+                if (currentProductIndex >= currentProducts.length) {
+                    console.log('Reshuffling products...');
+                    currentProducts = shuffleArray([...currentProducts]);
+                    currentProductIndex = 0;
+                }
+                
+                const product = currentProducts[currentProductIndex];
+                console.log('Loading product:', product);
+                
+                // Reset displays
+                actualPrice.classList.remove('show');
+                actionButtons.classList.remove('show');
+                document.querySelector('.buttons').classList.remove('hide');
+                
+                // Store current product URL
+                currentProductUrl = product.url;
+                
+                // Set product image and name
+                productImage.src = product.image;
+                productName.textContent = product.name;
+                
+                // Enable answer buttons
+                btnLess.disabled = false;
+                btnMore.disabled = false;
+                btnPrice.disabled = false;
+                
+                // Set a displayed price with 30% difference
+                const priceDifference = Math.random() < 0.5 ? 0 : (Math.random() < 0.5 ? 0.3 : -0.3);
+                const displayedPrice = Math.round(product.price * (1 + priceDifference));
+                console.log(`Setting displayed price to ${displayedPrice}€ (actual price: ${product.price}€)`);
+                btnPrice.textContent = `${displayedPrice}€`;
+                
+                // Reset and start timer
+                resetTimer();
+                startTimer();
+                
+                currentProductIndex++;
+            } catch (error) {
+                console.error('Error in nextProduct:', error);
+            }
+        }
+
+        function showAnswer(product, isTimeout) {
+            // Hide and disable answer buttons
+            document.querySelector('.buttons').classList.add('hide');
+            btnLess.disabled = true;
+            btnMore.disabled = true;
+            btnPrice.disabled = true;
+            
+            // Show actual price
+            actualPriceValue.textContent = `${product.price}€`;
+            actualPrice.classList.add('show');
+            
+            // Show action buttons
+            actionButtons.classList.add('show');
+            
+            // Update checkout button to use Telegram's openLink method
+            btnCheckout.onclick = () => tgApp.openLink(product.url);
+        }
+
+        function checkAnswer(answer) {
+            clearInterval(timerInterval);
+            
+            const product = currentProducts[currentProductIndex - 1];
+            const displayedPrice = parseInt(btnPrice.textContent);
+            
+            let correctAnswer;
+            if (product.price < displayedPrice) {
+                correctAnswer = 'less';
+            } else if (product.price > displayedPrice) {
+                correctAnswer = 'more';
+            } else {
+                correctAnswer = 'equal';
+            }
+            
+            if (answer === correctAnswer) {
+                score += 500;
+                resultElement.textContent = 'Correct! +500 points!';
+                resultElement.className = 'result result-correct';
+            } else {
+                score = Math.max(0, score - 200);
+                resultElement.textContent = 'Wrong! -200 points!';
+                resultElement.className = 'result result-wrong';
+            }
+            
+            runsLeft--;
+
+            // Award 1000 points every 10 turns
+            if (runsLeft > 0 && runsLeft % 10 === 0) {
+                score += 1000;
+                setTimeout(() => {
+                    resultElement.textContent = 'Bonus! +1000 points for completing 10 turns!';
+                    resultElement.className = 'result result-correct';
+                }, 1500);
+            }
+            
+            updateScoreDisplay();
+            showAnswer(product, false);
+            saveGameState();
+        }
+
+        // Timer functions
+        function startTimer() {
+            timeLeft = 100;
+            timerBar.style.width = '100%';
+            timerSecondsElement.textContent = '10';
+            
+            timerInterval = setInterval(() => {
+                timeLeft -= 1;
+                timerBar.style.width = `${timeLeft}%`;
+                timerSecondsElement.textContent = Math.ceil(timeLeft / 10).toString();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    const product = currentProducts[currentProductIndex - 1];
+                    score = Math.max(0, score - 200);
+                    resultElement.textContent = "Time's up! -200 points!";
+                    resultElement.className = 'result result-wrong';
+                    
+                    runsLeft--;
+
+                    // Award 1000 points every 10 turns
+                    if (runsLeft > 0 && runsLeft % 10 === 0) {
+                        score += 1000;
+                        setTimeout(() => {
+                            resultElement.textContent = 'Bonus! +1000 points for completing 10 turns!';
+                            resultElement.className = 'result result-correct';
+                        }, 1500);
+                    }
+                    
+                    updateScoreDisplay();
+                    showAnswer(product, true);
+                    saveGameState();
+                }
+            }, 100);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 100;
+            timerBar.style.width = '100%';
+            timerSecondsElement.textContent = '10';
+        }
+
+        // End game
+        function endGame() {
+            clearInterval(timerInterval);
+            finalScoreElement.textContent = score;
+            saveGameState();
+            showScreen('gameOver');
+        }
+
+        // Share result
+        function shareResult() {
+            if (tgApp.canInvokeShare) {
+                tgApp.shareScore(score);
+            } else {
+                // Fallback for browsers where share isn't available
+                tgApp.sendData(JSON.stringify({
+                    action: 'shareScore',
+                    score: score
+                }));
+            }
+        }
+
+        // Return to home screen
+        function backToHome() {
+            showScreen('home');
+            saveGameState();
+        }
+
+        // Initialize when the page loads
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
