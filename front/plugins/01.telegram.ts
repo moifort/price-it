@@ -15,26 +15,8 @@ export default defineNuxtPlugin(async (isDev) => {
     try {
       lp = retrieveLaunchParams()
     } catch {
-      const initDataRaw = new URLSearchParams([
-        [
-          'user',
-          JSON.stringify({
-            id: 99281932,
-            first_name: 'Andrew',
-            last_name: 'Rogue',
-            username: 'rogue',
-            language_code: 'en',
-            is_premium: true,
-            allows_write_to_pm: true,
-          }),
-        ],
-        ['hash', '89d6079ad6762351f38c6dbbc41bb53048019256a9443988af7a48bcad16ba31'],
-        ['auth_date', '1716922846'],
-        ['start_param', 'debug'],
-        ['chat_type', 'sender'],
-        ['signature', '89d6079ad6762351f38c6dbbc41bb53048019256a9443988af7a48bcad16ba31'],
-        ['chat_instance', '8428209589180549439'],
-      ]).toString()
+      const initDataRaw =
+        'user=%7B%22id%22%3A8153383236%2C%22first_name%22%3A%22Pierre%22%2C%22last_name%22%3A%22Loti%22%2C%22language_code%22%3A%22fr%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FSHnWzLJveat4AM0T-17-wwaZ-wpQbu_HkNfQss9EMpGAiFFCoen8pqsu29nYGZee.svg%22%7D&chat_instance=-5489035838474910652&chat_type=private&auth_date=1741767805&signature=1SpWE-EO0_sVje1gzjyGzHhwxQtJSt1Vochbc5I4WsrEuVTB67eR4pCZAN5_7AuqGh3UoYNnhY_qO3BGWViADg&hash=0dae4daf23fa609486c485727fec898d66daa0e6cb1652dd80add09a3a50868f'
 
       lp = {
         themeParams: {

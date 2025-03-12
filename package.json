@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "if [[ -z \"$CI\" || -n \"$FIREBASE_TOOLS\" ]]; then bun install --global firebase-tools@13.33.0; fi && bun install --cwd back && bun install --cwd front-v1",
     "dev": "firebase emulators:exec --import .emulators --ui --only functions,firestore 'bun --cwd back tsc --watch & bun --cwd front dev'",
+    "dev:https": "bun --cwd front dev:https",
     "firestore:save": "firebase emulators:export --force .emulators"
   },
   "devDependencies": {
