@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "repositories": [
-    "moifort/price-it"
-  ],
+  "repositories": ["moifort/price-it"],
   "platformAutomerge": true,
   "automerge": false,
   "prCreation": "immediate",
@@ -12,25 +10,17 @@
   "platform": "github",
   "packageRules": [
     {
-      "matchPackageNames": [
-        "node",
-        "tailwindcss"
-      ],
+      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
     },
     {
       "groupName": "all non-major dependencies",
-      "matchUpdateTypes": [
-        "patch",
-        "minor"
-      ],
+      "matchUpdateTypes": ["patch", "minor"],
       "groupSlug": "all-minor-patch",
       "automerge": true
     },
     {
-      "matchUpdateTypes": [
-        "major"
-      ],
+      "matchUpdateTypes": ["major"],
       "enabled": true
     }
   ]

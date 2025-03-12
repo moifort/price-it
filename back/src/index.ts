@@ -3,9 +3,10 @@ import { getFirestore } from 'firebase-admin/firestore'
 import { setGlobalOptions } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/https'
 import { graphQlServer } from './api'
+import { TelegramToken } from './utils/telegram.validator'
 
 const app = initializeApp()
-export const $firestore = getFirestore(app)
+const firestore = getFirestore(app)
 
 setGlobalOptions({
   region: 'europe-west3',
@@ -14,6 +15,6 @@ setGlobalOptions({
 })
 
 export const api = onRequest(async (req, res) => {
-  const app = await graphQlServer()
+  const app = await graphQlServer(firestore, TelegramToken(process.env.TELEGRAM_TOKEN!))
   return app(req, res)
 })

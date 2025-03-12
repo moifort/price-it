@@ -1,5 +1,16 @@
+import type { Firestore } from '@google-cloud/firestore'
+import { GraphQLError } from 'graphql/error'
+import type { TelegramUserId } from '../utils/telegram.type'
+
 export type GraphQlContext = {
-  userId: string
-  token: string
-  locale?: string
+  database: Firestore
+  userId: TelegramUserId
+}
+
+export class AuthenticationError extends GraphQLError {
+  constructor() {
+    super('User is not authenticated', {
+      extensions: { code: 'UNAUTHENTICATED', http: { status: 401 } },
+    })
+  }
 }

@@ -7,9 +7,15 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: './components/atoms',
   },
-  runtimeConfig: {
-    public: {
-      GQL_HOST: process.env.GQL_HOST ?? 'https://api-6zdezivzkq-ey.a.run.app',
+  'graphql-client': {
+    clients: {
+      default: {
+        host: process.env.GQL_HOST ?? 'http://127.0.0.1:5001/price-it-85b3e/europe-west3/api',
+        schema: '../back/src/api/__generated__/graphql.schema.json',
+      },
     },
+  },
+  runtimeConfig: {
+    public: {},
   },
 })
