@@ -8,6 +8,12 @@ export default defineNuxtConfig({
     componentDir: './components/atoms',
   },
   'graphql-client': {
+    codegen: {
+      scalars: {
+        PlayerId: '../../../back/src/player/types#PlayerId',
+        Score: '../../../back/src/score/types#Score',
+      },
+    },
     clients: {
       default: {
         host: process.env.GQL_HOST ?? 'http://127.0.0.1:5001/price-it-85b3e/europe-west3/api',

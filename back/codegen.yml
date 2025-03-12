@@ -29,6 +29,7 @@ generates:
 #        Currency: 'FiatCurrency'
       scalars:
         Score: '../../score/types#Score'
+        PlayerId: '../../player/types#PlayerId'
 #        ImageUrl: '../../model/index.type#ImageUrl'
 #        Rank: '../../model/index.type#Rank'
 #        Limit: 'number'

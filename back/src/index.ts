@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase-admin/firestore'
 import { setGlobalOptions } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/https'
 import { graphQlServer } from './api'
-import { TelegramToken } from './utils/telegram.validator'
+import { TelegramToken } from './utils/telegram/validators'
 
 const app = initializeApp()
 const firestore = getFirestore(app)
@@ -16,7 +16,7 @@ setGlobalOptions({
 
 export const api = onRequest(async (req, res) => {
   const app = await graphQlServer(
-    { token: TelegramToken(process.env.TELEGRAM_TOKEN!), isDev: process.env.ENVIRONMENT === 'development' },
+    { token: TelegramToken(process.env.TELEGRAM_TOKEN), isDev: process.env.ENVIRONMENT === 'development' },
     { database: firestore },
   )
   return app(req, res)

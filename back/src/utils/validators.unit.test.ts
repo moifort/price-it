@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from './index.validator'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from './validators'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
