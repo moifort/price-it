@@ -27,6 +27,7 @@
     "@graphql-tools/merge": "9.0.22",
     "@parcel/watcher": "2.5.1",
     "@polymarket/clob-client": "4.15.0",
+    "@telegram-apps/init-data-node": "2.0.3",
     "cors": "2.8.5",
     "dayjs": "1.11.13",
     "express": "4.21.2",

@@ -5,13 +5,16 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import type { Firestore } from '@google-cloud/firestore'
 import { loadFilesSync } from '@graphql-tools/load-files'
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge'
+import { isValid, parse } from '@telegram-apps/init-data-node'
 import cors from 'cors'
 import type { Express } from 'express'
 import express from 'express'
+import type { TelegramToken } from '../utils/telegram.type'
+import { TelegramUserId } from '../utils/telegram.validator'
 import { AuthenticationError, type GraphQlContext } from './types'
 
 let instance: Express | null = null
-export const graphQlServer = async (database: Firestore) => {
+export const graphQlServer = async (database: Firestore, token: TelegramToken) => {
   if (instance) return instance
   const typeDefFiles = loadFilesSync(path.join(__dirname, '../**/graphql/typedefs.*'))
   const resolverFiles = loadFilesSync(path.join(__dirname, '../**/graphql/resolvers.*'))
@@ -33,7 +36,10 @@ export const graphQlServer = async (database: Firestore) => {
         if (!authorization) throw new AuthenticationError()
         const authData = authorization.split(' ')[1]
         if (!authData) throw new AuthenticationError()
-        return Promise.resolve({ userId: '123', database })
+        if (!isValid(authData, token, { expiresIn: 3600 })) throw new AuthenticationError()
+        const { user } = parse(authData)
+        if (!user) throw new AuthenticationError()
+        return Promise.resolve({ userId: TelegramUserId(user.id), database })
       },
     }),
   )

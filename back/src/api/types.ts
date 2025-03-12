@@ -1,9 +1,10 @@
 import type { Firestore } from '@google-cloud/firestore'
 import { GraphQLError } from 'graphql/error'
+import type { TelegramUserId } from '../utils/telegram.type'
 
 export type GraphQlContext = {
   database: Firestore
-  userId: string
+  userId: TelegramUserId
 }
 
 export class AuthenticationError extends GraphQLError {
