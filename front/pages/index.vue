@@ -8,7 +8,7 @@ const { initDataRaw } = retrieveLaunchParams()
 </script>
 
 <template>
-  <h1>Hello {{ user?.firstName ?? '' }}</h1>
+  <h1>Hello {{ user?.id ?? '' }}</h1>
   <h3 v-if="status === 'success'">Score: {{ data?.currentScore }}</h3>
   <h3 v-else>Pending...</h3>
   <Button @click="() => refresh()"> Moi </Button>

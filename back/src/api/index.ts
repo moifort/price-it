@@ -2,16 +2,16 @@ import * as path from 'node:path'
 import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
+import type { Firestore } from '@google-cloud/firestore'
 import { loadFilesSync } from '@graphql-tools/load-files'
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge'
 import cors from 'cors'
 import type { Express } from 'express'
 import express from 'express'
-import { GraphQLError } from 'graphql/error'
-import type { GraphQlContext } from './types'
+import { AuthenticationError, type GraphQlContext } from './types'
 
 let instance: Express | null = null
-export const graphQlServer = async () => {
+export const graphQlServer = async (database: Firestore) => {
   if (instance) return instance
   const typeDefFiles = loadFilesSync(path.join(__dirname, '../**/graphql/typedefs.*'))
   const resolverFiles = loadFilesSync(path.join(__dirname, '../**/graphql/resolvers.*'))
@@ -29,12 +29,11 @@ export const graphQlServer = async () => {
     express.json(),
     expressMiddleware(server, {
       context: ({ req }) => {
-        if (!req.headers.authorization) {
-          throw new GraphQLError('User is not authenticated', {
-            extensions: { code: 'UNAUTHENTICATED', http: { status: 401 } },
-          })
-        }
-        return Promise.resolve({ userId: '123' })
+        const authorization = req.headers.authorization
+        if (!authorization) throw new AuthenticationError()
+        const authData = authorization.split(' ')[1]
+        if (!authData) throw new AuthenticationError()
+        return Promise.resolve({ userId: '123', database })
       },
     }),
   )

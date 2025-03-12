@@ -5,7 +5,7 @@ import { onRequest } from 'firebase-functions/https'
 import { graphQlServer } from './api'
 
 const app = initializeApp()
-export const $firestore = getFirestore(app)
+const firestore = getFirestore(app)
 
 setGlobalOptions({
   region: 'europe-west3',
@@ -14,6 +14,6 @@ setGlobalOptions({
 })
 
 export const api = onRequest(async (req, res) => {
-  const app = await graphQlServer()
+  const app = await graphQlServer(firestore)
   return app(req, res)
 })
