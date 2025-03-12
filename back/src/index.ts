@@ -15,6 +15,9 @@ setGlobalOptions({
 })
 
 export const api = onRequest(async (req, res) => {
-  const app = await graphQlServer(firestore, TelegramToken(process.env.TELEGRAM_TOKEN!))
+  const app = await graphQlServer(
+    { token: TelegramToken(process.env.TELEGRAM_TOKEN!), isDev: process.env.ENVIRONMENT === 'development' },
+    { database: firestore },
+  )
   return app(req, res)
 })
