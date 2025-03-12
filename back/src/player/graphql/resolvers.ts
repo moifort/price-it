@@ -4,6 +4,7 @@ import type { Resolvers } from '../../api/__generated__/types'
 import { Score } from '../../score/validators'
 import type { TelegramUserId as TelegramUserIdType } from '../../utils/telegram/types'
 import { TelegramUserId } from '../../utils/telegram/validators'
+import { Command } from '../command'
 import { PlayerId } from '../validators'
 
 const PlayerIdScalar = new GraphQLScalarType({
@@ -17,11 +18,11 @@ const PlayerIdScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   PlayerId: PlayerIdScalar,
   Query: {
-    me: async (_, __, { userId, user }) => {
+    me: async (_, __, { userId, user, database }) => {
+      await Command.createIfNotExist(database)(userId, user.firstName)
       return {
         id: PlayerId(userId),
         firstName: user.firstName,
-        lastName: user.lastName ?? undefined,
         score: Score(1983),
       }
     },

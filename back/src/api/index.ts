@@ -59,9 +59,9 @@ export const graphQlServer = async (
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()
         return Promise.resolve({
-          userId: TelegramUserId(user.id),
-          user: { firstName: user.first_name, lastName: user.last_name },
           database,
+          userId: TelegramUserId(user.id),
+          user: { id: TelegramUserId(user.id), firstName: user.first_name },
         })
       },
     }),
