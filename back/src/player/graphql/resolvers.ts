@@ -3,6 +3,7 @@ import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
 import type { TelegramUserId as TelegramUserIdType } from '../../utils/telegram/types'
 import { TelegramUserId } from '../../utils/telegram/validators'
+import { PlayerCommand } from '../command'
 import { PlayerQuery } from '../query'
 
 const PlayerIdScalar = new GraphQLScalarType({
@@ -15,6 +16,10 @@ const PlayerIdScalar = new GraphQLScalarType({
 
 export const resolvers: Resolvers = {
   PlayerId: PlayerIdScalar,
+  Mutation: {
+    createPlayerIfNotExist: (_, __, { user, database }) =>
+      PlayerCommand.createIfNotExist(database)(user.id, user.firstName),
+  },
   Query: {
     me: (_, __, { userId, user, database }) => PlayerQuery.get(database)(userId),
   },

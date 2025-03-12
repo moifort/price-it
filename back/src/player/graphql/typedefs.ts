@@ -7,6 +7,9 @@ type Player {
     lastName: String
     score: Score!
 }
+type Mutation {
+    createPlayerIfNotExist: PlayerId!
+}
 
 type Query {
     me: Player!

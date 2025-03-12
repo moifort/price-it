@@ -7,5 +7,6 @@ export namespace PlayerCommand {
   export const createIfNotExist = (database: Database) => async (id: PlayerId, firstName: string) => {
     const exists = await isExist(database)(id)
     if (!exists) await create(database)({ id, firstName, score: Score(0) })
+    return id
   }
 }

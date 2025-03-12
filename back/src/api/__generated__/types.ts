@@ -23,6 +23,11 @@ export type Scalars = {
   _FieldSet: { input: any; output: any; }
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  createPlayerIfNotExist: Scalars['PlayerId']['output'];
+};
+
 export type Player = {
   __typename?: 'Player';
   firstName: Scalars['String']['output'];
@@ -108,6 +113,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Mutation: ResolverTypeWrapper<{}>;
   Player: ResolverTypeWrapper<Player>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   PlayerId: ResolverTypeWrapper<Scalars['PlayerId']['output']>;
@@ -118,12 +124,17 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Mutation: {};
   Player: Player;
   String: Scalars['String']['output'];
   PlayerId: Scalars['PlayerId']['output'];
   Query: {};
   Score: Scalars['Score']['output'];
   Boolean: Scalars['Boolean']['output'];
+};
+
+export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createPlayerIfNotExist?: Resolver<ResolversTypes['PlayerId'], ParentType, ContextType>;
 };
 
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
@@ -148,6 +159,7 @@ export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 }
 
 export type Resolvers<ContextType = GraphQlContext> = {
+  Mutation?: MutationResolvers<ContextType>;
   Player?: PlayerResolvers<ContextType>;
   PlayerId?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
