@@ -8,6 +8,7 @@
   "prHourlyLimit": 10,
   "recreateWhen": "always",
   "platform": "github",
+  "ignorePaths": ["front-v1", "front-v2"],
   "packageRules": [
     {
       "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
