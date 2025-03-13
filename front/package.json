@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:https": "GQL_HOST=https://api-6zdezivzkq-ey.a.run.app nuxt dev --https --ssl-cert ../certificates/localhost.pem --ssl-key ../certificates/localhost-key.pem --host 127.0.0.1",
+    "dev:https": "GQL_HOST=https://api-6zdezivzkq-ey.a.run.app nuxt dev --https --ssl-cert ../.certificates/localhost.pem --ssl-key ../.certificates/localhost-key.pem --host 127.0.0.1",
     "clean": "bunx biome check --write",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
