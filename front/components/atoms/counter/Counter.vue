@@ -2,7 +2,7 @@
 // @ts-ignore
 import NumberAnimation from 'vue-number-animation'
 
-const props = withDefaults(defineProps<{ value: number; duration?: number }>(), { duration: 1 })
+withDefaults(defineProps<{ value: number; duration?: number }>(), { duration: 1 })
 </script>
 
 <template>

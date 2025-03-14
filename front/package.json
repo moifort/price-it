@@ -10,9 +10,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "storybook:test:install": "bunx playwright install chromium --with-deps",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "storybook:test": "bunx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"bun storybook build --quiet --docs  && bunx http-server storybook-static --port 6006 --silent\" \"bunx wait-on tcp:127.0.0.1:6006 && bun test-storybook --browsers chromium --maxWorkers=2\""
+    "storybook:test": "bunx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"bun storybook build --quiet --docs  && bunx http-server storybook-static --port 6006 --silent\" \" bunx wait-on tcp:127.0.0.1:6006 && bun test-storybook --browsers chromium --maxWorkers=2\""
   },
   "dependencies": {
     "@iconify/vue": "4.3.0",
