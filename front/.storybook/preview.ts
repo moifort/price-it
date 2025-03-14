@@ -10,7 +10,14 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['atoms', ['Index', '*'], 'molecules', 'organisms', 'templates', 'pages', 'recipes', '*'],
+        order: [
+          'components/atoms',
+          'components/molecules',
+          'components/organisms',
+          'components/templates',
+          'components/pages',
+          '*',
+        ],
       },
     },
     controls: {

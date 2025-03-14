@@ -7,3 +7,7 @@ query Player {
 mutation PlayerScore($points: Point!) {
   addPointsToScore(points: $points)
 }
+
+mutation CreatePlayer {
+  createPlayerIfNotExist
+}

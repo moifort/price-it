@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { Score } from '../../../../back/src/score/validators'
 import ScoreCard from './ScoreCard.vue'
 
 const meta = {
@@ -11,6 +10,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    score: Score(100),
+    score: 100,
   },
 }

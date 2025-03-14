@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Target } from 'lucide-vue-next'
+import Counter from '../../../components/atoms/Counter.vue'
 
 defineProps<{ current: number; total: number }>()
 </script>
@@ -11,7 +12,7 @@ defineProps<{ current: number; total: number }>()
         <Target class="w-8 h-8 text-blue-500" />
         <h3 class="text-lg font-semibold">Daily Runs</h3>
         <div class="flex items-baseline gap-1">
-          <span class="text-3xl font-bold text-primary">{{ current }}</span>
+          <span class="text-3xl font-bold text-primary"><Counter :value="current" /></span>
           <span class="text-sm text-muted-foreground">/{{total}}</span>
         </div>
       </div>

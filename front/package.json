@@ -26,6 +26,7 @@
     "tailwind-merge": "3.0.2",
     "tailwindcss-animate": "1.0.7",
     "vue": "3.5.13",
+    "vue-number-animation": "2.0.2",
     "vue-router": "4.5.0"
   },
   "devDependencies": {
