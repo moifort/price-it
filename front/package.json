@@ -9,7 +9,11 @@
     "clean": "bunx biome check --write",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "storybook:test:install": "bunx playwright install chromium --with-deps",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "storybook:test": "bunx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"bun storybook build --quiet --docs  && bunx http-server storybook-static --port 6006 --silent\" \" bunx wait-on tcp:127.0.0.1:6006 && bun test-storybook --browsers chromium --maxWorkers=2\""
   },
   "dependencies": {
     "@iconify/vue": "4.3.0",
@@ -17,20 +21,39 @@
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-vue-next": "0.479.0",
-    "nuxt": "3.16.0",
+    "nuxt": "3.14.1592",
     "nuxt-graphql-client": "0.2.43",
     "reka-ui": "2.0.2",
     "shadcn-nuxt": "1.0.3",
     "tailwind-merge": "3.0.2",
     "tailwindcss-animate": "1.0.7",
     "vue": "3.5.13",
+    "vue-number-animation": "2.0.2",
     "vue-router": "4.5.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@chromatic-com/storybook": "3.2.5",
+    "@iconify-json/radix-icons": "1.2.2",
+    "@nuxtjs/color-mode": "3.5.2",
+    "@nuxtjs/storybook": "8.3.3",
     "@nuxtjs/tailwindcss": "6.13.2",
+    "@storybook/addon-essentials": "8.6.4",
+    "@storybook/addon-interactions": "8.6.4",
+    "@storybook/addon-links": "8.6.4",
+    "@storybook/addon-themes": "8.6.4",
+    "@storybook/blocks": "8.6.4",
+    "@storybook/test": "8.6.4",
+    "@storybook/test-runner": "0.22.0",
+    "@storybook/vue3": "8.6.4",
     "@tanstack/vue-table": "8.21.2",
+    "@vitest/browser": "3.0.8",
+    "playwright": "1.51.0",
     "shadcn-vue": "1.0.3",
-    "typescript": "5.8.2"
+    "storybook": "8.6.4",
+    "storybook-dark-mode": "4.0.2",
+    "ts-brand": "0.2.0",
+    "typescript": "5.8.2",
+    "vitest": "3.0.8"
   }
 }
