@@ -31,6 +31,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "3.2.5",
+    "@iconify-json/radix-icons": "1.2.2",
+    "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/storybook": "8.3.3",
     "@nuxtjs/tailwindcss": "6.13.2",
     "@storybook/addon-essentials": "8.6.4",
@@ -45,6 +47,7 @@
     "playwright": "1.51.0",
     "shadcn-vue": "1.0.3",
     "storybook": "8.6.4",
+    "storybook-dark-mode": "4.0.2",
     "typescript": "5.8.2",
     "vitest": "3.0.8"
   }

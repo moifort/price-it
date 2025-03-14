@@ -2,6 +2,12 @@ import type { Preview } from '@storybook/vue3'
 
 const preview: Preview = {
   parameters: {
+    darkMode: {
+      current: 'dark',
+      darkClass: 'dark',
+      lightClass: 'light',
+      stylePreview: true,
+    },
     options: {
       storySort: {
         order: ['atoms', ['Index', '*'], 'molecules', 'organisms', 'templates', 'pages', 'recipes', '*'],
@@ -13,5 +19,4 @@ const preview: Preview = {
   },
   tags: ['autodocs'],
 }
-
 export default preview
