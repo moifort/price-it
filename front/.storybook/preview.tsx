@@ -1,7 +1,4 @@
 import type { Preview } from '@storybook/vue3'
-import { initialize, mswLoader } from 'msw-storybook-addon'
-
-initialize()
 
 const preview: Preview = {
   parameters: {
@@ -15,7 +12,6 @@ const preview: Preview = {
     },
   },
   tags: ['autodocs'],
-  loaders: [mswLoader],
 }
 
 export default preview
