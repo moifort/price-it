@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Target } from 'lucide-vue-next'
-import Counter from '../../../components/atoms/Counter.vue'
+import Counter from '~/components/atoms/Counter.vue'
 
 defineProps<{ current: number; total: number }>()
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Trophy } from 'lucide-vue-next'
-import Counter from '../../../components/atoms/Counter.vue'
+import Counter from '~/components/atoms/Counter.vue'
 import type { Score } from '../../../../back/src/score/types'
 
 defineProps<{ score: Score }>()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Clock } from 'lucide-vue-next'
+import Counter from '~/components/atoms/Counter.vue'
 import type { Seconde } from '../../../../back/src/utils/types'
-import Counter from '../../../components/atoms/Counter.vue'
 
 defineProps<{ time: Seconde }>()
 </script>
