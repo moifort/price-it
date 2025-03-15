@@ -1,8 +1,16 @@
 /* eslint-disable */
 // @ts-nocheck
+import type { Amount } from '../../utils/types';
+import type { Limit } from '../../utils/types';
+import type { Minute } from '../../utils/types';
+import type { Percentage } from '../../utils/types';
+import type { PercentagePoint } from '../../utils/types';
 import type { PlayerId } from '../../player/types';
 import type { Point } from '../../score/types';
+import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
+import type { Seconde } from '../../utils/types';
+import type { Url } from '../../utils/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../types';
 export type Maybe<T> = T | null;
@@ -20,17 +28,17 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  Amount: { input: any; output: any; }
-  Limit: { input: any; output: any; }
-  Minute: { input: any; output: any; }
-  Percentage: { input: any; output: any; }
-  PercentagePoint: { input: any; output: any; }
+  Amount: { input: Amount; output: Amount; }
+  Limit: { input: Limit; output: Limit; }
+  Minute: { input: Minute; output: Minute; }
+  Percentage: { input: Percentage; output: Percentage; }
+  PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
   PlayerId: { input: PlayerId; output: PlayerId; }
   Point: { input: Point; output: Point; }
-  Run: { input: any; output: any; }
+  Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
-  Seconde: { input: any; output: any; }
-  Url: { input: any; output: any; }
+  Seconde: { input: Seconde; output: Seconde; }
+  Url: { input: Url; output: Url; }
   _FieldSet: { input: any; output: any; }
 };
 
