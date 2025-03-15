@@ -2,10 +2,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   ssr: false,
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-graphql-client', '@nuxtjs/storybook'],
-  colorMode: {
-    classSuffix: '',
-  },
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-graphql-client'],
+  colorMode: { classSuffix: '' },
   shadcn: {
     prefix: '',
     componentDir: './components/atoms',
