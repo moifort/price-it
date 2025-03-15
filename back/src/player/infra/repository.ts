@@ -1,17 +1,9 @@
 import type { Firestore } from 'firebase-admin/firestore'
+import type { UserId } from '../../user/types'
 import { genericDataConverter } from '../../utils/firestore'
-import type { Player, PlayerId } from '../types'
+import type { Player } from '../types'
 
-export const isExist = (db: Firestore) => async (playerId: PlayerId) => {
-  const doc = await collection(db).doc(playerId).get()
-  return doc.exists
-}
-
-export const create = (db: Firestore) => async (player: Player) => {
-  await collection(db).doc(player.id).create(player)
-}
-
-export const findById = (db: Firestore) => async (id: PlayerId) => {
+export const findById = (db: Firestore) => async (id: UserId) => {
   const doc = await collection(db).doc(id).get()
   const player = doc.data()
   if (!player) throw new Error(`Player not found id: ${id}`)

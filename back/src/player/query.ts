@@ -1,7 +1,7 @@
 import type { Database } from '../api/types'
+import type { UserId } from '../user/types'
 import { findById } from './infra/repository'
-import type { PlayerId } from './types'
 
 export namespace PlayerQuery {
-  export const get = (database: Database) => async (id: PlayerId) => findById(database)(id)
+  export const get = (database: Database) => async (id: UserId) => findById(database)(id)
 }

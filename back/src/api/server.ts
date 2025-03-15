@@ -12,6 +12,8 @@ import { isValid, parse } from '@telegram-apps/init-data-node'
 import cors from 'cors'
 import type { Express } from 'express'
 import express from 'express'
+import type { TaskQueue } from 'firebase-admin/functions'
+import type { TaskRunReset } from '../run/types'
 import type { TelegramToken } from '../utils/telegram/types'
 import { TelegramUserId } from '../utils/telegram/validators'
 import { AuthenticationError, type GraphQlContext } from './types'
@@ -19,7 +21,7 @@ import { AuthenticationError, type GraphQlContext } from './types'
 let instance: Express | null = null
 export const graphQlServer = async (
   { token, isDev }: { token: TelegramToken; isDev: boolean },
-  { database }: { database: Firestore },
+  { database, runTaskQueue }: { database: Firestore; runTaskQueue: TaskQueue<TaskRunReset> },
 ) => {
   if (instance) return instance
   const typeDefFiles = loadFilesSync(path.join(__dirname, '../**/graphql/typedefs.*'))
@@ -60,6 +62,7 @@ export const graphQlServer = async (
         if (!user) throw new AuthenticationError()
         return Promise.resolve({
           database,
+          runTaskQueue,
           userId: TelegramUserId(user.id),
           user: { id: TelegramUserId(user.id), firstName: user.first_name },
         })

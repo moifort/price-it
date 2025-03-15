@@ -1,9 +1,12 @@
 import type { Database } from '../api/types'
-import type { PlayerId } from '../player/types'
-import { incrementScore } from './infra/repository'
+import type { UserId } from '../user/types'
+import { increment, set } from './infra/repository'
+import { ScoreQuery } from './query'
 import type { Point } from './types'
 
 export namespace ScoreCommand {
-  export const addPoints = (database: Database) => (playerId: PlayerId, points: Point) =>
-    incrementScore(database)(playerId, points)
+  export const resetScore = (database: Database) => (userId: UserId) => set(database)(userId, ScoreQuery.DEFAULT_SCORE)
+
+  export const addPoints = (database: Database) => (userId: UserId, points: Point) =>
+    increment(database)(userId, points)
 }

@@ -1,11 +1,5 @@
 import type { Runs } from '../run/types'
 import type { Score } from '../score/types'
-import type { TelegramUserId } from '../utils/telegram/types'
+import type { User } from '../user/types'
 
-export type PlayerId = TelegramUserId
-export type Player = {
-  id: PlayerId
-  firstName: string
-  score: Score
-  runs: Runs
-}
+export type Player = User & { score: Score; runs: Runs }

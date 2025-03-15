@@ -2,7 +2,7 @@ import { describe, expect, it } from 'bun:test'
 import { PlayerId } from '../../player/validators'
 import { $testDatabase } from '../../utils/setup.test'
 import { Point, Score } from '../validators'
-import { incrementScore } from './repository'
+import { increment } from './repository'
 
 describe('Repository', () => {
   it('should add 50 points to the existing score', async () => {
@@ -17,7 +17,7 @@ describe('Repository', () => {
       })
 
     // When
-    await incrementScore($testDatabase)(PlayerId('8153383236'), Point(50))
+    await increment($testDatabase)(PlayerId('8153383236'), Point(50))
 
     // Then
     const doc = await $testDatabase.collection('players').doc(PlayerId('8153383236')).get()

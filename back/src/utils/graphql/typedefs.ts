@@ -1,4 +1,5 @@
 export default `#graphql 
+scalar DateTime
 scalar Minute
 scalar Seconde
 scalar Limit

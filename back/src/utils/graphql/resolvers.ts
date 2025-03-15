@@ -1,6 +1,8 @@
+import { DateTimeResolver } from 'graphql-scalars'
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
+
 import type {
   Amount as AmountType,
   Limit as LimitType,
@@ -69,6 +71,7 @@ const UrlScalar = new GraphQLScalarType({
 })
 
 export const resolvers: Resolvers = {
+  DateTime: DateTimeResolver,
   Minute: MinuteScalar,
   Seconde: SecondeScalar,
   Limit: LimitScalar,
