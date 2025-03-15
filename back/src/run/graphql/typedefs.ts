@@ -4,6 +4,6 @@ scalar Run
 type Runs {
   remaining: Run!
   total: Run!
-  renewIn: Minute!
+  renewAt: DateTime!
 }
 `

@@ -1,16 +1,13 @@
-export default `#graphql 
-scalar PlayerId
-
+export default `#graphql
 type Player {
-    id : PlayerId!
+    id : UserId!
     firstName: String!
-    lastName: String
     score: Score!
     runs: Runs!
 }
 
 type Mutation {
-    createPlayerIfNotExist: PlayerId!
+    createPlayerIfNotExist: UserId!
 }
 
 type Query {

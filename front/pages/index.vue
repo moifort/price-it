@@ -9,7 +9,7 @@ const { data, status } = useAsyncGql({ operation: 'Player' })
 
 <template>
   <Dashboard :score="status === 'success' ? data.me.score : Score(0)"
-             :best-time="Seconde(10)"
+             :time-limit="Seconde(10)"
              :total-run="status === 'success' ? data.me.runs.total : Run(0)"
              :remaining-run="status === 'success' ? data.me.runs.remaining : Run(0)" />
 </template>

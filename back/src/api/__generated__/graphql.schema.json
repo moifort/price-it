@@ -34,6 +34,17 @@
       },
       {
         "kind": "SCALAR",
+        "name": "DateTime",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
         "name": "Limit",
         "description": null,
         "isOneOf": null,
@@ -98,7 +109,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "PlayerId",
+                "name": "UserId",
                 "ofType": null
               }
             },
@@ -164,21 +175,9 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "PlayerId",
+                "name": "UserId",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "lastName",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -218,17 +217,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "PlayerId",
-        "description": null,
-        "isOneOf": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -305,7 +293,7 @@
             "deprecationReason": null
           },
           {
-            "name": "renewIn",
+            "name": "renewAt",
             "description": null,
             "args": [],
             "type": {
@@ -313,7 +301,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Minute",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -378,6 +366,17 @@
       {
         "kind": "SCALAR",
         "name": "Url",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "UserId",
         "description": null,
         "isOneOf": null,
         "fields": null,

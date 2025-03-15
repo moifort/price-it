@@ -1,12 +1,14 @@
 import { initializeApp } from 'firebase-admin/app'
-import { getFirestore } from 'firebase-admin/firestore'
+import { TaskQueue } from 'firebase-admin/functions'
 import { setGlobalOptions } from 'firebase-functions'
-import { onRequest } from 'firebase-functions/https'
-import { graphQlServer } from './api'
-import { TelegramToken } from './utils/telegram/validators'
 
-const app = initializeApp()
-const firestore = getFirestore(app)
+export const $app = initializeApp()
+
+if (process.env.FUNCTIONS_EMULATOR) {
+  Object.assign(TaskQueue.prototype, {
+    enqueue: (data: unknown, params: unknown) => console.debug('tasks: ', data, params),
+  })
+}
 
 setGlobalOptions({
   region: 'europe-west3',
@@ -14,10 +16,5 @@ setGlobalOptions({
   serviceAccount: 'function-invoker@price-it-85b3e.iam.gserviceaccount.com',
 })
 
-export const api = onRequest(async (req, res) => {
-  const app = await graphQlServer(
-    { token: TelegramToken(process.env.TELEGRAM_TOKEN), isDev: process.env.ENVIRONMENT === 'development' },
-    { database: firestore },
-  )
-  return app(req, res)
-})
+export * from './api'
+export * as run from './run'

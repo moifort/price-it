@@ -1,12 +1,17 @@
 import type { Firestore } from 'firebase-admin/firestore'
 import { FieldValue } from 'firebase-admin/firestore'
-import type { Player, PlayerId } from '../../player/types'
+import type { Player } from '../../player/types'
+import type { UserId } from '../../user/types'
 import { genericDataConverter } from '../../utils/firestore'
-import type { Point } from '../types'
+import type { Point, Score } from '../types'
 
-export const incrementScore = (db: Firestore) => async (playerId: PlayerId, points: Point) => {
+export const set = (db: Firestore) => async (userId: UserId, score: Score) => {
+  await collection(db).doc(userId).update({ score })
+}
+
+export const increment = (db: Firestore) => async (userId: UserId, points: Point) => {
   await collection(db)
-    .doc(playerId)
+    .doc(userId)
     .update({ score: FieldValue.increment(points) })
 }
 

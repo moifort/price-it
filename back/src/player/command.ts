@@ -1,24 +1,20 @@
+import type { TaskQueue } from 'firebase-admin/functions'
 import type { Database } from '../api/types'
-import { Run } from '../run/validators'
-import { Score } from '../score/validators'
-import { Minute } from '../utils/validators'
-import { create, isExist } from './infra/repository'
-import type { PlayerId } from './types'
+import { RunCommand } from '../run/command'
+import type { TaskRunReset } from '../run/types'
+import { ScoreCommand } from '../score/command'
+import { UserCommand } from '../user/command'
+import { UserQuery } from '../user/query'
+import type { UserId } from '../user/types'
 
 export namespace PlayerCommand {
-  export const createIfNotExist = (database: Database) => async (id: PlayerId, firstName: string) => {
-    const exists = await isExist(database)(id)
-    if (!exists)
-      await create(database)({
-        id,
-        firstName,
-        score: Score(0),
-        runs: {
-          remaining: Run(10),
-          total: Run(10),
-          renewIn: Minute(60),
-        },
-      })
-    return id
-  }
+  export const createIfNotExist =
+    (database: Database, runTaskQueue: TaskQueue<TaskRunReset>) => async (id: UserId, firstName: string) => {
+      const exists = await UserQuery.isExist(database)(id)
+      if (!exists) {
+        await UserCommand.create(database)(id, firstName)
+        await Promise.all([ScoreCommand.resetScore(database)(id), RunCommand.reset(database, runTaskQueue)(id)])
+      }
+      return id
+    }
 }

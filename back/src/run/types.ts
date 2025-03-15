@@ -1,9 +1,7 @@
 import type { Brand } from 'ts-brand'
-import type { Minute } from '../utils/types'
+import type { UserId } from '../user/types'
 
 export type Run = Brand<number, 'Run'>
-export type Runs = {
-  remaining: Run
-  total: Run
-  renewIn: Minute
-}
+export type Runs = { remaining: Run; renewAt: Date; total: Run }
+
+export type TaskRunReset = { userId: UserId }
