@@ -9,7 +9,7 @@ import type { Score } from '../../../back/src/score/types'
 import type { Seconde } from '../../../back/src/utils/types'
 
 defineEmits<(e: 'click:startGame') => void>()
-defineProps<{ score: Score; totalRun: number; remainingRun: number; bestTime: Seconde }>()
+defineProps<{ score: Score; bestTime: Seconde; totalRun: number; remainingRun: number }>()
 </script>
 
 <template>
