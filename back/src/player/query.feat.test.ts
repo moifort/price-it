@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'bun:test'
+import { Run } from '../run/validators'
 import { Score } from '../score/validators'
 import { $testDatabase } from '../utils/setup.test'
+import { Minute } from '../utils/validators'
 import { PlayerQuery } from './query'
 import { PlayerId } from './validators'
 
@@ -14,6 +16,11 @@ describe('get', () => {
         id: PlayerId('8153383238'),
         firstName: 'Alice',
         score: Score(15),
+        runs: {
+          remaining: Run(1),
+          total: Run(3),
+          renewIn: Minute(45)
+        }
       })
 
     // When
@@ -24,6 +31,11 @@ describe('get', () => {
       id: PlayerId('8153383238'),
       firstName: 'Alice',
       score: Score(15),
+      runs: {
+        remaining: Run(1),
+        total: Run(3),
+        renewIn: Minute(45)
+      }
     })
   })
 })
