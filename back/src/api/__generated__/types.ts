@@ -70,6 +70,7 @@ export type Runs = {
   __typename?: 'Runs';
   remaining: Scalars['Run']['output'];
   renewAt: Scalars['DateTime']['output'];
+  total: Scalars['Run']['output'];
 };
 
 
@@ -237,6 +238,7 @@ export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes[
 export type RunsResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Runs'] = ResolversParentTypes['Runs']> = {
   remaining?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
   renewAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

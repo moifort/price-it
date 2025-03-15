@@ -1,7 +1,14 @@
 import { initializeApp } from 'firebase-admin/app'
+import { TaskQueue } from 'firebase-admin/functions'
 import { setGlobalOptions } from 'firebase-functions'
 
 export const $app = initializeApp()
+
+if (process.env.FUNCTIONS_EMULATOR) {
+  Object.assign(TaskQueue.prototype, {
+    enqueue: (data: unknown, params: unknown) => console.debug('tasks: ', data, params),
+  })
+}
 
 setGlobalOptions({
   region: 'europe-west3',
