@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'bun:test'
+import { Run } from '../../run/validators'
 import { Score } from '../../score/validators'
 import { $testDatabase } from '../../utils/setup.test'
+import { Minute } from '../../utils/validators'
 import { PlayerId } from '../validators'
 import { create, findById, isExist } from './repository'
-import { Run } from '../../run/validators'
-import { Minute } from '../../utils/validators'
 
 describe('PlayerRepository', () => {
   it('should create a player', async () => {
@@ -16,8 +16,8 @@ describe('PlayerRepository', () => {
       runs: {
         remaining: Run(3),
         total: Run(3),
-        renewIn: Minute(60)
-      }
+        renewIn: Minute(60),
+      },
     })
 
     // When
@@ -40,16 +40,19 @@ describe('PlayerRepository', () => {
 
   it('should get a player by id', async () => {
     // Given
-    await $testDatabase.collection('players').doc('8153383237').create({
-      id: PlayerId('8153383237'),
-      firstName: 'Test',
-      score: Score(10),
-      runs: {
-        remaining: Run(2),
-        total: Run(3),
-        renewIn: Minute(30)
-      }
-    })
+    await $testDatabase
+      .collection('players')
+      .doc('8153383237')
+      .create({
+        id: PlayerId('8153383237'),
+        firstName: 'Test',
+        score: Score(10),
+        runs: {
+          remaining: Run(2),
+          total: Run(3),
+          renewIn: Minute(30),
+        },
+      })
 
     // When
     const result = await findById($testDatabase)(PlayerId('8153383237'))
@@ -62,8 +65,8 @@ describe('PlayerRepository', () => {
       runs: {
         remaining: Run(2),
         total: Run(3),
-        renewIn: Minute(30)
-      }
+        renewIn: Minute(30),
+      },
     })
   })
 })

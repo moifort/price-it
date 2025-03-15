@@ -19,8 +19,8 @@ describe('get', () => {
         runs: {
           remaining: Run(1),
           total: Run(3),
-          renewIn: Minute(45)
-        }
+          renewIn: Minute(45),
+        },
       })
 
     // When
@@ -34,8 +34,8 @@ describe('get', () => {
       runs: {
         remaining: Run(1),
         total: Run(3),
-        renewIn: Minute(45)
-      }
+        renewIn: Minute(45),
+      },
     })
   })
 })
