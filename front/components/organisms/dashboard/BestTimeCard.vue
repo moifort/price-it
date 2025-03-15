@@ -10,7 +10,7 @@ defineProps<{ time: Seconde }>()
     <CardContent class="pt-6">
       <div class="flex flex-col items-center gap-2">
         <Clock class="w-8 h-8 text-green-500" />
-        <h3 class="text-lg font-semibold">Daily Runs</h3>
+        <h3 class="text-lg font-semibold">Time limit</h3>
         <div class="flex items-baseline gap-1">
           <span class="text-3xl font-bold text-primary"><Counter :value="time" />s</span>
         </div>
