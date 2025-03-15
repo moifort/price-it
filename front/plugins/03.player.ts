@@ -1,4 +1,5 @@
 export default defineNuxtPlugin(async () => {
-  if (process.env.NODE_ENV === 'development') return
+  // @ts-ignore
+  if (window.STORYBOOK_ENV) return
   await GqlCreatePlayer()
 })

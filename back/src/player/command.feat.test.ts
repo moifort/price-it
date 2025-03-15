@@ -15,6 +15,11 @@ describe('createIfNotExist', () => {
       id: '8153383236',
       firstName: 'John',
       score: 0,
+      runs: {
+        remaining: 10,
+        total: 10,
+        renewIn: 60,
+      },
     })
   })
 

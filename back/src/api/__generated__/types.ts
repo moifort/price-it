@@ -1,8 +1,16 @@
 /* eslint-disable */
 // @ts-nocheck
+import type { Amount } from '../../utils/types';
+import type { Limit } from '../../utils/types';
+import type { Minute } from '../../utils/types';
+import type { Percentage } from '../../utils/types';
+import type { PercentagePoint } from '../../utils/types';
 import type { PlayerId } from '../../player/types';
 import type { Point } from '../../score/types';
+import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
+import type { Seconde } from '../../utils/types';
+import type { Url } from '../../utils/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../types';
 export type Maybe<T> = T | null;
@@ -20,9 +28,17 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  Amount: { input: Amount; output: Amount; }
+  Limit: { input: Limit; output: Limit; }
+  Minute: { input: Minute; output: Minute; }
+  Percentage: { input: Percentage; output: Percentage; }
+  PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
   PlayerId: { input: PlayerId; output: PlayerId; }
   Point: { input: Point; output: Point; }
+  Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
+  Seconde: { input: Seconde; output: Seconde; }
+  Url: { input: Url; output: Url; }
   _FieldSet: { input: any; output: any; }
 };
 
@@ -42,12 +58,20 @@ export type Player = {
   firstName: Scalars['String']['output'];
   id: Scalars['PlayerId']['output'];
   lastName?: Maybe<Scalars['String']['output']>;
+  runs: Runs;
   score: Scalars['Score']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
   me: Player;
+};
+
+export type Runs = {
+  __typename?: 'Runs';
+  remaining: Scalars['Run']['output'];
+  renewIn: Scalars['Minute']['output'];
+  total: Scalars['Run']['output'];
 };
 
 
@@ -121,37 +145,76 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
+  Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
+  Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
+  PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
   Player: ResolverTypeWrapper<Player>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   PlayerId: ResolverTypeWrapper<Scalars['PlayerId']['output']>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
   Query: ResolverTypeWrapper<{}>;
+  Run: ResolverTypeWrapper<Scalars['Run']['output']>;
+  Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
+  Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
+  Url: ResolverTypeWrapper<Scalars['Url']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Amount: Scalars['Amount']['output'];
+  Limit: Scalars['Limit']['output'];
+  Minute: Scalars['Minute']['output'];
   Mutation: {};
   Boolean: Scalars['Boolean']['output'];
+  Percentage: Scalars['Percentage']['output'];
+  PercentagePoint: Scalars['PercentagePoint']['output'];
   Player: Player;
   String: Scalars['String']['output'];
   PlayerId: Scalars['PlayerId']['output'];
   Point: Scalars['Point']['output'];
   Query: {};
+  Run: Scalars['Run']['output'];
+  Runs: Runs;
   Score: Scalars['Score']['output'];
+  Seconde: Scalars['Seconde']['output'];
+  Url: Scalars['Url']['output'];
 };
+
+export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
+  name: 'Amount';
+}
+
+export interface LimitScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Limit'], any> {
+  name: 'Limit';
+}
+
+export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Minute'], any> {
+  name: 'Minute';
+}
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addPointsToScore?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddPointsToScoreArgs, 'points'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['PlayerId'], ParentType, ContextType>;
 };
 
+export interface PercentageScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Percentage'], any> {
+  name: 'Percentage';
+}
+
+export interface PercentagePointScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['PercentagePoint'], any> {
+  name: 'PercentagePoint';
+}
+
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['PlayerId'], ParentType, ContextType>;
   lastName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
   score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -168,16 +231,44 @@ export type QueryResolvers<ContextType = GraphQlContext, ParentType extends Reso
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
 };
 
+export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Run'], any> {
+  name: 'Run';
+}
+
+export type RunsResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Runs'] = ResolversParentTypes['Runs']> = {
+  remaining?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
+  renewIn?: Resolver<ResolversTypes['Minute'], ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Score'], any> {
   name: 'Score';
 }
 
+export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Seconde'], any> {
+  name: 'Seconde';
+}
+
+export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Url'], any> {
+  name: 'Url';
+}
+
 export type Resolvers<ContextType = GraphQlContext> = {
+  Amount?: GraphQLScalarType;
+  Limit?: GraphQLScalarType;
+  Minute?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
+  Percentage?: GraphQLScalarType;
+  PercentagePoint?: GraphQLScalarType;
   Player?: PlayerResolvers<ContextType>;
   PlayerId?: GraphQLScalarType;
   Point?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
+  Run?: GraphQLScalarType;
+  Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
+  Seconde?: GraphQLScalarType;
+  Url?: GraphQLScalarType;
 };
 

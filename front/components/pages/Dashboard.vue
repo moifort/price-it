@@ -5,11 +5,12 @@ import BestTimeCard from '~/components/organisms/dashboard/BestTimeCard.vue'
 import DailyRunsCard from '~/components/organisms/dashboard/DailyRunsCard.vue'
 import ScoreCard from '~/components/organisms/dashboard/ScoreCard.vue'
 import Dashboard from '~/components/template/Dashboard.vue'
+import type { Run } from '../../../back/src/run/types'
 import type { Score } from '../../../back/src/score/types'
 import type { Seconde } from '../../../back/src/utils/types'
 
 defineEmits<(e: 'click:startGame') => void>()
-defineProps<{ score: Score; totalRun: number; remainingRun: number; bestTime: Seconde }>()
+defineProps<{ score: Score; bestTime: Seconde; totalRun: Run; remainingRun: Run }>()
 </script>
 
 <template>

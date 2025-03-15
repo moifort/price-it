@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'bun:test'
+import { Run } from '../../run/validators'
 import { Score } from '../../score/validators'
 import { $testDatabase } from '../../utils/setup.test'
+import { Minute } from '../../utils/validators'
 import { PlayerId } from '../validators'
 import { create, findById, isExist } from './repository'
 
@@ -9,8 +11,13 @@ describe('PlayerRepository', () => {
     // Given
     await create($testDatabase)({
       id: PlayerId('8153383236'),
-      firstName: 'John',
+      firstName: 'Test',
       score: Score(0),
+      runs: {
+        remaining: Run(3),
+        total: Run(3),
+        renewIn: Minute(60),
+      },
     })
 
     // When
@@ -38,8 +45,13 @@ describe('PlayerRepository', () => {
       .doc('8153383237')
       .create({
         id: PlayerId('8153383237'),
-        firstName: 'Jane',
+        firstName: 'Test',
         score: Score(10),
+        runs: {
+          remaining: Run(2),
+          total: Run(3),
+          renewIn: Minute(30),
+        },
       })
 
     // When
@@ -48,8 +60,13 @@ describe('PlayerRepository', () => {
     // Then
     expect(result).toEqual({
       id: PlayerId('8153383237'),
-      firstName: 'Jane',
+      firstName: 'Test',
       score: Score(10),
+      runs: {
+        remaining: Run(2),
+        total: Run(3),
+        renewIn: Minute(30),
+      },
     })
   })
 })
