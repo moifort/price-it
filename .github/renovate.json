@@ -11,7 +11,7 @@
   "ignorePaths": ["front-v1", "front-v2"],
   "packageRules": [
     {
-      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
+      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue", "nuxt"],
       "enabled": false
     },
     {
