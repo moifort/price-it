@@ -1,6 +1,11 @@
 query Player {
   me {
     score
+    runs {
+      total
+      remaining
+      renewIn
+    }
   }
 }
 

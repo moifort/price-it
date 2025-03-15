@@ -10,15 +10,7 @@ import type {
   Seconde as SecondeType,
   Url as UrlType,
 } from '../types'
-import {
-  Amount,
-  Limit,
-  Minute,
-  PercentagePoint,
-  Percentage,
-  Seconde,
-  Url,
-} from '../validators'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from '../validators'
 
 const MinuteScalar = new GraphQLScalarType({
   name: 'Minute',
