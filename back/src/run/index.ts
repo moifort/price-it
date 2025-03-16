@@ -6,7 +6,7 @@ import { RunCommand } from './command'
 import type { TaskRunReset } from './types'
 
 export const RUN_RESET_TASK_QUEUE_URL = 'locations/europe-west3/functions/run-reset'
-export const reset = onTaskDispatched<TaskRunReset>({ invoker: 'public' }, async ({ data }) => {
+export const reset = onTaskDispatched<TaskRunReset>(async ({ data }) => {
   const firestore = getFirestore($app)
   const taskQueue = getFunctions($app).taskQueue<TaskRunReset>(RUN_RESET_TASK_QUEUE_URL)
   await RunCommand.reset(firestore, taskQueue)(data.userId)
