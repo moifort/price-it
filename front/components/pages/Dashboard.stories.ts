@@ -16,7 +16,7 @@ export const Default: Story = {
     score: Score(3984),
     totalRun: Run(10),
     remainingRun: Run(2),
-    renewAt: new Date('2026-12-31T23:59:59'),
+    runRenewAt: new Date('2026-12-31T23:59:59'),
     timeLimit: Seconde(8),
   },
 }

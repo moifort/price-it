@@ -5,7 +5,7 @@ on:
 
 jobs:
   lint:
-    name: 👮 Lint
+    name: 👮 Lint & Typecheck
     runs-on: ubuntu-latest
     env:
       GQL_HOST: https://api-6zdezivzkq-ey.a.run.app
@@ -16,6 +16,7 @@ jobs:
         with:
           bun-version: '1.2.2'
       - run: bun install --cwd front
+      - run: bun --cwd front typecheck
       - run: bun --cwd front biome ci
 
 

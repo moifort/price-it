@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   ssr: false,
   devtools: { enabled: true },
-  typescript: { strict: true, typeCheck: 'build', shim: true },
+  typescript: { strict: true, shim: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-graphql-client'],
   colorMode: { classSuffix: '' },
   shadcn: {
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       scalars: {
         PlayerId: '../../../back/src/player/types#PlayerId',
         Score: '../../../back/src/score/types#Score',
-        Point: '../../score/types#Point',
+        Point: '../../../back/src/score/types#Point',
         Minute: '../../../back/src/utils/types#Minute',
         Seconde: '../../../back/src/utils/types#Seconde',
         Limit: '../../../back/src/utils/types#Limit',
