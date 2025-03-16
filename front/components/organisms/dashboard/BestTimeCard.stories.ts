@@ -12,5 +12,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     time: Seconde(5),
+    bonus: Seconde(10),
   },
 }

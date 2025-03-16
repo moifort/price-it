@@ -18,5 +18,7 @@ export const Default: Story = {
     remainingRun: Run(2),
     runRenewAt: new Date('2026-12-31T23:59:59'),
     timeLimit: Seconde(8),
+    runBonus: Run(10),
+    timeBonus: Seconde(10),
   },
 }

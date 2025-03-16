@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Run } from '../../../../back/src/run/validators'
 import DailyRunsCard from './DailyRunsCard.vue'
 
 const meta = {
@@ -10,8 +11,9 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    current: 5,
-    total: 10,
+    current: Run(5),
+    total: Run(10),
     renewAt: new Date(),
+    bonus: Run(0),
   },
 }
