@@ -1,4 +1,3 @@
 {
-  "exclude": ["../back"],
   "extends": "./.nuxt/tsconfig.json"
 }
