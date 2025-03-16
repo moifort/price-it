@@ -4,7 +4,7 @@ import { Run } from './validators'
 
 export namespace RunQuery {
   const DEFAULT_RUN = Run(10)
-  const DEFAULT_RUN_PERIOD = Minute(60)
+  const DEFAULT_RUN_PERIOD = Minute(5)
 
   export const getTotalRuns = (userId: UserId) => DEFAULT_RUN
   export const getRunPeriod = (userId: UserId) => DEFAULT_RUN_PERIOD
