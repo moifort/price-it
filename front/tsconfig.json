@@ -1,4 +1,4 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
+  "exclude": ["../back"],
   "extends": "./.nuxt/tsconfig.json"
 }
