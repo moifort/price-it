@@ -1,8 +1,17 @@
+<script setup lang="ts">
+import { ArrowLeft, Target, Trophy } from 'lucide-vue-next'
+import { Button } from '~/components/atoms/button'
+import type { Run } from '../../../../back/src/run/types'
+import type { Score } from '../../../../back/src/score/types'
+
+defineProps<{ score: Score; runsLeft: Run }>()
+defineEmits<(e: 'click:exit') => void>()
+</script>
+
 <template>
   <div class="flex items-center justify-between">
     <Button
       variant="outline"
-      @click="onExit"
       class="gap-2 transition-all hover:bg-destructive hover:text-destructive-foreground"
     >
       <ArrowLeft class="w-4 h-4" />
@@ -15,21 +24,11 @@
         <span class="font-bold">{{ score }}</span>
       </div>
       <div class="h-4 w-px bg-border/60" />
-      <div class="font-medium text-sm text-muted-foreground">
-        Runs: <span class="text-foreground font-semibold">{{ runsLeft }}</span>
+      <div class="flex items-center gap-1.5">
+        <Target class="w-5 h-5 text-blue-500" />
+        <span class="text-foreground font-semibold">{{ runsLeft }}</span>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ArrowLeft, Trophy } from 'lucide-vue-next'
-import { Button } from '~/components/atoms/button'
-import type { Score } from '../../../../back/src/score/types'
-
-defineProps<{
-  score: Score
-  runsLeft: number
-  onExit: () => void
-}>()
-</script> 

@@ -7,18 +7,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, h, Fragment } from 'vue'
-import type { Product } from '../../app/game/types'
+import { Fragment, computed, h, onMounted, onUnmounted, ref } from 'vue'
+import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
+import GameTimer from '~/components/organisms/game/GameTimer.vue'
+import Header from '~/components/organisms/game/Header.vue'
+import LoseOverlay from '~/components/organisms/game/LoseOverlay.vue'
+import ProductCard from '~/components/organisms/game/ProductCard.vue'
+import TimeoutOverlay from '~/components/organisms/game/TimeoutOverlay.vue'
+import WinOverlay from '~/components/organisms/game/WinOverlay.vue'
+import GameTemplate from '~/components/template/Game.vue'
 import type { Score } from '../../../back/src/score/types'
 import type { Amount, Seconde, Url } from '../../../back/src/utils/index.type'
-import GameTemplate from '~/components/template/Game.vue'
-import GameHeader from '~/components/organisms/game/GameHeader.vue'
-import GameTimer from '~/components/organisms/game/GameTimer.vue'
-import ProductCard from '~/components/organisms/game/ProductCard.vue'
-import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
-import WinOverlay from '~/components/organisms/game/WinOverlay.vue'
-import LoseOverlay from '~/components/organisms/game/LoseOverlay.vue'
-import TimeoutOverlay from '~/components/organisms/game/TimeoutOverlay.vue'
+import type { Product } from '../../app/game/types'
 
 const props = defineProps<{
   onNavigateHome: () => void
@@ -114,27 +114,27 @@ const nextProduct = () => {
 const safeDisplayPrice = computed(() => displayPrice.value as unknown as Amount)
 
 // Components for template
-const header = computed(() => 
-  h(GameHeader, { 
-    score: score.value, 
-    runsLeft: runsLeft.value, 
-    onExit: props.onNavigateHome 
-  })
+const header = computed(() =>
+  h(Header, {
+    score: score.value,
+    runsLeft: runsLeft.value,
+    onExit: props.onNavigateHome,
+  }),
 )
 
-const content = computed(() => 
+const content = computed(() =>
   h(Fragment, {}, [
     h(GameTimer, { timer: timer.value as unknown as Seconde }),
-    h(ProductCard, { 
-      name: currentProduct.value.name, 
-      imageUrl: currentProduct.value.imageUrl as unknown as Url 
+    h(ProductCard, {
+      name: currentProduct.value.name,
+      imageUrl: currentProduct.value.imageUrl as unknown as Url,
     }),
-    h(ActionButtons, { 
-      isActive: gameState.value === 'playing', 
-      onGuess: handleGuess, 
-      displayPrice: safeDisplayPrice.value 
-    })
-  ])
+    h(ActionButtons, {
+      isActive: gameState.value === 'playing',
+      onGuess: handleGuess,
+      displayPrice: safeDisplayPrice.value,
+    }),
+  ]),
 )
 
 const overlay = computed(() => {
@@ -145,28 +145,28 @@ const overlay = computed(() => {
   const productUrl = currentProduct.value.imageUrl as unknown as Url
 
   if (gameState.value === 'timeout') {
-    return h(TimeoutOverlay, { 
-      price, 
-      productUrl, 
-      onNext: nextProduct, 
-      isLastRun: runsLeft.value <= 1 
+    return h(TimeoutOverlay, {
+      price,
+      productUrl,
+      onNext: nextProduct,
+      isLastRun: runsLeft.value <= 1,
     })
   }
 
   if (isCorrect.value) {
-    return h(WinOverlay, { 
-      price, 
-      productUrl, 
-      onNext: nextProduct, 
-      isLastRun: runsLeft.value <= 1 
+    return h(WinOverlay, {
+      price,
+      productUrl,
+      onNext: nextProduct,
+      isLastRun: runsLeft.value <= 1,
     })
   }
 
-  return h(LoseOverlay, { 
-    price, 
-    productUrl, 
-    onNext: nextProduct, 
-    isLastRun: runsLeft.value <= 1 
+  return h(LoseOverlay, {
+    price,
+    productUrl,
+    onNext: nextProduct,
+    isLastRun: runsLeft.value <= 1,
   })
 })
-</script> 
+</script>
