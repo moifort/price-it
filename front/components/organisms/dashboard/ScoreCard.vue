@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { Trophy } from 'lucide-vue-next'
-import type { Score } from '../../../../back/src/score/types'
 
-defineProps<{ score: Score }>()
+defineProps<{ score: number }>()
 </script>
 
 <template>

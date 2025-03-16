@@ -12,5 +12,6 @@ export const Default: Story = {
   args: {
     current: 5,
     total: 10,
+    renewAt: new Date(),
   },
 }

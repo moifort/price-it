@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "typecheck": "nuxt typecheck",
     "dev:https": "GQL_HOST=https://api-6zdezivzkq-ey.a.run.app nuxt dev --https --ssl-cert ../.certificates/localhost.pem --ssl-key ../.certificates/localhost-key.pem --host 127.0.0.1",
     "clean": "bunx biome check --write",
     "generate": "nuxt generate",
@@ -20,6 +21,7 @@
     "@telegram-apps/sdk-vue": "1.0.15",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
+    "dayjs": "1.11.13",
     "lucide-vue-next": "0.482.0",
     "nuxt": "3.14.1592",
     "nuxt-graphql-client": "0.2.43",
@@ -27,9 +29,11 @@
     "shadcn-nuxt": "1.0.3",
     "tailwind-merge": "3.0.2",
     "tailwindcss-animate": "1.0.7",
+    "ts-brand": "0.2.0",
     "vue": "3.5.13",
     "vue-number-animation": "2.0.2",
-    "vue-router": "4.5.0"
+    "vue-router": "4.5.0",
+    "zod": "3.24.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -52,8 +56,8 @@
     "shadcn-vue": "1.0.3",
     "storybook": "8.6.6",
     "storybook-dark-mode": "4.0.2",
-    "ts-brand": "0.2.0",
     "typescript": "5.8.2",
-    "vitest": "3.0.8"
+    "vitest": "3.0.8",
+    "vue-tsc": "2.2.8"
   }
 }
