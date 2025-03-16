@@ -29,7 +29,7 @@ defineProps<{
         </div>
         <div class="flex items-center gap-1 text-xs text-muted-foreground">
           <TimerReset class="w-3 h-3" />
-          <span>Renew in {{ $dayjs(renewAt).fromNow(true) }}</span>
+          <span>{{ $dayjs(renewAt).fromNow(true) }}</span>
         </div>
       </div>
     </CardContent>
