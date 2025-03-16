@@ -1,40 +1,40 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { h } from 'vue'
-import Game from './Game.vue'
-import { Button } from '~/components/atoms/button'
+import Template from './Game.vue'
 
 const meta = {
-  title: 'Templates/Game',
-  component: Game,
-  tags: ['autodocs'],
-  argTypes: {},
-} satisfies Meta<typeof Game>
+  component: Template,
+  render: (args) => ({
+    components: { Template },
+    setup: () => ({ args }),
+    template: `
+      <Template>
+        <template #header>
+          <div class="flex justify-between items-center border-2 border-dashed border-gray-400 p-4 relative w-full">
+            <span class="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500">header slot</span>
+            <Button variant="outline">Back</Button>
+            <div class="font-bold">Score: 5</div>
+          </div>
+        </template>
+
+        <template #body>
+          <div class="flex justify-between flex-col items-center border-2 border-dashed border-gray-400 p-4 relative w-full">
+            <span class="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500">body slot</span>
+            <div class="bg-card p-4 rounded-lg h-64 flex items-center justify-center">Product Card</div>
+          </div>
+        </template>
+
+        <template #actions>
+          <div class="flex justify-between flex-col items-center border-2 border-dashed border-gray-400 p-4 relative w-full">
+            <span class="absolute -top-3 left-2 bg-white px-2 text-xs text-gray-500">action slot</span>
+            <div class="flex items-center justify-center">Actions</div>
+          </div>
+        </template>
+      </Template>
+    `,
+  }),
+} satisfies Meta<typeof Template>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof Template>
 
-export const Default: Story = {
-  args: {
-    header: h('div', { class: 'flex justify-between items-center' }, [
-      h(Button, { variant: 'outline' }, 'Back'),
-      h('div', { class: 'font-bold' }, 'Score: 5'),
-    ]),
-    content: h('div', { class: 'space-y-4' }, [
-      h('div', { class: 'bg-card p-4 rounded-lg text-center' }, 'Timer: 10'),
-      h('div', { class: 'bg-card p-4 rounded-lg h-64 flex items-center justify-center' }, 'Product Card'),
-      h('div', { class: 'bg-card p-4 rounded-lg text-center' }, 'Action Buttons'),
-    ]),
-  },
-}
-
-export const WithOverlay: Story = {
-  args: {
-    ...Default.args,
-    overlay: h('div', { class: 'fixed inset-0 bg-black/50 flex items-center justify-center' }, [
-      h('div', { class: 'bg-card p-6 rounded-lg max-w-md w-full text-center' }, [
-        h('h2', { class: 'text-xl font-bold' }, 'Game Overlay'),
-        h('p', { class: 'mt-2' }, 'This is an overlay that appears during gameplay'),
-      ]),
-    ]),
-  },
-} 
+export const Default: Story = {}
