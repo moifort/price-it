@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { Target, TimerReset } from 'lucide-vue-next'
+import { Badge } from '@/components/atoms/badge'
+import { Target, TimerReset, Zap } from 'lucide-vue-next'
+import type { Run } from '../../../../back/src/run/types'
 
-defineProps<{ current: number; total: number; renewAt: Date }>()
+defineProps<{
+  current: Run
+  total: Run
+  renewAt: Date
+  bonus: Run
+}>()
 </script>
 
 <template>
-  <Card>
+  <Card class="relative overflow-visible">
+    <div class="absolute -top-4 -right-3 z-10">
+      <Badge        class="flex items-center gap-1 shadow-lg animate-pulse bg-yellow-400 text-black border-0 px-3 py-1.5 rounded-full"      >
+        <Zap class="w-4 h-4"  />
+        <span class="text-sm">+{{ bonus }}</span>
+      </Badge>
+    </div>
     <CardContent class="pt-6">
       <div class="flex flex-col items-center gap-2">
         <Target class="w-8 h-8 text-blue-500" />
@@ -22,7 +35,3 @@ defineProps<{ current: number; total: number; renewAt: Date }>()
     </CardContent>
   </Card>
 </template>
-
-<style scoped>
-
-</style>

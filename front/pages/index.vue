@@ -13,6 +13,8 @@ const { data, status } = useAsyncGql({ operation: 'Player' })
              :total-run="status === 'success' ? data.me.runs.total : Run(0)"
              :remaining-run="status === 'success' ? data.me.runs.remaining : Run(0)"
              :run-renew-at="status === 'success' ? data.me.runs.renewAt : $dayjs().subtract(2, 'hours').toDate()"
+             :run-bonus="Run(0)"
+             :time-bonus="Seconde(0)"
   />
 </template>
 

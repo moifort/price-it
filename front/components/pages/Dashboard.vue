@@ -10,7 +10,15 @@ import type { Score } from '../../../back/src/score/types'
 import type { Seconde } from '../../../back/src/utils/types'
 
 defineEmits<(e: 'click:startGame') => void>()
-defineProps<{ score: Score; timeLimit: Seconde; totalRun: Run; remainingRun: Run; runRenewAt: Date }>()
+defineProps<{
+  score: Score
+  timeLimit: Seconde
+  totalRun: Run
+  remainingRun: Run
+  runRenewAt: Date
+  runBonus: Run
+  timeBonus: Seconde
+}>()
 </script>
 
 <template>
@@ -28,8 +36,8 @@ defineProps<{ score: Score; timeLimit: Seconde; totalRun: Run; remainingRun: Run
       <div class="flex flex-col gap-6">
         <ScoreCard :score="score" />
         <div class="grid grid-cols-2 gap-4">
-          <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt"/>
-          <BestTimeCard :time="timeLimit" />
+          <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus"/>
+          <BestTimeCard :time="timeLimit" :bonus="timeBonus"/>
         </div>
       </div>
     </template>
