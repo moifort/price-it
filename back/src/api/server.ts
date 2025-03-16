@@ -16,6 +16,7 @@ import type { TaskQueue } from 'firebase-admin/functions'
 import type { TaskRunReset } from '../run/types'
 import type { TelegramToken } from '../utils/telegram/types'
 import { TelegramUserId } from '../utils/telegram/validators'
+import { errorLoggingPlugin } from './plugins/logger'
 import { AuthenticationError, type GraphQlContext } from './types'
 
 let instance: Express | null = null
@@ -31,6 +32,7 @@ export const graphQlServer = async (
     typeDefs: mergeTypeDefs(typeDefFiles),
     resolvers: mergeResolvers<unknown, GraphQlContext>(resolverFiles),
     plugins: [
+      errorLoggingPlugin(),
       isDev
         ? ApolloServerPluginLandingPageLocalDefault({
             embed: {
