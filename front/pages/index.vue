@@ -11,6 +11,8 @@ const { data, status } = useAsyncGql({ operation: 'Player' })
   <Dashboard :score="status === 'success' ? data.me.score : Score(0)"
              :time-limit="Seconde(10)"
              :total-run="status === 'success' ? data.me.runs.total : Run(0)"
-             :remaining-run="status === 'success' ? data.me.runs.remaining : Run(0)" />
+             :remaining-run="status === 'success' ? data.me.runs.remaining : Run(0)"
+             :run-renew-at="status === 'success' ? data.me.runs.renewAt : $dayjs().subtract(2, 'hours').toDate()"
+  />
 </template>
 

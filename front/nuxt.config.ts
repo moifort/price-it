@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   ssr: false,
   devtools: { enabled: true },
+  typescript: { strict: true, typeCheck: 'build', shim: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-graphql-client'],
   colorMode: { classSuffix: '' },
   shadcn: {

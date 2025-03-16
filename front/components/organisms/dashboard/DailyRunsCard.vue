@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Target } from 'lucide-vue-next'
+import { Target, TimerReset } from 'lucide-vue-next'
 
-defineProps<{ current: number; total: number }>()
+defineProps<{ current: number; total: number; renewAt: Date }>()
 </script>
 
 <template>
@@ -13,6 +13,10 @@ defineProps<{ current: number; total: number }>()
         <div class="flex items-baseline gap-1">
           <span class="text-3xl font-bold text-primary"><Counter :value="current" /></span>
           <span class="text-sm text-muted-foreground">/{{total}}</span>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-muted-foreground">
+          <TimerReset class="w-3 h-3" />
+          <span>{{ $dayjs(renewAt).fromNow(true) }}</span>
         </div>
       </div>
     </CardContent>

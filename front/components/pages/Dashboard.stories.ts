@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Run } from '../../../back/src/run/validators'
 import { Score } from '../../../back/src/score/validators'
 import { Seconde } from '../../../back/src/utils/validators'
 import Component from './Dashboard.vue'
@@ -13,8 +14,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     score: Score(3984),
-    totalRun: 10,
-    remainingRun: 2,
-    bestTime: Seconde(8),
+    totalRun: Run(10),
+    remainingRun: Run(2),
+    renewAt: new Date('2026-12-31T23:59:59'),
+    timeLimit: Seconde(8),
   },
 }
