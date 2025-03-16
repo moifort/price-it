@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Seconde } from '../../../../back/src/utils/validators'
 import component from './Timer.vue'
 
 const meta = { component } satisfies Meta<typeof component>
@@ -7,18 +8,18 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    timer: 10,
+    timer: Seconde(10),
   },
 }
 
 export const Warning: Story = {
   args: {
-    timer: 5,
+    timer: Seconde(5),
   },
 }
 
 export const Danger: Story = {
   args: {
-    timer: 3,
+    timer: Seconde(2),
   },
 }
