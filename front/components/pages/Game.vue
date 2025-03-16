@@ -9,11 +9,11 @@
 <script setup lang="ts">
 import { Fragment, computed, h, onMounted, onUnmounted, ref } from 'vue'
 import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
-import GameTimer from '~/components/organisms/game/GameTimer.vue'
 import Header from '~/components/organisms/game/Header.vue'
 import LoseOverlay from '~/components/organisms/game/LoseOverlay.vue'
 import ProductCard from '~/components/organisms/game/ProductCard.vue'
 import TimeoutOverlay from '~/components/organisms/game/TimeoutOverlay.vue'
+import Timer from '~/components/organisms/game/Timer.vue'
 import WinOverlay from '~/components/organisms/game/WinOverlay.vue'
 import GameTemplate from '~/components/template/Game.vue'
 import type { Score } from '../../../back/src/score/types'
@@ -124,7 +124,7 @@ const header = computed(() =>
 
 const content = computed(() =>
   h(Fragment, {}, [
-    h(GameTimer, { timer: timer.value as unknown as Seconde }),
+    h(Timer, { timer: timer.value as unknown as Seconde }),
     h(ProductCard, {
       name: currentProduct.value.name,
       imageUrl: currentProduct.value.imageUrl as unknown as Url,

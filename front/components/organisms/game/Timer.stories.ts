@@ -1,13 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import GameTimer from './GameTimer.vue'
+import component from './Timer.vue'
 
-const meta = {
-  title: 'Organisms/Game/GameTimer',
-  component: GameTimer,
-  tags: ['autodocs'],
-  argTypes: {},
-} satisfies Meta<typeof GameTimer>
-
+const meta = { component } satisfies Meta<typeof component>
 export default meta
 type Story = StoryObj<typeof meta>
 
@@ -27,4 +21,4 @@ export const Danger: Story = {
   args: {
     timer: 3,
   },
-} 
+}

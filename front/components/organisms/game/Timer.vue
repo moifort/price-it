@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { Timer } from 'lucide-vue-next'
+import { Card } from '~/components/atoms/card'
+import type { Seconde } from '../../../../back/src/utils/types'
+
+defineProps<{ timer: Seconde }>()
+</script>
+
 <template>
   <Card
     :class="[
@@ -7,7 +15,7 @@
   >
     <div class="flex items-center justify-center p-6">
       <div class="flex items-center gap-3">
-        <Clock :class="['w-6 h-6', timer <= 3 && 'text-red-500']" />
+        <Timer :class="['w-6 h-6', timer <= 3 && 'text-red-500']" />
         <span
           :class="[
             'text-4xl font-bold tabular-nums',
@@ -21,12 +29,4 @@
   </Card>
 </template>
 
-<script setup lang="ts">
-import { Clock } from 'lucide-vue-next'
-import { Card } from '~/components/atoms/card'
-import type { Seconde } from '../../../../back/src/utils/index.type'
 
-defineProps<{
-  timer: Seconde
-}>()
-</script> 

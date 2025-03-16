@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { Card, CardHeader, CardTitle } from '~/components/atoms/card'
+import type { Url } from '../../../../back/src/utils/types'
+
+defineProps<{ name: string; imageUrl: Url }>()
+</script>
 <template>
   <div>
     <Card class="w-full overflow-hidden shadow-lg border-2 border-primary/20 bg-card/90 rounded-b-none">
@@ -20,12 +26,3 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { Card, CardHeader, CardTitle } from '~/components/atoms/card'
-import type { Url } from '../../../../back/src/utils/index.type'
-
-defineProps<{
-  name: string
-  imageUrl: Url
-}>()
-</script> 
