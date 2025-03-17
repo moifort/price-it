@@ -8,18 +8,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    timer: Seconde(10),
-  },
-}
-
-export const Warning: Story = {
-  args: {
     timer: Seconde(5),
-  },
-}
-
-export const Danger: Story = {
-  args: {
-    timer: Seconde(2),
+    onTimeout: () => console.log('Timeout'),
   },
 }

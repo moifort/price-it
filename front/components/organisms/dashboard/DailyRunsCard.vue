@@ -1,22 +1,33 @@
 <script setup lang="ts">
 import { Badge } from '@/components/atoms/badge'
-import { Target, TimerReset, Zap } from 'lucide-vue-next'
-import type { Run } from '../../../../back/src/run/types'
+import { ShoppingCart, Target, TimerReset, Zap } from 'lucide-vue-next'
+import type { Run as RunType } from '../../../../back/src/run/types'
+import { Run } from '../../../../back/src/run/validators'
 
 defineProps<{
-  current: Run
-  total: Run
+  current: RunType
+  total: RunType
   renewAt: Date
-  bonus: Run
+  bonus: RunType
 }>()
+defineEmits<{ 'click:buy': () => void }>()
 </script>
 
 <template>
   <Card class="relative overflow-visible">
     <div class="absolute -top-4 -right-3 z-10">
-      <Badge        class="flex items-center gap-1 shadow-lg animate-pulse bg-yellow-400 text-black border-0 px-3 py-1.5 rounded-full"      >
-        <Zap class="w-4 h-4"  />
-        <span class="text-sm">+{{ bonus }}</span>
+      <Badge
+          class="flex items-center gap-1 shadow-lg animate-pulse bg-yellow-400 text-black border-0 px-3 py-1.5 rounded-full"
+          @click="$emit('click:buy')"
+      >
+        <template v-if="current=== Run(0)">
+          <ShoppingCart class="w-4 h-4" />
+          <span class="text-sm">Buy runs</span>
+        </template>
+        <template v-else>
+          <Zap class="w-4 h-4" />
+          <span class="text-sm">+{{ bonus }}</span>
+        </template>
       </Badge>
     </div>
     <CardContent class="pt-6">

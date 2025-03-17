@@ -17,3 +17,10 @@ export const Default: Story = {
     bonus: Run(0),
   },
 }
+
+export const NoTurnsRemaining: Story = {
+  args: {
+    ...Default.args,
+    current: Run(0),
+  },
+}

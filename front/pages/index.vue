@@ -4,6 +4,7 @@ import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 import { Seconde } from '../../back/src/utils/validators'
 
+const router = useRouter()
 const { data, status } = useAsyncGql({ operation: 'Player' })
 </script>
 
@@ -15,6 +16,7 @@ const { data, status } = useAsyncGql({ operation: 'Player' })
              :run-renew-at="status === 'success' ? data.me.runs.renewAt : $dayjs().subtract(2, 'hours').toDate()"
              :run-bonus="Run(0)"
              :time-bonus="Seconde(0)"
+             @click:startGame="router.push('/game')"
   />
 </template>
 
