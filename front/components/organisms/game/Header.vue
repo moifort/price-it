@@ -12,6 +12,7 @@ defineEmits<(e: 'click:exit') => void>()
   <div class="flex items-center justify-between">
     <Button
       variant="outline"
+      @click="$emit('click:exit')"
       class="gap-2 transition-all hover:bg-destructive hover:text-destructive-foreground"
     >
       <ArrowLeft class="w-4 h-4" />

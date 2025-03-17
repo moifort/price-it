@@ -9,7 +9,6 @@ import type { Run } from '../../../back/src/run/types'
 import type { Score } from '../../../back/src/score/types'
 import type { Seconde } from '../../../back/src/utils/types'
 
-defineEmits<(e: 'click:startGame') => void>()
 defineProps<{
   score: Score
   timeLimit: Seconde
@@ -18,6 +17,12 @@ defineProps<{
   runRenewAt: Date
   runBonus: Run
   timeBonus: Seconde
+}>()
+
+defineEmits<{
+  (e: 'click:startGame'): void
+  (e: 'click:buyRuns'): void
+  (e: 'click:buyTime'): void
 }>()
 </script>
 
@@ -36,8 +41,8 @@ defineProps<{
       <div class="flex flex-col gap-6">
         <ScoreCard :score="score" />
         <div class="grid grid-cols-2 gap-4">
-          <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus"/>
-          <BestTimeCard :time="timeLimit" :bonus="timeBonus"/>
+          <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus" @click:buy="$emit('click:buyRuns')"/>
+          <BestTimeCard :time="timeLimit" :bonus="timeBonus" @click:buy="$emit('click:buyTime')"/>
         </div>
       </div>
     </template>

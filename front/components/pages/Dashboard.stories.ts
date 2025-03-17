@@ -20,5 +20,8 @@ export const Default: Story = {
     timeLimit: Seconde(8),
     runBonus: Run(10),
     timeBonus: Seconde(10),
+    'onClick:startGame': () => console.log('onClick:startGame'),
+    'onClick:buyRuns': () => console.log('onClick:buyRuns'),
+    'onClick:buyTime': () => console.log('onClick:buyTime'),
   },
 }
