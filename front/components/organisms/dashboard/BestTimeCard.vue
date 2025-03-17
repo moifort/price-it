@@ -15,7 +15,7 @@ defineEmits<{ 'click:buy': () => void }>()
              @click="$emit('click:buy')">
         <Zap class="w-4 h-4"  />
         <span class="text-sm">+{{ bonus }}s</span>
-        <div class="h-4 w-px bg-border/70 mx-1" />
+        <div class="h-4 w-px bg-border/70 mx-1 bg-black" />
         <ShoppingCart class="w-4 h-4" />
         <span class="text-sm">Buy</span>
       </Badge>
