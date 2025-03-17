@@ -26,7 +26,7 @@ defineEmits<{ 'click:buy': () => void }>()
         </template>
         <template v-else>
           <Zap class="w-4 h-4" />
-          <span class="text-sm">+{{ bonus }}s</span>
+          <span class="text-sm">+{{ bonus }}</span>
         </template>
       </Badge>
     </div>
