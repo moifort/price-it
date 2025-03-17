@@ -2,12 +2,12 @@
 // @ts-ignore
 import NumberAnimation from 'vue-number-animation'
 
-withDefaults(defineProps<{ value: number; duration?: number }>(), { duration: 1 })
+withDefaults(defineProps<{ from?: number; value: number; duration?: number }>(), { from: 0, duration: 1 })
 </script>
 
 <template>
   <NumberAnimation
-      :from="0"
+      :from="from"
       :to="value"
       :format="(number: number) => number.toFixed(0)"
       :duration="duration"
