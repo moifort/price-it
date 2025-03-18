@@ -9,7 +9,7 @@ defineEmits<{ timeout: () => void }>()
 
 <template>
   <Card class="w-full transition-colors border-2 border-primary/40">
-    <div class="flex items-center justify-center p-6">
+    <div class="flex items-center justify-center p-3">
       <div class="flex items-center gap-3">
         <Timer class="w-6 h-6" />
         <span

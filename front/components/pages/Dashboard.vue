@@ -38,12 +38,13 @@ defineEmits<{
     </template>
 
     <template #body>
-      <div class="flex flex-col gap-6">
-        <ScoreCard :score="score" />
-        <div class="grid grid-cols-2 gap-4">
-          <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus" @click:buy="$emit('click:buyRuns')"/>
-          <BestTimeCard :time="timeLimit" :bonus="timeBonus" @click:buy="$emit('click:buyTime')"/>
-        </div>
+        <ScoreCard :score="score" class="h-full"/>
+    </template>
+
+    <template #subbody>
+      <div class="grid grid-cols-2 gap-4 pt-2">
+        <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus" @click:buy="$emit('click:buyRuns')"/>
+        <BestTimeCard :time="timeLimit" :bonus="timeBonus" @click:buy="$emit('click:buyTime')"/>
       </div>
     </template>
 
