@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Component from './GameLoading.vue'
+import GameStart from './GameStart.vue'
 
 const meta = {
-  component: Component,
-} satisfies Meta<typeof Component>
+  component: GameStart,
+} satisfies Meta<typeof GameStart>
 
 export default meta
 type Story = StoryObj<typeof meta>

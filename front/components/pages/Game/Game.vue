@@ -1,20 +1,14 @@
 <script setup lang="ts">
 import Header from '~/components/organisms/game/Header.vue'
 import Game from '~/components/template/Game.vue'
-import type { Run } from '../../../back/src/run/types'
-import type { Score } from '../../../back/src/score/types'
+import type { Run } from '../../../../back/src/run/types'
+import type { Score } from '../../../../back/src/score/types'
 
 const { runsLeft } = defineProps<{
   score: Score
   runsLeft: Run
 }>()
-
-defineEmits<{
-  (e: 'click:exit'): void
-  (e: 'click:less'): void
-  (e: 'click:exact'): void
-  (e: 'click:more'): void
-}>()
+defineEmits<(e: 'click:exit') => void>()
 </script>
 
 <template>

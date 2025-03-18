@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import GamePage from '~/components/pages/Game.vue'
-import GameLoading from '~/components/pages/GameLoading.vue'
+import Game from '~/components/pages/Game/Game.vue'
+import GameEnd from '~/components/pages/Game/GameEnd.vue'
+import GameStart from '~/components/pages/Game/GameStart.vue'
 import { useRouteHelper } from '~/composables/useRoute'
 import type { Run } from '../../back/src/run/types'
 import { Limit, Seconde } from '../../back/src/utils/validators'
@@ -24,7 +25,7 @@ const isStartingFinish = ref(false)
 
 <template>
   <div v-if="index < remainingRuns">
-    <GamePage v-if="( status === 'success' || index > 0) && isStartingFinish"
+    <Game v-if="( status === 'success' || index > 0) && isStartingFinish"
           :score="data.me.score"
           :runs-left="data.me.runs.remaining"
           @click:exit="router.push('/')"
@@ -36,11 +37,11 @@ const isStartingFinish = ref(false)
             :page-key="index.toString()"
         />
       </template>
-    </GamePage>
-    <GameLoading v-else @complete="() => isStartingFinish = true" />
+    </Game>
+    <GameStart v-else @complete="() => isStartingFinish = true" />
   </div>
   <div v-else>
-    End finish with stat
+    <GameEnd @click:exit="router.push('/')" :score="data.me.score" />
   </div>
 </template>
 
