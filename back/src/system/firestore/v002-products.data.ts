@@ -1,6 +1,6 @@
 export const products = [
   {
-    id: 1,
+    id: '550e8400-e29b-41d4-a716-446655440000',
     name: 'Mini Spy Hidden Camera',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/mini-spy-hidden-camera_400x333.jpg',
     price: 28.99,
@@ -8,7 +8,7 @@ export const products = [
     url: 'https://www.amazon.com/dp/B07GKY23D7/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 2,
+    id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
     name: 'The Inflatable Speed Boat',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/inflatable-speed-boat_400x333.jpg',
     price: 800.0,
@@ -16,7 +16,7 @@ export const products = [
     url: 'https://www.amazon.com/dp/B07NQ3GTTW/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 3,
+    id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
     name: 'Giant Ten Pound Toblerone Bar',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/giant-ten-pound-toblerone-bar_400x333.jpg',
     price: 130.99,
@@ -24,7 +24,7 @@ export const products = [
     url: 'https://www.amazon.com/dp/B004INT01A/?tag=097-20&ascsubtag=default&th=1',
   },
   {
-    id: 4,
+    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     name: 'Moon House',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/moon-house_400x333.jpg',
     price: 14995.0,
@@ -32,7 +32,7 @@ export const products = [
     url: 'https://www.amazon.com/dp/B09MBXW7G2/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 5,
+    id: 'a3c8b99e-9c55-45e8-b10d-3bfd71a151c0',
     name: 'Dolphin Power Boat',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/dolphin-power-boat_400x333.jpg',
     price: 65000.0,
@@ -40,7 +40,7 @@ export const products = [
     url: 'https://seabreacher.com/?utm_source=thisiswhyimbroke.com&utm_medium=referral',
   },
   {
-    id: 6,
+    id: '2b27a6f1-73a3-4481-a9c2-e91e05d8c8e5',
     name: 'Extreme Above Ground Emergency Shelter',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/above-ground-emergency-shelter_400x333.jpg',
     price: 5450.0,
@@ -48,7 +48,7 @@ export const products = [
     url: 'https://www.amazon.com/dp/B00S1NP0JE/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 7,
+    id: '72de3e5e-5dac-4a4b-b9d2-6b5c5e8e0933',
     name: 'UFO Spaceship Airbnb',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/ufo-spaceship-airbnb_400x333.jpg',
     price: 128.0,
@@ -56,7 +56,7 @@ export const products = [
     url: 'https://fr.airbnb.com/rooms/51165983?utm_source=thisiswhyimbroke.com&utm_medium=referral&_set_bev_on_new_domain=1740461234_EANTZiNzYwOGQ2NG&source_impression_id=p3_1741002978_P3iCgSWG0g-ZnVFF',
   },
   {
-    id: 8,
+    id: 'e8fd159b-57c4-4d36-9bd7-a59ca13057bb',
     name: 'Dwarf 2 Smart Telescope',
     image: 'https://cdn.thisiswhyimbroke.com/images/dwarf-ii-smart-telescope.gif',
     price: 493.0,
