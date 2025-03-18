@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Rocket, Stars, Zap } from 'lucide-vue-next'
+import { Rocket, Zap } from 'lucide-vue-next'
 import Game from '~/components/template/Game.vue'
 
-const emit = defineEmits<{ complete: () => void }>()
+defineEmits<{ complete: () => void }>()
+const counter = ref(3)
 </script>
 
 <template>
@@ -25,7 +26,7 @@ const emit = defineEmits<{ complete: () => void }>()
           </div>
           <div class="h-48 w-48 flex items-center justify-center">
             <span class="text-7xl font-bold text-primary">
-               <Counter :from="5" :value="0" :duration="5" @complete="$emit('complete')" />
+               <Counter :from="counter" :value="0" :duration="counter" @complete="$emit('complete')" />
             </span>
           </div>
         </div>

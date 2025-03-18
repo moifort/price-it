@@ -5,18 +5,16 @@ import type { Url } from '../../../../back/src/utils/types'
 defineProps<{ name: string; imageUrl: Url }>()
 </script>
 <template>
-  <div>
-    <Card class="w-full overflow-hidden shadow-lg border-2 border-primary/20 bg-card/90 rounded-b-none">
-      <div class="relative w-full h-72 md:h-96">
-        <img
+  <div class="flex flex-col h-full">
+    <Card class="flex-grow shadow-lg border-2 border-primary/20 bg-card/90 rounded-b-none">
+      <img
           :src="imageUrl"
           :alt="name"
-          class="object-cover transition-all hover:scale-105 duration-700 absolute inset-0 w-full h-full"
-        />
-      </div>
+          class="w-full object-cover min-h-full max-h-20"
+      />
     </Card>
 
-    <Card class="w-full rounded-t-none">
+    <Card class="rounded-t-none flex-none">
       <CardHeader>
         <CardTitle class="text-2xl text-center font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
           {{ name }}
