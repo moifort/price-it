@@ -14,5 +14,6 @@ export const Default: Story = {
   args: {
     score: Score(1500),
     runsLeft: Run(5),
+    'onClick:exit': () => console.log('onClick:exit'),
   },
 }

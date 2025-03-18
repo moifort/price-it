@@ -5,9 +5,9 @@ type ManyValues<T> = T | T[]
 
 const isValueArray = <T>(value: T | T[]): value is T[] => Array.isArray(value)
 
-const getRecordValue = <T>(record: Record<string, ManyValues<T>>, key: string): T | null => {
+const getRecordValue = <T>(record: Record<string, ManyValues<T>>, key: string): T => {
   const manyValues = record[key]
-  return (isValueArray(manyValues) ? manyValues[0] : manyValues) ?? null
+  return isValueArray(manyValues) ? manyValues[0] : manyValues
 }
 
 const toNumber = (value: string): number | null => (Number.isNaN(+value) ? null : Number(value))
