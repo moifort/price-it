@@ -1,23 +1,47 @@
 <script lang="ts" setup>
-import Game from '~/components/pages/Game.vue'
-import GameLoading from '~/components/pages/GameLoading.vue'
-import { Amount, Seconde, Url } from '../../back/src/utils/validators'
+import Game from '~/components/pages/Game/Game.vue'
+import GameEnd from '~/components/pages/Game/GameEnd.vue'
+import GameStart from '~/components/pages/Game/GameStart.vue'
+import { useRouteHelper } from '~/composables/useRoute'
+import type { Run } from '../../back/src/run/types'
+import { Limit, Seconde } from '../../back/src/utils/validators'
 
 const router = useRouter()
-const { data, status } = useAsyncGql({ operation: 'Game' })
+const route = useRoute()
+const { getIntQuery } = useRouteHelper()
+const remainingRuns = getIntQuery<Run>('remainingRuns')
+const { data, status, refresh } = useAsyncGql('Game', { limit: Limit(Number(remainingRuns) ?? 0) })
+const index = ref(0)
+watch(
+  () => route.params.id,
+  (value) => {
+    index.value = Number(value)
+    refresh()
+  },
+)
+
 const isStartingFinish = ref(false)
 </script>
 
 <template>
-  <Game v-if="status === 'success' && isStartingFinish"
-        :score="data.me.score"
-        :display-price="Amount(100)"
-        :product-image-url="Url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1000&auto=format&fit=crop')"
-        product-name="Chaussette"
-        :runs-left="data.me.runs.remaining"
-        :total-time="Seconde(10)"
-        @click:exit="router.push('/')"
-  />
-  <GameLoading v-else @complete="() => isStartingFinish = true" />
+  <div v-if="index < remainingRuns">
+    <Game v-if="( status === 'success' || index > 0) && isStartingFinish"
+          :score="data.me.score"
+          :runs-left="data.me.runs.remaining"
+          @click:exit="router.push('/')"
+    >
+      <template #body>
+        <NuxtPage
+            :product="data.products[index]"
+            :totalTime="Seconde(10)"
+            :page-key="index.toString()"
+        />
+      </template>
+    </Game>
+    <GameStart v-else @complete="() => isStartingFinish = true" />
+  </div>
+  <div v-else>
+    <GameEnd @click:exit="router.push('/')" :score="data.me.score" />
+  </div>
 </template>
 

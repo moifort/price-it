@@ -1,7 +1,8 @@
 import type { Firestore } from 'firebase-admin/firestore'
 import { logger } from 'firebase-functions'
 
-export type MigrationScript = { migrate: () => Promise<void>; version: number }
+export type Migrate = (database: Firestore) => Promise<void> | void
+export type MigrationScript = { migrate: Migrate; version: number }
 
 export const migrate = (database: Firestore) => async (migrationScripts: MigrationScript[]) => {
   const stats = {
@@ -27,7 +28,7 @@ export const migrate = (database: Firestore) => async (migrationScripts: Migrati
 
     const start = new Date()
     try {
-      await file.migrate()
+      await file.migrate(database)
     } catch (e: unknown) {
       logger.error('error during script.migrate()', e)
       throw new Error('error during script.migrate()')
