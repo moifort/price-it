@@ -27,11 +27,14 @@ const isStartingFinish = ref(false)
     <GamePage v-if="( status === 'success' || index > 0) && isStartingFinish"
           :score="data.me.score"
           :runs-left="data.me.runs.remaining"
-          :total-time="Seconde(10)"
           @click:exit="router.push('/')"
     >
       <template #body>
-        <NuxtPage :product="data.products[index]" :page-key="index.toString()"/>
+        <NuxtPage
+            :product="data.products[index]"
+            :totalTime="Seconde(10)"
+            :page-key="index.toString()"
+        />
       </template>
     </GamePage>
     <GameLoading v-else @complete="() => isStartingFinish = true" />

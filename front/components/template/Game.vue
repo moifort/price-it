@@ -7,9 +7,5 @@
     <div class="flex-grow">
       <slot name="body"/>
     </div>
-
-    <div class="flex-none">
-      <slot name="actions" />
-    </div>
   </div>
 </template>

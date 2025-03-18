@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import Header from '~/components/organisms/game/Header.vue'
-import Timer from '~/components/organisms/game/Timer.vue'
 import Game from '~/components/template/Game.vue'
 import type { Run } from '../../../back/src/run/types'
 import type { Score } from '../../../back/src/score/types'
-import type { Amount, Seconde, Url } from '../../../back/src/utils/types'
 
 const { runsLeft } = defineProps<{
   score: Score
   runsLeft: Run
-  totalTime: Seconde
 }>()
 
 defineEmits<{
@@ -18,9 +15,6 @@ defineEmits<{
   (e: 'click:exact'): void
   (e: 'click:more'): void
 }>()
-
-const isTimeout = ref(false)
-const noMoreRuns = computed(() => runsLeft === 0)
 </script>
 
 <template>
@@ -32,25 +26,10 @@ const noMoreRuns = computed(() => runsLeft === 0)
         @click:exit="$emit('click:exit')"
         class="mb-3"
       />
-<!--      <Timer :timer="totalTime" @timeout="() => isTimeout = true" />-->
     </template>
 
     <template #body>
       <slot name="body" />
     </template>
-
-<!--    <template #body>-->
-<!--        <ProductCard :name="productName" :imageUrl="productImageUrl" />-->
-<!--    </template>-->
-
-<!--    <template #actions>-->
-<!--      <ActionButtons-->
-<!--        :isActive="!isTimeout && !noMoreRuns"-->
-<!--        :displayPrice="displayPrice"-->
-<!--        @click:less="$emit('click:less')"-->
-<!--        @click:exact="$emit('click:exact')"-->
-<!--        @click:more="$emit('click:more')"-->
-<!--      />-->
-<!--    </template>-->
   </Game>
 </template>
