@@ -17,8 +17,8 @@ const nullableIdentity = <T extends AnyBrand>(value: unknown) => (value === null
 export type UseRouteV2Helpers = {
   getIntPathParam: <T extends Brand<number, unknown>>(key: string) => T
   getStringPathParam: <T extends Brand<string, unknown>>(key: string) => T
-  getIntQuery: <T extends Brand<number, unknown>>(key: string) => T | null
-  getStringQuery: <T extends Brand<string, unknown>>(key: string) => T | null
+  getIntQuery: <T extends Brand<number, unknown>>(key: string) => T
+  getStringQuery: <T extends Brand<string, unknown>>(key: string) => T
 }
 
 export type UseRouteV2 = () => UseRouteV2Helpers
@@ -46,7 +46,7 @@ export const useRouteHelper: UseRouteV2 = () => {
   const getIntQuery = <T extends Brand<number, unknown>>(key: string) => {
     const recordValue = getRecordValue(query, key)
     if (recordValue === null) {
-      return null
+      throw new Error(`Query param ${key} should be a number!`)
     }
     const value = toNumber(recordValue)
     if (value === null) {
@@ -54,8 +54,7 @@ export const useRouteHelper: UseRouteV2 = () => {
     }
     return identity<T>(value)
   }
-  const getStringQuery = <T extends Brand<string, unknown>>(key: string) =>
-    nullableIdentity<T>(getRecordValue(query, key))
+  const getStringQuery = <T extends Brand<string, unknown>>(key: string) => identity<T>(getRecordValue(query, key))
   return {
     getIntPathParam,
     getStringPathParam,

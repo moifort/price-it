@@ -19,4 +19,4 @@ describe('ProductId', () => {
     expect(() => ProductId(undefined)).toThrow()
     expect(() => ProductId({})).toThrow()
   })
-}) 
+})

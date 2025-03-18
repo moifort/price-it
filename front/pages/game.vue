@@ -9,7 +9,7 @@ import { Limit, Seconde } from '../../back/src/utils/validators'
 const router = useRouter()
 const route = useRoute()
 const { getIntQuery } = useRouteHelper()
-const remainingRuns = getIntQuery<Run>('remainingRuns')!
+const remainingRuns = getIntQuery<Run>('remainingRuns')
 const { data, status, refresh } = useAsyncGql('Game', { limit: Limit(Number(remainingRuns) ?? 0) })
 const index = ref(0)
 watch(
