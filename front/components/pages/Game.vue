@@ -35,20 +35,13 @@ const noMoreRuns = computed(() => runsLeft === 0)
         :score="score"
         :runsLeft="runsLeft"
         @click:exit="$emit('click:exit')"
+        class="mb-3"
       />
+      <Timer :timer="totalTime" @timeout="() => isTimeout = true" />
     </template>
 
     <template #body>
-      <div class="flex flex-col gap-3">
-        <Timer
-          :timer="totalTime"
-          @timeout="() => isTimeout = true"
-        />
-        <ProductCard
-          :name="productName"
-          :imageUrl="productImageUrl"
-        />
-      </div>
+        <ProductCard :name="productName" :imageUrl="productImageUrl" />
     </template>
 
     <template #actions>

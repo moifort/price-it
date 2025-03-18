@@ -12,7 +12,7 @@ defineEmits<{
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-4 w-full mt-2">
+  <div class="grid grid-cols-3 gap-4">
     <ActionButton
       :isActive="isActive"
       @click="isActive && $emit('click:less')"
