@@ -1,4 +1,12 @@
-query Game {
+query Game($limit: Limit!) {
+  products(limit: $limit) {
+    id
+    category
+    name
+    price
+    image
+    url
+  }
   me {
     score
     runs {
