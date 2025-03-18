@@ -7,10 +7,12 @@ const isValueArray = <T>(value: T | T[]): value is T[] => Array.isArray(value)
 
 const getRecordValue = <T>(record: Record<string, ManyValues<T>>, key: string): T => {
   const manyValues = record[key]
-  return isValueArray(manyValues) ? manyValues[0] : manyValues
+  const value = isValueArray(manyValues) ? manyValues[0] : manyValues
+  if (value === null) {
+    throw new Error(`Value for key ${key} cannot be null!`)
+  }
+  return value
 }
-
-const toNumber = (value: string): number | null => (Number.isNaN(+value) ? null : Number(value))
 
 const nullableIdentity = <T extends AnyBrand>(value: unknown) => (value === null ? null : identity<T>(value))
 
@@ -30,11 +32,7 @@ export const useRouteHelper: UseRouteV2 = () => {
     if (recordValue === null) {
       throw new Error(`Path param ${key} cannot be null!`)
     }
-    const value = toNumber(recordValue)
-    if (value === null) {
-      throw new Error(`Path param ${key} should be a number!`)
-    }
-    return identity<T>(value)
+    return identity<T>(Number(recordValue))
   }
   const getStringPathParam = <T extends Brand<string, unknown>>(key: string) => {
     const value = nullableIdentity<T>(getRecordValue(params, key))
@@ -48,13 +46,15 @@ export const useRouteHelper: UseRouteV2 = () => {
     if (recordValue === null) {
       throw new Error(`Query param ${key} should be a number!`)
     }
-    const value = toNumber(recordValue)
+    return identity<T>(Number(recordValue))
+  }
+  const getStringQuery = <T extends Brand<string, unknown>>(key: string) => {
+    const value = getRecordValue(query, key)
     if (value === null) {
-      throw new Error(`Query param ${key} should be a number!`)
+      throw new Error(`Query param ${key} should be a string!`)
     }
     return identity<T>(value)
   }
-  const getStringQuery = <T extends Brand<string, unknown>>(key: string) => identity<T>(getRecordValue(query, key))
   return {
     getIntPathParam,
     getStringPathParam,
