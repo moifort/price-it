@@ -5,8 +5,12 @@ import { ScoreQuery } from './query'
 import type { Point } from './types'
 
 export namespace ScoreCommand {
-  export const resetScore = (database: Database) => (userId: UserId) => set(database)(userId, ScoreQuery.DEFAULT_SCORE)
+  export const setScore = (database: Database) => (userId: UserId) => set(database)(userId, ScoreQuery.DEFAULT_SCORE)
 
   export const addPoints = (database: Database) => (userId: UserId, points: Point) =>
     increment(database)(userId, points)
+
+  export const subtractPoints = (database: Database) => (userId: UserId, points: Point) => {
+    // TODO
+  }
 }

@@ -46,13 +46,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addPointsToScore?: Maybe<Scalars['Boolean']['output']>;
   createPlayerIfNotExist: Scalars['UserId']['output'];
-};
-
-
-export type MutationAddPointsToScoreArgs = {
-  points: Scalars['Point']['input'];
 };
 
 export type Player = {
@@ -167,7 +161,6 @@ export type ResolversTypes = {
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
   Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
   PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
   Player: ResolverTypeWrapper<Player>;
@@ -182,6 +175,7 @@ export type ResolversTypes = {
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -191,7 +185,6 @@ export type ResolversParentTypes = {
   Limit: Scalars['Limit']['output'];
   Minute: Scalars['Minute']['output'];
   Mutation: {};
-  Boolean: Scalars['Boolean']['output'];
   Percentage: Scalars['Percentage']['output'];
   PercentagePoint: Scalars['PercentagePoint']['output'];
   Player: Player;
@@ -206,6 +199,7 @@ export type ResolversParentTypes = {
   Seconde: Scalars['Seconde']['output'];
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
+  Boolean: Scalars['Boolean']['output'];
 };
 
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
@@ -225,7 +219,6 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  addPointsToScore?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddPointsToScoreArgs, 'points'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
 };
 

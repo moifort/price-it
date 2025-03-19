@@ -13,7 +13,7 @@ export namespace PlayerCommand {
       const exists = await UserQuery.isExist(database)(id)
       if (!exists) {
         await UserCommand.create(database)(id, firstName)
-        await Promise.all([ScoreCommand.resetScore(database)(id), RunCommand.reset(database, runTaskQueue)(id)])
+        await Promise.all([ScoreCommand.setScore(database)(id), RunCommand.reset(database, runTaskQueue)(id)])
       }
       return id
     }
