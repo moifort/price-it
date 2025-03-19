@@ -30,7 +30,7 @@ defineEmits<{
       @click="isActive &&  $emit('click:exact')"
     >
       <template #icon>
-        <span class="font-bold text-lg">${{ displayPrice.toFixed(2) }}</span>
+        <span class="font-bold text-lg">${{ displayPrice.toFixed(0) }}</span>
       </template>
       <template #label>
         Exact
