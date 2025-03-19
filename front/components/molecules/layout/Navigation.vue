@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { Gamepad2Icon, ShoppingBagIcon, TrophyIcon } from 'lucide-vue-next'
-import { computed } from 'vue'
+import { ClipboardListIcon, Gamepad2Icon, ShoppingBagIcon, TrophyIcon } from 'lucide-vue-next'
 
-export type Menu = 'game' | 'shop' | 'top'
+export type Menu = 'game' | 'shop' | 'top' | 'tasks'
 defineProps<{ active: Menu }>()
 defineEmits<(e: 'click:goTo', active: Menu) => void>()
 
@@ -11,6 +10,11 @@ const menus = [
     id: 'game' as const,
     icon: Gamepad2Icon,
     label: 'Game',
+  },
+  {
+    id: 'tasks' as const,
+    icon: ClipboardListIcon,
+    label: 'Tasks',
   },
   {
     id: 'shop' as const,
