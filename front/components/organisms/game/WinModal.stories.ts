@@ -1,28 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import WinModal from './WinModal.vue'
+import { Amount, Url } from '../../../../back/src/utils/validators'
+import component from './WinModal.vue'
 
 const meta = {
-  title: 'Organisms/Game/WinModal',
-  component: WinModal,
-  tags: ['autodocs'],
-  argTypes: {
-    isOpen: { control: 'boolean' },
-  },
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-} satisfies Meta<typeof WinModal>
-
+  component,
+  decorators: [() => ({ template: '<div style="height: 330px; position: relative;"><story /></div>' })],
+} satisfies Meta<typeof component>
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    productName: 'Wireless Headphones',
-    realPrice: 129.99,
-    productLink: 'https://example.com/product',
-    isOpen: true,
+    price: Amount(89),
+    productLink: Url('https://example.com/product'),
+    'onClick:next': () => console.log('onClick:next'),
   },
-} 
+}

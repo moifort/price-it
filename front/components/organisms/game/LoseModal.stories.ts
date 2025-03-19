@@ -1,28 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import LoseModal from './LoseModal.vue'
+import { Amount, Url } from '../../../../back/src/utils/validators'
+import component from './LoseModal.vue'
 
 const meta = {
-  title: 'Organisms/Game/LoseModal',
-  component: LoseModal,
-  tags: ['autodocs'],
-  argTypes: {
-    isOpen: { control: 'boolean' },
-  },
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-} satisfies Meta<typeof LoseModal>
-
+  component,
+  decorators: [() => ({ template: '<div style="height: 330px; position: relative;"><story /></div>' })],
+} satisfies Meta<typeof component>
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    productName: 'Bluetooth Speaker',
-    realPrice: 89.99,
-    productLink: 'https://example.com/product',
-    isOpen: true,
+    price: Amount(89),
+    productLink: Url('https://example.com/product'),
+    'onClick:next': () => console.log('onClick:next'),
   },
-} 
+}

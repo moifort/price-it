@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ExternalLink } from 'lucide-vue-next'
-import { computed } from 'vue'
 import { Button } from '~/components/atoms/button'
 import { Card } from '~/components/atoms/card'
 import { CardFooter } from '~/components/atoms/card'
 import { CardHeader } from '~/components/atoms/card'
 import { CardTitle } from '~/components/atoms/card'
+import { openLink } from '~/utils/utils'
 import type { Amount, Url } from '../../../../back/src/utils/types'
 
-const props = defineProps<{ price: Amount; productLink: Url }>()
+defineProps<{ price: Amount; productLink: Url }>()
 defineEmits<(e: 'click:next') => void>()
 </script>
 
@@ -29,6 +29,7 @@ defineEmits<(e: 'click:next') => void>()
           <Button
               variant="outline"
               class="w-full py-6 text-lg"
+              @click="openLink(productLink)"
           >
             <ExternalLink class="w-5 h-5" />
             See Product
