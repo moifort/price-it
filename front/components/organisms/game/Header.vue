@@ -27,7 +27,7 @@ defineEmits<(e: 'click:exit') => void>()
       <div class="h-4 w-px bg-border/60" />
       <div class="flex items-center gap-1.5">
         <Target class="w-5 h-5 text-blue-500" />
-        <span class="text-foreground font-semibold"><Counter :value="runsLeft" :duration="1" /></span>
+        <span class="text-foreground font-semibold">{{ runsLeft }}</span>
       </div>
     </div>
   </div>

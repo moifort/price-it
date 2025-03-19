@@ -12,7 +12,7 @@ export const findBy = (db: Firestore) => async (userId: UserId) => {
 }
 
 export const update = (db: Firestore) => async (userId: UserId, run: Partial<Runs>) => {
-  await collection(db).doc(userId).update({ runs: run })
+  await collection(db).doc(userId).set({ runs: run }, { merge: true })
 }
 
 const collection = (db: Firestore) => db.collection('players').withConverter(genericDataConverter<Player>())
