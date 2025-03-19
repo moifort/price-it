@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { on } from '@telegram-apps/sdk'
 import Dashboard from '~/components/pages/Dashboard.vue'
 import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
@@ -6,20 +7,10 @@ import { Seconde } from '../../back/src/utils/validators'
 
 const router = useRouter()
 const { data, status, refresh } = useAsyncGql({ operation: 'Player' })
-
-const handleVisibilityChange = () => {
-  if (document.visibilityState === 'visible') {
-    refresh()
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('visibilitychange', handleVisibilityChange)
+const removeListener = on('visibility_changed', ({ is_visible }) => {
+  if (is_visible) refresh()
 })
-
-onUnmounted(() => {
-  document.removeEventListener('visibilitychange', handleVisibilityChange)
-})
+onUnmounted(() => removeListener())
 </script>
 
 <template>
