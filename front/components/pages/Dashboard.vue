@@ -28,6 +28,15 @@ defineEmits<{
 
 <template>
   <Dashboard>
+    <template #title>
+      <div class="flex items-center justify-center w-full gap-2">
+        <h1 class="text-3xl font-bold text-center bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          Price It!
+        </h1>
+        <Star class="w-8 h-8 text-yellow-500 animate-pulse" />
+      </div>
+    </template>
+
     <template #body>
         <ScoreCard :score="score" class="h-full"/>
     </template>
