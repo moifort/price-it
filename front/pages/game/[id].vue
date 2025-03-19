@@ -2,12 +2,13 @@
 import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
 import ProductCard from '~/components/organisms/game/ProductCard.vue'
 import Timer from '~/components/organisms/game/Timer.vue'
-import { useRouteHelper } from '~/composables/useRoute'
-const { getIntPathParam } = useRouteHelper()
+import { getIntPathParam } from '~/composables/useRoute'
+
+const router = useRouter()
 const index = getIntPathParam('id')
+
 const { product, totalTime } = defineProps(['product', 'totalTime'])
 const isTimeout = ref(false)
-const router = useRouter()
 </script>
 
 <template>
