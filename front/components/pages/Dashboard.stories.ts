@@ -25,3 +25,10 @@ export const Default: Story = {
     'onClick:buyTime': () => console.log('onClick:buyTime'),
   },
 }
+
+export const NoMoreRun: Story = {
+  args: {
+    ...Default.args,
+    remainingRun: Run(0),
+  },
+}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Badge } from '@/components/atoms/badge'
-import { ShoppingCart, Target, TimerReset, Zap } from 'lucide-vue-next'
+import { ShoppingBag, Target, TimerReset, Zap } from 'lucide-vue-next'
 import type { Run as RunType } from '../../../../back/src/run/types'
 import { Run } from '../../../../back/src/run/validators'
 
@@ -21,7 +21,7 @@ defineEmits<{ 'click:buy': () => void }>()
           @click="$emit('click:buy')"
       >
         <template v-if="current=== Run(0)">
-          <ShoppingCart class="w-4 h-4" />
+          <ShoppingBag class="w-4 h-4" />
           <span class="text-sm">Buy runs</span>
         </template>
         <template v-else>

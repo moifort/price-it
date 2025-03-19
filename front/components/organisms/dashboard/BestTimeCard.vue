@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Clock, ShoppingCart, Zap } from 'lucide-vue-next'
+import { Clock, ShoppingBag, Zap } from 'lucide-vue-next'
 import { Badge } from '~/components/atoms/badge'
 import { Run } from '../../../../back/src/run/validators'
 import type { Seconde } from '../../../../back/src/utils/types'
@@ -16,7 +16,7 @@ defineEmits<{ 'click:buy': () => void }>()
         <Zap class="w-4 h-4"  />
         <span class="text-sm">+{{ bonus }}s</span>
         <div class="h-4 w-px bg-border/70 mx-1 bg-black" />
-        <ShoppingCart class="w-4 h-4" />
+        <ShoppingBag class="w-4 h-4" />
         <span class="text-sm">Buy</span>
       </Badge>
     </div>
