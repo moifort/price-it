@@ -59,7 +59,7 @@ export const graphQlServer = async (
         if (!authorization) throw new AuthenticationError()
         const authData = authorization.split(' ')[1]
         if (!authData) throw new AuthenticationError()
-        if (!isDev && !isValid(authData, token, { expiresIn: 3600 })) throw new AuthenticationError()
+        if (!isDev && !isValid(authData, token)) throw new AuthenticationError()
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()
         return Promise.resolve({

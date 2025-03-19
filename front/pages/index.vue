@@ -5,7 +5,21 @@ import { Score } from '../../back/src/score/validators'
 import { Seconde } from '../../back/src/utils/validators'
 
 const router = useRouter()
-const { data, status } = useAsyncGql({ operation: 'Player' })
+const { data, status, refresh } = useAsyncGql({ operation: 'Player' })
+
+const handleVisibilityChange = () => {
+  if (document.visibilityState === 'visible') {
+    refresh()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
+})
 </script>
 
 <template>
