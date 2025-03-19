@@ -19,7 +19,7 @@ const meta = {
     },
     currentPath: {
       control: 'text',
-    }
+    },
   },
 } satisfies Meta<typeof component>
 
