@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Star } from 'lucide-vue-next'
+import BuyRunsButton from '~/components/molecules/dashboard/BuyRunsButton.vue'
 import GameStartButton from '~/components/molecules/dashboard/GameStartButton.vue'
 import BestTimeCard from '~/components/organisms/dashboard/BestTimeCard.vue'
 import DailyRunsCard from '~/components/organisms/dashboard/DailyRunsCard.vue'
@@ -49,7 +50,8 @@ defineEmits<{
     </template>
 
     <template #action>
-      <GameStartButton  @click="$emit('click:startGame')" />
+      <GameStartButton v-if="remainingRun > 0" @click="$emit('click:startGame')" />
+      <BuyRunsButton v-else @click="$emit('click:buyRuns')" />
     </template>
   </Dashboard>
 </template>

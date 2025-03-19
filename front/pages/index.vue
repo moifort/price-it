@@ -17,6 +17,8 @@ const { data, status } = useAsyncGql({ operation: 'Player' })
              :run-bonus="Run(0)"
              :time-bonus="Seconde(0)"
              @click:startGame="router.push(`/game/0?remainingRuns=${data.me.runs.remaining}`)"
+             @click:buy-runs="router.push(`/shop`)"
+             @click:buy-time="router.push(`/shop`)"
   />
 </template>
 
