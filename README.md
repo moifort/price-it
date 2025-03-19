@@ -17,3 +17,6 @@ bun install
 bun dev
 ```
 
+## Other
+- https://github.com/chat-game/space/blob/main/apps/telegram-game/src/router/index.ts
+

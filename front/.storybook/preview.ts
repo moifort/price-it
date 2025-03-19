@@ -19,6 +19,7 @@ const preview: Preview = {
         date: /(Date)$/i,
       },
     },
+    docs: { canvas: { sourceState: 'none' } },
   },
   tags: ['autodocs'],
 }

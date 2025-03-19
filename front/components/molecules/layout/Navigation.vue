@@ -5,46 +5,42 @@ import { computed } from 'vue'
 export type Menu = 'game' | 'shop' | 'top'
 defineProps<{ active: Menu }>()
 defineEmits<(e: 'click:goTo', active: Menu) => void>()
+
+const menus = [
+  {
+    id: 'game' as const,
+    icon: Gamepad2Icon,
+    label: 'Game',
+  },
+  {
+    id: 'shop' as const,
+    icon: ShoppingBagIcon,
+    label: 'Shop',
+  },
+  {
+    id: 'top' as const,
+    icon: TrophyIcon,
+    label: 'Top',
+  },
+]
 </script>
 
 <template>
   <nav class="fixed bottom-0 left-0 right-0 bg-background border-t border-border pb-safe">
-    <div class="flex justify-around items-center h-18">
+    <div class="flex justify-around items-center h-[85px]">
       <div
-        class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
+        v-for="{id, icon, label} in menus"
+        :key="id"
+        class="flex flex-col items-center justify-center w-full h-full  cursor-pointer pb-4"
         :class="[
-          active === 'game'
-            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
+          active === id
+            ? 'text-primary font-medium bg-primary/10 rounded-md scale-100 shadow-sm'
             : 'text-foreground/70 hover:text-foreground/90'
         ]"
-        @click="$emit('click:goTo', 'game')"
+        @click="$emit('click:goTo', id)"
       >
-        <Gamepad2Icon class="w-6 h-6" />
-        <span class="text-xs mt-1">Game</span>
-      </div>
-      <div
-        class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
-        :class="[
-          active === 'shop'
-            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
-            : 'text-foreground/70 hover:text-foreground/90'
-        ]"
-        @click="$emit('click:goTo', 'shop')"
-      >
-        <ShoppingBagIcon class="w-6 h-6" />
-        <span class="text-xs mt-1">Shop</span>
-      </div>
-      <div
-        class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
-        :class="[
-          active === 'top'
-            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
-            : 'text-foreground/70 hover:text-foreground/90'
-        ]"
-        @click="$emit('click:goTo', 'top')"
-      >
-        <TrophyIcon class="w-6 h-6" />
-        <span class="text-xs mt-1">Top</span>
+        <component :is="icon" class="w-6 h-6" />
+        <span class="text-xs mt-1">{{ label }}</span>
       </div>
     </div>
   </nav>

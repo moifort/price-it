@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-import { List } from '@telegram-apps/telegram-ui';
+import { useLaunchParams } from '@telegram-apps/sdk-react'
+import { List } from '@telegram-apps/telegram-ui'
 
-import { DisplayData } from '@/components/DisplayData/DisplayData';
-import { Page } from '@/components/Page';
+import { DisplayData } from '@/components/DisplayData/DisplayData'
+import { Page } from '@/components/Page'
 
 export default function LaunchParamsPage() {
-  const lp = useLaunchParams();
+  const lp = useLaunchParams()
 
   return (
     <Page>
@@ -19,15 +19,15 @@ export default function LaunchParamsPage() {
             { title: 'tgWebAppVersion', value: lp.version },
             { title: 'tgWebAppBotInline', value: lp.botInline },
             { title: 'tgWebAppStartParam', value: lp.startParam },
-            { title: 'tgWebAppData', type: 'link', value: '/init-data' },
+            { title: 'tgWebAppData', id: 'link', value: '/init-data' },
             {
               title: 'tgWebAppThemeParams',
-              type: 'link',
+              id: 'link',
               value: '/theme-params',
             },
           ]}
         />
       </List>
     </Page>
-  );
-};
+  )
+}

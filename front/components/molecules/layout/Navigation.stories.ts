@@ -17,9 +17,6 @@ const meta = {
       control: { type: 'radio' },
       options: ['game', 'shop', 'top'],
     },
-    currentPath: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof component>
 
@@ -29,15 +26,6 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     active: 'game',
-    navigate: (path: string) => console.log(`Navigate to: ${path}`),
-    'click:goTo': (active: Menu) => console.log(`onClick:${active}`),
-  },
-}
-
-export const WithCurrentPath: Story = {
-  args: {
-    currentPath: '/game',
-    navigate: (path: string) => console.log(`Navigate to: ${path}`),
-    'click:goTo': (active: Menu) => console.log(`onClick:${active}`),
+    'onClick:goTo': (active: Menu) => console.log(`onClick:${active}`),
   },
 }
