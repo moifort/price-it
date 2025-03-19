@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main id="main-application">
     <slot />
-  </div>
+  </main>
 </template>
 
 

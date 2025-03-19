@@ -8,8 +8,7 @@ import { CardTitle } from '~/components/atoms/card'
 import { openLink } from '~/utils/utils'
 import type { Amount, Url } from '../../../../back/src/utils/types'
 
-defineProps<{ price: Amount; productLink: Url }>()
-defineEmits<(e: 'click:next') => void>()
+defineProps<{ close: () => void; price: Amount; productLink: Url }>()
 </script>
 
 <template>
@@ -38,7 +37,7 @@ defineEmits<(e: 'click:next') => void>()
           <Button
               variant="default"
               class="w-full py-6 text-lg"
-              @click="$emit('click:next')"
+              @click="close()"
           >
             Next Product
           </Button>

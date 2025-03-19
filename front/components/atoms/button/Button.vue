@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue'
 import { cn } from '@/utils/utils'
 import { Primitive, type PrimitiveProps } from 'reka-ui'
-import type { HTMLAttributes } from 'vue'
 import { type ButtonVariants, buttonVariants } from '.'
 
 interface Props extends PrimitiveProps {
@@ -10,7 +10,9 @@ interface Props extends PrimitiveProps {
   class?: HTMLAttributes['class']
 }
 
-const props = withDefaults(defineProps<Props>(), { as: 'button' })
+const props = withDefaults(defineProps<Props>(), {
+  as: 'button',
+})
 </script>
 
 <template>

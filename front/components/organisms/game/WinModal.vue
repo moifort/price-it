@@ -8,7 +8,7 @@ defineEmits<(e: 'click:next') => void>()
 </script>
 
 <template>
-  <Modal :price="price" :product-link="productLink" @click:next="$emit('click:next')">
+  <Modal :price="price" :product-link="productLink">
     <template #icon>
       <Trophy class="h-12 w-12 text-yellow-500" />
     </template>
