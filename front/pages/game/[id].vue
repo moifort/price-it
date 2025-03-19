@@ -3,18 +3,21 @@ import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
 import ProductCard from '~/components/organisms/game/ProductCard.vue'
 import Timer from '~/components/organisms/game/Timer.vue'
 import { getIntPathParam } from '~/composables/useRoute'
+import { generate } from '~/utils/game'
 
 type Guess = 'win' | 'lose'
 
 const router = useRouter()
 const index = getIntPathParam('id')
 const { product, totalTime } = defineProps(['product', 'totalTime'])
-
-const next = async (guess: Guess) => {
+const { displayPrice, expectedGuess } = generate(product.price)
+const next = async (playerGuess: 'less' | 'exact' | 'more') => {
+  const guess: Guess = playerGuess === expectedGuess ? 'win' : 'lose'
   if (guess === 'win') await GqlGameWinCommand()
   if (guess === 'lose') await GqlGameLoseCommand()
   await router.push(`/game/${index + 1}`)
 }
+
 const timeout = async () => {
   await GqlGameLoseCommand()
   await router.push(`/game/${index + 1}`)
@@ -34,10 +37,10 @@ const timeout = async () => {
     <div class="flex-none">
       <ActionButtons
           :isActive="true"
-          :displayPrice="product.price"
-          @click:less="next('lose')"
-          @click:exact="next('lose')"
-          @click:more="next('win')"
+          :displayPrice="displayPrice"
+          @click:less="next('less')"
+          @click:exact="next('exact')"
+          @click:more="next('more')"
       />
     </div>
   </div>
