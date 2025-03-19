@@ -6,6 +6,7 @@ import { useRouteHelper } from '~/composables/useRoute'
 import type { Run } from '../../back/src/run/types'
 import { Limit, Seconde } from '../../back/src/utils/validators'
 
+definePageMeta({ layout: 'fullscreen' })
 const router = useRouter()
 const route = useRoute()
 const { getIntQuery } = useRouteHelper()
