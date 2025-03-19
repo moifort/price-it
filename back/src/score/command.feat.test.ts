@@ -5,7 +5,7 @@ import { ScoreCommand } from './command'
 import { Point, Score } from './validators'
 
 describe('ScoreCommand', () => {
-  it('sets', async () => {
+  it('set', async () => {
     // Given
     await $testDatabase
       .collection('players')

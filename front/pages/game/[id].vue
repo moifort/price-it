@@ -9,6 +9,11 @@ const index = getIntPathParam('id')
 
 const { product, totalTime } = defineProps(['product', 'totalTime'])
 const isTimeout = ref(false)
+
+const next = async () => {
+  GqlGameWinCommand()
+  router.push(`/game/${index + 1}`)
+}
 </script>
 
 <template>
@@ -25,9 +30,9 @@ const isTimeout = ref(false)
       <ActionButtons
           :isActive="!isTimeout"
           :displayPrice="product.price"
-          @click:less="router.push(`/game/${index + 1}`)"
-          @click:exact="router.push(`/game/${index + 1}`)"
-          @click:more="router.push(`/game/${index + 1}`)"
+          @click:less="next()"
+          @click:exact="next()"
+          @click:more="next()"
       />
     </div>
   </div>
