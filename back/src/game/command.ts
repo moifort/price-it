@@ -9,14 +9,14 @@ export namespace GameCommand {
   export const win = (database: Database) => async (userId: UserId) => {
     await Promise.all([
       ScoreCommand.addPoints(database)(userId, Point(GameQuery.DEFAULT_WIN_POINTS)),
-      RunCommand.decrease(database)(userId)
+      RunCommand.decrease(database)(userId),
     ])
   }
 
   export const lose = (database: Database) => async (userId: UserId) => {
     await Promise.all([
       ScoreCommand.subtractPoints(database)(userId, GameQuery.DEFAULT_LOSE_POINTS),
-      RunCommand.decrease(database)(userId)
+      RunCommand.decrease(database)(userId),
     ])
   }
 }

@@ -17,7 +17,7 @@ describe('GameCommand', () => {
           id: playerId,
           firstName: 'Jane',
           score: Score(1000),
-          runs: { remaining: Run(3) }
+          runs: { remaining: Run(3) },
         })
 
       // When
@@ -41,7 +41,7 @@ describe('GameCommand', () => {
           id: playerId,
           firstName: 'John',
           score: Score(1000),
-          runs: { remaining: Run(4) }
+          runs: { remaining: Run(4) },
         })
 
       // When
