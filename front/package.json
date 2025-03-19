@@ -22,7 +22,7 @@
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "dayjs": "1.11.13",
-    "lucide-vue-next": "0.482.0",
+    "lucide-vue-next": "0.483.0",
     "nuxt": "3.14.1592",
     "nuxt-graphql-client": "0.2.43",
     "reka-ui": "2.1.0",
