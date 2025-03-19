@@ -10,8 +10,6 @@ import type { Amount, Url } from '../../../../back/src/utils/types'
 
 const props = defineProps<{ price: Amount; productLink: Url }>()
 defineEmits<(e: 'click:next') => void>()
-
-const realPrice = computed(() => props.price / 100)
 </script>
 
 <template>
@@ -24,7 +22,7 @@ const realPrice = computed(() => props.price / 100)
           <CardTitle class="text-4xl font-bold mb-4 mt-2">
             <slot name="title" />
           </CardTitle>
-          <p class="text-2xl mb-2">The price was <span class="font-bold">${{ realPrice.toFixed(2) }}</span></p>
+          <p class="text-2xl mb-2">The price was <span class="font-bold">${{ price.toFixed(2) }}</span></p>
         </CardHeader>
 
         <CardFooter class="gap-3 flex-col">

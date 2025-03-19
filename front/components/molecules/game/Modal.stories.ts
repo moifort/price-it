@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    price: Amount(8999),
+    price: Amount(89),
     productLink: Url('https://example.com/product'),
   },
 }
