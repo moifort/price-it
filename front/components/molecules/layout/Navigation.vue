@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { Gamepad2Icon, ShoppingBagIcon, TrophyIcon } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 export type Menu = 'game' | 'shop' | 'top'
-
 defineProps<{ active: Menu }>()
 defineEmits<(e: 'click:goTo', active: Menu) => void>()
 </script>
 
 <template>
   <nav class="fixed bottom-0 left-0 right-0 bg-background border-t border-border pb-safe">
-    <div class="flex justify-around items-center h-18 mb-2">
+    <div class="flex justify-around items-center h-18">
       <div
         class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
-        :class="{ 'text-primary': active === 'game' }"
+        :class="[
+          active === 'game'
+            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
+            : 'text-foreground/70 hover:text-foreground/90'
+        ]"
         @click="$emit('click:goTo', 'game')"
       >
         <Gamepad2Icon class="w-6 h-6" />
@@ -20,7 +24,11 @@ defineEmits<(e: 'click:goTo', active: Menu) => void>()
       </div>
       <div
         class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
-        :class="{ 'text-primary': active === 'shop' }"
+        :class="[
+          active === 'shop'
+            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
+            : 'text-foreground/70 hover:text-foreground/90'
+        ]"
         @click="$emit('click:goTo', 'shop')"
       >
         <ShoppingBagIcon class="w-6 h-6" />
@@ -28,7 +36,11 @@ defineEmits<(e: 'click:goTo', active: Menu) => void>()
       </div>
       <div
         class="flex flex-col items-center justify-center w-full h-full p-1 cursor-pointer"
-        :class="{ 'text-primary': active === 'top' }"
+        :class="[
+          active === 'top'
+            ? 'text-primary font-medium bg-primary/10 rounded-md scale-105 shadow-sm'
+            : 'text-foreground/70 hover:text-foreground/90'
+        ]"
         @click="$emit('click:goTo', 'top')"
       >
         <TrophyIcon class="w-6 h-6" />

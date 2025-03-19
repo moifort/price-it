@@ -1,10 +1,8 @@
 <script setup lang="ts">
+import Navigation, { type Menu } from '~/components/molecules/layout/Navigation.vue'
+
 const router = useRouter()
 const route = useRoute()
-
-const handleNavigate = (path: string) => {
-  router.push(path)
-}
 </script>
 
 <template>
@@ -12,7 +10,9 @@ const handleNavigate = (path: string) => {
     <main class="flex-grow h-full pb-20">
       <slot />
     </main>
-    <Navigation :currentPath="route.path" @navigate="handleNavigate" />
+    <Navigation :active="(route.name === 'index' ? 'game' : route.name) as Menu"
+                @click:go-to="(menu) =>
+                router.push(`/${menu === 'game' ? '' : menu}`)"/>
   </div>
 </template>
 

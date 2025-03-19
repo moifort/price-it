@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import component from './Navigation.vue'
 
+// Define Menu type locally to match the component
+type Menu = 'game' | 'shop' | 'top'
+
 const meta = {
   component,
   parameters: { layout: 'fullscreen' },
@@ -14,6 +17,9 @@ const meta = {
       control: { type: 'radio' },
       options: ['game', 'shop', 'top'],
     },
+    currentPath: {
+      control: 'text',
+    }
   },
 } satisfies Meta<typeof component>
 
@@ -23,6 +29,15 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     active: 'game',
-    'onClick:goTo': (active) => console.log(`onClick:${active}`),
+    navigate: (path: string) => console.log(`Navigate to: ${path}`),
+    'click:goTo': (active: Menu) => console.log(`onClick:${active}`),
+  },
+}
+
+export const WithCurrentPath: Story = {
+  args: {
+    currentPath: '/game',
+    navigate: (path: string) => console.log(`Navigate to: ${path}`),
+    'click:goTo': (active: Menu) => console.log(`onClick:${active}`),
   },
 }
