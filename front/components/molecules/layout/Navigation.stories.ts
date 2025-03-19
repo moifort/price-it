@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Menu } from '~/components/molecules/layout/Navigation.vue'
 import component from './Navigation.vue'
-
-// Define Menu type locally to match the component
-type Menu = 'game' | 'shop' | 'top'
 
 const meta = {
   component,
@@ -15,7 +13,7 @@ const meta = {
   argTypes: {
     active: {
       control: { type: 'radio' },
-      options: ['game', 'shop', 'top'],
+      options: ['game', 'tasks', 'shop', 'top'],
     },
   },
 } satisfies Meta<typeof component>
