@@ -18,7 +18,7 @@ defineEmits<(e: 'click:exit') => void>()
         <div class="mt-3 flex flex-col items-center">
           <span class="text-lg font-bold text-primary">Total Score</span>
           <span class="text-5xl font-bold text-primary mt-2">
-            <Counter :from="0" :value="score" :duration="2" />
+            <Counter :from="0" :value="score" :duration="3" />
           </span>
         </div>
 

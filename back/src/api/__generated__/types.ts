@@ -46,13 +46,9 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addPointsToScore?: Maybe<Scalars['Boolean']['output']>;
   createPlayerIfNotExist: Scalars['UserId']['output'];
-};
-
-
-export type MutationAddPointsToScoreArgs = {
-  points: Scalars['Point']['input'];
+  lose: Scalars['Boolean']['output'];
+  win: Scalars['Boolean']['output'];
 };
 
 export type Player = {
@@ -225,8 +221,9 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  addPointsToScore?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationAddPointsToScoreArgs, 'points'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
+  lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export interface PercentageScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Percentage'], any> {

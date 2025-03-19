@@ -1,7 +1,6 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import { ScoreCommand } from '../command'
 import type { Point as PointType, Score as ScoreType } from '../types'
 import { Point, Score } from '../validators'
 
@@ -24,10 +23,4 @@ const PointScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   Score: ScoreScalar,
   Point: PointScalar,
-  Mutation: {
-    addPointsToScore: async (_, { points }, { userId, database }) => {
-      await ScoreCommand.addPoints(database)(userId, points)
-      return true
-    },
-  },
 }

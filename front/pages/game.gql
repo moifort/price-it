@@ -14,3 +14,11 @@ query Game($limit: Limit!) {
     }
   }
 }
+
+mutation GameWinCommand {
+  win
+}
+
+mutation GameLoseCommand {
+  lose
+}
