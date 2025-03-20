@@ -21,6 +21,7 @@ export namespace PlayerCommand {
           RunCommand.set(database, runTaskQueue)(
             id,
             RunQuery.DEFAULT_RUN,
+            RunQuery.DEFAULT_RUN,
             dayjs().add(RunQuery.DEFAULT_RUN_PERIOD, 'minutes').toDate(),
           ),
         ])

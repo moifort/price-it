@@ -1,9 +1,25 @@
-import type { Run } from '../run/types'
+import dayjs from 'dayjs'
+import type { TaskQueue } from 'firebase-admin/functions'
+import type { Database } from '../api/types'
+import { RunCommand } from '../run/command'
+import { RunQuery } from '../run/query'
+import type { Run as RunType, TaskRunReset } from '../run/types'
+import { Run } from '../run/validators'
 import type { Period } from '../shop/types'
 import type { UserId } from '../user/types'
 
 export namespace BonusCommand {
-  export const applyRunBonus = (userId: UserId, total: Run, period: Period) => {
-    throw new Error('Not implemented')
-  }
+  export const applyRunBonus =
+    (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
+    async (userId: UserId, quantity: RunType, period: Period) => {
+      if (period === 'all-time') {
+        const renewAt = dayjs().add(RunQuery.getRunPeriod(userId), 'minutes').toDate()
+        const totalRun = Run(quantity + RunQuery.getTotalRuns(userId))
+        await RunCommand.set(database, taskQueue)(userId, totalRun, totalRun, renewAt)
+        return
+      }
+      const renewAt = dayjs().add(period, 'minutes').toDate()
+      const remaining = Run(quantity + RunQuery.getTotalRuns(userId))
+      await RunCommand.set(database, taskQueue)(userId, remaining, RunQuery.getTotalRuns(userId), renewAt)
+    }
 }

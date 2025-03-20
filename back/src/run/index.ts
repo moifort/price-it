@@ -13,5 +13,6 @@ export const reset = onTaskDispatched<TaskRunReset>(async ({ data }) => {
   const firestore = getFirestore($app)
   const taskQueue = getFunctions($app).taskQueue<TaskRunReset>(RUN_RESET_TASK_QUEUE_URL)
   const renewAt = dayjs().add(RunQuery.getRunPeriod(data.userId), 'minutes').toDate()
-  await RunCommand.set(firestore, taskQueue)(data.userId, RunQuery.getTotalRuns(data.userId), renewAt)
+  const totalRuns = RunQuery.getTotalRuns(data.userId)
+  await RunCommand.set(firestore, taskQueue)(data.userId, totalRuns, totalRuns, renewAt)
 })

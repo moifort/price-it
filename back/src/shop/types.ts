@@ -15,3 +15,8 @@ export type ShopProduct = {
   period: Period
   quantity: Quantity
 }
+
+export type Shop = {
+  updatedAt: Date
+  historic: ShopProductId[]
+}

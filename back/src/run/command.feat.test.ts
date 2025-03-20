@@ -13,7 +13,7 @@ describe('RunCommand', () => {
       await $testDatabase.collection('players').doc(userId).create({ id: userId })
 
       // When
-      await RunCommand.set($testDatabase, $testTaskQueue)(userId, Run(5), new Date('2025-01-01T12:00:00Z'))
+      await RunCommand.set($testDatabase, $testTaskQueue)(userId, Run(5), Run(5), new Date('2025-01-01T12:00:00Z'))
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()

@@ -7,9 +7,11 @@ import { Run as RunValidator } from './validators'
 
 export namespace RunCommand {
   export const set =
-    (database: Database, taskQueue: TaskQueue<TaskRunReset>) => async (userId: UserId, total: Run, renewAt: Date) => {
-      await update(database)(userId, { total, remaining: total, renewAt })
-      await taskQueue.enqueue({ userId: userId }, { scheduleTime: renewAt })
+    (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
+    async (userId: UserId, remaining: Run, total: Run, renewAt: Date) => {
+      await update(database)(userId, { total, remaining, renewAt })
+      await taskQueue.delete(userId)
+      await taskQueue.enqueue({ userId: userId }, { scheduleTime: renewAt, id: userId })
     }
 
   export const decrease = (database: Database) => async (userId: UserId) => {
