@@ -30,6 +30,7 @@ generates:
       scalars:
         Score: '../../score/types#Score'
         PlayerId: '../../player/types#PlayerId'
+        UserId: '../../player/types#PlayerId'
         Point: '../../score/types#Point'
         Minute: '../../utils/types#Minute'
         Seconde: '../../utils/types#Seconde'
@@ -38,7 +39,9 @@ generates:
         Amount: '../../utils/types#Amount'
         PercentagePoint: '../../utils/types#PercentagePoint'
         Url: '../../utils/types#Url'
+        Quantity: '../../utils/types#Quantity'
         Run: '../../run/types#Run'
         ProductId: '../../product/types#ProductId'
+        ShopProductId: '../../shop/types#ShopProductId'
         WalletId: '../../airdrop/types#WalletId'
         Date: 'Date'

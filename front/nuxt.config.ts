@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     codegen: {
       scalars: {
         PlayerId: '../../../back/src/player/types#PlayerId',
+        UserId: '../../../back/src/player/types#PlayerId',
         Score: '../../../back/src/score/types#Score',
         Point: '../../../back/src/score/types#Point',
         Minute: '../../../back/src/utils/types#Minute',
@@ -22,7 +23,10 @@ export default defineNuxtConfig({
         Amount: '../../../back/src/utils/types#Amount',
         PercentagePoint: '../../../back/src/utils/types#PercentagePoint',
         Url: '../../../back/src/utils/types#Url',
+        Quantity: '../../../back/src/utils/types#Quantity',
         Run: '../../../back/src/run/types#Run',
+        ProductId: '../../../back/src/product/types#ProductId',
+        ShopProductId: '../../../back/src/shop/types#ShopProductId',
         WalletId: '../../../back/src/airdrop/types#WalletId',
       },
     },

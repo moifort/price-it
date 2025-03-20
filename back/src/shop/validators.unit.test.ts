@@ -1,21 +1,21 @@
 import { describe, expect, it } from 'bun:test'
-import { ProductId } from './validators'
+import { ShopProductId } from './validators'
 
 describe('ProductId', () => {
   it('should accept valid non-empty strings', () => {
-    expect(() => ProductId('product123')).not.toThrow()
-    expect(() => ProductId('abc-123')).not.toThrow()
-    expect(() => ProductId('SKU-ABC-123')).not.toThrow()
+    expect(() => ShopProductId('product123')).not.toThrow()
+    expect(() => ShopProductId('abc-123')).not.toThrow()
+    expect(() => ShopProductId('SKU-ABC-123')).not.toThrow()
   })
 
   it('should throw error for empty string', () => {
-    expect(() => ProductId('')).toThrow()
+    expect(() => ShopProductId('')).toThrow()
   })
 
   it('should throw error for non-string values', () => {
-    expect(() => ProductId(123)).toThrow()
-    expect(() => ProductId(null)).toThrow()
-    expect(() => ProductId(undefined)).toThrow()
-    expect(() => ProductId({})).toThrow()
+    expect(() => ShopProductId(123)).toThrow()
+    expect(() => ShopProductId(null)).toThrow()
+    expect(() => ShopProductId(undefined)).toThrow()
+    expect(() => ShopProductId({})).toThrow()
   })
 })

@@ -1,14 +1,14 @@
 import { Point } from '../score/validators'
 import { Minute } from '../utils/validators'
-import { ProductId } from './validators'
+import { ShopProductId } from './validators'
 
-import type { Product } from './types'
+import type { ShopProduct } from './types'
 
 export namespace ShopQuery {
   export const getProducts = () =>
-    <Product[]>[
+    <ShopProduct[]>[
       {
-        id: ProductId('5-run-60-minutes'),
+        id: ShopProductId('5-run-60-minutes'),
         description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(10000),
@@ -16,7 +16,7 @@ export namespace ShopQuery {
         quantity: 5,
       },
       {
-        id: ProductId('5-run-all-time'),
+        id: ShopProductId('5-run-all-time'),
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(50000),
@@ -24,7 +24,7 @@ export namespace ShopQuery {
         quantity: 5,
       },
       {
-        id: ProductId('10-run-60-minutes'),
+        id: ShopProductId('10-run-60-minutes'),
         description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(17000),
@@ -32,7 +32,7 @@ export namespace ShopQuery {
         quantity: 10,
       },
       {
-        id: ProductId('10-run-all-time'),
+        id: ShopProductId('10-run-all-time'),
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(70000),
@@ -40,7 +40,7 @@ export namespace ShopQuery {
         quantity: 10,
       },
       {
-        id: ProductId('20-run-all-time'),
+        id: ShopProductId('20-run-all-time'),
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(100000),
