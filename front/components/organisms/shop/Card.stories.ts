@@ -14,12 +14,13 @@ export const Default: Story = {
     quantity: Quantity(5),
     period: Minute(30),
     amount: Point(1000),
+    buy: async () => new Promise((resolve) => setTimeout(resolve, 1500)),
   },
 }
 
 export const Unlimited: Story = {
   args: {
-    id: ShopProductId('product-2'),
+    ...Default.args,
     quantity: Quantity(100),
     period: 'all-time' as const,
     amount: Point(50000),

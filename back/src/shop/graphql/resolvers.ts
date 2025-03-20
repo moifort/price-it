@@ -1,6 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
+import { ShopCommand } from '../command'
 import { ShopQuery } from '../query'
 import { Period, ShopProductId } from '../validators'
 
@@ -29,5 +30,11 @@ export const resolvers: Resolvers = {
   Period: PeriodScalar,
   Query: {
     shopProducts: () => ShopQuery.getProducts(),
+  },
+  Mutation: {
+    buyProduct: async (_, { id }, { database, runTaskQueue, userId }) => {
+      await ShopCommand.buy(database, runTaskQueue)(userId, id)
+      return true
+    },
   },
 }

@@ -60,10 +60,16 @@ export type Airdrop = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  buyProduct: Scalars['Boolean']['output'];
   createPlayerIfNotExist: Scalars['UserId']['output'];
   lose: Scalars['Boolean']['output'];
   setWalletId: Scalars['Boolean']['output'];
   win: Scalars['Boolean']['output'];
+};
+
+
+export type MutationBuyProductArgs = {
+  id: Scalars['ShopProductId']['input'];
 };
 
 
@@ -289,6 +295,7 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  buyProduct?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationBuyProductArgs, 'id'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;

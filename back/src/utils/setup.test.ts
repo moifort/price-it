@@ -24,4 +24,5 @@ export const $testDatabase = database!
 
 export const $testTaskQueue = {
   enqueue: (data: unknown, params: unknown) => Promise.resolve(),
+  delete: (id: unknown) => console.debug('delete task id: ', id),
 } as unknown as TaskQueue<TaskRunReset>

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'bun:test'
 import { Timestamp } from '@google-cloud/firestore'
 import { PlayerId } from '../player/validators'
 import { $testDatabase, $testTaskQueue } from '../utils/setup.test'
+import { Minute } from '../utils/validators'
 import { RunCommand } from './command'
 import { Run } from './validators'
 
@@ -13,14 +14,20 @@ describe('RunCommand', () => {
       await $testDatabase.collection('players').doc(userId).create({ id: userId })
 
       // When
-      await RunCommand.set($testDatabase, $testTaskQueue)(userId, Run(5), new Date('2025-01-01T12:00:00Z'))
+      await RunCommand.set($testDatabase, $testTaskQueue)(userId, {
+        total: Run(5),
+        remaining: Run(5),
+        renewAt: new Date('2025-01-01T12:00:00Z'),
+        period: Minute(60),
+      })
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()
       expect(doc.data()!.runs).toEqual({
         total: 5,
-        remaining: Run(5),
+        remaining: 5,
         renewAt: Timestamp.fromDate(new Date('2025-01-01T12:00:00Z')),
+        period: 60,
       })
     })
   })

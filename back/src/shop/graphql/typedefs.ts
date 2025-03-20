@@ -15,4 +15,8 @@ type ShopProduct {
 extend type Query {
   shopProducts: [ShopProduct!]!
 }
+
+extend type Mutation {
+  buyProduct(id: ShopProductId!): Boolean!
+}
 `

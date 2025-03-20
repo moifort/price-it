@@ -1,18 +1,30 @@
 <script setup lang="ts">
+import { ArrowLeft } from 'lucide-vue-next'
+import { Button } from '~/components/atoms/button'
+import Stats from '~/components/molecules/Stats.vue'
 import ShopCard from '~/components/organisms/shop/Card.vue'
 import Loading from '~/components/organisms/shop/Loading.vue'
 import MainTemplate from '~/components/template/Main.vue'
-import type { Point } from '../../../back/src/score/types'
+import type { Run } from '../../../back/src/run/types'
+import type { Point, Score } from '../../../back/src/score/types'
 import { type Period, type ShopProductId } from '../../../back/src/shop/types'
 import type { Quantity } from '../../../back/src/utils/types'
 
-defineProps<{ products: { id: ShopProductId; quantity: Quantity; period: Period; amount: Point }[] }>()
+defineProps<{
+  products: { id: ShopProductId; quantity: Quantity; period: Period; amount: Point }[]
+  score: Score
+  runsLeft: Run
+  buy: (id: ShopProductId) => Promise<void>
+}>()
 </script>
 
 <template>
   <MainTemplate>
     <template #title>
-      <h1 class="text-3xl font-medium opacity-60">Run Bonus</h1>
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl font-medium opacity-60">Run Bonus</h1>
+        <Stats :score="score" :runsLeft="runsLeft" />
+      </div>
     </template>
 
     <template #body>
@@ -24,6 +36,7 @@ defineProps<{ products: { id: ShopProductId; quantity: Quantity; period: Period;
           :quantity="quantity"
           :period="period"
           :amount="amount"
+          :buy="buy"
         />
       </div>
       <Loading v-else />

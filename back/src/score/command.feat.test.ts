@@ -17,7 +17,7 @@ describe('ScoreCommand', () => {
       })
 
     // When
-    await ScoreCommand.set($testDatabase)(PlayerId('9876543210'), Score(10))
+    await ScoreCommand.create($testDatabase)(PlayerId('9876543210'), Score(10))
 
     // Then
     const doc = await $testDatabase.collection('players').doc(PlayerId('9876543210')).get()
