@@ -9,10 +9,11 @@ import type {
   Minute as MinuteType,
   PercentagePoint as PercentagePointType,
   Percentage as PercentageType,
+  Quantity as QuantityType,
   Seconde as SecondeType,
   Url as UrlType,
 } from '../types'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from '../validators'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from '../validators'
 
 const MinuteScalar = new GraphQLScalarType({
   name: 'Minute',
@@ -70,6 +71,14 @@ const UrlScalar = new GraphQLScalarType({
   parseLiteral: (ast) => (ast.kind === Kind.STRING ? Url(ast.value) : null),
 })
 
+const QuantityScalar = new GraphQLScalarType({
+  name: 'Quantity',
+  description: 'The `Quantity` scalar type represents a quantity as a positive integer.',
+  parseValue: (value: unknown): QuantityType => Quantity(Number(value)),
+  serialize: (value: unknown) => Quantity(Number(value)),
+  parseLiteral: (ast) => (ast.kind === Kind.INT ? Quantity(Number.parseInt(ast.value, 10)) : null),
+})
+
 export const resolvers: Resolvers = {
   DateTime: DateTimeResolver,
   Minute: MinuteScalar,
@@ -79,4 +88,5 @@ export const resolvers: Resolvers = {
   Amount: AmountScalar,
   PercentagePoint: PercentagePointScalar,
   Url: UrlScalar,
+  Quantity: QuantityScalar,
 }

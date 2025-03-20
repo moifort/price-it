@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Seconde, Url } from './validators'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from './validators'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
@@ -99,5 +99,31 @@ describe('Url', () => {
     expect(() => Url('http://')).toThrow()
     expect(() => Url('ftp://invalid-protocol.com')).not.toThrow() // Valid URL with ftp protocol
     expect(() => Url('')).toThrow()
+  })
+})
+
+describe('Quantity', () => {
+  it('should accept valid positive integers', () => {
+    expect(() => Quantity(1)).not.toThrow()
+    expect(() => Quantity(5)).not.toThrow()
+    expect(() => Quantity(100)).not.toThrow()
+  })
+
+  it('should throw error for zero', () => {
+    expect(() => Quantity(0)).toThrow()
+  })
+
+  it('should throw error for negative numbers', () => {
+    expect(() => Quantity(-1)).toThrow()
+    expect(() => Quantity(-10)).toThrow()
+  })
+
+  it('should throw error for non-integer numbers', () => {
+    expect(() => Quantity(1.5)).toThrow()
+    expect(() => Quantity(0.1)).toThrow()
+  })
+
+  it('should throw error for NaN', () => {
+    expect(() => Quantity(Number.NaN)).toThrow()
   })
 })

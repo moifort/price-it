@@ -5,12 +5,16 @@ import type { Limit } from '../../utils/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
+import type { Period } from '../../shop/types';
 import type { Point } from '../../score/types';
 import type { ProductId } from '../../product/types';
+import type { Quantity } from '../../utils/types';
 import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
+import type { ShopProductId } from '../../shop/types';
 import type { Url } from '../../utils/types';
+import type { PlayerId } from '../../player/types';
 import type { WalletId } from '../../airdrop/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../types';
@@ -35,13 +39,16 @@ export type Scalars = {
   Minute: { input: Minute; output: Minute; }
   Percentage: { input: Percentage; output: Percentage; }
   PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
+  Period: { input: Period; output: Period; }
   Point: { input: Point; output: Point; }
   ProductId: { input: ProductId; output: ProductId; }
+  Quantity: { input: Quantity; output: Quantity; }
   Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
   Seconde: { input: Seconde; output: Seconde; }
+  ShopProductId: { input: ShopProductId; output: ShopProductId; }
   Url: { input: Url; output: Url; }
-  UserId: { input: any; output: any; }
+  UserId: { input: PlayerId; output: PlayerId; }
   WalletId: { input: WalletId; output: WalletId; }
   _FieldSet: { input: any; output: any; }
 };
@@ -87,6 +94,7 @@ export type Query = {
   __typename?: 'Query';
   me: Player;
   products: Array<Product>;
+  shopProducts: Array<ShopProduct>;
   topPlayers: Array<TopPlayer>;
 };
 
@@ -105,6 +113,17 @@ export type Runs = {
   remaining: Scalars['Run']['output'];
   renewAt: Scalars['DateTime']['output'];
   total: Scalars['Run']['output'];
+};
+
+export type ShopProduct = {
+  __typename?: 'ShopProduct';
+  amount: Scalars['Point']['output'];
+  category: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  id: Scalars['ShopProductId']['output'];
+  name: Scalars['String']['output'];
+  period: Scalars['Period']['output'];
+  quantity: Scalars['Quantity']['output'];
 };
 
 export type TopPlayer = {
@@ -195,16 +214,20 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
   PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
+  Period: ResolverTypeWrapper<Scalars['Period']['output']>;
   Player: ResolverTypeWrapper<Player>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
   Product: ResolverTypeWrapper<Product>;
   ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
+  Quantity: ResolverTypeWrapper<Scalars['Quantity']['output']>;
   Query: ResolverTypeWrapper<{}>;
   Run: ResolverTypeWrapper<Scalars['Run']['output']>;
   Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
+  ShopProduct: ResolverTypeWrapper<ShopProduct>;
+  ShopProductId: ResolverTypeWrapper<Scalars['ShopProductId']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
@@ -223,16 +246,20 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   Percentage: Scalars['Percentage']['output'];
   PercentagePoint: Scalars['PercentagePoint']['output'];
+  Period: Scalars['Period']['output'];
   Player: Player;
   String: Scalars['String']['output'];
   Point: Scalars['Point']['output'];
   Product: Product;
   ProductId: Scalars['ProductId']['output'];
+  Quantity: Scalars['Quantity']['output'];
   Query: {};
   Run: Scalars['Run']['output'];
   Runs: Runs;
   Score: Scalars['Score']['output'];
   Seconde: Scalars['Seconde']['output'];
+  ShopProduct: ShopProduct;
+  ShopProductId: Scalars['ShopProductId']['output'];
   TopPlayer: TopPlayer;
   Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
@@ -276,6 +303,10 @@ export interface PercentagePointScalarConfig extends GraphQLScalarTypeConfig<Res
   name: 'PercentagePoint';
 }
 
+export interface PeriodScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Period'], any> {
+  name: 'Period';
+}
+
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
   airdrop?: Resolver<Maybe<ResolversTypes['Airdrop']>, ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -303,9 +334,14 @@ export interface ProductIdScalarConfig extends GraphQLScalarTypeConfig<Resolvers
   name: 'ProductId';
 }
 
+export interface QuantityScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Quantity'], any> {
+  name: 'Quantity';
+}
+
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
   products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductsArgs, 'limit'>>;
+  shopProducts?: Resolver<Array<ResolversTypes['ShopProduct']>, ParentType, ContextType>;
   topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
 
@@ -326,6 +362,21 @@ export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 
 export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Seconde'], any> {
   name: 'Seconde';
+}
+
+export type ShopProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['ShopProduct'] = ResolversParentTypes['ShopProduct']> = {
+  amount?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ShopProductId'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  period?: Resolver<ResolversTypes['Period'], ParentType, ContextType>;
+  quantity?: Resolver<ResolversTypes['Quantity'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface ShopProductIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['ShopProductId'], any> {
+  name: 'ShopProductId';
 }
 
 export type TopPlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TopPlayer'] = ResolversParentTypes['TopPlayer']> = {
@@ -357,15 +408,19 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Mutation?: MutationResolvers<ContextType>;
   Percentage?: GraphQLScalarType;
   PercentagePoint?: GraphQLScalarType;
+  Period?: GraphQLScalarType;
   Player?: PlayerResolvers<ContextType>;
   Point?: GraphQLScalarType;
   Product?: ProductResolvers<ContextType>;
   ProductId?: GraphQLScalarType;
+  Quantity?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
   Run?: GraphQLScalarType;
   Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
   Seconde?: GraphQLScalarType;
+  ShopProduct?: ShopProductResolvers<ContextType>;
+  ShopProductId?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
   UserId?: GraphQLScalarType;

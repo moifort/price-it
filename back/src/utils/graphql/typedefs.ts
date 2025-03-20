@@ -7,4 +7,5 @@ scalar Percentage
 scalar Amount
 scalar PercentagePoint
 scalar Url
+scalar Quantity
 `

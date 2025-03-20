@@ -1,0 +1,8 @@
+query ShopProducts {
+  shopProducts {
+    id
+    quantity
+    period
+    amount
+  }
+}

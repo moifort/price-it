@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // @ts-ignore
 import NumberAnimation from 'vue-number-animation'
+import { formatNumber } from '~/utils/utils'
 
 const props = withDefaults(
   defineProps<{
@@ -29,7 +30,7 @@ watch(
       ref="counter"
       :from="from"
       :to="value"
-      :format="(number: number) => number.toFixed(0)"
+      :format="(number: number) =>  formatNumber(Number(number?.toFixed(0)) ?? 0)"
       :duration="duration"
   />
 </template>
