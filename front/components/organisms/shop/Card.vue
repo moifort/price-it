@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ShoppingBag, Timer } from 'lucide-vue-next'
+import { Check, LoaderCircle, ShoppingBag, Timer } from 'lucide-vue-next'
 import { Badge } from '~/components/atoms/badge'
 import { Button } from '~/components/atoms/button'
 import { Card, CardContent, CardFooter } from '~/components/atoms/card'
@@ -8,12 +8,25 @@ import type { Point } from '../../../../back/src/score/types'
 import type { Period, ShopProductId } from '../../../../back/src/shop/types'
 import type { Quantity } from '../../../../back/src/utils/types'
 
-defineProps<{
+const props = defineProps<{
   id: ShopProductId
   quantity: Quantity
   period: Period
   amount: Point
+  buy: (id: ShopProductId) => Promise<void>
 }>()
+
+const success = ref(false)
+const loading = ref(false)
+const buyProduct = async (id: ShopProductId) => {
+  loading.value = true
+  try {
+    await props.buy(id)
+    success.value = true
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -35,10 +48,12 @@ defineProps<{
     <CardFooter class="p-3 pt-0">
       <Button variant="default"
               size="lg"
-              @click="$emit('buy', { id, quantity, period, amount })"
+              :disabled="loading || success"
+              @click="buyProduct(id)"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
-        <ShoppingBag class="w-3 h-3 mr-1" />
-        {{ formatNumber(amount) }}pts
+        <template v-if="loading"  class="w-16"> <LoaderCircle class="animate-spin duration-500"/> </template>
+        <template v-else-if="success" class="w-16"> <Check/> </template>
+        <template v-else><ShoppingBag class="w-3 h-3 mr-1" />{{ formatNumber(amount) }}pts</template>
       </Button>
     </CardFooter>
   </Card>

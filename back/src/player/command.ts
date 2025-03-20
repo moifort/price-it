@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import type { TaskQueue } from 'firebase-admin/functions'
 import type { Database } from '../api/types'
 import { RunCommand } from '../run/command'
@@ -17,12 +16,12 @@ export namespace PlayerCommand {
       if (!exists) {
         await UserCommand.create(database)(id, firstName)
         await Promise.all([
-          ScoreCommand.set(database)(id, ScoreQuery.DEFAULT_SCORE),
-          RunCommand.set(database, runTaskQueue)(
+          ScoreCommand.create(database)(id, ScoreQuery.DEFAULT_SCORE),
+          RunCommand.create(database, runTaskQueue)(
             id,
             RunQuery.DEFAULT_RUN,
             RunQuery.DEFAULT_RUN,
-            dayjs().add(RunQuery.DEFAULT_PERIOD, 'minutes').toDate(),
+            RunQuery.DEFAULT_PERIOD,
           ),
         ])
       }

@@ -1,36 +1,36 @@
 import { Point } from '../../score/validators'
-import { Minute } from '../../utils/validators'
+import { Minute, Quantity } from '../../utils/validators'
 import type { ShopProduct, ShopProductId } from '../types'
 import { ShopProductId as ShopProductIdValidator } from '../validators'
 
 export const findAllProducts = () =>
   <ShopProduct[]>[
     {
-      id: ShopProductIdValidator('10-run-60-minutes'),
-      name: '10 runs 60 minutes',
+      id: ShopProductIdValidator('5-run-60-minutes'),
+      name: '5 runs 60 minutes',
       description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
       category: 'run' as const,
-      amount: Point(17000),
+      amount: Point(1000),
       period: Minute(60),
-      quantity: 10,
+      quantity: Quantity(5),
     },
     {
-      id: ShopProductIdValidator('10-run-all-time'),
+      id: ShopProductIdValidator('10-run-60-minutes'),
       name: '10 runs all time',
-      description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
+      description: 'Unlock 10 runs NOW during 60 minutes. Increase your chance to win more points',
       category: 'run' as const,
-      amount: Point(70000),
-      period: 'all-time' as const,
-      quantity: 10,
+      amount: Point(2000),
+      period: Minute(60),
+      quantity: Quantity(10),
     },
     {
       id: ShopProductIdValidator('20-run-all-time'),
       name: '20 runs all time',
-      description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
+      description: 'Unlock 20 runs NOW for all time. Increase your chance to win more points',
       category: 'run' as const,
-      amount: Point(100000),
+      amount: Point(5000),
       period: 'all-time' as const,
-      quantity: 10,
+      quantity: Quantity(20),
     },
   ]
 

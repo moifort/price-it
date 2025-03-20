@@ -1,8 +1,18 @@
 query ShopProducts {
+  me {
+    score
+    runs {
+      remaining
+    }
+  }
   shopProducts {
     id
     quantity
     period
     amount
   }
+}
+
+mutation ShopProduct($id: ShopProductId!) {
+  buyProduct(id: $id)
 }
