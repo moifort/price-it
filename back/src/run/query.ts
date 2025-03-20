@@ -8,13 +8,5 @@ export namespace RunQuery {
   export const DEFAULT_RUN = Run(5)
   export const DEFAULT_PERIOD = Minute(60)
 
-  export const getTotalRuns = (database: Database) => async (userId: UserId) => {
-    const { total } = await findBy(database)(userId)
-    return total
-  }
-
-  export const getRunPeriod = (database: Database) => async (userId: UserId) => {
-    const { period } = await findBy(database)(userId)
-    return period
-  }
+  export const get = (database: Database) => async (userId: UserId) => findBy(database)(userId)
 }
