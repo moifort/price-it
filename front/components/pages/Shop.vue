@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ShopCard from '~/components/organisms/shop/Card.vue'
+import Loading from '~/components/organisms/shop/Loading.vue'
 import MainTemplate from '~/components/template/Main.vue'
 import type { Point } from '../../../back/src/score/types'
 import { type Period, type ShopProductId } from '../../../back/src/shop/types'
@@ -15,7 +16,7 @@ defineProps<{ products: { id: ShopProductId; quantity: Quantity; period: Period;
     </template>
 
     <template #body>
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
           v-for="{ id, quantity, period, amount } in products"
           :key="id"
@@ -25,6 +26,7 @@ defineProps<{ products: { id: ShopProductId; quantity: Quantity; period: Period;
           :amount="amount"
         />
       </div>
+      <Loading v-else />
     </template>
   </MainTemplate>
 </template>
