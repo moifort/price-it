@@ -5,7 +5,7 @@ import { Button } from '~/components/atoms/button'
 import { CardTitle } from '~/components/atoms/card'
 import type { Amount, Url } from '../../../../back/src/utils/types'
 
-defineProps<{ close: () => void; price: Amount; productLink: Url }>()
+defineProps<{ close?: () => void; price: Amount; productLink: Url }>()
 const isOpen = ref(true)
 const openProductLink = (url: Url) => {
   if (openLink.isAvailable()) {
@@ -43,7 +43,7 @@ const openProductLink = (url: Url) => {
               class="w-full py-6 text-lg"
               @click="() => {
                 isOpen = false
-                close()
+                close!()
               }"
           >
             Next Product
