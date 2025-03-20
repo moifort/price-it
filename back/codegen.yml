@@ -43,5 +43,6 @@ generates:
         Run: '../../run/types#Run'
         ProductId: '../../product/types#ProductId'
         ShopProductId: '../../shop/types#ShopProductId'
+        Period: '../../shop/types#Period'
         WalletId: '../../airdrop/types#WalletId'
         Date: 'Date'

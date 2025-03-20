@@ -27,6 +27,7 @@ export default defineNuxtConfig({
         Run: '../../../back/src/run/types#Run',
         ProductId: '../../../back/src/product/types#ProductId',
         ShopProductId: '../../../back/src/shop/types#ShopProductId',
+        Period: '../../../back/src/shop/types#Period',
         WalletId: '../../../back/src/airdrop/types#WalletId',
       },
     },

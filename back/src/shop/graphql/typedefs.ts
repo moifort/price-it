@@ -4,6 +4,7 @@ scalar Period
 
 type ShopProduct {
   id: ShopProductId!
+  name: String!
   description: String!
   category: String!
   amount: Point!

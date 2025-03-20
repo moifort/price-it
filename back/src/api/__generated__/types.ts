@@ -5,6 +5,7 @@ import type { Limit } from '../../utils/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
+import type { Period } from '../../shop/types';
 import type { Point } from '../../score/types';
 import type { ProductId } from '../../product/types';
 import type { Quantity } from '../../utils/types';
@@ -38,7 +39,7 @@ export type Scalars = {
   Minute: { input: Minute; output: Minute; }
   Percentage: { input: Percentage; output: Percentage; }
   PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
-  Period: { input: any; output: any; }
+  Period: { input: Period; output: Period; }
   Point: { input: Point; output: Point; }
   ProductId: { input: ProductId; output: ProductId; }
   Quantity: { input: Quantity; output: Quantity; }

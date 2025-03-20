@@ -9,6 +9,7 @@ export namespace ShopQuery {
     <ShopProduct[]>[
       {
         id: ShopProductId('5-run-60-minutes'),
+        name: '5 runs 60 minutes',
         description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(10000),
@@ -17,6 +18,7 @@ export namespace ShopQuery {
       },
       {
         id: ShopProductId('5-run-all-time'),
+        name: '5 runs all time',
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(50000),
@@ -25,6 +27,7 @@ export namespace ShopQuery {
       },
       {
         id: ShopProductId('10-run-60-minutes'),
+        name: '10 runs 60 minutes',
         description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(17000),
@@ -33,6 +36,7 @@ export namespace ShopQuery {
       },
       {
         id: ShopProductId('10-run-all-time'),
+        name: '10 runs all time',
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(70000),
@@ -41,6 +45,7 @@ export namespace ShopQuery {
       },
       {
         id: ShopProductId('20-run-all-time'),
+        name: '20 runs all time',
         description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
         category: 'run' as const,
         amount: Point(100000),
