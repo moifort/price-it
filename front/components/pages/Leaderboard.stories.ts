@@ -19,3 +19,7 @@ export const Default: Story = {
     ],
   },
 }
+
+export const Loading: Story = {
+  args: { topPlayers: [] },
+}
