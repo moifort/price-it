@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Badge } from '@/components/atoms/badge'
 import { ShoppingBag, Target, TimerReset, Zap } from 'lucide-vue-next'
+import { formatNumber } from '~/utils/utils'
 import type { Run as RunType } from '../../../../back/src/run/types'
 import { Run } from '../../../../back/src/run/validators'
 
@@ -26,7 +27,7 @@ defineEmits<{ 'click:buy': () => void }>()
         </template>
         <template v-else>
           <Zap class="w-4 h-4" />
-          <span class="text-sm">+{{ bonus }}</span>
+          <span class="text-sm">+{{  formatNumber(bonus) }}</span>
         </template>
       </Badge>
     </div>
@@ -36,7 +37,7 @@ defineEmits<{ 'click:buy': () => void }>()
         <h3 class="text-lg font-semibold">Daily Runs</h3>
         <div class="flex items-baseline gap-1">
           <span class="text-3xl font-bold text-primary"><Counter :value="current" /></span>
-          <span class="text-sm text-muted-foreground">/{{total}}</span>
+          <span class="text-sm text-muted-foreground">/{{ formatNumber(total)}}</span>
         </div>
         <div class="flex items-center gap-1 text-xs text-muted-foreground">
           <TimerReset class="w-3 h-3" />

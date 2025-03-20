@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Trophy } from 'lucide-vue-next'
+import { formatNumber } from '~/utils/utils'
 import type { Score } from '../../../../back/src/score/types'
 
 defineProps<{ players: { name: string; score: Score; rank: number }[] }>()
@@ -19,7 +20,7 @@ defineProps<{ players: { name: string; score: Score; rank: number }[] }>()
             {{ name }}
           </div>
           <div class="font-medium px-2">
-            {{ score }}
+            {{ formatNumber(score) }}
           </div>
           <div>
             <Trophy class="h-5 w-5 text-yellow-500" />
