@@ -32,13 +32,13 @@ export namespace RunCommand {
   export const applyRunBonus =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
     async (userId: UserId, quantity: RunType, period: Period) => {
-      const { total } = await RunQuery.get(database)(userId)
+      const { total, remaining } = await RunQuery.get(database)(userId)
       if (period === 'all-time') {
         const totalWithBonus = RunValidator(quantity + total)
         await RunCommand.set(database, taskQueue)(userId, { total: totalWithBonus, remaining: totalWithBonus })
         return
       }
-      const remainingWithBonus = RunValidator(quantity + total)
+      const remainingWithBonus = RunValidator(quantity + remaining)
       await RunCommand.set(database, taskQueue)(userId, { remaining: remainingWithBonus })
     }
 }
