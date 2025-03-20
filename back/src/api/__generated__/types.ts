@@ -73,10 +73,16 @@ export type Query = {
   __typename?: 'Query';
   me: Player;
   products: Array<Product>;
+  topPlayers: Array<TopPlayer>;
 };
 
 
 export type QueryProductsArgs = {
+  limit: Scalars['Limit']['input'];
+};
+
+
+export type QueryTopPlayersArgs = {
   limit: Scalars['Limit']['input'];
 };
 
@@ -85,6 +91,14 @@ export type Runs = {
   remaining: Scalars['Run']['output'];
   renewAt: Scalars['DateTime']['output'];
   total: Scalars['Run']['output'];
+};
+
+export type TopPlayer = {
+  __typename?: 'TopPlayer';
+  id: Scalars['UserId']['output'];
+  name: Scalars['String']['output'];
+  rank: Scalars['Int']['output'];
+  score: Scalars['Score']['output'];
 };
 
 
@@ -176,6 +190,8 @@ export type ResolversTypes = {
   Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
+  TopPlayer: ResolverTypeWrapper<TopPlayer>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
 };
@@ -200,6 +216,8 @@ export type ResolversParentTypes = {
   Runs: Runs;
   Score: Scalars['Score']['output'];
   Seconde: Scalars['Seconde']['output'];
+  TopPlayer: TopPlayer;
+  Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
 };
@@ -263,6 +281,7 @@ export interface ProductIdScalarConfig extends GraphQLScalarTypeConfig<Resolvers
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
   products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductsArgs, 'limit'>>;
+  topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
 
 export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Run'], any> {
@@ -283,6 +302,14 @@ export interface ScoreScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Seconde'], any> {
   name: 'Seconde';
 }
+
+export type TopPlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TopPlayer'] = ResolversParentTypes['TopPlayer']> = {
+  id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  rank?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Url'], any> {
   name: 'Url';
@@ -309,6 +336,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
   Seconde?: GraphQLScalarType;
+  TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
   UserId?: GraphQLScalarType;
 };
