@@ -9,6 +9,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     timer: Seconde(5),
+    play: true,
     onTimeout: () => console.log('Timeout'),
   },
 }

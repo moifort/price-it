@@ -14,7 +14,7 @@ jobs:
       - name: 🥟 Install bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: '1.2.2'
+          bun-version: '1.2.5'
       - run: bun install
       - run: bun --cwd front biome ci
       - run: bun --cwd front typecheck
@@ -28,7 +28,7 @@ jobs:
       - name: 🥟 Install bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: '1.2.2'
+          bun-version: '1.2.5'
       - run: bun install --cwd front
       - name: 🖥️ Install Playwright
         run: bun --cwd front storybook:test:install
