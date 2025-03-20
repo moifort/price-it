@@ -30,7 +30,7 @@ watch(
       ref="counter"
       :from="from"
       :to="value"
-      :format="(number: number) =>  formatNumber(number?.toFixed(0) ?? 0)"
+      :format="(number: number) =>  formatNumber(Number(number?.toFixed(0)) ?? 0)"
       :duration="duration"
   />
 </template>

@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Point } from '../../../back/src/score/validators'
+import { ShopProductId } from '../../../back/src/shop/validators'
+import { Minute, Quantity } from '../../../back/src/utils/validators'
 import component from './Shop.vue'
 
 const meta: Meta<typeof component> = { component }
@@ -9,49 +12,34 @@ export const Default: Story = {
   args: {
     products: [
       {
-        id: 'shop-product-5-run-60-minutes',
-        name: '5 runs 60 minutes',
-        description: 'Unlock 5 runs NOW during 60 minutes. Increase your chance to win more points',
-        category: 'run',
-        amount: 10000,
-        period: 60,
-        quantity: 5,
+        id: ShopProductId('shop-product-5-run-60-minutes'),
+        amount: Point(10000),
+        period: Minute(60),
+        quantity: Quantity(5),
       },
       {
-        id: 'shop-product-5-run-all-time',
-        name: '5 runs all time',
-        description: 'Unlock 5 runs NOW for all time. Increase your chance to win more points',
-        category: 'run',
-        amount: 50000,
-        period: 'all-time',
-        quantity: 5,
+        id: ShopProductId('shop-product-5-run-all-time'),
+        amount: Point(50000),
+        period: 'all-time' as const,
+        quantity: Quantity(5),
       },
       {
-        id: 'shop-product-10-run-60-minutes',
-        name: '10 runs 60 minutes',
-        description: 'Unlock 10 runs NOW during 60 minutes. Increase your chance to win more points',
-        category: 'run',
-        amount: 17000,
-        period: 60,
-        quantity: 10,
+        id: ShopProductId('shop-product-10-run-60-minutes'),
+        amount: Point(17000),
+        period: Minute(60),
+        quantity: Quantity(10),
       },
       {
-        id: 'shop-product-10-run-all-time',
-        name: '10 runs all time',
-        description: 'Unlock 10 runs NOW for all time. Increase your chance to win more points',
-        category: 'run',
-        amount: 70000,
-        period: 'all-time',
-        quantity: 10,
+        id: ShopProductId('shop-product-10-run-all-time'),
+        amount: Point(70000),
+        period: 'all-time' as const,
+        quantity: Quantity(10),
       },
       {
-        id: 'shop-product-20-run-all-time',
-        name: '20 runs all time',
-        description: 'Unlock 20 runs NOW for all time. Increase your chance to win more points',
-        category: 'run',
-        amount: 100000,
-        period: 'all-time',
-        quantity: 20,
+        id: ShopProductId('shop-product-20-run-all-time'),
+        amount: Point(100000),
+        period: 'all-time' as const,
+        quantity: Quantity(20),
       },
     ],
   },

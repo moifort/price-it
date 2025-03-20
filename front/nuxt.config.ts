@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     codegen: {
       scalars: {
         PlayerId: '../../../back/src/player/types#PlayerId',
-        UserId: '../../../back/src/player/types#PlayerId',
         Score: '../../../back/src/score/types#Score',
         Point: '../../../back/src/score/types#Point',
         Minute: '../../../back/src/utils/types#Minute',

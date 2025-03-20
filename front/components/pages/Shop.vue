@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import MainTemplate from '~/components/template/Main.vue'
 import ShopCard from '~/components/organisms/shop/Card.vue'
-import { ShopProduct } from '../../../back/src/shop/types'
+import MainTemplate from '~/components/template/Main.vue'
+import type { Point } from '../../../back/src/score/types'
+import { type Period, type ShopProductId } from '../../../back/src/shop/types'
+import type { Quantity } from '../../../back/src/utils/types'
 
-defineProps<{ products: ShopProduct }>()
+defineProps<{ products: { id: ShopProductId; quantity: Quantity; period: Period; amount: Point }[] }>()
 </script>
 
 <template>
@@ -13,15 +15,14 @@ defineProps<{ products: ShopProduct }>()
     </template>
 
     <template #body>
-      <div class="grid grid-cols-2 gap-2">
-        <ShopCard 
-          v-for="product in products" 
-          :key="product.id"
-          :id="product.id"
-          :quantity="product.quantity"
-          :period="product.period"
-          :amount="product.amount"
-          @buy="$emit('buy', $event)"
+      <div class="grid grid-cols-2 gap-3">
+        <ShopCard
+          v-for="{ id, quantity, period, amount } in products"
+          :key="id"
+          :id="id"
+          :quantity="quantity"
+          :period="period"
+          :amount="amount"
         />
       </div>
     </template>
