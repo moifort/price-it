@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { ShoppingBag, Timer } from 'lucide-vue-next'
-import { Badge } from '~/components/atoms/badge'
-import { Button } from '~/components/atoms/button'
-import { Card, CardContent } from '~/components/atoms/card'
 import MainTemplate from '~/components/template/Main.vue'
-import { formatNumber } from '~/utils/utils'
+import ShopCard from '~/components/organisms/shop/Card.vue'
 import { ShopProduct } from '../../../back/src/shop/types'
 
 defineProps<{ products: ShopProduct }>()
@@ -18,29 +14,15 @@ defineProps<{ products: ShopProduct }>()
 
     <template #body>
       <div class="grid grid-cols-2 gap-2">
-        <Card v-for="product in products" :key="product.id" >
-          <CardContent class="p-3" >
-              <div class="text-center">
-                <span class="text-5xl font-bold">{{ product.quantity }}</span>
-                <span class="text-sm mt-1 block">runs</span>
-              </div>
-
-              <Badge class="flex items-cente" variant="outline">
-                <Timer class="w-4 h-4" />
-                <span>{{ product.period === 'all-time' ? 'Forever' : `${product.period} min` }}</span>
-              </Badge>
-          </CardContent>
-
-          <CardFooter class="p-3">
-            <Button variant="default"
-                    size="lg"
-                    @click="$emit('buy', product)"
-                    class="bg-yellow-400 text-black w-full">
-              <ShoppingBag class="w-4 h-4" />
-              buy for {{ formatNumber(product.amount) }}pts
-            </Button>
-          </CardFooter>
-        </Card>
+        <ShopCard 
+          v-for="product in products" 
+          :key="product.id"
+          :id="product.id"
+          :quantity="product.quantity"
+          :period="product.period"
+          :amount="product.amount"
+          @buy="$emit('buy', $event)"
+        />
       </div>
     </template>
   </MainTemplate>
