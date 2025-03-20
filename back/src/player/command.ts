@@ -22,7 +22,7 @@ export namespace PlayerCommand {
             id,
             RunQuery.DEFAULT_RUN,
             RunQuery.DEFAULT_RUN,
-            dayjs().add(RunQuery.DEFAULT_RUN_PERIOD, 'minutes').toDate(),
+            dayjs().add(RunQuery.DEFAULT_PERIOD, 'minutes').toDate(),
           ),
         ])
       }

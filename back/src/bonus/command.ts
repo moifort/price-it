@@ -12,9 +12,10 @@ export namespace BonusCommand {
   export const applyRunBonus =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
     async (userId: UserId, quantity: RunType, period: Period) => {
-      const totalRuns = RunQuery.getTotalRuns(userId)
+      const totalRuns = await RunQuery.getTotalRuns(database)(userId)
       if (period === 'all-time') {
-        const renewAt = dayjs().add(RunQuery.getRunPeriod(userId), 'minutes').toDate()
+        const period = await RunQuery.getRunPeriod(database)(userId)
+        const renewAt = dayjs().add(period, 'minutes').toDate()
         const totalRun = Run(quantity + totalRuns)
         await RunCommand.set(database, taskQueue)(userId, totalRun, totalRun, renewAt)
         return

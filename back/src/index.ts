@@ -7,6 +7,7 @@ export const $app = initializeApp()
 if (process.env.FUNCTIONS_EMULATOR) {
   Object.assign(TaskQueue.prototype, {
     enqueue: (data: unknown, params: unknown) => console.debug('tasks: ', data, params),
+    delete: (id: unknown) => console.debug('delete task id: ', id),
   })
 }
 
