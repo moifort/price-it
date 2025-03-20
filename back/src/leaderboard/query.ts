@@ -1,0 +1,15 @@
+import type { Database } from '../api/types'
+import { findPlayersOrderByScore } from './infra/repository'
+import type { TopPlayer } from './types'
+
+export namespace LeaderboardQuery {
+  export const getTopPlayers = (database: Database) => async (limit: number) => {
+    const players = await findPlayersOrderByScore(database)(limit)
+    return players.map<TopPlayer>(({ id, firstName, score }, index) => ({
+      rank: index + 1,
+      id,
+      name: firstName,
+      score,
+    }))
+  }
+}

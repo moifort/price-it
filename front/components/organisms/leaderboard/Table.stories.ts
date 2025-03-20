@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Score } from '../../../../back/src/score/validators'
 import component from './Table.vue'
-import {Score} from "../../../../back/src/score/validators";
 
 const meta = { component } satisfies Meta<typeof component>
 export default meta
