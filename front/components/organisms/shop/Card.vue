@@ -22,7 +22,7 @@ defineProps<{
       <Badge variant="default" class="py-1 px-2 flex rounded-br-none rounded-tl-none"
              :class="period === 'all-time' ? 'bg-purple-500' : 'bg-blue-500'">
         <Timer class="w-3 h-3 mr-1" />
-        <span>{{ period === 'all-time' ? 'All time' : `${period} minutes` }}</span>
+        <span>{{ period === 'all-time' ? 'All time' : `${period} min` }}</span>
       </Badge>
     </div>
 
