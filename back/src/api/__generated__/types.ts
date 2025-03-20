@@ -11,6 +11,7 @@ import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
 import type { Url } from '../../utils/types';
+import type { WalletId } from '../../airdrop/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../types';
 export type Maybe<T> = T | null;
@@ -41,18 +42,31 @@ export type Scalars = {
   Seconde: { input: Seconde; output: Seconde; }
   Url: { input: Url; output: Url; }
   UserId: { input: any; output: any; }
+  WalletId: { input: WalletId; output: WalletId; }
   _FieldSet: { input: any; output: any; }
+};
+
+export type Airdrop = {
+  __typename?: 'Airdrop';
+  walletId?: Maybe<Scalars['WalletId']['output']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   createPlayerIfNotExist: Scalars['UserId']['output'];
   lose: Scalars['Boolean']['output'];
+  setWalletId: Scalars['Boolean']['output'];
   win: Scalars['Boolean']['output'];
+};
+
+
+export type MutationSetWalletIdArgs = {
+  walletId: Scalars['WalletId']['input'];
 };
 
 export type Player = {
   __typename?: 'Player';
+  airdrop?: Maybe<Airdrop>;
   firstName: Scalars['String']['output'];
   id: Scalars['UserId']['output'];
   runs: Runs;
@@ -73,10 +87,16 @@ export type Query = {
   __typename?: 'Query';
   me: Player;
   products: Array<Product>;
+  topPlayers: Array<TopPlayer>;
 };
 
 
 export type QueryProductsArgs = {
+  limit: Scalars['Limit']['input'];
+};
+
+
+export type QueryTopPlayersArgs = {
   limit: Scalars['Limit']['input'];
 };
 
@@ -85,6 +105,14 @@ export type Runs = {
   remaining: Scalars['Run']['output'];
   renewAt: Scalars['DateTime']['output'];
   total: Scalars['Run']['output'];
+};
+
+export type TopPlayer = {
+  __typename?: 'TopPlayer';
+  id: Scalars['UserId']['output'];
+  name: Scalars['String']['output'];
+  rank: Scalars['Int']['output'];
+  score: Scalars['Score']['output'];
 };
 
 
@@ -158,6 +186,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Airdrop: ResolverTypeWrapper<Airdrop>;
   Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
@@ -176,12 +205,16 @@ export type ResolversTypes = {
   Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
+  TopPlayer: ResolverTypeWrapper<TopPlayer>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
+  WalletId: ResolverTypeWrapper<Scalars['WalletId']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Airdrop: Airdrop;
   Amount: Scalars['Amount']['output'];
   DateTime: Scalars['DateTime']['output'];
   Limit: Scalars['Limit']['output'];
@@ -200,8 +233,16 @@ export type ResolversParentTypes = {
   Runs: Runs;
   Score: Scalars['Score']['output'];
   Seconde: Scalars['Seconde']['output'];
+  TopPlayer: TopPlayer;
+  Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
+  WalletId: Scalars['WalletId']['output'];
+};
+
+export type AirdropResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Airdrop'] = ResolversParentTypes['Airdrop']> = {
+  walletId?: Resolver<Maybe<ResolversTypes['WalletId']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
@@ -223,6 +264,7 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;
   win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
@@ -235,6 +277,7 @@ export interface PercentagePointScalarConfig extends GraphQLScalarTypeConfig<Res
 }
 
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
+  airdrop?: Resolver<Maybe<ResolversTypes['Airdrop']>, ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
@@ -263,6 +306,7 @@ export interface ProductIdScalarConfig extends GraphQLScalarTypeConfig<Resolvers
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
   products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductsArgs, 'limit'>>;
+  topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
 
 export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Run'], any> {
@@ -284,6 +328,14 @@ export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTy
   name: 'Seconde';
 }
 
+export type TopPlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TopPlayer'] = ResolversParentTypes['TopPlayer']> = {
+  id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  rank?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Url'], any> {
   name: 'Url';
 }
@@ -292,7 +344,12 @@ export interface UserIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
   name: 'UserId';
 }
 
+export interface WalletIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['WalletId'], any> {
+  name: 'WalletId';
+}
+
 export type Resolvers<ContextType = GraphQlContext> = {
+  Airdrop?: AirdropResolvers<ContextType>;
   Amount?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
   Limit?: GraphQLScalarType;
@@ -309,7 +366,9 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
   Seconde?: GraphQLScalarType;
+  TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
   UserId?: GraphQLScalarType;
+  WalletId?: GraphQLScalarType;
 };
 
