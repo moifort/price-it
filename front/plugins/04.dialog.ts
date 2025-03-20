@@ -30,8 +30,10 @@ export default defineNuxtPlugin(({ vueApp, provide }) => {
         )
         vNode.appContext = app._context
         // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+        // biome-ignore  lint/style/noNonNullAssertion: <explanation>
         render(vNode, (el = document.querySelector('#main-application')!))
       })
+      // biome-ignore  lint/style/noNonNullAssertion: <explanation>
       setTimeout(() => render(null, el!), 300)
       return result
     }
