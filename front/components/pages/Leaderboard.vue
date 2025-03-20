@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Header from '~/components/organisms/leaderboard/Header.vue'
 import Table from '~/components/organisms/leaderboard/Table.vue'
+import TableLoading from '~/components/organisms/leaderboard/TableLoading.vue'
 import Leaderboard from '~/components/template/Leaderboard.vue'
 import type { Score } from '../../../back/src/score/types'
 
-defineProps<{ topPlayers: { name: string; score: Score; rank: number }[]; isLoading: boolean }>()
+defineProps<{ topPlayers: { name: string; score: Score; rank: number }[] }>()
 </script>
 
 <template>
@@ -15,7 +16,8 @@ defineProps<{ topPlayers: { name: string; score: Score; rank: number }[]; isLoad
 
     <template #body>
       <Header class="mb-4"/>
-      <Table :players="topPlayers" />
+      <Table v-if="topPlayers?.length > 0"  :players="topPlayers" />
+      <TableLoading v-else/>
     </template>
   </Leaderboard>
 </template>
