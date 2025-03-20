@@ -11,6 +11,7 @@ import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
 import type { Url } from '../../utils/types';
+import type { WalletId } from '../../airdrop/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import type { GraphQlContext } from '../types';
 export type Maybe<T> = T | null;
@@ -41,6 +42,7 @@ export type Scalars = {
   Seconde: { input: Seconde; output: Seconde; }
   Url: { input: Url; output: Url; }
   UserId: { input: any; output: any; }
+  WalletId: { input: WalletId; output: WalletId; }
   _FieldSet: { input: any; output: any; }
 };
 
@@ -194,6 +196,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
+  WalletId: ResolverTypeWrapper<Scalars['WalletId']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -220,6 +223,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
+  WalletId: Scalars['WalletId']['output'];
 };
 
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
@@ -319,6 +323,10 @@ export interface UserIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
   name: 'UserId';
 }
 
+export interface WalletIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['WalletId'], any> {
+  name: 'WalletId';
+}
+
 export type Resolvers<ContextType = GraphQlContext> = {
   Amount?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
@@ -339,5 +347,6 @@ export type Resolvers<ContextType = GraphQlContext> = {
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
   UserId?: GraphQLScalarType;
+  WalletId?: GraphQLScalarType;
 };
 

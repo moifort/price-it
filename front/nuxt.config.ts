@@ -23,6 +23,7 @@ export default defineNuxtConfig({
         PercentagePoint: '../../../back/src/utils/types#PercentagePoint',
         Url: '../../../back/src/utils/types#Url',
         Run: '../../../back/src/run/types#Run',
+        WalletId: '../../../back/src/airdrop/types#WalletId',
       },
     },
     clients: {
