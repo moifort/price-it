@@ -20,8 +20,7 @@ export namespace RunCommand {
       const period = runs.period ?? (await findBy(database)(userId)).period
       const renewAt = runs.renewAt ?? dayjs().add(period, 'minutes').toDate()
       await update(database)(userId, { ...runs, period, renewAt })
-      await taskQueue.delete(userId)
-      await taskQueue.enqueue({ userId: userId }, { scheduleTime: renewAt, id: userId })
+      await taskQueue.enqueue({ userId: userId }, { scheduleTime: renewAt })
     }
 
   export const decrease = (database: Database) => async (userId: UserId) => {
@@ -33,13 +32,13 @@ export namespace RunCommand {
   export const applyRunBonus =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
     async (userId: UserId, quantity: RunType, period: Period) => {
-      const totalRuns = await RunQuery.getTotalRuns(database)(userId)
+      const { total } = await RunQuery.get(database)(userId)
       if (period === 'all-time') {
-        const total = RunValidator(quantity + totalRuns)
-        await RunCommand.set(database, taskQueue)(userId, { total, remaining: total })
+        const totalWithBonus = RunValidator(quantity + total)
+        await RunCommand.set(database, taskQueue)(userId, { total: totalWithBonus, remaining: totalWithBonus })
         return
       }
-      const remaining = RunValidator(quantity + totalRuns)
-      await RunCommand.set(database, taskQueue)(userId, { remaining })
+      const remainingWithBonus = RunValidator(quantity + total)
+      await RunCommand.set(database, taskQueue)(userId, { remaining: remainingWithBonus })
     }
 }
