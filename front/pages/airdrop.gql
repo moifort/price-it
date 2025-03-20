@@ -1,0 +1,11 @@
+query AirdropWalletId {
+  me {
+    airdrop {
+      walletId
+    }
+  }
+}
+
+mutation AirdropSetWalletId($walletId: WalletId!) {
+  setWalletId(walletId: $walletId)
+}

@@ -1,12 +1,12 @@
 import { Button } from '@/components/atoms/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import component from './Leaderboard.vue'
+import Main from './Main.vue'
 
 const meta = {
-  component,
+  component: Main,
   render: (args) => ({
-    components: { Template: component, Button, Card, CardContent, CardHeader, CardTitle },
+    components: { Template: Main, Button, Card, CardContent, CardHeader, CardTitle },
     setup: () => ({ args }),
     template: `
       <Template>
@@ -32,9 +32,9 @@ const meta = {
       </Template>
     `,
   }),
-} satisfies Meta<typeof component>
+} satisfies Meta<typeof Main>
 
 export default meta
-type Story = StoryObj<typeof component>
+type Story = StoryObj<typeof Main>
 
 export const Default: Story = {}

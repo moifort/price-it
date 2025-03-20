@@ -4,6 +4,7 @@ type Player {
     firstName: String!
     score: Score!
     runs: Runs!
+    airdrop: Airdrop
 }
 
 type Mutation {

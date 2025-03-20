@@ -1,6 +1,14 @@
+<script setup lang="ts">
+import AirdropComponent from '~/components/pages/Airdrop.vue'
+import type { WalletId } from '../../back/src/airdrop/types'
+
+const { data, refresh } = useAsyncGql('AirdropWalletId')
+const save = async (walletId: WalletId) => {
+  await GqlAirdropSetWalletId({ walletId })
+  await refresh()
+}
+</script>
+
 <template>
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Airdrop</h1>
-    <p>Receive your rewards!</p>
-  </div>
+  <AirdropComponent :wallet-id="data?.me.airdrop?.walletId ?? undefined" :save-wallet-id="save"/>
 </template>

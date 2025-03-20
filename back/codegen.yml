@@ -40,4 +40,5 @@ generates:
         Url: '../../utils/types#Url'
         Run: '../../run/types#Run'
         ProductId: '../../product/types#ProductId'
+        WalletId: '../../airdrop/types#WalletId'
         Date: 'Date'
