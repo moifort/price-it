@@ -19,19 +19,19 @@ defineProps<{ products: ShopProduct }>()
     <template #body>
       <div class="grid grid-cols-2 gap-2">
         <Card v-for="product in products" :key="product.id" >
-          <CardContent >
+          <CardContent class="p-3" >
               <div class="text-center">
                 <span class="text-5xl font-bold">{{ product.quantity }}</span>
                 <span class="text-sm mt-1 block">runs</span>
               </div>
 
-              <Badge class="flex items-center gap-2 py-2 px-3" variant="outline">
+              <Badge class="flex items-cente" variant="outline">
                 <Timer class="w-4 h-4" />
                 <span>{{ product.period === 'all-time' ? 'Forever' : `${product.period} min` }}</span>
               </Badge>
           </CardContent>
 
-          <CardFooter>
+          <CardFooter class="p-3">
             <Button variant="default"
                     size="lg"
                     @click="$emit('buy', product)"
