@@ -1,9 +1,8 @@
 import type { Brand } from 'ts-brand'
 import type { Point } from '../score/types'
-import type { Minute } from '../utils/types'
+import type { Minute, Quantity } from '../utils/types'
 
 export type ProductId = Brand<string, 'ShopProductId'>
-export type Quantity = Brand<number, 'Quantity'>
 export type Category = 'run' | 'time' | 'score'
 export type Period = Minute | 'all-time'
 

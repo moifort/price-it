@@ -6,6 +6,7 @@ import type {
   Minute as MinuteType,
   PercentagePoint as PercentagePointType,
   Percentage as PercentageType,
+  Quantity as QuantityType,
   Seconde as SecondeType,
   Url as UrlType,
 } from './types'
@@ -17,3 +18,4 @@ export const Minute = make<MinuteType>((value) => z.number().int().min(0).parse(
 export const Seconde = make<SecondeType>((value) => z.number().int().min(0).parse(value))
 export const PercentagePoint = make<PercentagePointType>((value) => z.number().min(0).max(1).parse(value))
 export const Url = make<UrlType>((value) => z.string().url().parse(value))
+export const Quantity = (value: number) => make<QuantityType>()(z.number().int().min(1).parse(value))
