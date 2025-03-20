@@ -55,7 +55,6 @@
     "@types/bun": "1.2.5",
     "@types/lodash": "4.17.16",
     "firebase-functions-test": "3.4.1",
-    "sql-formatter": "15.5.0",
     "typescript": "5.8.2"
   }
 }
