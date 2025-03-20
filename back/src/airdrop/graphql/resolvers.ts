@@ -1,17 +1,24 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
+import { AirdropCommand } from '../command'
 import type { WalletId as WalletIdType } from '../types'
-import { validateWalletId } from '../validators'
+import { WalletId } from '../validators'
 
 const WalletIdScalar = new GraphQLScalarType({
   name: 'WalletId',
   description: 'The `WalletId` scalar type represents a wallet identifier as a string.',
-  parseValue: (value: unknown): WalletIdType => validateWalletId(value),
-  serialize: (value: unknown) => validateWalletId(value),
-  parseLiteral: (ast) => (ast.kind === Kind.STRING ? validateWalletId(ast.value) : null),
+  parseValue: (value: unknown): WalletIdType => WalletId(value),
+  serialize: (value: unknown) => WalletId(value),
+  parseLiteral: (ast) => (ast.kind === Kind.STRING ? WalletId(ast.value) : null),
 })
 
 export const resolvers: Resolvers = {
   WalletId: WalletIdScalar,
+  Mutation: {
+    setWalletId: async (_, { walletId }, { database, userId }) => {
+      await AirdropCommand.setWalletId(database)(userId, walletId)
+      return true
+    },
+  },
 }

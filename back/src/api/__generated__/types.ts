@@ -50,7 +50,13 @@ export type Mutation = {
   __typename?: 'Mutation';
   createPlayerIfNotExist: Scalars['UserId']['output'];
   lose: Scalars['Boolean']['output'];
+  setWalletId: Scalars['Boolean']['output'];
   win: Scalars['Boolean']['output'];
+};
+
+
+export type MutationSetWalletIdArgs = {
+  walletId: Scalars['WalletId']['input'];
 };
 
 export type Player = {
@@ -245,6 +251,7 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;
   win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
