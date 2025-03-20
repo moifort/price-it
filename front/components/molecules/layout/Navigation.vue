@@ -44,7 +44,7 @@ const menus = [
         :class="[
           active === id
             ? 'text-primary font-medium bg-primary/10 rounded-md scale-100 shadow-sm'
-            : 'text-foreground/70 hover:text-foreground/90'
+            : 'text-foreground/60'
         ]"
         @click="$emit('click:goTo', id)"
       >
