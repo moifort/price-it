@@ -30,5 +30,6 @@ export const Default: Story = {
   args: {
     price: Amount(89),
     productLink: Url('https://example.com/product'),
+    close: () => console.log('onClick:close'),
   },
 }

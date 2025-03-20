@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ActionButtons from '~/components/organisms/game/ActionButtons.vue'
 import LoseModal from '~/components/organisms/game/LoseModal.vue'
 import ProductCard from '~/components/organisms/game/ProductCard.vue'
@@ -15,7 +16,10 @@ const { $open } = useNuxtApp()
 const index = getIntPathParam('id')
 const { product, totalTime } = defineProps(['product', 'totalTime'])
 const { displayPrice, expectedGuess } = generate(product.price)
-const next = async (playerGuess: 'less' | 'exact' | 'more') => {
+const counterPlay = ref(true)
+
+const next = async (playerGuess: 'less' | 'exact' | 'more', ref?: unknown) => {
+  counterPlay.value = false
   const guess: Guess = playerGuess === expectedGuess ? 'win' : 'lose'
   if (guess === 'win') {
     await GqlGameWinCommand()
@@ -38,7 +42,7 @@ const timeout = async () => {
 <template>
   <div class="flex flex-col h-full gap-4">
     <div class="flex-none">
-      <Timer :timer="totalTime" @timeout="timeout()" />
+      <Timer :timer="totalTime" @timeout="timeout()" :play="counterPlay" />
     </div>
 
     <div class="flex-grow">
