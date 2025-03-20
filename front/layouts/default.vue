@@ -7,7 +7,7 @@ const route = useRoute()
 
 <template>
   <div class="flex min-h-screen flex-col h-[100vh]">
-    <main class="flex-grow h-full pb-20">
+    <main class="flex-grow h-full pb-20" id="main-application">
       <slot />
     </main>
     <Navigation :active="(route.name === 'index' ? 'game' : route.name) as Menu"

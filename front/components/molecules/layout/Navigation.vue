@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ClipboardListIcon, Gamepad2Icon, ShoppingBagIcon, TrophyIcon } from 'lucide-vue-next'
+import { ClipboardListIcon, Gamepad2Icon, ShoppingBagIcon, TrophyIcon, Wallet } from 'lucide-vue-next'
 
-export type Menu = 'game' | 'shop' | 'top' | 'tasks'
+export type Menu = 'game' | 'shop' | 'top' | 'tasks' | 'airdrop'
 defineProps<{ active: Menu }>()
 defineEmits<(e: 'click:goTo', active: Menu) => void>()
 
@@ -25,6 +25,11 @@ const menus = [
     id: 'top' as const,
     icon: TrophyIcon,
     label: 'Top',
+  },
+  {
+    id: 'airdrop' as const,
+    icon: Wallet,
+    label: 'Airdrop',
   },
 ]
 </script>

@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     active: {
       control: { type: 'radio' },
-      options: ['game', 'tasks', 'shop', 'top'],
+      options: ['game', 'tasks', 'shop', 'top', 'airdrop'],
     },
   },
 } satisfies Meta<typeof component>
