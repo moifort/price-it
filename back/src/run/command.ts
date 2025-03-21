@@ -1,10 +1,11 @@
 import dayjs from 'dayjs'
 import type { TaskQueue } from 'firebase-admin/functions'
+import { v5 as uuid } from 'uuid'
 import type { Database } from '../api/types'
 import type { Period } from '../shop/types'
 import type { UserId } from '../user/types'
 import type { Minute } from '../utils/types'
-import { findBy, update } from './infra/repository'
+import { findBy, save, update } from './infra/repository'
 import { RunQuery } from './query'
 import type { Run, Run as RunType, Runs, TaskRunReset } from './types'
 import { Run as RunValidator } from './validators'
@@ -12,15 +13,23 @@ import { Run as RunValidator } from './validators'
 export namespace RunCommand {
   export const create =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
-    (userId: UserId, remaining: Run, total: Run, period: Minute) =>
-      set(database, taskQueue)(userId, { remaining, total, period })
+    async (userId: UserId, remaining: Run, total: Run, period: Minute) => {
+      const renewAt = dayjs().add(period, 'minutes').toDate()
+      await save(database)(userId, { remaining, total, period, renewAt })
+      const taskId = uuid(`${userId}-${renewAt}`, uuid.URL)
+      await taskQueue.enqueue({ userId }, { scheduleTime: renewAt, id: taskId })
+    }
 
   export const set =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) => async (userId: UserId, runs: Partial<Runs>) => {
-      const period = runs.period ?? (await findBy(database)(userId)).period
-      const renewAt = runs.renewAt ?? dayjs().add(period, 'minutes').toDate()
-      await update(database)(userId, { ...runs, period, renewAt })
-      await taskQueue.enqueue({ userId: userId }, { scheduleTime: renewAt })
+      const { renewAt, period } = await findBy(database)(userId)
+      const taskIdToDelete = uuid(`${userId}-${renewAt}`, uuid.URL)
+      await taskQueue.delete(taskIdToDelete)
+      const updatedPeriod = runs.period ?? period
+      const updatedRenewAt = runs.renewAt ?? dayjs().add(updatedPeriod, 'minutes').toDate()
+      await update(database)(userId, { ...runs, period: updatedPeriod, renewAt: updatedRenewAt })
+      const taskId = uuid(`${userId}-${updatedRenewAt}`, uuid.URL)
+      await taskQueue.enqueue({ userId }, { scheduleTime: updatedRenewAt, id: taskId })
     }
 
   export const decrease = (database: Database) => async (userId: UserId) => {
