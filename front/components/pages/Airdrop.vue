@@ -31,6 +31,9 @@ const saveWallet = async (walletId: WalletIdType | undefined) => {
     </template>
 
     <template #body>
+      <font-awesome :icon="['fas', 'piggy-bank']" size="3x">
+        1990980$
+      </font-awesome>
       <Card>
         <CardHeader>
           <CardTitle class="flex text-2xl items-center">Participate and earn coins ! </CardTitle>

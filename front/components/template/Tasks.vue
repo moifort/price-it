@@ -4,7 +4,7 @@
       <slot name="title" />
     </div>
 
-    <div class="flex-none mt-2">
+    <div class="flex-none">
       <slot name="join" />
     </div>
 

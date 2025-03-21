@@ -21,7 +21,7 @@ defineProps<{ points: Point; brand: string }>()
 </script>
 
 <template>
-  <Card :class="`p-3 h-[140px] text-white border-none`">
+  <Card class="p-3 h-[140px] text-white border-none shadow-md">
     <div class="flex flex-col justify-between h-full">
       <div>
         <font-awesome :icon="['fab', brand]" size="3x" />

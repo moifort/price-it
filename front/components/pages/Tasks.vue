@@ -15,13 +15,14 @@ defineProps<{
   <TasksTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <div class="flex-grow"></div>
+        <div class="flex-grow">
+          <h1 class="text-3xl font-medium opacity-60">Join</h1>
+        </div>
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>
 
     <template #join>
-      <h1 class="text-3xl font-medium opacity-60 mb-2">Join</h1>
       <div class="grid grid-cols-2 gap-3">
         <Card :points="3000" brand="telegram" class="bg-blue-400" />
       </div>

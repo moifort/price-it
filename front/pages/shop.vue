@@ -18,7 +18,6 @@ const buyPoints = async () => new Promise((resolve) => setTimeout(resolve, 1500)
       :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
       :products="status === 'success' ? data.shopProducts :  []"
       :buy="buy"
-      :buy-points="buyPoints"
   />
 </template>
 
