@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ArrowLeft } from 'lucide-vue-next'
-import { Button } from '~/components/atoms/button'
 import Stats from '~/components/molecules/Stats.vue'
 import ShopCard from '~/components/organisms/shop/Card.vue'
 import Loading from '~/components/organisms/shop/Loading.vue'
@@ -37,6 +35,7 @@ defineProps<{
           :period="period"
           :amount="amount"
           :buy="buy"
+          :score="score"
         />
       </div>
       <Loading v-else />

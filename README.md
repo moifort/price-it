@@ -20,3 +20,13 @@ bun dev
 ## Other
 - https://github.com/chat-game/space/blob/main/apps/telegram-game/src/router/index.ts
 
+## TODO
+- [ ] (back) Add no fund when buy product 
+- [ ] (front) no zoom on double tap
+- [ ] (front) no select text
+- [ ] (front) scroll and refresh
+- [ ] (front) notification
+- [ ] (front) connect TON wallet
+- [ ] (airdrop) close keyboard on out
+- [ ] (product) add more product
+- [ ] (shop) buy points

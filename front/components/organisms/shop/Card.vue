@@ -4,7 +4,7 @@ import { Badge } from '~/components/atoms/badge'
 import { Button } from '~/components/atoms/button'
 import { Card, CardContent, CardFooter } from '~/components/atoms/card'
 import { formatNumber } from '~/utils/utils'
-import type { Point } from '../../../../back/src/score/types'
+import type { Point, Score } from '../../../../back/src/score/types'
 import type { Period, ShopProductId } from '../../../../back/src/shop/types'
 import type { Quantity } from '../../../../back/src/utils/types'
 
@@ -13,9 +13,11 @@ const props = defineProps<{
   quantity: Quantity
   period: Period
   amount: Point
+  score: Score
   buy: (id: ShopProductId) => Promise<void>
 }>()
 
+const noMoreFund = computed(() => props.score < props.amount)
 const success = ref(false)
 const loading = ref(false)
 const buyProduct = async (id: ShopProductId) => {
@@ -23,6 +25,8 @@ const buyProduct = async (id: ShopProductId) => {
   try {
     await props.buy(id)
     success.value = true
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    success.value = false
   } finally {
     loading.value = false
   }
@@ -48,11 +52,11 @@ const buyProduct = async (id: ShopProductId) => {
     <CardFooter class="p-3 pt-0">
       <Button variant="default"
               size="lg"
-              :disabled="loading || success"
-              @click="buyProduct(id)"
+              :disabled="noMoreFund"
+              @click="!loading && buyProduct(id)"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
-        <template v-if="loading"  class="w-16"> <LoaderCircle class="animate-spin duration-500"/> </template>
-        <template v-else-if="success" class="w-16"> <Check/> </template>
+        <template v-if="success" class="w-16"> <Check/> </template>
+        <template v-else-if="loading"  class="w-16"> <LoaderCircle class="animate-spin duration-500"/> </template>
         <template v-else><ShoppingBag class="w-3 h-3 mr-1" />{{ formatNumber(amount) }}pts</template>
       </Button>
     </CardFooter>
