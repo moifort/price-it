@@ -4,7 +4,7 @@ import { Badge } from '~/components/atoms/badge'
 import { Button } from '~/components/atoms/button'
 import { Card, CardContent, CardFooter } from '~/components/atoms/card'
 import { formatNumber } from '~/utils/utils'
-import type { Point } from '../../../../back/src/score/types'
+import type { Point, Score } from '../../../../back/src/score/types'
 import type { Period, ShopProductId } from '../../../../back/src/shop/types'
 import type { Quantity } from '../../../../back/src/utils/types'
 
@@ -13,6 +13,7 @@ const props = defineProps<{
   quantity: Quantity
   period: Period
   amount: Point
+  score: Score
   buy: (id: ShopProductId) => Promise<void>
 }>()
 
