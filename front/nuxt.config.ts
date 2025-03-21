@@ -3,11 +3,24 @@ export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
   typescript: { strict: true, shim: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-graphql-client'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode',
+    'shadcn-nuxt',
+    'nuxt-graphql-client',
+    '@vesp/nuxt-fontawesome',
+  ],
   colorMode: { classSuffix: '' },
   shadcn: {
     prefix: '',
     componentDir: './components/atoms',
+  },
+  fontawesome: {
+    icons: {
+      solid: [],
+      regular: [],
+      brands: ['twitter', 'telegram', 'youtube', 'tiktok', 'instagram', 'facebook'],
+    },
   },
   'graphql-client': {
     codegen: {

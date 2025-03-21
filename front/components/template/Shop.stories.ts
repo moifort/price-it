@@ -1,7 +1,7 @@
 import { Button } from '@/components/atoms/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import Main from './Main.vue'
+import Main from './Shop.vue'
 
 const meta = {
   component: Main,
