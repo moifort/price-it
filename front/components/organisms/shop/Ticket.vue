@@ -29,7 +29,7 @@ const buy = async (id: ShopProductId) => {
 <template>
   <Card class="bg-yellow-500 p-3 px-3" @click="buy(id)">
     <div class="flex items-center">
-      <div class="mr-3">
+      <div class="mr-2">
         <Avatar class="bg-blackA3 inline-flex h-[50px] w-[50px] select-none items-center justify-center overflow-hidden rounded-full align-middle border border-black">
           <template v-if="success" class="w-16"> <Check class="text-black"/> </template>
           <template v-else-if="loading"  class="w-16"> <LoaderCircle class="animate-spin duration-500 text-black"/> </template>
@@ -37,7 +37,7 @@ const buy = async (id: ShopProductId) => {
         </Avatar>
       </div>
       <div class="flex flex-col text-black justify-start">
-        <div class="text-3xl font-bold">
+        <div class="text-2xl font-bold">
           {{ formatNumber(quantity) }}
         </div>
         <div class="text-md font-medium -mt-2 opacity-70">Points</div>

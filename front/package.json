@@ -20,6 +20,7 @@
     "@iconify/vue": "4.3.0",
     "@telegram-apps/sdk-vue": "1.0.15",
     "@types/lodash": "4.17.16",
+    "@vesp/nuxt-fontawesome": "1.2.1",
     "@vueuse/core": "13.0.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
@@ -41,6 +42,9 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "3.2.6",
+    "@fortawesome/free-brands-svg-icons": "6.7.2",
+    "@fortawesome/free-regular-svg-icons": "6.7.2",
+    "@fortawesome/free-solid-svg-icons": "6.7.2",
     "@iconify-json/radix-icons": "1.2.2",
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/storybook": "8.3.3",
