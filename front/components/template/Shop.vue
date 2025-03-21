@@ -4,11 +4,7 @@
       <slot name="title" />
     </div>
 
-    <div class="flex-none mt-2">
-      <slot name="points" />
-    </div>
-
-    <div class="flex-grow mt-2">
+    <div class="flex-grow">
       <slot name="run" />
     </div>
   </div>

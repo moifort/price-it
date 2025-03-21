@@ -1,7 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
+import { v4 as uuid } from 'uuid'
 import type { Resolvers } from '../../api/__generated__/types'
-import { ShopCommand } from '../command'
 import { ShopQuery } from '../query'
 import { Period, ShopProductId } from '../validators'
 
@@ -33,8 +33,21 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     buyProduct: async (_, { id }, { database, runTaskQueue, userId }) => {
-      await ShopCommand.buy(database, runTaskQueue)(userId, id)
-      return true
+      const product = ShopQuery.getProducts().find((p) => p.id === id)!
+      const paymentId = uuid()
+      const paymentUrl = `https://t.me/invoice/${paymentId}?amount=${product.amount}&title=Product Purchase&description=${encodeURIComponent(`Purchase of ${product.quantity} runs for ${product.period === 'all-time' ? 'unlimited time' : `${product.period} minutes`}`)}&payload=${encodeURIComponent(JSON.stringify({ userId, productId: id }))}`
+
+      // You might want to store the pending payment in your database
+      // await database.collection('pendingPayments').add({
+      //   userId,
+      //   productId: id,
+      //   paymentId,
+      //   amount: product.amount,
+      //   status: 'pending',
+      //   createdAt: new Date()
+      // });
+
+      return paymentUrl
     },
   },
 }

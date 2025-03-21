@@ -13,6 +13,6 @@ query ShopProducts {
   }
 }
 
-mutation ShopProduct($id: ShopProductId!) {
+mutation ShopBuyProduct($id: ShopProductId!) {
   buyProduct(id: $id)
 }

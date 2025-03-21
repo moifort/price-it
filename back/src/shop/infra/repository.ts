@@ -7,7 +7,7 @@ export const findAllProducts = () =>
   <ShopProduct[]>[
     {
       id: ShopProductIdValidator('5-run-60-minutes'),
-      name: '5 runs 60 minutes',
+      name: '5 runs all time',
       description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
       category: 'run' as const,
       amount: Point(1000),
@@ -15,7 +15,7 @@ export const findAllProducts = () =>
       quantity: Quantity(5),
     },
     {
-      id: ShopProductIdValidator('10-run-60-minutes'),
+      id: ShopProductIdValidator('10-run-all-time'),
       name: '10 runs all time',
       description: 'Unlock 10 runs NOW during 60 minutes. Increase your chance to win more points',
       category: 'run' as const,

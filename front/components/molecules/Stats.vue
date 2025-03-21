@@ -7,7 +7,7 @@ defineProps<{ score: Score; runsLeft: Run }>()
 </script>
 
 <template>
-  <div class="flex items-center gap-4 bg-card p-2 px-4 rounded-full shadow-md">
+  <div class="flex items-center gap-4 bg-card p-2 px-4 rounded-full shadow-md border-[1px]">
     <div class="flex items-center gap-1.5">
       <Trophy class="w-5 h-5 text-yellow-500" />
       <span class="font-bold"><Counter :value="score" :duration="1" /></span>

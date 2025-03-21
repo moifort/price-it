@@ -4,21 +4,31 @@ import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 import type { ShopProductId } from '../../back/src/shop/types'
 
+const { open: openInvoice } = useInvoice()
 const { data, status, refresh } = useAsyncGql('ShopProducts')
+const message = ref('')
 const buy = async (id: ShopProductId) => {
-  await GqlShopProduct({ id })
-  await refresh()
+  try {
+    const { buyProduct } = await GqlShopBuyProduct({ id })
+    const paymentResult = await openInvoice(buyProduct)
+    if (paymentResult === 'paid') {
+      message.value = 'Payment successful'
+    } else if (paymentResult === 'failed' || paymentResult === 'cancelled') {
+      message.value = `Payment unsuccessful ${paymentResult}`
+    }
+  } catch (error) {
+    message.value = `'Error during purchase`
+  }
 }
-const buyPoints = async () => new Promise((resolve) => setTimeout(resolve, 1500))
 </script>
 
 <template>
+  {{ message }}
   <Shop
       :score="status === 'success' ? data.me.score : Score(0)"
       :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
       :products="status === 'success' ? data.shopProducts :  []"
       :buy="buy"
-      :buy-points="buyPoints"
   />
 </template>
 

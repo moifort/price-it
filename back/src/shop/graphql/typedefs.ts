@@ -17,6 +17,6 @@ extend type Query {
 }
 
 extend type Mutation {
-  buyProduct(id: ShopProductId!): Boolean!
+  buyProduct(id: ShopProductId!): String!
 }
 `
