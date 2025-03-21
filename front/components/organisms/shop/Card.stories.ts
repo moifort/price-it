@@ -25,6 +25,7 @@ export const AllTime: Story = {
     quantity: Quantity(100),
     period: 'all-time' as const,
     amount: Point(10000),
+    score: Score(10000),
   },
 }
 
