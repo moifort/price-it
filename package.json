@@ -8,6 +8,7 @@
     "test:all": "bun --cwd back test:all",
     "dev:https": "bun --cwd front dev:https",
     "clean": "bun --cwd back clean && bun --cwd front clean",
+    "graphql:gen": "bun --cwd back graphql:gen && bun --cwd front nuxt prepare",
     "firestore:save": "firebase emulators:export --force .emulators"
   },
   "devDependencies": {

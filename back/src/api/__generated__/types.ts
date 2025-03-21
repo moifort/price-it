@@ -60,7 +60,7 @@ export type Airdrop = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  buyProduct: Scalars['Boolean']['output'];
+  buyProduct: Scalars['String']['output'];
   createPlayerIfNotExist: Scalars['UserId']['output'];
   lose: Scalars['Boolean']['output'];
   setWalletId: Scalars['Boolean']['output'];
@@ -217,12 +217,12 @@ export type ResolversTypes = {
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
   Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
   PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
   Period: ResolverTypeWrapper<Scalars['Period']['output']>;
   Player: ResolverTypeWrapper<Player>;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
   Product: ResolverTypeWrapper<Product>;
   ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
@@ -249,12 +249,12 @@ export type ResolversParentTypes = {
   Limit: Scalars['Limit']['output'];
   Minute: Scalars['Minute']['output'];
   Mutation: {};
+  String: Scalars['String']['output'];
   Boolean: Scalars['Boolean']['output'];
   Percentage: Scalars['Percentage']['output'];
   PercentagePoint: Scalars['PercentagePoint']['output'];
   Period: Scalars['Period']['output'];
   Player: Player;
-  String: Scalars['String']['output'];
   Point: Scalars['Point']['output'];
   Product: Product;
   ProductId: Scalars['ProductId']['output'];
@@ -295,7 +295,7 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  buyProduct?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationBuyProductArgs, 'id'>>;
+  buyProduct?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationBuyProductArgs, 'id'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;
