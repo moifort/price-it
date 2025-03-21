@@ -5,7 +5,7 @@ import type { Database } from '../api/types'
 import type { Period } from '../shop/types'
 import type { UserId } from '../user/types'
 import type { Minute } from '../utils/types'
-import { findBy, update } from './infra/repository'
+import { findBy, save, update } from './infra/repository'
 import { RunQuery } from './query'
 import type { Run, Run as RunType, Runs, TaskRunReset } from './types'
 import { Run as RunValidator } from './validators'
@@ -13,8 +13,12 @@ import { Run as RunValidator } from './validators'
 export namespace RunCommand {
   export const create =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
-    (userId: UserId, remaining: Run, total: Run, period: Minute) =>
-      set(database, taskQueue)(userId, { remaining, total, period })
+    async (userId: UserId, remaining: Run, total: Run, period: Minute) => {
+      const renewAt = dayjs().add(period, 'minutes').toDate()
+      await save(database)(userId, { remaining, total, period, renewAt })
+      const taskId = uuid(`${userId}-${renewAt}`, uuid.URL)
+      await taskQueue.enqueue({ userId }, { scheduleTime: renewAt, id: taskId })
+    }
 
   export const set =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) => async (userId: UserId, runs: Partial<Runs>) => {

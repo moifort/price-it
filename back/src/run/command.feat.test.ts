@@ -12,22 +12,22 @@ describe('RunCommand', () => {
       // Given
       const userId = PlayerId('9876543210')
       await $testDatabase.collection('players').doc(userId).create({ id: userId })
+      await RunCommand.create($testDatabase, $testTaskQueue)(userId, Run(5), Run(5), Minute(60))
 
       // When
       await RunCommand.set($testDatabase, $testTaskQueue)(userId, {
-        total: Run(5),
-        remaining: Run(5),
-        renewAt: new Date('2025-01-01T12:00:00Z'),
-        period: Minute(60),
+        total: Run(20),
+        remaining: Run(20),
+        period: Minute(120),
       })
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()
       expect(doc.data()!.runs).toEqual({
-        total: 5,
-        remaining: 5,
-        renewAt: Timestamp.fromDate(new Date('2025-01-01T12:00:00Z')),
-        period: 60,
+        total: 20,
+        remaining: 20,
+        period: Minute(120),
+        renewAt: expect.any(Timestamp),
       })
     })
   })

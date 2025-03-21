@@ -16,6 +16,8 @@ export const findBy = (db: Firestore) => async (userId: UserId) => {
   return player.runs
 }
 
+export const save = (db: Firestore) => (userId: UserId, run: Runs) => update(db)(userId, run)
+
 export const update = (db: Firestore) => async (userId: UserId, run: Partial<Runs>) => {
   if (!(await isExist(db)(userId))) throw new Error(`Player not found id: ${userId}`)
   await collection(db).doc(userId).set({ runs: run }, { merge: true })
