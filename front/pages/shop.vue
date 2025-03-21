@@ -9,6 +9,7 @@ const buy = async (id: ShopProductId) => {
   await GqlShopProduct({ id })
   await refresh()
 }
+const buyPoints = async () => new Promise((resolve) => setTimeout(resolve, 1500))
 </script>
 
 <template>
@@ -16,6 +17,8 @@ const buy = async (id: ShopProductId) => {
       :score="status === 'success' ? data.me.score : Score(0)"
       :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
       :products="status === 'success' ? data.shopProducts :  []"
-      :buy="buy" />
+      :buy="buy"
+      :buy-points="buyPoints"
+  />
 </template>
 

@@ -2,30 +2,40 @@
 import Stats from '~/components/molecules/Stats.vue'
 import ShopCard from '~/components/organisms/shop/Card.vue'
 import Loading from '~/components/organisms/shop/Loading.vue'
-import MainTemplate from '~/components/template/Main.vue'
+import Ticket from '~/components/organisms/shop/Ticket.vue'
+import ShopTemplate from '~/components/template/Shop.vue'
 import type { Run } from '../../../back/src/run/types'
 import type { Point, Score } from '../../../back/src/score/types'
-import { type Period, type ShopProductId } from '../../../back/src/shop/types'
-import type { Quantity } from '../../../back/src/utils/types'
+import type { Period, ShopProductId as ShopProductIdType } from '../../../back/src/shop/types'
+import type { Quantity as QuantityTYpe } from '../../../back/src/utils/types'
 
 defineProps<{
-  products: { id: ShopProductId; quantity: Quantity; period: Period; amount: Point }[]
+  products: { id: ShopProductIdType; quantity: QuantityTYpe; period: Period; amount: Point }[]
   score: Score
   runsLeft: Run
-  buy: (id: ShopProductId) => Promise<void>
+  buy: (id: ShopProductIdType) => Promise<void>
+  buyPoints: (id: ShopProductIdType) => Promise<void>
 }>()
 </script>
 
 <template>
-  <MainTemplate>
+  <ShopTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-medium opacity-60">Run Bonus</h1>
+        <div class="flex-grow"></div>
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>
 
-    <template #body>
+    <template #points>
+      <div class="grid grid-cols-2 gap-3">
+        <Ticket id="10000pts" :quantity="10000" :buy="buyPoints"/>
+        <Ticket id="50000pts" :quantity="50000" :buy="buyPoints"/>
+      </div>
+    </template>
+
+    <template #run>
+      <h1 class="text-3xl font-medium opacity-60 mb-2">Run Bonus</h1>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
           v-for="{ id, quantity, period, amount } in products"
@@ -40,5 +50,5 @@ defineProps<{
       </div>
       <Loading v-else />
     </template>
-  </MainTemplate>
+  </ShopTemplate>
 </template>

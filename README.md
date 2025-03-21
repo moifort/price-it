@@ -30,3 +30,4 @@ bun dev
 - [ ] (airdrop) close keyboard on out
 - [ ] (product) add more product
 - [ ] (shop) buy points
+- [ ] (back) add cursor on product
