@@ -1,9 +1,10 @@
 export default `#graphql
-scalar ProductId
+scalar GuessId
 
-type Product {
-  id: ProductId!
+type Guess {
+  id: GuessId!
   name: String!
+  description: String
   image: Url!
   price: Amount!
   category: String!
@@ -11,6 +12,6 @@ type Product {
 }
 
 type Query {
-  products(limit: Limit!): [Product!]!
+  guess: [Guess!]!
 }
 `

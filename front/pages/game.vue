@@ -9,10 +9,8 @@ definePageMeta({ layout: 'fullscreen' })
 
 const router = useRouter()
 const route = useRoute()
-const remainingRuns = getIntQuery<Run>('remainingRuns')
 
-// TODO: utiliser le remaining coté back pour retourner la limite
-const { data, status, refresh } = useAsyncGql('GameQuery', { limit: Limit(Number(remainingRuns) ?? 0) })
+const { data, status, refresh } = useAsyncGql('GameQuery')
 const index = ref(0)
 watch(
   () => route.params.id,
@@ -21,7 +19,6 @@ watch(
     refresh()
   },
 )
-
 const isStartingFinish = ref(false)
 </script>
 

@@ -7,7 +7,6 @@ import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
 import type { Period } from '../../shop/types';
 import type { Point } from '../../score/types';
-import type { ProductId } from '../../product/types';
 import type { Quantity } from '../../utils/types';
 import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
@@ -36,13 +35,13 @@ export type Scalars = {
   Float: { input: number; output: number; }
   Amount: { input: Amount; output: Amount; }
   DateTime: { input: any; output: any; }
+  GuessId: { input: any; output: any; }
   Limit: { input: Limit; output: Limit; }
   Minute: { input: Minute; output: Minute; }
   Percentage: { input: Percentage; output: Percentage; }
   PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
   Period: { input: Period; output: Period; }
   Point: { input: Point; output: Point; }
-  ProductId: { input: ProductId; output: ProductId; }
   Quantity: { input: Quantity; output: Quantity; }
   Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
@@ -58,6 +57,16 @@ export type Scalars = {
 export type Airdrop = {
   __typename?: 'Airdrop';
   walletId?: Maybe<Scalars['WalletId']['output']>;
+};
+
+export type Guess = {
+  __typename?: 'Guess';
+  category: Scalars['String']['output'];
+  id: Scalars['GuessId']['output'];
+  image: Scalars['Url']['output'];
+  name: Scalars['String']['output'];
+  price: Scalars['Amount']['output'];
+  url: Scalars['Url']['output'];
 };
 
 export type Mutation = {
@@ -88,27 +97,12 @@ export type Player = {
   score: Scalars['Score']['output'];
 };
 
-export type Product = {
-  __typename?: 'Product';
-  category: Scalars['String']['output'];
-  id: Scalars['ProductId']['output'];
-  image: Scalars['Url']['output'];
-  name: Scalars['String']['output'];
-  price: Scalars['Amount']['output'];
-  url: Scalars['Url']['output'];
-};
-
 export type Query = {
   __typename?: 'Query';
+  guess: Array<Guess>;
   me: Player;
-  products: Array<Product>;
   shopProducts: Array<ShopProduct>;
   topPlayers: Array<TopPlayer>;
-};
-
-
-export type QueryProductsArgs = {
-  limit: Scalars['Limit']['input'];
 };
 
 
@@ -216,18 +210,18 @@ export type ResolversTypes = {
   Airdrop: ResolverTypeWrapper<Airdrop>;
   Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  Guess: ResolverTypeWrapper<Guess>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
+  GuessId: ResolverTypeWrapper<Scalars['GuessId']['output']>;
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
   Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
   PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
   Period: ResolverTypeWrapper<Scalars['Period']['output']>;
   Player: ResolverTypeWrapper<Player>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
-  Product: ResolverTypeWrapper<Product>;
-  ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
   Quantity: ResolverTypeWrapper<Scalars['Quantity']['output']>;
   Query: ResolverTypeWrapper<{}>;
   Run: ResolverTypeWrapper<Scalars['Run']['output']>;
@@ -249,18 +243,18 @@ export type ResolversParentTypes = {
   Airdrop: Airdrop;
   Amount: Scalars['Amount']['output'];
   DateTime: Scalars['DateTime']['output'];
+  Guess: Guess;
+  String: Scalars['String']['output'];
+  GuessId: Scalars['GuessId']['output'];
   Limit: Scalars['Limit']['output'];
   Minute: Scalars['Minute']['output'];
   Mutation: {};
-  String: Scalars['String']['output'];
   Boolean: Scalars['Boolean']['output'];
   Percentage: Scalars['Percentage']['output'];
   PercentagePoint: Scalars['PercentagePoint']['output'];
   Period: Scalars['Period']['output'];
   Player: Player;
   Point: Scalars['Point']['output'];
-  Product: Product;
-  ProductId: Scalars['ProductId']['output'];
   Quantity: Scalars['Quantity']['output'];
   Query: {};
   Run: Scalars['Run']['output'];
@@ -288,6 +282,20 @@ export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
   name: 'DateTime';
+}
+
+export type GuessResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Guess'] = ResolversParentTypes['Guess']> = {
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['GuessId'], ParentType, ContextType>;
+  image?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  price?: Resolver<ResolversTypes['Amount'], ParentType, ContextType>;
+  url?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface GuessIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['GuessId'], any> {
+  name: 'GuessId';
 }
 
 export interface LimitScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Limit'], any> {
@@ -331,27 +339,13 @@ export interface PointScalarConfig extends GraphQLScalarTypeConfig<ResolversType
   name: 'Point';
 }
 
-export type ProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
-  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ProductId'], ParentType, ContextType>;
-  image?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  price?: Resolver<ResolversTypes['Amount'], ParentType, ContextType>;
-  url?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export interface ProductIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['ProductId'], any> {
-  name: 'ProductId';
-}
-
 export interface QuantityScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Quantity'], any> {
   name: 'Quantity';
 }
 
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  guess?: Resolver<Array<ResolversTypes['Guess']>, ParentType, ContextType>;
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
-  products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductsArgs, 'limit'>>;
   shopProducts?: Resolver<Array<ResolversTypes['ShopProduct']>, ParentType, ContextType>;
   topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
@@ -418,6 +412,8 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Airdrop?: AirdropResolvers<ContextType>;
   Amount?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
+  Guess?: GuessResolvers<ContextType>;
+  GuessId?: GraphQLScalarType;
   Limit?: GraphQLScalarType;
   Minute?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
@@ -426,8 +422,6 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Period?: GraphQLScalarType;
   Player?: PlayerResolvers<ContextType>;
   Point?: GraphQLScalarType;
-  Product?: ProductResolvers<ContextType>;
-  ProductId?: GraphQLScalarType;
   Quantity?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
   Run?: GraphQLScalarType;

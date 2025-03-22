@@ -1,5 +1,5 @@
-query GameQuery($limit: Limit!) {
-  products(limit: $limit) {
+query GameQuery {
+  guess {
     id
     category
     name
