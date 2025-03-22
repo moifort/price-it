@@ -20,6 +20,7 @@ const props = defineProps<{
 const noMoreFund = computed(() => props.score < props.amount)
 const success = ref(false)
 const loading = ref(false)
+const error = ref(false)
 const buyProduct = async (id: ShopProductId) => {
   loading.value = true
   try {
@@ -27,6 +28,10 @@ const buyProduct = async (id: ShopProductId) => {
     success.value = true
     await new Promise((resolve) => setTimeout(resolve, 1000))
     success.value = false
+  } catch (e) {
+    error.value = true
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    error.value = false
   } finally {
     loading.value = false
   }
@@ -56,6 +61,7 @@ const buyProduct = async (id: ShopProductId) => {
               @click="!loading && buyProduct(id)"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
         <template v-if="success" class="w-16"> <Check/> </template>
+        <template v-else-if="error" class="w-16"> <Check/> </template>
         <template v-else-if="loading"  class="w-16"> <LoaderCircle class="animate-spin duration-500"/> </template>
         <template v-else><ShoppingBag class="w-3 h-3 mr-1" />{{ formatNumber(amount) }}pts</template>
       </Button>

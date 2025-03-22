@@ -6,8 +6,7 @@ import type { ShopProductId } from '../../back/src/shop/types'
 
 // TODO: implement payment https://core.telegram.org/bots/payments-stars et back npm node-telegram-bot-api
 const { open: openInvoice } = useInvoice()
-// const { data, status, refresh } = useAsyncGql('ShopProducts')
-const message = ref('')
+const { data, status } = useAsyncGql('ShopQuery')
 const buy = async (id?: ShopProductId) => {
   try {
     // const { buyProduct } = await GqlShopBuyProduct({ id })
@@ -26,13 +25,11 @@ const buy = async (id?: ShopProductId) => {
 </script>
 
 <template>
-  <Button @click="buy()">Refresh</Button>
-  {{ message }}
-<!--  <Shop-->
-<!--      :score="status === 'success' ? data.me.score : Score(0)"-->
-<!--      :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"-->
-<!--      :products="status === 'success' ? data.shopProducts :  []"-->
-<!--      :buy="buy"-->
-<!--  />-->
+  <Shop
+      :score="status === 'success' ? data.me.score : Score(0)"
+      :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
+      :products="status === 'success' ? data.shopProducts :  []"
+      :buy="buy"
+  />
 </template>
 
