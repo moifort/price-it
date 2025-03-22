@@ -32,6 +32,7 @@ export const resolvers: Resolvers = {
     shopProducts: () => ShopQuery.getProducts(),
   },
   Mutation: {
+    // TODO: remove this function
     buyProduct: async (_, { id }, { database, runTaskQueue, userId }) => {
       const product = ShopQuery.getProducts().find((p) => p.id === id)!
       const paymentId = uuid()

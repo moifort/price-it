@@ -2,9 +2,10 @@
 import AirdropComponent from '~/components/pages/Airdrop.vue'
 import type { WalletId } from '../../back/src/airdrop/types'
 
-const { data, refresh } = useAsyncGql('AirdropWalletId')
+const { data, refresh } = useAsyncGql('AirdropQuery')
 const save = async (walletId: WalletId) => {
-  await GqlAirdropSetWalletId({ walletId })
+  // TODO: Add analytics
+  await GqlAirdropCommandSetWalletId({ walletId })
   await refresh()
 }
 </script>

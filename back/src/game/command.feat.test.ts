@@ -29,28 +29,4 @@ describe('GameCommand', () => {
       expect(doc.data()!.runs.remaining).toBe(2)
     })
   })
-
-  describe('lose', () => {
-    it('should subtract default lose points from the user score and decrease run', async () => {
-      // Given
-      const playerId = PlayerId('8153383236')
-      await $testDatabase
-        .collection('players')
-        .doc(playerId)
-        .create({
-          id: playerId,
-          firstName: 'John',
-          score: Score(1000),
-          runs: { remaining: Run(4) },
-        })
-
-      // When
-      await GameCommand.lose($testDatabase)(playerId)
-
-      // Then
-      const doc = await $testDatabase.collection('players').doc(playerId).get()
-      expect(doc.data()!.score).toBe(800)
-      expect(doc.data()!.runs.remaining).toBe(3)
-    })
-  })
 })

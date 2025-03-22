@@ -3,6 +3,7 @@ import { genericDataConverter } from '../../utils/firestore'
 import type { Limit } from '../../utils/types'
 import type { Product } from '../types'
 
+// TODO: Add tests
 export const findAll = (db: Firestore) => async (limit: Limit) => {
   const snapshot = await collection(db).limit(limit).get()
   return snapshot.docs.map((doc) => doc.data())

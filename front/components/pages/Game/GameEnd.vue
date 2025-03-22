@@ -3,6 +3,7 @@ import { Home, Rocket, Sparkles, Trophy } from 'lucide-vue-next'
 import Game from '~/components/template/Game.vue'
 import type { Score } from '../../../../back/src/score/types'
 
+// TODO: Add combien points gagné, combien de tour perdu/gagné, combien de temps passé, meilleur temps etc?
 defineProps<{ score: Score }>()
 defineEmits<(e: 'click:exit') => void>()
 </script>

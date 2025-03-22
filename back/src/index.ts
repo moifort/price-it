@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase-admin/app'
 import { TaskQueue } from 'firebase-admin/functions'
 import { setGlobalOptions } from 'firebase-functions'
 
+// TODO: Feat ecrire dans le chat de telegram
 export const $app = initializeApp()
 
 if (process.env.FUNCTIONS_EMULATOR) {

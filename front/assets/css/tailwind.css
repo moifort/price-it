@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/*TODO: Fix zoom to double tap*/
+/*TODO: no select text*/
+/*TODO: scroll on refresh*/
+
 @layer base {
   :root {
     --background: 0 0% 100%;

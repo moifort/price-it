@@ -4,6 +4,7 @@ import { findBy, increment, update } from './infra/repository'
 import type { Point, Score } from './types'
 import { Score as ScoreValidator } from './validators'
 
+// TODO: Delete substractPoints
 export namespace ScoreCommand {
   export const create = (database: Database) => (userId: UserId, score: Score) => update(database)(userId, score)
 

@@ -32,6 +32,7 @@ export const graphQlServer = async (
     typeDefs: mergeTypeDefs(typeDefFiles),
     resolvers: mergeResolvers<unknown, GraphQlContext>(resolverFiles),
     plugins: [
+      // TODO: rajouter sentry bug tracking + perf
       errorLoggingPlugin(),
       isDev
         ? ApolloServerPluginLandingPageLocalDefault({
@@ -59,6 +60,7 @@ export const graphQlServer = async (
         if (!authorization) throw new AuthenticationError()
         const authData = authorization.split(' ')[1]
         if (!authData) throw new AuthenticationError()
+        // TODO: rajouter expiration du token
         if (!isDev && !isValid(authData, token)) throw new AuthenticationError()
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()

@@ -1,4 +1,4 @@
-query Game($limit: Limit!) {
+query GameQuery($limit: Limit!) {
   products(limit: $limit) {
     id
     category
@@ -15,10 +15,10 @@ query Game($limit: Limit!) {
   }
 }
 
-mutation GameWinCommand {
+mutation GameCommandWin {
   win
 }
 
-mutation GameLoseCommand {
+mutation GameCommandLose {
   lose
 }

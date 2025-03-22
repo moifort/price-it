@@ -4,6 +4,7 @@ import type { UserId } from '../../user/types'
 import { genericDataConverter } from '../../utils/firestore'
 import type { Airdrop } from '../types'
 
+// TODO: Add tests
 export const isExist = (db: Firestore) => async (id: UserId) => {
   const doc = await collection(db).doc(id).get()
   return doc.exists

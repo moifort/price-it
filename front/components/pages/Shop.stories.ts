@@ -46,7 +46,6 @@ export const Default: Story = {
       },
     ],
     buy: async () => new Promise((resolve) => setTimeout(resolve, 1500)),
-    buyPoints: async () => new Promise((resolve) => setTimeout(resolve, 1500)),
   },
 }
 

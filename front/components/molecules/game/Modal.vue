@@ -8,7 +8,9 @@ import type { Amount, Url } from '../../../../back/src/utils/types'
 defineProps<{ close?: () => void; price: Amount; productLink: Url }>()
 const isOpen = ref(true)
 const openProductLink = (url: Url) => {
+  // TODO: Add analytics open product link
   if (openLink.isAvailable()) {
+    // TODO: fix url qui s'ouvre en text chez Jo
     openLink(url, { tryInstantView: true })
   } else {
     window.open(url, 'blank_')
