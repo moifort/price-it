@@ -8,6 +8,7 @@ import type { UserId } from '../user/types'
 import { findProductById } from './infra/repository'
 import type { ShopProductId } from './types'
 
+// TODO: Add tests
 export namespace ShopCommand {
   export const buy =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) => async (userId: UserId, id: ShopProductId) => {

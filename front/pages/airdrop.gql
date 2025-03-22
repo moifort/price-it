@@ -1,4 +1,4 @@
-query AirdropWalletId {
+query AirdropQuery {
   me {
     airdrop {
       walletId
@@ -6,6 +6,6 @@ query AirdropWalletId {
   }
 }
 
-mutation AirdropSetWalletId($walletId: WalletId!) {
+mutation AirdropCommandSetWalletId($walletId: WalletId!) {
   setWalletId(walletId: $walletId)
 }

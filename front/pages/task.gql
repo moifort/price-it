@@ -1,0 +1,8 @@
+query TaskQuery {
+  me {
+    score
+    runs {
+      remaining
+    }
+  }
+}

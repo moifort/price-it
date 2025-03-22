@@ -3,6 +3,7 @@ import type { UserId } from '../../user/types'
 import { genericDataConverter } from '../../utils/firestore'
 import type { Player } from '../types'
 
+// TODO: Add tests
 export const findById = (db: Firestore) => async (id: UserId) => {
   const doc = await collection(db).doc(id).get()
   const player = doc.data()

@@ -1,4 +1,4 @@
-query ShopProducts {
+query ShopQuery {
   me {
     score
     runs {
@@ -13,6 +13,6 @@ query ShopProducts {
   }
 }
 
-mutation ShopBuyProduct($id: ShopProductId!) {
+mutation ShopCommandBuy($id: ShopProductId!) {
   buyProduct(id: $id)
 }

@@ -7,6 +7,7 @@ import { RunCommand } from './command'
 import { RunQuery } from './query'
 import type { TaskRunReset } from './types'
 
+// TODO: Refactor extraire les fonctions dans l'infra
 export const RUN_RESET_TASK_QUEUE_URL = 'locations/europe-west3/functions/run-reset'
 
 export const reset = onTaskDispatched<TaskRunReset>(async ({ data }) => {

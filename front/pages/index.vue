@@ -11,6 +11,7 @@ const removeListener = on('visibility_changed', ({ is_visible }) => {
   if (is_visible) refresh()
 })
 onUnmounted(() => removeListener())
+// TODO: Add analytics on startGame
 </script>
 
 <template>

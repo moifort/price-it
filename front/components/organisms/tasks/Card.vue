@@ -1,23 +1,10 @@
 <script setup lang="ts">
 import { Card } from '~/components/atoms/card'
+import { formatNumber } from '~/utils/utils'
 import type { Point } from '../../../../back/src/score/types'
-import { formatNumber } from '../../../utils/utils'
 
+// TODO: Add analytics
 defineProps<{ points: Point; brand: string }>()
-
-// const success = ref(false)
-// const loading = ref(false)
-// const buyProduct = async (id: ShopProductId) => {
-//   loading.value = true
-//   try {
-//     await props.buy(id)
-//     success.value = true
-//     await new Promise((resolve) => setTimeout(resolve, 1000))
-//     success.value = false
-//   } finally {
-//     loading.value = false
-//   }
-// }
 </script>
 
 <template>

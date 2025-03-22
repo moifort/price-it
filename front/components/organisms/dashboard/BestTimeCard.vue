@@ -2,7 +2,6 @@
 import { Clock, ShoppingBag, Zap } from 'lucide-vue-next'
 import { Badge } from '~/components/atoms/badge'
 import { formatNumber } from '~/utils/utils'
-import { Run } from '../../../../back/src/run/validators'
 import type { Seconde } from '../../../../back/src/utils/types'
 
 defineProps<{ time: Seconde; bonus: Seconde }>()

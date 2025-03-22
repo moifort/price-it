@@ -1,4 +1,4 @@
-query TopPlayers($limit: Limit!) {
+query TopQuery($limit: Limit!) {
   topPlayers(limit: $limit) {
     rank
     id

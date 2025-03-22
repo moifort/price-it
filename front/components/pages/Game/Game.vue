@@ -4,10 +4,7 @@ import Game from '~/components/template/Game.vue'
 import type { Run } from '../../../../back/src/run/types'
 import type { Score } from '../../../../back/src/score/types'
 
-const { runsLeft } = defineProps<{
-  score: Score
-  runsLeft: Run
-}>()
+const { runsLeft } = defineProps<{ score: Score; runsLeft: Run }>()
 defineEmits<(e: 'click:exit') => void>()
 </script>
 
