@@ -8,7 +8,7 @@ import type { ShopProductId } from '../../back/src/shop/types'
 const { open: openInvoice } = useInvoice()
 // const { data, status, refresh } = useAsyncGql('ShopProducts')
 const message = ref('')
-const buy = async (id: ShopProductId) => {
+const buy = async (id?: ShopProductId) => {
   try {
     // const { buyProduct } = await GqlShopBuyProduct({ id })
     const paymentResult = await openInvoice(
