@@ -13,6 +13,7 @@ import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
 import type { ShopProductId } from '../../shop/types';
+import type { TelegramStar } from '../../utils/telegram/types';
 import type { Url } from '../../utils/types';
 import type { PlayerId } from '../../player/types';
 import type { WalletId } from '../../airdrop/types';
@@ -47,6 +48,7 @@ export type Scalars = {
   Score: { input: Score; output: Score; }
   Seconde: { input: Seconde; output: Seconde; }
   ShopProductId: { input: ShopProductId; output: ShopProductId; }
+  TelegramStar: { input: TelegramStar; output: TelegramStar; }
   Url: { input: Url; output: Url; }
   UserId: { input: PlayerId; output: PlayerId; }
   WalletId: { input: WalletId; output: WalletId; }
@@ -234,6 +236,7 @@ export type ResolversTypes = {
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
   ShopProduct: ResolverTypeWrapper<ShopProduct>;
   ShopProductId: ResolverTypeWrapper<Scalars['ShopProductId']['output']>;
+  TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
@@ -266,6 +269,7 @@ export type ResolversParentTypes = {
   Seconde: Scalars['Seconde']['output'];
   ShopProduct: ShopProduct;
   ShopProductId: Scalars['ShopProductId']['output'];
+  TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
   Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
@@ -386,6 +390,10 @@ export interface ShopProductIdScalarConfig extends GraphQLScalarTypeConfig<Resol
   name: 'ShopProductId';
 }
 
+export interface TelegramStarScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['TelegramStar'], any> {
+  name: 'TelegramStar';
+}
+
 export type TopPlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TopPlayer'] = ResolversParentTypes['TopPlayer']> = {
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -428,6 +436,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Seconde?: GraphQLScalarType;
   ShopProduct?: ShopProductResolvers<ContextType>;
   ShopProductId?: GraphQLScalarType;
+  TelegramStar?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
   UserId?: GraphQLScalarType;

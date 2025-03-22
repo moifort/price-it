@@ -862,6 +862,17 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "TelegramStar",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "TopPlayer",
         "description": null,

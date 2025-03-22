@@ -40,6 +40,7 @@ generates:
         PercentagePoint: '../../utils/types#PercentagePoint'
         Url: '../../utils/types#Url'
         Quantity: '../../utils/types#Quantity'
+        TelegramStar: '../../utils/telegram/types#TelegramStar'
         Run: '../../run/types#Run'
         ProductId: '../../product/types#ProductId'
         ShopProductId: '../../shop/types#ShopProductId'

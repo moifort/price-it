@@ -14,6 +14,8 @@ import type {
   Url as UrlType,
 } from '../types'
 import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from '../validators'
+import type { TelegramStar as TelegramStarType } from '../telegram/types'
+import { TelegramStar } from '../telegram/validators'
 
 const MinuteScalar = new GraphQLScalarType({
   name: 'Minute',
@@ -79,6 +81,14 @@ const QuantityScalar = new GraphQLScalarType({
   parseLiteral: (ast) => (ast.kind === Kind.INT ? Quantity(Number.parseInt(ast.value, 10)) : null),
 })
 
+const TelegramStarScalar = new GraphQLScalarType({
+  name: 'TelegramStar',
+  description: 'The `TelegramStar` scalar type represents a star rating as an integer between 1 and 5.',
+  parseValue: (value: unknown): TelegramStarType => TelegramStar(Number(value)),
+  serialize: (value: unknown) => TelegramStar(Number(value)),
+  parseLiteral: (ast) => (ast.kind === Kind.INT ? TelegramStar(Number.parseInt(ast.value, 10)) : null),
+})
+
 export const resolvers: Resolvers = {
   DateTime: DateTimeResolver,
   Minute: MinuteScalar,
@@ -89,4 +99,5 @@ export const resolvers: Resolvers = {
   PercentagePoint: PercentagePointScalar,
   Url: UrlScalar,
   Quantity: QuantityScalar,
+  TelegramStar: TelegramStarScalar,
 }

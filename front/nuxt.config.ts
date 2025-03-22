@@ -29,6 +29,7 @@ export default defineNuxtConfig({
         Score: '../../../back/src/score/types#Score',
         Point: '../../../back/src/score/types#Point',
         Minute: '../../../back/src/utils/types#Minute',
+        TelegramStar: '../../../back/src/utils/telegram/types#TelegramStar',
         Seconde: '../../../back/src/utils/types#Seconde',
         Limit: '../../../back/src/utils/types#Limit',
         Percentage: '../../../back/src/utils/types#Percentage',
