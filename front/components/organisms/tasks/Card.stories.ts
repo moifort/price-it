@@ -7,9 +7,5 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    brand: 'youtube',
-    color: 'red-700',
-    points: Point(3000),
-  },
+  args: { brand: 'youtube', points: Point(3000) },
 }

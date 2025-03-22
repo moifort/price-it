@@ -9,6 +9,7 @@ import { UserCommand } from '../user/command'
 import { UserQuery } from '../user/query'
 import type { UserId } from '../user/types'
 
+// TODO: Add tests
 export namespace PlayerCommand {
   export const createIfNotExist =
     (database: Database, runTaskQueue: TaskQueue<TaskRunReset>) => async (id: UserId, firstName: string) => {

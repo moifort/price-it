@@ -22,21 +22,29 @@ const next = async (playerGuess: 'less' | 'exact' | 'more', ref?: unknown) => {
   counterPlay.value = false
   const guess: Guess = playerGuess === expectedGuess ? 'win' : 'lose'
   if (guess === 'win') {
-    await GqlGameWinCommand()
+    // TODO: Add analytics
+    await GqlGameCommandWin()
     await $open(WinModal, { price: product.price, productLink: product.url })
   }
   if (guess === 'lose') {
-    await GqlGameLoseCommand()
+    // TODO: Add analytics
+    await GqlGameCommandLose()
     await $open(LoseModal, { price: product.price, productLink: product.url })
   }
   await router.push(`/game/${index + 1}`)
 }
 
 const timeout = async () => {
-  await GqlGameLoseCommand()
+  // TODO: Add analytics
+  await GqlGameCommandLose()
   await $open(TimeoutModal, { price: product.price, productLink: product.url })
   await router.push(`/game/${index + 1}`)
 }
+// TODO: Think simplifier l'écran, le rendre moins hostère
+// TODO: Add le titre en haut de l'écran et le timer sur le coté
+// TODO: Add une description en bas
+// TODO: Think de retirer les modales
+// TODO: Add une animation de bulle qui monte avec les points gagnés ou perdus
 </script>
 
 <template>

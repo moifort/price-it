@@ -33,11 +33,13 @@ const saveWallet = async (walletId: WalletIdType | undefined) => {
     <template #body>
       <Card>
         <CardHeader>
+<!--          TODO: Add a piggy bank avec de l'argent qui s'incrémente -->
           <CardTitle class="flex text-2xl items-center">Participate and earn coins ! </CardTitle>
           <CardDescription>An airdrop is the distribution of tokens to players' wallets. These tokens will be exchanged on the main exchanges, and you can either sell them or keep them. To receive your tokens, you need to complete the two tasks above.</CardDescription>
           <CardDescription>
             <div class="flex w-full max-w items-center gap-1.5 my-2">
               <div class="relative w-full max-w items-center">
+<!--                TODO: Fix le clavier du téléphone ne se ferme pas quand on clique a coté -->
                 <Input v-model="walletIdRef" type="text" placeholder="Wallet Id" class="pl-10" />
                 <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
                   <Wallet2 class="size-5 text-muted-foreground" />

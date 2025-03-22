@@ -5,6 +5,7 @@ import { Point } from '../score/validators'
 import type { UserId } from '../user/types'
 import { GameQuery } from './query'
 
+// TODO: Sauvegarder le cursor d'ou se trouve le joueur dans liste
 export namespace GameCommand {
   export const win = (database: Database) => async (userId: UserId) => {
     await Promise.all([
@@ -13,10 +14,5 @@ export namespace GameCommand {
     ])
   }
 
-  export const lose = (database: Database) => async (userId: UserId) => {
-    await Promise.all([
-      ScoreCommand.subtractPoints(database)(userId, GameQuery.DEFAULT_LOSE_POINTS),
-      RunCommand.decrease(database)(userId),
-    ])
-  }
+  export const lose = (database: Database) => (userId: UserId) => RunCommand.decrease(database)(userId)
 }

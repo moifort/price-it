@@ -6,10 +6,13 @@ import type { Run } from '../../back/src/run/types'
 import { Limit, Seconde } from '../../back/src/utils/validators'
 
 definePageMeta({ layout: 'fullscreen' })
+
 const router = useRouter()
 const route = useRoute()
 const remainingRuns = getIntQuery<Run>('remainingRuns')
-const { data, status, refresh } = useAsyncGql('Game', { limit: Limit(Number(remainingRuns) ?? 0) })
+
+// TODO: utiliser le remaining coté back pour retourner la limite
+const { data, status, refresh } = useAsyncGql('GameQuery', { limit: Limit(Number(remainingRuns) ?? 0) })
 const index = ref(0)
 watch(
   () => route.params.id,
