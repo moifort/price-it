@@ -1,7 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import { Period, ProductId, Category } from '../validators'
+import { Category, Period, ProductId } from '../validators'
 
 const ProductIdScalar = new GraphQLScalarType({
   name: 'ProductId',

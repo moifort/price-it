@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { ProductId, Category } from './validators'
+import { Category, ProductId } from './validators'
 
 describe('ProductId', () => {
   it('should accept valid non-empty strings', () => {
