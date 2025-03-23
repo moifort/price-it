@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { Run } from '../../../back/src/run/validators'
-import { Point, Score } from '../../../back/src/score/validators'
+import { Score } from '../../../back/src/score/validators'
 import { ProductId } from '../../../back/src/shop-product/validators'
+import { TelegramStar } from '../../../back/src/utils/telegram/validators'
 import { Minute, Quantity } from '../../../back/src/utils/validators'
 import component from './Shop.vue'
 
@@ -16,43 +17,41 @@ export const Default: Story = {
     products: [
       {
         id: ProductId('shop-product-5-run-60-minutes'),
-        amount: Point(10000),
+        amount: TelegramStar(1000),
         period: Minute(60),
         quantity: Quantity(5),
+        category: 'run' as const,
       },
       {
         id: ProductId('shop-product-5-run-all-time'),
-        amount: Point(50000),
+        amount: TelegramStar(500),
         period: 'all-time' as const,
         quantity: Quantity(5),
+        category: 'run' as const,
       },
       {
         id: ProductId('shop-product-10-run-60-minutes'),
-        amount: Point(17000),
+        amount: TelegramStar(170),
         period: Minute(60),
         quantity: Quantity(10),
+        category: 'run' as const,
       },
       {
         id: ProductId('shop-product-10-run-all-time'),
-        amount: Point(70000),
+        amount: TelegramStar(700),
         period: 'all-time' as const,
         quantity: Quantity(10),
+        category: 'score' as const,
       },
       {
         id: ProductId('shop-product-20-run-all-time'),
-        amount: Point(100000),
+        amount: TelegramStar(100),
         period: 'all-time' as const,
         quantity: Quantity(20),
+        category: 'score' as const,
       },
     ],
     buy: async () => new Promise((resolve) => setTimeout(resolve, 1500)),
-  },
-}
-
-export const NoFund: Story = {
-  args: {
-    ...Default.args,
-    score: Score(0),
   },
 }
 

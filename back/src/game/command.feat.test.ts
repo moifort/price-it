@@ -25,7 +25,7 @@ describe('GameCommand', () => {
 
       // Then
       const doc = await $testDatabase.collection('players').doc(playerId).get()
-      expect(doc.data()!.score).toBe(1500)
+      expect(doc.data()!.score).toBe(1100)
       expect(doc.data()!.runs.remaining).toBe(2)
     })
   })

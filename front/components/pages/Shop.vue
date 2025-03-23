@@ -5,7 +5,7 @@ import Loading from '~/components/organisms/shop/Loading.vue'
 import ShopTemplate from '~/components/template/Shop.vue'
 import type { Run } from '../../../back/src/run/types'
 import type { Score } from '../../../back/src/score/types'
-import { Category, type Period, type ProductId } from '../../../back/src/shop-product/types'
+import type { Category, Period, ProductId } from '../../../back/src/shop-product/types'
 import type { TelegramStar } from '../../../back/src/utils/telegram/types'
 import type { Quantity as QuantityTYpe } from '../../../back/src/utils/types'
 
