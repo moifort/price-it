@@ -3,7 +3,11 @@ import { Limit } from '../../utils/validators'
 import { LeaderboardQuery } from '../query'
 
 export const resolvers: Resolvers = {
-  Query: {
+  LeaderboardQuery: {
     topPlayers: (_, { limit }, { database }) => LeaderboardQuery.getTopPlayers(database)(Limit(limit)),
+  },
+  Query: {
+    // @ts-ignore
+    leaderboard: () => ({}),
   },
 }

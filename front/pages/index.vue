@@ -6,12 +6,14 @@ import { Score } from '../../back/src/score/validators'
 import { Seconde } from '../../back/src/utils/validators'
 
 const router = useRouter()
-const { data, status, refresh } = useAsyncGql({ operation: 'Player' })
+const { data, status, refresh } = useAsyncGql({ operation: 'PlayerQuery' })
 const removeListener = on('visibility_changed', ({ is_visible }) => {
   if (is_visible) refresh()
 })
 onUnmounted(() => removeListener())
 // TODO: Add analytics on startGame
+// TODO: Reduire la taille de la page
+// TODO: Add end to end test
 </script>
 
 <template>
@@ -22,7 +24,7 @@ onUnmounted(() => removeListener())
              :run-renew-at="status === 'success' ? data.me.runs.renewAt : $dayjs().subtract(2, 'hours').toDate()"
              :run-bonus="Run(0)"
              :time-bonus="Seconde(0)"
-             @click:startGame="router.push(`/game/0?remainingRuns=${data.me.runs.remaining}`)"
+             @click:startGame="router.push(`/game/0`)"
              @click:buy-runs="router.push(`/shop`)"
              @click:buy-time="router.push(`/shop`)"
   />

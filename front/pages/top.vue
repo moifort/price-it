@@ -7,6 +7,6 @@ const { data, status } = useAsyncGql('TopQuery', { limit: Limit(30) })
 </script>
 
 <template>
-  <Leaderboard :top-players="status === 'success' ? data.topPlayers : []" />
+  <Leaderboard :top-players="status === 'success' ? data.leaderboard.topPlayers : []" />
 </template>
 

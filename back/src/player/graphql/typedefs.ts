@@ -7,11 +7,15 @@ type Player {
     airdrop: Airdrop
 }
 
-type Mutation {
-    createPlayerIfNotExist: UserId!
+extend type Query {
+    me: Player!
 }
 
-type Query {
-    me: Player!
+type PlayerMutation {
+    createIfNotExist: Boolean!
+}
+
+extend type Mutation {
+   me: PlayerMutation!
 }
 `

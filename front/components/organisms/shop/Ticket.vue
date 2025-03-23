@@ -2,18 +2,18 @@
 import { Check, LoaderCircle, Trophy } from 'lucide-vue-next'
 import { Card } from '~/components/atoms/card'
 import { formatNumber } from '~/utils/utils'
-import type { ShopProductId } from '../../../../back/src/shop/types'
+import type { ProductId } from '../../../../back/src/shop-product/types'
 import type { Quantity } from '../../../../back/src/utils/types'
 
 const props = defineProps<{
-  id: ShopProductId
+  id: ProductId
   quantity: Quantity
-  buy: (id: ShopProductId) => Promise<void>
+  buy: (id: ProductId) => Promise<void>
 }>()
 
 const success = ref(false)
 const loading = ref(false)
-const buy = async (id: ShopProductId) => {
+const buy = async (id: ProductId) => {
   loading.value = true
   try {
     await props.buy(id)

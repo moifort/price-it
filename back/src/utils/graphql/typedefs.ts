@@ -8,4 +8,5 @@ scalar Amount
 scalar PercentagePoint
 scalar Url
 scalar Quantity
+scalar TelegramStar
 `

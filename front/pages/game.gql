@@ -1,12 +1,17 @@
-query GameQuery($limit: Limit!) {
-  products(limit: $limit) {
-    id
-    category
-    name
-    price
-    image
-    url
+query GameGuessesQuery {
+  game {
+    guesses {
+      id
+      category
+      name
+      price
+      image
+      url
+    }
   }
+}
+
+query GameQuery {
   me {
     score
     runs {
@@ -16,9 +21,13 @@ query GameQuery($limit: Limit!) {
 }
 
 mutation GameCommandWin {
-  win
+  game {
+    win
+  }
 }
 
 mutation GameCommandLose {
-  lose
+  game {
+    lose
+  }
 }

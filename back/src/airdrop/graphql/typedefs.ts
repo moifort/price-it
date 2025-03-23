@@ -2,10 +2,14 @@ export default `#graphql
 scalar WalletId
 
 type Airdrop {
-   walletId: WalletId
+    walletId: WalletId
+}
+
+type AirdropMutation {
+    updateWalletId(walletId: WalletId!): Boolean!
 }
 
 extend type Mutation {
-  setWalletId(walletId: WalletId!): Boolean!
+    airdrop: AirdropMutation!
 }
 `

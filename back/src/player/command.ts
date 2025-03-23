@@ -26,6 +26,6 @@ export namespace PlayerCommand {
           ),
         ])
       }
-      return id
+      return exists
     }
 }

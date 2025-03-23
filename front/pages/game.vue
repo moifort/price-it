@@ -9,41 +9,34 @@ definePageMeta({ layout: 'fullscreen' })
 
 const router = useRouter()
 const route = useRoute()
-const remainingRuns = getIntQuery<Run>('remainingRuns')
-
-// TODO: utiliser le remaining coté back pour retourner la limite
-const { data, status, refresh } = useAsyncGql('GameQuery', { limit: Limit(Number(remainingRuns) ?? 0) })
+const { data, refresh: refreshStats } = useAsyncGql('GameQuery')
+const { status: productStatus, data: guessesData } = useAsyncGql('GameGuessesQuery')
 const index = ref(0)
 watch(
   () => route.params.id,
   (value) => {
     index.value = Number(value)
-    refresh()
+    refreshStats()
   },
 )
-
 const isStartingFinish = ref(false)
 </script>
 
 <template>
-  <div v-if="index < remainingRuns">
-    <Game v-if="( status === 'success' || index > 0) && isStartingFinish"
+  <GameStart v-if="!isStartingFinish && productStatus === 'pending'" @complete="() => isStartingFinish = true" />
+  <Game v-else-if="productStatus === 'success' && index < guessesData.game.guesses.length"
           :score="data.me.score"
           :runs-left="data.me.runs.remaining"
           @click:exit="router.push('/')"
     >
       <template #body>
         <NuxtPage
-            :product="data.products[index]"
+            :product="guessesData.game.guesses[index]"
             :totalTime="Seconde(10)"
             :page-key="index.toString()"
         />
       </template>
     </Game>
-    <GameStart v-else @complete="() => isStartingFinish = true" />
-  </div>
-  <div v-else>
-    <GameEnd @click:exit="router.push('/')" :score="data.me.score" />
-  </div>
+    <GameEnd v-else-if="index === guessesData.game.guesses.length" @click:exit="router.push('/')" :score="data.me.score" />
 </template>
 
