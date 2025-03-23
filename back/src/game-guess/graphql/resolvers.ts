@@ -1,7 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import { GuessableQuery } from '../query'
+import { GuessQuery } from '../query'
 import type { GuessId as GuessIdType } from '../types'
 import { GuessId } from '../validators'
 
@@ -16,6 +16,6 @@ const GuessIdScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   GuessId: GuessIdScalar,
   Query: {
-    guess: (_, __, { database, userId }) => GuessableQuery.getAll(database)(userId),
+    guess: (_, __, { database, userId }) => GuessQuery.getAll(database)(userId),
   },
 }

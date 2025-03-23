@@ -1,4 +1,4 @@
-query GameQuery {
+query GameGuessesQuery {
   guess {
     id
     category
@@ -7,6 +7,9 @@ query GameQuery {
     image
     url
   }
+}
+
+query GameQuery {
   me {
     score
     runs {

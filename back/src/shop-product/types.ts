@@ -1,13 +1,17 @@
 import type { Brand } from 'ts-brand'
-import type { Amount, Url } from '../utils/types'
+import type { Point } from '../score/types'
+import type { Minute, Quantity } from '../utils/types'
 
 export type ProductId = Brand<string, 'ProductId'>
-// TODO: Add description field
+export type Category = 'run' | 'time' | 'score'
+export type Period = Minute | 'all-time'
+
 export type Product = {
   id: ProductId
   name: string
-  image: Url
-  price: Amount
-  category: string
-  url: Url
+  description: string
+  category: Category
+  amount: Point
+  period: Period
+  quantity: Quantity
 }

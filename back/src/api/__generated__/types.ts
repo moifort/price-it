@@ -7,11 +7,11 @@ import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
 import type { Period } from '../../shop/types';
 import type { Point } from '../../score/types';
+import type { ProductId } from '../../product/types';
 import type { Quantity } from '../../utils/types';
 import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
-import type { ShopProductId } from '../../shop/types';
 import type { TelegramStar } from '../../utils/telegram/types';
 import type { Url } from '../../utils/types';
 import type { PlayerId } from '../../player/types';
@@ -42,11 +42,11 @@ export type Scalars = {
   PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
   Period: { input: Period; output: Period; }
   Point: { input: Point; output: Point; }
+  ProductId: { input: ProductId; output: ProductId; }
   Quantity: { input: Quantity; output: Quantity; }
   Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
   Seconde: { input: Seconde; output: Seconde; }
-  ShopProductId: { input: ShopProductId; output: ShopProductId; }
   TelegramStar: { input: TelegramStar; output: TelegramStar; }
   Url: { input: Url; output: Url; }
   UserId: { input: PlayerId; output: PlayerId; }
@@ -62,6 +62,7 @@ export type Airdrop = {
 export type Guess = {
   __typename?: 'Guess';
   category: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
   id: Scalars['GuessId']['output'];
   image: Scalars['Url']['output'];
   name: Scalars['String']['output'];
@@ -71,16 +72,11 @@ export type Guess = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  buyProduct: Scalars['String']['output'];
   createPlayerIfNotExist: Scalars['UserId']['output'];
   lose: Scalars['Boolean']['output'];
   setWalletId: Scalars['Boolean']['output'];
+  shop: ShopMutation;
   win: Scalars['Boolean']['output'];
-};
-
-
-export type MutationBuyProductArgs = {
-  id: Scalars['ShopProductId']['input'];
 };
 
 
@@ -97,11 +93,22 @@ export type Player = {
   score: Scalars['Score']['output'];
 };
 
+export type Product = {
+  __typename?: 'Product';
+  amount: Scalars['Point']['output'];
+  category: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  id: Scalars['ProductId']['output'];
+  name: Scalars['String']['output'];
+  period: Scalars['Period']['output'];
+  quantity: Scalars['Quantity']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
   guess: Array<Guess>;
   me: Player;
-  shopProducts: Array<ShopProduct>;
+  shop: ShopQuery;
   topPlayers: Array<TopPlayer>;
 };
 
@@ -117,15 +124,19 @@ export type Runs = {
   total: Scalars['Run']['output'];
 };
 
-export type ShopProduct = {
-  __typename?: 'ShopProduct';
-  amount: Scalars['Point']['output'];
-  category: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  id: Scalars['ShopProductId']['output'];
-  name: Scalars['String']['output'];
-  period: Scalars['Period']['output'];
-  quantity: Scalars['Quantity']['output'];
+export type ShopMutation = {
+  __typename?: 'ShopMutation';
+  invoice: Scalars['String']['output'];
+};
+
+
+export type ShopMutationInvoiceArgs = {
+  productId: Scalars['ProductId']['input'];
+};
+
+export type ShopQuery = {
+  __typename?: 'ShopQuery';
+  products: Array<Product>;
 };
 
 export type TopPlayer = {
@@ -222,14 +233,16 @@ export type ResolversTypes = {
   Period: ResolverTypeWrapper<Scalars['Period']['output']>;
   Player: ResolverTypeWrapper<Player>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
+  Product: ResolverTypeWrapper<Product>;
+  ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
   Quantity: ResolverTypeWrapper<Scalars['Quantity']['output']>;
   Query: ResolverTypeWrapper<{}>;
   Run: ResolverTypeWrapper<Scalars['Run']['output']>;
   Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
-  ShopProduct: ResolverTypeWrapper<ShopProduct>;
-  ShopProductId: ResolverTypeWrapper<Scalars['ShopProductId']['output']>;
+  ShopMutation: ResolverTypeWrapper<ShopMutation>;
+  ShopQuery: ResolverTypeWrapper<ShopQuery>;
   TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
@@ -255,14 +268,16 @@ export type ResolversParentTypes = {
   Period: Scalars['Period']['output'];
   Player: Player;
   Point: Scalars['Point']['output'];
+  Product: Product;
+  ProductId: Scalars['ProductId']['output'];
   Quantity: Scalars['Quantity']['output'];
   Query: {};
   Run: Scalars['Run']['output'];
   Runs: Runs;
   Score: Scalars['Score']['output'];
   Seconde: Scalars['Seconde']['output'];
-  ShopProduct: ShopProduct;
-  ShopProductId: Scalars['ShopProductId']['output'];
+  ShopMutation: ShopMutation;
+  ShopQuery: ShopQuery;
   TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
   Int: Scalars['Int']['output'];
@@ -286,6 +301,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type GuessResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Guess'] = ResolversParentTypes['Guess']> = {
   category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['GuessId'], ParentType, ContextType>;
   image?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -307,10 +323,10 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  buyProduct?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationBuyProductArgs, 'id'>>;
   createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;
+  shop?: Resolver<ResolversTypes['ShopMutation'], ParentType, ContextType>;
   win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
@@ -339,6 +355,21 @@ export interface PointScalarConfig extends GraphQLScalarTypeConfig<ResolversType
   name: 'Point';
 }
 
+export type ProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
+  amount?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ProductId'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  period?: Resolver<ResolversTypes['Period'], ParentType, ContextType>;
+  quantity?: Resolver<ResolversTypes['Quantity'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface ProductIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['ProductId'], any> {
+  name: 'ProductId';
+}
+
 export interface QuantityScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Quantity'], any> {
   name: 'Quantity';
 }
@@ -346,7 +377,7 @@ export interface QuantityScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   guess?: Resolver<Array<ResolversTypes['Guess']>, ParentType, ContextType>;
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
-  shopProducts?: Resolver<Array<ResolversTypes['ShopProduct']>, ParentType, ContextType>;
+  shop?: Resolver<ResolversTypes['ShopQuery'], ParentType, ContextType>;
   topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
 
@@ -369,20 +400,15 @@ export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTy
   name: 'Seconde';
 }
 
-export type ShopProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['ShopProduct'] = ResolversParentTypes['ShopProduct']> = {
-  amount?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
-  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ShopProductId'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  period?: Resolver<ResolversTypes['Period'], ParentType, ContextType>;
-  quantity?: Resolver<ResolversTypes['Quantity'], ParentType, ContextType>;
+export type ShopMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['ShopMutation'] = ResolversParentTypes['ShopMutation']> = {
+  invoice?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<ShopMutationInvoiceArgs, 'productId'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export interface ShopProductIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['ShopProductId'], any> {
-  name: 'ShopProductId';
-}
+export type ShopQueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['ShopQuery'] = ResolversParentTypes['ShopQuery']> = {
+  products?: Resolver<Array<ResolversTypes['Product']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export interface TelegramStarScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['TelegramStar'], any> {
   name: 'TelegramStar';
@@ -422,14 +448,16 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Period?: GraphQLScalarType;
   Player?: PlayerResolvers<ContextType>;
   Point?: GraphQLScalarType;
+  Product?: ProductResolvers<ContextType>;
+  ProductId?: GraphQLScalarType;
   Quantity?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
   Run?: GraphQLScalarType;
   Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
   Seconde?: GraphQLScalarType;
-  ShopProduct?: ShopProductResolvers<ContextType>;
-  ShopProductId?: GraphQLScalarType;
+  ShopMutation?: ShopMutationResolvers<ContextType>;
+  ShopQuery?: ShopQueryResolvers<ContextType>;
   TelegramStar?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;

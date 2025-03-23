@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { TelegramToken, TelegramUserId, TelegramStar } from './validators'
+import { TelegramStar, TelegramToken, TelegramUserId } from './validators'
 
 describe('TelegramToken', () => {
   it('should validate proper Telegram token format', () => {

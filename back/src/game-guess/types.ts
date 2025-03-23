@@ -2,7 +2,7 @@ import type { Brand } from 'ts-brand'
 import type { Amount, Url } from '../utils/types'
 
 export type GuessId = Brand<string, 'GuessId'>
-export type Product = {
+export type Guess = {
   id: GuessId
   name: string
   description: string

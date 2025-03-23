@@ -3,6 +3,8 @@ import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
 
+import type { TelegramStar as TelegramStarType } from '../telegram/types'
+import { TelegramStar } from '../telegram/validators'
 import type {
   Amount as AmountType,
   Limit as LimitType,
@@ -14,8 +16,6 @@ import type {
   Url as UrlType,
 } from '../types'
 import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from '../validators'
-import type { TelegramStar as TelegramStarType } from '../telegram/types'
-import { TelegramStar } from '../telegram/validators'
 
 const MinuteScalar = new GraphQLScalarType({
   name: 'Minute',
