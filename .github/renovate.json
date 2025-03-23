@@ -10,7 +10,7 @@
   "platform": "github",
   "packageRules": [
     {
-      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue", "nuxt"],
+      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
     },
     {
