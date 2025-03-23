@@ -41,6 +41,7 @@ export default defineNuxtConfig({
         GuessId: '../../../back/src/game-guess/types#GuessId',
         ProductId: '../../../back/src/shop-product/types#ProductId',
         Period: '../../../back/src/shop-product/types#Period',
+        Category: '../../../back/src/shop-product/types#Category',
         WalletId: '../../../back/src/airdrop/types#WalletId',
       },
     },

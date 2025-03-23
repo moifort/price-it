@@ -103,6 +103,17 @@
       },
       {
         "kind": "SCALAR",
+        "name": "Category",
+        "description": null,
+        "isOneOf": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
         "name": "DateTime",
         "description": null,
         "isOneOf": null,
@@ -676,7 +687,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Category",
                 "ofType": null
               }
             },

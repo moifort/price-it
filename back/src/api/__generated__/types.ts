@@ -1,13 +1,14 @@
 /* eslint-disable */
 // @ts-nocheck
 import type { Amount } from '../../utils/types';
+import type { Category } from '../../shop-product/types';
 import type { Limit } from '../../utils/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
-import type { Period } from '../../product/types';
+import type { Period } from '../../shop-product/types';
 import type { Point } from '../../score/types';
-import type { ProductId } from '../../product/types';
+import type { ProductId } from '../../shop-product/types';
 import type { Quantity } from '../../utils/types';
 import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
@@ -34,6 +35,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   Amount: { input: Amount; output: Amount; }
+  Category: { input: Category; output: Category; }
   DateTime: { input: any; output: any; }
   GuessId: { input: any; output: any; }
   Limit: { input: Limit; output: Limit; }
@@ -126,7 +128,7 @@ export type PlayerMutation = {
 export type Product = {
   __typename?: 'Product';
   amount: Scalars['TelegramStar']['output'];
-  category: Scalars['String']['output'];
+  category: Scalars['Category']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ProductId']['output'];
   name: Scalars['String']['output'];
@@ -247,6 +249,7 @@ export type ResolversTypes = {
   AirdropMutation: ResolverTypeWrapper<AirdropMutation>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
+  Category: ResolverTypeWrapper<Scalars['Category']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   GameMutation: ResolverTypeWrapper<GameMutation>;
   GameQuery: ResolverTypeWrapper<GameQuery>;
@@ -287,6 +290,7 @@ export type ResolversParentTypes = {
   AirdropMutation: AirdropMutation;
   Boolean: Scalars['Boolean']['output'];
   Amount: Scalars['Amount']['output'];
+  Category: Scalars['Category']['output'];
   DateTime: Scalars['DateTime']['output'];
   GameMutation: GameMutation;
   GameQuery: GameQuery;
@@ -333,6 +337,10 @@ export type AirdropMutationResolvers<ContextType = GraphQlContext, ParentType ex
 
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
   name: 'Amount';
+}
+
+export interface CategoryScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Category'], any> {
+  name: 'Category';
 }
 
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
@@ -417,7 +425,7 @@ export interface PointScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 
 export type ProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
   amount?: Resolver<ResolversTypes['TelegramStar'], ParentType, ContextType>;
-  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  category?: Resolver<ResolversTypes['Category'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ProductId'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -498,6 +506,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Airdrop?: AirdropResolvers<ContextType>;
   AirdropMutation?: AirdropMutationResolvers<ContextType>;
   Amount?: GraphQLScalarType;
+  Category?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
   GameMutation?: GameMutationResolvers<ContextType>;
   GameQuery?: GameQueryResolvers<ContextType>;

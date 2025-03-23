@@ -1,7 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import { Period, ProductId } from '../validators'
+import { Period, ProductId, Category } from '../validators'
 
 const ProductIdScalar = new GraphQLScalarType({
   name: 'ProductId',
@@ -23,7 +23,16 @@ const PeriodScalar = new GraphQLScalarType({
   },
 })
 
+const CategoryScalar = new GraphQLScalarType({
+  name: 'Category',
+  description: 'The `Category` scalar type represents product categories: run, time, or score.',
+  parseValue: (value: unknown) => Category(value),
+  serialize: (value: unknown) => value,
+  parseLiteral: (ast) => (ast.kind === Kind.STRING ? Category(ast.value) : null),
+})
+
 export const resolvers: Resolvers = {
   ProductId: ProductIdScalar,
   Period: PeriodScalar,
+  Category: CategoryScalar,
 }
