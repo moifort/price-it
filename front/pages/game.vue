@@ -24,19 +24,19 @@ const isStartingFinish = ref(false)
 
 <template>
   <GameStart v-if="!isStartingFinish && productStatus === 'pending'" @complete="() => isStartingFinish = true" />
-  <Game v-else-if="productStatus === 'success' && index < guessesData.guess.length"
+  <Game v-else-if="productStatus === 'success' && index < guessesData.game.guesses.length"
           :score="data.me.score"
           :runs-left="data.me.runs.remaining"
           @click:exit="router.push('/')"
     >
       <template #body>
         <NuxtPage
-            :product="guessesData.guess[index]"
+            :product="guessesData.game.guesses[index]"
             :totalTime="Seconde(10)"
             :page-key="index.toString()"
         />
       </template>
     </Game>
-    <GameEnd v-else-if="index === guessesData.guess.length" @click:exit="router.push('/')" :score="data.me.score" />
+    <GameEnd v-else-if="index === guessesData.game.guesses.length" @click:exit="router.push('/')" :score="data.me.score" />
 </template>
 

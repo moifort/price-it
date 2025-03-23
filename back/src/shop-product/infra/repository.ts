@@ -1,4 +1,4 @@
-import { Point } from '../../score/validators'
+import { TelegramStar } from '../../utils/telegram/validators'
 import { Minute, Quantity } from '../../utils/validators'
 import type { Product, ProductId } from '../types'
 import { ProductId as ProductIdValidator } from '../validators'
@@ -6,31 +6,58 @@ import { ProductId as ProductIdValidator } from '../validators'
 export const findAll = () =>
   Promise.resolve(<Product[]>[
     {
-      id: ProductIdValidator('5-run-60-minutes'),
-      name: '5 runs all time',
-      description: 'Unlock 5 runs NOW during 60 minutes.Increase your chance to win more points',
-      category: 'run' as const,
-      amount: Point(1000),
-      period: Minute(60),
-      quantity: Quantity(5),
-    },
-    {
-      id: ProductIdValidator('10-run-all-time'),
+      id: ProductIdValidator('10-run-60-minutes'),
       name: '10 runs all time',
-      description: 'Unlock 10 runs NOW during 60 minutes. Increase your chance to win more points',
+      description: 'Unlock 20 runs NOW for all time.Increase your chance to win more points',
       category: 'run' as const,
-      amount: Point(2000),
-      period: Minute(60),
-      quantity: Quantity(10),
+      amount: TelegramStar(15),
+      period: 'all-time',
+      quantity: Quantity(20),
     },
     {
-      id: ProductIdValidator('20-run-all-time'),
-      name: '20 runs all time',
-      description: 'Unlock 20 runs NOW for all time. Increase your chance to win more points',
+      id: ProductIdValidator('50-run-all-time'),
+      name: '50 runs all time',
+      description: 'Unlock 50 runs NOW for all time. Increase your chance to win more points',
       category: 'run' as const,
-      amount: Point(5000),
-      period: 'all-time' as const,
-      quantity: Quantity(20),
+      amount: TelegramStar(30),
+      period: 'all-time',
+      quantity: Quantity(50),
+    },
+    {
+      id: ProductIdValidator('x2-win-1-day'),
+      name: 'x2 for 1 day',
+      description: 'Double your points for 1 day. Increase your chance to win more points',
+      category: 'score' as const,
+      amount: TelegramStar(100),
+      period: Minute(24 * 60),
+      quantity: Quantity(2),
+    },
+    {
+      id: ProductIdValidator('x2-win-3-days'),
+      name: 'x2 for 3 days',
+      description: 'Double your points for 3 days. Increase your chance to win more points',
+      category: 'score' as const,
+      amount: TelegramStar(200),
+      period: Minute(3 * 24 * 60),
+      quantity: Quantity(2),
+    },
+    {
+      id: ProductIdValidator('x3-win-1-day'),
+      name: 'x3 for 1 day',
+      description: 'Triple your points for 1 day. Increase your chance to win more points',
+      category: 'score' as const,
+      amount: TelegramStar(150),
+      period: Minute(24 * 60),
+      quantity: Quantity(3),
+    },
+    {
+      id: ProductIdValidator('x3-win-3-days'),
+      name: 'x3 for 3 days',
+      description: 'Triple your points for 3 days. Increase your chance to win more points',
+      category: 'score' as const,
+      amount: TelegramStar(250),
+      period: Minute(3 * 24 * 60),
+      quantity: Quantity(3),
     },
   ])
 

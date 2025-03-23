@@ -1,5 +1,5 @@
 import type { Brand } from 'ts-brand'
-import type { Point } from '../score/types'
+import type { TelegramStar } from '../utils/telegram/types'
 import type { Minute, Quantity } from '../utils/types'
 
 export type ProductId = Brand<string, 'ProductId'>
@@ -11,7 +11,7 @@ export type Product = {
   name: string
   description: string
   category: Category
-  amount: Point
+  amount: TelegramStar
   period: Period
   quantity: Quantity
 }

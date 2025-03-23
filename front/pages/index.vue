@@ -6,7 +6,7 @@ import { Score } from '../../back/src/score/validators'
 import { Seconde } from '../../back/src/utils/validators'
 
 const router = useRouter()
-const { data, status, refresh } = useAsyncGql({ operation: 'Player' })
+const { data, status, refresh } = useAsyncGql({ operation: 'PlayerQuery' })
 const removeListener = on('visibility_changed', ({ is_visible }) => {
   if (is_visible) refresh()
 })

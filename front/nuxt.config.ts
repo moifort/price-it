@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         Run: '../../../back/src/run/types#Run',
         GuessId: '../../../back/src/game-guess/types#GuessId',
         ProductId: '../../../back/src/shop-product/types#ProductId',
-        Period: '../../../back/src/shop/types#Period',
+        Period: '../../../back/src/shop-product/types#Period',
         WalletId: '../../../back/src/airdrop/types#WalletId',
       },
     },

@@ -4,15 +4,16 @@ import ShopCard from '~/components/organisms/shop/Card.vue'
 import Loading from '~/components/organisms/shop/Loading.vue'
 import ShopTemplate from '~/components/template/Shop.vue'
 import type { Run } from '../../../back/src/run/types'
-import type { Point, Score } from '../../../back/src/score/types'
-import type { Period, ShopProductId as ShopProductIdType } from '../../../back/src/shop/types'
+import type { Score } from '../../../back/src/score/types'
+import { Category, type Period, type ProductId } from '../../../back/src/shop-product/types'
+import type { TelegramStar } from '../../../back/src/utils/telegram/types'
 import type { Quantity as QuantityTYpe } from '../../../back/src/utils/types'
 
 defineProps<{
-  products: { id: ShopProductIdType; quantity: QuantityTYpe; period: Period; amount: Point }[]
+  products: { id: ProductId; quantity: QuantityTYpe; period: Period; amount: TelegramStar; category: Category }[]
   score: Score
   runsLeft: Run
-  buy: (id: ShopProductIdType) => Promise<void>
+  buy: (id: ProductId) => Promise<void>
 }>()
 </script>
 
@@ -20,7 +21,7 @@ defineProps<{
   <ShopTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-medium opacity-60">Run Bonus</h1>
+        <h1 class="text-3xl font-medium opacity-60">Bonus</h1>
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>
@@ -29,7 +30,7 @@ defineProps<{
     <template #run>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
-          v-for="{ id, quantity, period, amount } in products"
+          v-for="{ id, quantity, period, amount, category } in products"
           :key="id"
           :id="id"
           :quantity="quantity"
@@ -37,6 +38,7 @@ defineProps<{
           :amount="amount"
           :buy="buy"
           :score="score"
+          :category="category"
         />
       </div>
       <Loading v-else />

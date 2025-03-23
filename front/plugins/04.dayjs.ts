@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 declare module '#app' {
@@ -21,5 +22,6 @@ declare module '@vue/runtime-core' {
 
 export default defineNuxtPlugin(async ({ provide }) => {
   dayjs.extend(relativeTime)
+  dayjs.extend(duration)
   provide('dayjs', dayjs)
 })

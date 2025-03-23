@@ -1,11 +1,13 @@
 query GameGuessesQuery {
-  guess {
-    id
-    category
-    name
-    price
-    image
-    url
+  game {
+    guesses {
+      id
+      category
+      name
+      price
+      image
+      url
+    }
   }
 }
 
@@ -19,9 +21,13 @@ query GameQuery {
 }
 
 mutation GameCommandWin {
-  win
+  game {
+    win
+  }
 }
 
 mutation GameCommandLose {
-  lose
+  game {
+    lose
+  }
 }

@@ -7,7 +7,7 @@ type Product {
   name: String!
   description: String!
   category: String!
-  amount: Point!
+  amount: TelegramStar!
   period: Period!
   quantity: Quantity!
 }

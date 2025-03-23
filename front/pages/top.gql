@@ -1,8 +1,10 @@
 query TopQuery($limit: Limit!) {
-  topPlayers(limit: $limit) {
-    rank
-    id
-    name
-    score
+  leaderboard {
+    topPlayers(limit: $limit) {
+      rank
+      id
+      name
+      score
+    }
   }
 }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { Point, Score } from '../../../../back/src/score/validators'
-import { ShopProductId } from '../../../../back/src/shop/validators'
+import { ProductId } from '../../../../back/src/shop-product/validators'
 import { Minute, Quantity } from '../../../../back/src/utils/validators'
 import component from './Card.vue'
 
@@ -10,7 +10,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    id: ShopProductId('product-1'),
+    id: ProductId('product-1'),
     quantity: Quantity(5),
     period: Minute(30),
     amount: Point(1000),

@@ -660,7 +660,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Point",
+                "name": "TelegramStar",
                 "ofType": null
               }
             },

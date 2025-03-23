@@ -5,7 +5,7 @@ import type { Limit } from '../../utils/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
-import type { Period } from '../../shop/types';
+import type { Period } from '../../product/types';
 import type { Point } from '../../score/types';
 import type { ProductId } from '../../product/types';
 import type { Quantity } from '../../utils/types';
@@ -125,7 +125,7 @@ export type PlayerMutation = {
 
 export type Product = {
   __typename?: 'Product';
-  amount: Scalars['Point']['output'];
+  amount: Scalars['TelegramStar']['output'];
   category: Scalars['String']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ProductId']['output'];
@@ -416,7 +416,7 @@ export interface PointScalarConfig extends GraphQLScalarTypeConfig<ResolversType
 }
 
 export type ProductResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
-  amount?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
+  amount?: Resolver<ResolversTypes['TelegramStar'], ParentType, ContextType>;
   category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ProductId'], ParentType, ContextType>;

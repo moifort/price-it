@@ -1,4 +1,4 @@
-query Player {
+query PlayerQuery {
   me {
     score
     runs {
@@ -9,6 +9,8 @@ query Player {
   }
 }
 
-mutation CreatePlayer {
-  createPlayerIfNotExist
+mutation PlayerCreateIfNotExistCommand {
+  me {
+    createIfNotExist
+  }
 }

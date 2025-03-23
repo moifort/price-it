@@ -18,15 +18,6 @@ generates:
       enumsAsTypes: true
       federation: true
       contextType: '../types#GraphQlContext'
-#      resolverTypeWrapperSignature: 'PartialDeep<T> | Promise<PartialDeep<T>>'
-#      enumValues:
-#        KpiId: '../../kpi/index.type#KpiId'
-#        Channel: '../../kpi/index.type#Channel'
-#        Period: '../../kpi/index.type#Period'
-#        Unit: '../../kpi/index.type#Unit'
-#        OrderBy: '../../kpi/index.type#OrderBy'
-#        CountryId: '../../country/index.type#CountryId'
-#        Currency: 'FiatCurrency'
       scalars:
         Score: '../../score/types#Score'
         PlayerId: '../../player/types#PlayerId'
@@ -43,7 +34,6 @@ generates:
         TelegramStar: '../../utils/telegram/types#TelegramStar'
         Run: '../../run/types#Run'
         ProductId: '../../product/types#ProductId'
-        ShopProductId: '../../shop/types#ShopProductId'
-        Period: '../../shop/types#Period'
+        Period: '../../product/types#Period'
         WalletId: '../../airdrop/types#WalletId'
         Date: 'Date'
