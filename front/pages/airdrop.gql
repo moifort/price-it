@@ -7,5 +7,7 @@ query AirdropQuery {
 }
 
 mutation AirdropCommandSetWalletId($walletId: WalletId!) {
-  setWalletId(walletId: $walletId)
+  airdrop {
+    updateWalletId(walletId: $walletId)
+  }
 }

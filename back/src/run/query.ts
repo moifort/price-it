@@ -5,8 +5,8 @@ import { findBy } from './infra/repository'
 import { Run } from './validators'
 
 export namespace RunQuery {
-  export const DEFAULT_RUN = Run(5)
-  export const DEFAULT_PERIOD = Minute(60)
+  export const DEFAULT_RUN = Run(10)
+  export const DEFAULT_PERIOD = Minute(3 * 60)
 
   export const get = (database: Database) => async (userId: UserId) => findBy(database)(userId)
 }

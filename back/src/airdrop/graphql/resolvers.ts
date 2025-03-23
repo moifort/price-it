@@ -15,10 +15,14 @@ const WalletIdScalar = new GraphQLScalarType({
 
 export const resolvers: Resolvers = {
   WalletId: WalletIdScalar,
-  Mutation: {
-    setWalletId: async (_, { walletId }, { database, userId }) => {
+  AirdropMutation: {
+    updateWalletId: async (_, { walletId }, { database, userId }) => {
       await AirdropCommand.setWalletId(database)(userId, walletId)
       return true
     },
+  },
+  Mutation: {
+    // @ts-ignore
+    airdrop: () => ({}),
   },
 }

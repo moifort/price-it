@@ -1,6 +1,5 @@
-import { findAllProducts } from './infra/repository'
-import type { ShopProduct } from './types'
+import { ProductQuery } from '../shop-product/query'
 
 export namespace ShopQuery {
-  export const getProducts = (): ShopProduct[] => findAllProducts()
+  export const getProducts = ProductQuery.getProducts
 }

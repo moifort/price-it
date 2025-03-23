@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { TelegramToken, TelegramUserId } from './validators'
+import { TelegramStar, TelegramToken, TelegramUserId } from './validators'
 
 describe('TelegramToken', () => {
   it('should validate proper Telegram token format', () => {
@@ -51,5 +51,34 @@ describe('TelegramUserId', () => {
     expect(() => TelegramUserId('123.456')).toThrow()
     expect(() => TelegramUserId('-123')).toThrow()
     expect(() => TelegramUserId('0')).toThrow()
+  })
+})
+
+describe('TelegramStar', () => {
+  it('should validate valid monetary values', () => {
+    expect(() => TelegramStar(1)).not.toThrow()
+    expect(() => TelegramStar(10)).not.toThrow()
+    expect(() => TelegramStar(100)).not.toThrow()
+    expect(() => TelegramStar(999999)).not.toThrow()
+  })
+
+  it('should reject non-positive values', () => {
+    expect(() => TelegramStar(0)).toThrow()
+    expect(() => TelegramStar(-1)).toThrow()
+    expect(() => TelegramStar(-100)).toThrow()
+  })
+
+  it('should reject non-integer values', () => {
+    expect(() => TelegramStar(1.5)).toThrow()
+    expect(() => TelegramStar(3.7)).toThrow()
+  })
+
+  it('should reject non-numeric inputs', () => {
+    expect(() => TelegramStar('1')).toThrow()
+    expect(() => TelegramStar('money')).toThrow()
+    expect(() => TelegramStar(true)).toThrow()
+    expect(() => TelegramStar(null)).toThrow()
+    expect(() => TelegramStar(undefined)).toThrow()
+    expect(() => TelegramStar({})).toThrow()
   })
 })

@@ -5,14 +5,13 @@ query ShopQuery {
       remaining
     }
   }
-  shopProducts {
-    id
-    quantity
-    period
-    amount
+  shop {
+    products {
+      id
+      quantity
+      period
+      amount
+      category
+    }
   }
-}
-
-mutation ShopCommandBuy($id: ShopProductId!) {
-  buyProduct(id: $id)
 }

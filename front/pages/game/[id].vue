@@ -18,7 +18,7 @@ const { product, totalTime } = defineProps(['product', 'totalTime'])
 const { displayPrice, expectedGuess } = generate(product.price)
 const counterPlay = ref(true)
 
-const next = async (playerGuess: 'less' | 'exact' | 'more', ref?: unknown) => {
+const next = async (playerGuess: 'less' | 'exact' | 'more') => {
   counterPlay.value = false
   const guess: Guess = playerGuess === expectedGuess ? 'win' : 'lose'
   if (guess === 'win') {

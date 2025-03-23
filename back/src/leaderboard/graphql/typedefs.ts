@@ -6,7 +6,11 @@ type TopPlayer {
   score: Score!
 }
 
-extend type Query {
+type LeaderboardQuery {
   topPlayers(limit: Limit!): [TopPlayer!]!
+}
+
+extend type Query {
+  leaderboard: LeaderboardQuery!
 }
 `

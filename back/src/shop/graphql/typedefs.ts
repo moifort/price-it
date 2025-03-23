@@ -1,21 +1,17 @@
 export default `#graphql
-scalar ShopProductId
-scalar Period
-
-type ShopProduct {
-  id: ShopProductId!
-  name: String!
-  description: String!
-  category: String!
-  amount: Point!
-  period: Period!
-  quantity: Quantity!
+type ShopQuery {
+  products: [Product!]!
 }
 
-extend type Query {
-  shopProducts: [ShopProduct!]!
+type ShopMutation {
+  invoice(productId: ProductId!): String!
 }
-extend type Mutation {
-  buyProduct(id: ShopProductId!): String!
+
+type Query {
+  shop: ShopQuery!
+}
+
+type Mutation {
+  shop: ShopMutation!
 }
 `
