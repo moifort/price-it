@@ -10,8 +10,4 @@ type Guess {
   category: String!
   url: Url!
 }
-
-type Query {
-  guess: [Guess!]!
-}
 `

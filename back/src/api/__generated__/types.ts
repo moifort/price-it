@@ -59,6 +59,27 @@ export type Airdrop = {
   walletId?: Maybe<Scalars['WalletId']['output']>;
 };
 
+export type AirdropMutation = {
+  __typename?: 'AirdropMutation';
+  updateWalletId: Scalars['Boolean']['output'];
+};
+
+
+export type AirdropMutationUpdateWalletIdArgs = {
+  walletId: Scalars['WalletId']['input'];
+};
+
+export type GameMutation = {
+  __typename?: 'GameMutation';
+  lose: Scalars['Boolean']['output'];
+  win: Scalars['Boolean']['output'];
+};
+
+export type GameQuery = {
+  __typename?: 'GameQuery';
+  guesses: Array<Guess>;
+};
+
 export type Guess = {
   __typename?: 'Guess';
   category: Scalars['String']['output'];
@@ -70,18 +91,22 @@ export type Guess = {
   url: Scalars['Url']['output'];
 };
 
-export type Mutation = {
-  __typename?: 'Mutation';
-  createPlayerIfNotExist: Scalars['UserId']['output'];
-  lose: Scalars['Boolean']['output'];
-  setWalletId: Scalars['Boolean']['output'];
-  shop: ShopMutation;
-  win: Scalars['Boolean']['output'];
+export type LeaderboardQuery = {
+  __typename?: 'LeaderboardQuery';
+  topPlayers: Array<TopPlayer>;
 };
 
 
-export type MutationSetWalletIdArgs = {
-  walletId: Scalars['WalletId']['input'];
+export type LeaderboardQueryTopPlayersArgs = {
+  limit: Scalars['Limit']['input'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  airdrop: AirdropMutation;
+  game: GameMutation;
+  me: PlayerMutation;
+  shop: ShopMutation;
 };
 
 export type Player = {
@@ -91,6 +116,11 @@ export type Player = {
   id: Scalars['UserId']['output'];
   runs: Runs;
   score: Scalars['Score']['output'];
+};
+
+export type PlayerMutation = {
+  __typename?: 'PlayerMutation';
+  createIfNotExist: Scalars['Boolean']['output'];
 };
 
 export type Product = {
@@ -106,15 +136,10 @@ export type Product = {
 
 export type Query = {
   __typename?: 'Query';
-  guess: Array<Guess>;
+  game: GameQuery;
+  leaderboard: LeaderboardQuery;
   me: Player;
   shop: ShopQuery;
-  topPlayers: Array<TopPlayer>;
-};
-
-
-export type QueryTopPlayersArgs = {
-  limit: Scalars['Limit']['input'];
 };
 
 export type Runs = {
@@ -219,19 +244,24 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Airdrop: ResolverTypeWrapper<Airdrop>;
+  AirdropMutation: ResolverTypeWrapper<AirdropMutation>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  GameMutation: ResolverTypeWrapper<GameMutation>;
+  GameQuery: ResolverTypeWrapper<GameQuery>;
   Guess: ResolverTypeWrapper<Guess>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   GuessId: ResolverTypeWrapper<Scalars['GuessId']['output']>;
+  LeaderboardQuery: ResolverTypeWrapper<LeaderboardQuery>;
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
   Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
   PercentagePoint: ResolverTypeWrapper<Scalars['PercentagePoint']['output']>;
   Period: ResolverTypeWrapper<Scalars['Period']['output']>;
   Player: ResolverTypeWrapper<Player>;
+  PlayerMutation: ResolverTypeWrapper<PlayerMutation>;
   Point: ResolverTypeWrapper<Scalars['Point']['output']>;
   Product: ResolverTypeWrapper<Product>;
   ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
@@ -254,19 +284,24 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Airdrop: Airdrop;
+  AirdropMutation: AirdropMutation;
+  Boolean: Scalars['Boolean']['output'];
   Amount: Scalars['Amount']['output'];
   DateTime: Scalars['DateTime']['output'];
+  GameMutation: GameMutation;
+  GameQuery: GameQuery;
   Guess: Guess;
   String: Scalars['String']['output'];
   GuessId: Scalars['GuessId']['output'];
+  LeaderboardQuery: LeaderboardQuery;
   Limit: Scalars['Limit']['output'];
   Minute: Scalars['Minute']['output'];
   Mutation: {};
-  Boolean: Scalars['Boolean']['output'];
   Percentage: Scalars['Percentage']['output'];
   PercentagePoint: Scalars['PercentagePoint']['output'];
   Period: Scalars['Period']['output'];
   Player: Player;
+  PlayerMutation: PlayerMutation;
   Point: Scalars['Point']['output'];
   Product: Product;
   ProductId: Scalars['ProductId']['output'];
@@ -291,6 +326,11 @@ export type AirdropResolvers<ContextType = GraphQlContext, ParentType extends Re
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type AirdropMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['AirdropMutation'] = ResolversParentTypes['AirdropMutation']> = {
+  updateWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<AirdropMutationUpdateWalletIdArgs, 'walletId'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
   name: 'Amount';
 }
@@ -298,6 +338,17 @@ export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
   name: 'DateTime';
 }
+
+export type GameMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['GameMutation'] = ResolversParentTypes['GameMutation']> = {
+  lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type GameQueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['GameQuery'] = ResolversParentTypes['GameQuery']> = {
+  guesses?: Resolver<Array<ResolversTypes['Guess']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export type GuessResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Guess'] = ResolversParentTypes['Guess']> = {
   category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -314,6 +365,11 @@ export interface GuessIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTy
   name: 'GuessId';
 }
 
+export type LeaderboardQueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['LeaderboardQuery'] = ResolversParentTypes['LeaderboardQuery']> = {
+  topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<LeaderboardQueryTopPlayersArgs, 'limit'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface LimitScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Limit'], any> {
   name: 'Limit';
 }
@@ -323,11 +379,10 @@ export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type MutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createPlayerIfNotExist?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
-  lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  setWalletId?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSetWalletIdArgs, 'walletId'>>;
+  airdrop?: Resolver<ResolversTypes['AirdropMutation'], ParentType, ContextType>;
+  game?: Resolver<ResolversTypes['GameMutation'], ParentType, ContextType>;
+  me?: Resolver<ResolversTypes['PlayerMutation'], ParentType, ContextType>;
   shop?: Resolver<ResolversTypes['ShopMutation'], ParentType, ContextType>;
-  win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export interface PercentageScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Percentage'], any> {
@@ -348,6 +403,11 @@ export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends Res
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
   score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PlayerMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['PlayerMutation'] = ResolversParentTypes['PlayerMutation']> = {
+  createIfNotExist?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -375,10 +435,10 @@ export interface QuantityScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type QueryResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  guess?: Resolver<Array<ResolversTypes['Guess']>, ParentType, ContextType>;
+  game?: Resolver<ResolversTypes['GameQuery'], ParentType, ContextType>;
+  leaderboard?: Resolver<ResolversTypes['LeaderboardQuery'], ParentType, ContextType>;
   me?: Resolver<ResolversTypes['Player'], ParentType, ContextType>;
   shop?: Resolver<ResolversTypes['ShopQuery'], ParentType, ContextType>;
-  topPlayers?: Resolver<Array<ResolversTypes['TopPlayer']>, ParentType, ContextType, RequireFields<QueryTopPlayersArgs, 'limit'>>;
 };
 
 export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Run'], any> {
@@ -436,10 +496,14 @@ export interface WalletIdScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type Resolvers<ContextType = GraphQlContext> = {
   Airdrop?: AirdropResolvers<ContextType>;
+  AirdropMutation?: AirdropMutationResolvers<ContextType>;
   Amount?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
+  GameMutation?: GameMutationResolvers<ContextType>;
+  GameQuery?: GameQueryResolvers<ContextType>;
   Guess?: GuessResolvers<ContextType>;
   GuessId?: GraphQLScalarType;
+  LeaderboardQuery?: LeaderboardQueryResolvers<ContextType>;
   Limit?: GraphQLScalarType;
   Minute?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
@@ -447,6 +511,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   PercentagePoint?: GraphQLScalarType;
   Period?: GraphQLScalarType;
   Player?: PlayerResolvers<ContextType>;
+  PlayerMutation?: PlayerMutationResolvers<ContextType>;
   Point?: GraphQLScalarType;
   Product?: ProductResolvers<ContextType>;
   ProductId?: GraphQLScalarType;
