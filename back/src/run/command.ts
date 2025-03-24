@@ -10,7 +10,7 @@ import { RunQuery } from './query'
 import type { Run, Run as RunType, Runs, TaskRunReset } from './types'
 import { Run as RunValidator } from './validators'
 
-// TODO: Add bonus
+// TODO: Add Score bonus
 export namespace RunCommand {
   export const create =
     (database: Database, taskQueue: TaskQueue<TaskRunReset>) =>
