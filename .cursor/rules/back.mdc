@@ -3,6 +3,8 @@ description: Back coding
 globs: back/src/**/*.ts
 alwaysApply: false
 ---
+Context: @file back/
+
 ## Code Style
 - Use clean code methodology
 - Use functionnal programming aproach
@@ -16,7 +18,7 @@ alwaysApply: false
 ## Development life cycle
 ### Starting
 - Knowledge package.json dependencies and scripts
-- Analyze style, methodoly, files organization, functions organisation of the current codes of the current directory (back and front)
+- Analyze style, methodoly, files organization, functions organisation of the current codes
 
 ### Coding (create/update)
 - Apply your modification, using the same way of coding

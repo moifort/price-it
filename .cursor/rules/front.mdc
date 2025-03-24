@@ -3,7 +3,29 @@ description: Front end coding
 globs: front/**/*
 alwaysApply: false
 ---
+Context: @file front/
+
 - Use shadcn library for all UI components
 - Files inside `components` folder must not use router (only in `app` folder)
 - When creating or modifying a component in `components` folder, always update or create a story for Storybook
 - When creating Storybook stories, use the same template as others
+
+
+## Development life cycle
+### Starting
+- Knowledge package.json dependencies and scripts
+- Analyze style, methodoly, files organization, functions organisation of the current codes
+- run `bun nuxt prepare`
+
+### Coding (create/update)
+- Apply your modification, using the same way of coding
+
+### Finishing 
+- As code storybook expert, update or create stories base on the same configuration than other stories
+- As code reviewer, review your code, by fixing typo, namming, simplifying code etc.
+- Don't need to summurize your changes
+- At the end:
+  1. run `bun run:graphql` if you change graphql codes 
+  2. run `bun test:all` to check if there are no regression
+  3. run `bun tsc` to see typescript error
+  4. run `bun lint:fix` to fix lint error 
