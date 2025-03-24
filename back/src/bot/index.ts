@@ -22,8 +22,9 @@ export const TELEGRAM_WEBHOOK_BOT_URL = Url('https://europe-west3-price-it-85b3e
 export const bot = onRequest(async (req, res) => {
   const app = await server(TelegramToken(process.env.TELEGRAM_TOKEN), TELEGRAM_WEBHOOK_BOT_URL)
   const bot = useTelegramBot()
+  const request = app(req, res)
   bot.on('message', async (ctx) => {
     await ctx.reply('Hello! je suis thibaut')
   })
-  return app(req, res)
+  return request
 })
