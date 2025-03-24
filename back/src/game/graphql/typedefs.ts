@@ -8,8 +8,8 @@ extend type Query {
 }
 
 type GameMutation {
-  win: Boolean!
-  lose: Boolean!
+  win(guessId: GuessId!): Boolean!
+  lose(guessId: GuessId!): Boolean!
 }
 
 extend type Mutation {

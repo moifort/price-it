@@ -21,6 +21,7 @@ generates:
       scalars:
         Score: '../../score/types#Score'
         PlayerId: '../../player/types#PlayerId'
+        GuessId: '../../game-guess/types#GuessId'
         UserId: '../../player/types#PlayerId'
         Point: '../../score/types#Point'
         Rank: '../../score/types#Rank'

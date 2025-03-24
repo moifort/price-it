@@ -1,5 +1,6 @@
 import type { TaskQueue } from 'firebase-admin/functions'
 import type { Database } from '../api/types'
+import { GameCommand } from '../game/command'
 import { RunCommand } from '../run/command'
 import { RunQuery } from '../run/query'
 import type { TaskRunReset } from '../run/types'
@@ -17,6 +18,7 @@ export namespace PlayerCommand {
       if (!exists) {
         await UserCommand.create(database)(id, firstName)
         await Promise.all([
+          GameCommand.create(database)(id),
           ScoreCommand.create(database)(id, ScoreQuery.DEFAULT_SCORE),
           RunCommand.create(database, runTaskQueue)(
             id,
