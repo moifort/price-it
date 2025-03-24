@@ -3,6 +3,7 @@ import { openLink } from '@telegram-apps/sdk'
 import { ExternalLink } from 'lucide-vue-next'
 import { Button } from '~/components/atoms/button'
 import { CardTitle } from '~/components/atoms/card'
+import { formatNumber } from '~/utils/utils'
 import type { Amount, Url } from '../../../../back/src/utils/types'
 
 defineProps<{ close?: () => void; price: Amount; productLink: Url }>()
@@ -27,7 +28,7 @@ const openProductLink = (url: Url) => {
           <CardTitle class="text-4xl font-bold mb-4 mt-2">
             <slot name="title" />
           </CardTitle>
-          <p class="text-2xl mb-2">The price was <span class="font-bold">${{ price.toFixed(2) }}</span></p>
+          <p class="text-2xl mb-2">The price was <span class="font-bold">${{ formatNumber(price) }}</span></p>
         </AlertDialogHeader>
 
         <AlertDialogFooter class="gap-3 flex-col">

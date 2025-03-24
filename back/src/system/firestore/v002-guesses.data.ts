@@ -1,6 +1,5 @@
 export const guesses = [
   {
-    id: '550e8400-e29b-41d4-a716-446655440000',
     name: 'Mini Spy Hidden Camera',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/mini-spy-hidden-camera_400x333.jpg',
     price: 28.99,
@@ -8,7 +7,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07GKY23D7/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
     name: 'The Inflatable Speed Boat',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/inflatable-speed-boat_400x333.jpg',
     price: 800.0,
@@ -16,7 +14,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07NQ3GTTW/?tag=097-20&ascsubtag=default',
   },
   {
-    id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
     name: 'Giant Ten Pound Toblerone Bar',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/giant-ten-pound-toblerone-bar_400x333.jpg',
     price: 130.99,
@@ -24,7 +21,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B004INT01A/?tag=097-20&ascsubtag=default&th=1',
   },
   {
-    id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
     name: 'Moon House',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/moon-house_400x333.jpg',
     price: 14995.0,
@@ -32,7 +28,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B09MBXW7G2/?tag=097-20&ascsubtag=default',
   },
   {
-    id: 'a3c8b99e-9c55-45e8-b10d-3bfd71a151c0',
     name: 'Dolphin Power Boat',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/dolphin-power-boat_400x333.jpg',
     price: 65000.0,
@@ -40,7 +35,6 @@ export const guesses = [
     url: 'https://seabreacher.com/?utm_source=thisiswhyimbroke.com&utm_medium=referral',
   },
   {
-    id: '2b27a6f1-73a3-4481-a9c2-e91e05d8c8e5',
     name: 'Extreme Above Ground Emergency Shelter',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/above-ground-emergency-shelter_400x333.jpg',
     price: 5450.0,
@@ -48,7 +42,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B00S1NP0JE/?tag=097-20&ascsubtag=default',
   },
   {
-    id: '72de3e5e-5dac-4a4b-b9d2-6b5c5e8e0933',
     name: 'UFO Spaceship Airbnb',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/ufo-spaceship-airbnb_400x333.jpg',
     price: 128.0,
@@ -56,7 +49,6 @@ export const guesses = [
     url: 'https://fr.airbnb.com/rooms/51165983?utm_source=thisiswhyimbroke.com&utm_medium=referral&_set_bev_on_new_domain=1740461234_EANTZiNzYwOGQ2NG&source_impression_id=p3_1741002978_P3iCgSWG0g-ZnVFF',
   },
   {
-    id: 'e8fd159b-57c4-4d36-9bd7-a59ca13057bb',
     name: 'Dwarf 2 Smart Telescope',
     image: 'https://cdn.thisiswhyimbroke.com/images/dwarf-ii-smart-telescope.gif',
     price: 493.0,
@@ -64,7 +56,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B0CCDS43N4/?tag=097-20&ascsubtag=default&th=1',
   },
   {
-    id: '1a2b3c4d-5e6f-7890-abcd-ef1234567890',
     name: 'Wearable Sleeping Bag',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/wearable-sleeping-bag_400x333.jpg',
     price: 239.0,
@@ -72,7 +63,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B0DMSG93SF/?tag=097-20&ascsubtag=default&th=1',
   },
   {
-    id: '2a3b4c5d-6e7f-8901-bcde-f23456789012',
     name: 'Family Size Jumbo Mattresses',
     image: 'https://cdn.thisiswhyimbroke.com/thumb/jumbo-mattresses_400x333.jpg',
     price: 4054.0,
@@ -80,7 +70,6 @@ export const guesses = [
     url: 'https://acesize.com/',
   },
   {
-    id: '3b4c5d6e-7f89-0123-cdef-456789012345',
     name: 'The Green Power Ranger Costume',
     image: 'https://cdn.thisiswhyimbroke.com/images/the-green-power-ranger-costume-640x533.jpg',
     price: 1085.0,
@@ -88,7 +77,6 @@ export const guesses = [
     url: 'https://www.etsy.com/fr/listing/944604601/deguisement-cosplay-aniki-green-ranger',
   },
   {
-    id: '4c5d6e7f-890a-bcde-f234-56789012345a',
     name: 'Grass Sandals',
     image: 'https://cdn.thisiswhyimbroke.com/images/grass-flip-flops-640x533.jpg',
     price: 26.95,
@@ -96,7 +84,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B00JLWHVEQ',
   },
   {
-    id: '5d6e7f89-0abc-def2-3456-789012345b6c',
     name: 'Jumanji Board Game Replica',
     image: 'https://cdn.thisiswhyimbroke.com/images/jumanji-board-game-640x533.jpg',
     price: 625.57,
@@ -104,7 +91,6 @@ export const guesses = [
     url: 'https://www.etsy.com/listing/674227854/jumanji-gameboard-11-scale-replica',
   },
   {
-    id: '6e7f890a-bcde-f234-5678-9012345c6d7e',
     name: 'Artemis Glamping Studio',
     image: 'https://i.etsystatic.com/24234129/r/il/d42a02/5848973316/il_1588xN.5848973316_2j1g.jpg',
     price: 7678.0,
@@ -112,7 +98,6 @@ export const guesses = [
     url: 'https://www.etsy.com/fr/listing/1326534576/poddome-artemis-pour-maison-dhotes-adu',
   },
   {
-    id: '3c8e2d24-abdf-47c8-a105-7546971b9491',
     name: 'Matrix Code Lamp',
     image: 'https://i.etsystatic.com/28407429/r/il/deea63/3372236491/il_1588xN.3372236491_fzq4.jpg',
     price: 45.5,
@@ -120,7 +105,6 @@ export const guesses = [
     url: 'https://www.etsy.com/fr/listing/1083515743/lampe-code-verte-o-vert-hieroglyphes',
   },
   {
-    id: '45269900-209a-4964-99a1-d6d2f3ce812d',
     name: 'Retro Typewriter Style Keyboard',
     image: 'https://cdn.thisiswhyimbroke.com/images/retro-mechanical-keyboard.jpg',
     price: 97.42,
@@ -128,7 +112,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Azio-Retro-Mechanical-Keyboard-Switch/dp/B01LY32G54',
   },
   {
-    id: '983eebff-0016-4700-8a88-da0f189c676b',
     name: 'Personalized Jerry Can Mini Bar',
     image: 'https://i.etsystatic.com/21434445/r/il/3274e8/3875784466/il_1588xN.3875784466_oxac.jpg',
     price: 203.22,
@@ -136,7 +119,6 @@ export const guesses = [
     url: 'https://www.etsy.com/fr/listing/732522228/mini-bar-jerrycan-personnalise-noel',
   },
   {
-    id: 'abcdef23-4567-890a-bcde-f67890abcde',
     name: 'All-in-One Breakfast Cooking Station',
     image: 'https://cdn.thisiswhyimbroke.com/images/the-complete-breakfast-cooking-station-nostalgia-640x534.jpg',
     price: 79.99,
@@ -144,7 +126,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Nostalgia-BST3AQ-Electric-Breakfast-Coffeemaker/dp/B07YFDM4V7',
   },
   {
-    id: 'bcdef234-5678-90ab-cdef-789abcdef01',
     name: 'Smartphone Endoscope Tube',
     image: 'https://cdn.thisiswhyimbroke.com/images/android-endoscope-640x533.jpg',
     price: 25.99,
@@ -152,7 +133,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Endoscope-Adjustable-Semi-Rigid-Waterproof-Inspection/dp/B0C4V5LWWL',
   },
   {
-    id: 'cdef2345-6789-0abc-def7-89abcdef012',
     name: 'Psychedelic Bodysuit',
     image: 'https://cdn.thisiswhyimbroke.com/images/trippy-bodysuit-640x533.jpg',
     price: 119.99,
@@ -160,7 +140,6 @@ export const guesses = [
     url: 'https://www.etsy.com/fr/listing/1054406263/rave-costume-femmes-festival-costume',
   },
   {
-    id: 'def23456-7890-abcd-ef78-9abcdef0123',
     name: 'Ice Maker Machine',
     image: 'https://m.media-amazon.com/images/I/717Bh1wcU5L._AC_SX679_.jpg',
     price: 89.99,
@@ -168,7 +147,6 @@ export const guesses = [
     url: 'https://www.amazon.com/EUHOMY-Countertop-Machine-Auto-Cleaning-Portable/dp/B0BWHZJHPL',
   },
   {
-    id: 'ef234567-890a-bcde-f789-abcdef01234',
     name: 'Portable Mini Dishwasher',
     image: 'https://m.media-amazon.com/images/I/61i2tsiCaGL._AC_SX679_.jpg',
     price: 299.99,
@@ -176,7 +154,6 @@ export const guesses = [
     url: 'https://www.amazon.com/COMFEE-Dishwasher-Countertop-High-Temp-Apartments/dp/B09QCJ6TDZ',
   },
   {
-    id: 'f2345678-90ab-cdef-789a-bcdef012345',
     name: 'Fossil Chronograph Watch',
     image: 'https://m.media-amazon.com/images/I/71kbRVr8YfL._AC_SX679_.jpg',
     price: 98.11,
@@ -184,7 +161,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Fossil-Quartz-Stainless-Steel-Chronograph/dp/B008AXYWHQ',
   },
   {
-    id: '23456789-0abc-def7-89ab-cdef0123456',
     name: 'Fujifilm Instant Camera',
     image: 'https://m.media-amazon.com/images/I/819LwCF2xaL._AC_SX679_.jpg',
     price: 145.95,
@@ -192,7 +168,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Fujifilm-Instax-Instant-Flamingo-Designer/dp/B08NWD29K6',
   },
   {
-    id: '3456789a-bcde-f789-abcd-ef01234567',
     name: 'Nintendo Switch (OLED model)',
     image: 'https://m.media-amazon.com/images/I/61nqNujSF2L._SX522_.jpg',
     price: 340.0,
@@ -200,7 +175,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Nintendo-Switch-OLED-Model-White-Joy/dp/B098RKWHHZ',
   },
   {
-    id: '456789ab-cdef-789a-bcde-f012345678',
     name: 'Apple Watch Series 7',
     image: 'https://m.media-amazon.com/images/I/71SFsTBSJgL._AC_SX679_.jpg',
     price: 529.0,
@@ -208,7 +182,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Apple-Watch-Cellular-Aluminum-Abyss/dp/B09HF825CV',
   },
   {
-    id: '56789abc-def7-89ab-cdef-0123456789',
     name: 'Waterproof Portable Speaker',
     image: 'https://m.media-amazon.com/images/I/61tvFn1zW9L._AC_SX679_.jpg',
     price: 99.0,
@@ -216,7 +189,6 @@ export const guesses = [
     url: 'https://www.amazon.com/JBL-Portable-Waterproof-Wireless-Bluetooth/dp/B07HKQ6YGX',
   },
   {
-    id: '6789abcd-ef78-9abc-def0-123456789a',
     name: 'Portable Refractor Telescope',
     image: 'https://m.media-amazon.com/images/I/61T2V+BMJuL._AC_SX679_.jpg',
     price: 98.96,
@@ -224,7 +196,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Celestron-Refractor-Telescope-Beginners-Astronomy/dp/B001TI9Y2M',
   },
   {
-    id: '789abcde-f789-abcd-ef01-23456789ab',
     name: 'Gotrax Electric Scooter',
     image: 'https://m.media-amazon.com/images/I/61zBI7zKE6L._AC_SX679_.jpg',
     price: 399.0,
@@ -232,7 +203,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Gotrax-XR-Pneumatic-Headlight-Taillight/dp/B07ZJV8L7H',
   },
   {
-    id: '89abcdef-789a-bcde-f012-3456789abc',
     name: 'Portable Pool Table',
     image: 'https://m.media-amazon.com/images/I/61xP7aL8NVL._AC_SX679_.jpg',
     price: 417.01,
@@ -240,7 +210,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Hathaway-Fairmont-Portable-Families-Folding/dp/B015AHRE9C',
   },
   {
-    id: '9abcdef0-123f-4567-89ab-cdef012345',
     name: 'G-Shock Camouflage Watch',
     image: 'https://m.media-amazon.com/images/I/81OdOQlJUoL._AC_SY879_.jpg',
     price: 199.01,
@@ -248,7 +217,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Casio-GA-100CF-1A9CR-G-Shock-Camouflage-Watch/dp/B00KGGW8C6',
   },
   {
-    id: 'abcdef01-2345-6789-abcd-ef01234567',
     name: 'Ostrichpillow Travel Pillow',
     image: 'https://m.media-amazon.com/images/I/71mYkyZFA-L._AC_SX679_.jpg',
     price: 99.0,
@@ -256,7 +224,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B00B4S6SLW',
   },
   {
-    id: 'bcdef012-3456-789a-bcde-f012345678',
     name: 'Meat Claws',
     image: 'https://m.media-amazon.com/images/I/61+u88GemEL._AC_SX679_.jpg',
     price: 27.99,
@@ -264,7 +231,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B01N5U14FA',
   },
   {
-    id: 'cdef0123-4567-89ab-cdef-0123456789',
     name: 'Unique Flavor Soda',
     image: 'https://m.media-amazon.com/images/I/71J8cee4XfL._SX679_PIbundle-6,TopRight,0,0_SX679SY815SH20_.jpg',
     price: 27.49,
@@ -272,7 +238,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B01M5DJ6PZ',
   },
   {
-    id: 'def01234-5678-9abc-def0-123456789a',
     name: 'Little Finger Puppets',
     image: 'https://m.media-amazon.com/images/I/51xKf7avY8L._AC_SX679_.jpg',
     price: 8.99,
@@ -280,7 +245,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07YHMH4PR',
   },
   {
-    id: 'ef012345-6789-abcd-ef01-23456789ab',
     name: 'Blobfish Stuffed Animal',
     image: 'https://m.media-amazon.com/images/I/61NKXqDOB+L._AC_SX679_.jpg',
     price: 24.99,
@@ -288,7 +252,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B0D5Y3MCBW',
   },
   {
-    id: 'f0123456-789a-bcde-f012-3456789abc',
     name: 'Umbrella Hat',
     image: 'https://m.media-amazon.com/images/I/51i2jqhM4hL._AC_SX679_.jpg',
     price: 8.99,
@@ -296,7 +259,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B097QV29TG',
   },
   {
-    id: '01234567-89ab-cdef-0123-456789abcd',
     name: 'Taco Blanket',
     image: 'https://m.media-amazon.com/images/I/71ae1DQ-KcL._AC_SY879_.jpg',
     price: 26.99,
@@ -304,7 +266,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07RPZZ867',
   },
   {
-    id: '12345678-9abc-def0-1234-56789abcde',
     name: 'Bread Shape Pillow',
     image: 'https://m.media-amazon.com/images/I/71Ab-wvWerL._AC_SX679_.jpg',
     price: 25.99,
@@ -312,7 +273,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07SHP29DM',
   },
   {
-    id: '23456789-abcd-ef01-2345-6789abcdef',
     name: 'Pet Face Socks',
     image: 'https://m.media-amazon.com/images/I/61UnEGJN6CL._AC_SX679_.jpg',
     price: 15.99,
@@ -320,7 +280,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07M7VFRJC',
   },
   {
-    id: '3456789a-bcde-f012-3456-789abcdef0',
     name: 'Floating Crocodile',
     image: 'https://m.media-amazon.com/images/I/81yIwVTJTSL._AC_SX679_.jpg',
     price: 80.64,
@@ -328,7 +287,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B0007PKYUE',
   },
   {
-    id: '456789ab-cdef-0123-4567-89abcdef01',
     name: 'Mobile Phone Jail',
     image: 'https://m.media-amazon.com/images/I/7122gIkr-cL._AC_SX679_.jpg',
     price: 11.99,
@@ -336,7 +294,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07M9W1WM1',
   },
   {
-    id: '56789abc-def0-1234-5678-9abcdef012',
     name: 'Shark Blanket Hoodie',
     image: 'https://m.media-amazon.com/images/I/51WyCFq0XUL._AC_SX679_.jpg',
     price: 19.99,
@@ -344,7 +301,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B0CH9TWC91',
   },
   {
-    id: '6789abcd-ef01-2345-6789-abcdef0123',
     name: 'Toilet Bowl Night Light',
     image: 'https://m.media-amazon.com/images/I/71RG1p8C-1L._AC_SX679_.jpg',
     price: 9.99,
@@ -352,7 +308,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Original-Bathroom-Activated-Lighting-Christmas/dp/B01HTU9TLY',
   },
   {
-    id: '789abcde-f012-3456-789a-bcdef01234',
     name: 'Food Decider',
     image: 'https://m.media-amazon.com/images/I/61za2zzTPIL._AC_SX679_.jpg',
     price: 8.99,
@@ -360,7 +315,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Anniversary-Boyfriend-Girlfriend-Christmas-Valentines/dp/B0C5LRR1ZY',
   },
   {
-    id: '89abcdef-0123-4567-89ab-cdef01234',
     name: 'Refrigerator Deodorizer',
     image: 'https://m.media-amazon.com/images/I/71Yk6yF+UsL._AC_SX679_.jpg',
     price: 24.99,
@@ -368,7 +322,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Refrigerator-Deodorizer-Eliminator-Charcoal-Purifying/dp/B09VZ11WHK',
   },
   {
-    id: '9abcdef0-1234-5678-9abc-def012345',
     name: 'Unicorn Taco Holder',
     image: 'https://m.media-amazon.com/images/I/71vt8MIuUkL._AC_SX679_.jpg',
     price: 15.75,
@@ -376,7 +329,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B07S2NR6QN',
   },
   {
-    id: 'abcdef01-2345-6789-abcd-ef0123456',
     name: 'Hot Dog and Bun Toaster',
     image: 'https://m.media-amazon.com/images/I/71pJg-m2RlL._AC_SX679_.jpg',
     price: 23.99,
@@ -384,7 +336,6 @@ export const guesses = [
     url: 'https://www.amazon.com/dp/B005Q8X6IO',
   },
   {
-    id: 'bcdef012-3456-789a-bcde-f0123456',
     name: 'MegaChess Giant',
     image: 'https://m.media-amazon.com/images/I/71erWkEBzUL._AC_SX679_.jpg',
     price: 450.0,
@@ -392,7 +343,6 @@ export const guesses = [
     url: 'https://www.amazon.com/MegaChess-Giant-Premium-Pieces-Complete/dp/B00IIXBFPU',
   },
   {
-    id: 'cdef0123-4567-89ab-cdef-01234567',
     name: 'Portable Neck Fan',
     image: 'https://m.media-amazon.com/images/I/7198ZLVxH1L._AC_SX679_.jpg',
     price: 31.99,
@@ -400,7 +350,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Portable-Bladeless-Rechargeable-Personal-directions/dp/B09PCSR9SX',
   },
   {
-    id: 'def01234-5678-9abc-def0-1234567',
     name: '4D Massage Chair',
     image: 'https://m.media-amazon.com/images/I/51tLLK4GOHL._AC_SX679_.jpg',
     price: 3799.0,
@@ -408,7 +357,6 @@ export const guesses = [
     url: 'https://www.amazon.com/AmaMedic-MassageChair-Specialized-Automatic-Extendable/dp/B08JCDFNYQ',
   },
   {
-    id: 'ef012345-6789-abcd-ef01-234567',
     name: 'Burritos Tortilla Blanket',
     image: 'https://m.media-amazon.com/images/I/71Y-n6tMjgL._AC_SX679_.jpg',
     price: 13.99,
@@ -416,7 +364,6 @@ export const guesses = [
     url: 'https://www.amazon.com/SeaRoomy-Burritos-Tortilla-Blanket-Novelty/dp/B082SHCSH6',
   },
   {
-    id: 'f0123456-789a-bcde-f012-34567',
     name: 'Bullshit Button',
     image: 'https://m.media-amazon.com/images/I/71PYcIhduPL._AC_SX679_.jpg',
     price: 9.8,
@@ -424,7 +371,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Bullshit-Button-Hilarious-Co-workers-Batteries/dp/B000L70MQO',
   },
   {
-    id: '01234567-89ab-cdef-0123-4567',
     name: 'Lightsaber Chopsticks',
     image: 'https://m.media-amazon.com/images/I/81ABckNfDjL._AC_SX679_.jpg',
     price: 12.97,
@@ -432,7 +378,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Chop-Sabers-Light-LightSaber-Chopsticks/dp/B01CA2HOZ4',
   },
   {
-    id: '12345678-9abc-def0-1234-567',
     name: 'Snail Soap Dispenser',
     image: 'https://m.media-amazon.com/images/I/61Cz59i3MVL._AC_SX679_.jpg',
     price: 9.99,
@@ -440,7 +385,6 @@ export const guesses = [
     url: 'https://www.amazon.com/TabEnter-Snail-Dispenser-Kitchen-Bathroom/dp/B07MB1SH1G',
   },
   {
-    id: '23456789-abcd-ef01-2345-67',
     name: 'Apple AirPods Pro',
     image: 'https://m.media-amazon.com/images/I/51NRGHU2NoL._AC_SL1500_.jpg',
     price: 239.0,
@@ -448,7 +392,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Apple-Generation-Cancelling-Transparency-Personalized/dp/B0CHWRXH8B',
   },
   {
-    id: '3456789a-bcde-f012-3456-7',
     name: 'CD Player with Speakers',
     image: 'https://m.media-amazon.com/images/I/614V3795tML._AC_SX679_.jpg',
     price: 39.98,
@@ -456,7 +399,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Yintiny-Rechargeable-Speakers-Bluetooth-Transmitter/dp/B0D7VJQKTQ',
   },
   {
-    id: '456789ab-cdef-0123-4567-',
     name: 'PlayStation 5',
     image: 'https://m.media-amazon.com/images/I/41ECK5cY-2L._SX522_.jpg',
     price: 499.0,
@@ -464,7 +406,6 @@ export const guesses = [
     url: 'https://www.amazon.com/PlayStation%C2%AE5-console-slim-PlayStation-5/dp/B0CL61F39H',
   },
   {
-    id: '56789abc-def0-1234-5678',
     name: 'Bubble Machine',
     image: 'https://m.media-amazon.com/images/I/710WKATXl6L._AC_SX679_.jpg',
     price: 24.29,
@@ -472,7 +413,6 @@ export const guesses = [
     url: 'https://www.amazon.com/Machine-Automatic-Operated-Batteries-Birthday/dp/B0CX4C1HTL',
   },
   {
-    id: '6789abcd-ef01-2345-678',
     name: 'Microscope',
     image: 'https://m.media-amazon.com/images/I/61H2UqGBX1L._AC_SX679_.jpg',
     price: 106.99,
@@ -480,7 +420,6 @@ export const guesses = [
     url: 'https://www.amazon.com/AmScope-M150C-I-40X-1000X-Biological-Microscope/dp/B00AM5XB5O',
   },
   {
-    id: '789abcde-f012-3456-78',
     name: '2007 Cessna Citation Jet 2+',
     image:
       'https://img.jamesedition.com/listing_images/2025/01/17/13/52/22/f3783d05-14b7-44e0-971f-753525ba1ac4/je/2200xxs.jpg',
@@ -489,7 +428,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/jets/cessna/525a_citation_cj2plus/2007-cessna-citation-jet-2-15111762',
   },
   {
-    id: '89abcdef-0123-4567-8',
     name: 'Sunseeker Predator 55 EVO',
     image: 'https://www.jamesedition.com/yachts/sunseeker/55/sunseeker-predator-55-evo-15105407',
     price: 1450000.0,
@@ -497,7 +435,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/yachts/sunseeker/55/sunseeker-predator-55-evo-15105407',
   },
   {
-    id: '9abcdef0-1234-5678',
     name: '2025 Rolls-Royce Spectre',
     image:
       'https://img.jamesedition.com/listing_images/2025/03/13/06/35/06/e96d513c-ed38-4848-a7b3-d94c691eb1e8/je/2200xxs.jpg',
@@ -506,7 +443,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/rolls_royce/Spectre/2025-rolls-royce-spectre-for-sale-15339981',
   },
   {
-    id: 'fa058e7b-94f0-472f-b684-28da65776938',
     name: '2023 Ferrari 812 GTS',
     image:
       'https://img.jamesedition.com/listing_images/2024/12/11/16/34/53/51a2424c-6af7-4456-8aa5-1e35c440ad6e/je/2200xxs.jpg',
@@ -515,7 +451,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/ferrari/812-gts/2023-ferrari-812-gts-rwd-for-sale-15008824',
   },
   {
-    id: '1955dfbc-9eea-4eaf-81f2-7914aca54bcb',
     name: '2022 Porsche 911 Turbo S',
     image:
       'https://img.jamesedition.com/listing_images/2025/03/03/03/10/20/c7382e52-5092-47dd-9b03-fe48d4a466f4/je/2200xxs.jpg',
@@ -524,7 +459,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/porsche/porsche-911-turbo-s/2022-porsche-911-turbo-s-for-sale-15287533',
   },
   {
-    id: '53ed5dd0-5004-4820-8e59-52799231252e',
     name: 'Duplex Penthouse London',
     image:
       'https://img.jamesedition.com/listing_images/2024/11/18/12/55/12/4917fe61-bec7-4df1-a4a1-ac8ad7db010c/je/2200xxs.jpg',
@@ -533,7 +467,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/london-united-kingdom/duplex-penthouse-located-in-iconic-one-hyde-park-14060960',
   },
   {
-    id: '7ff231c1-dc41-42b0-9cf0-9e3c4bb1e18b',
     name: 'Private Island in The Bahamas',
     image:
       'https://img.jamesedition.com/listing_images/2024/02/05/12/03/45/94a46e93-c48a-4fdf-bbbc-b476ae3c36cf/je/2200xxs.jpg',
@@ -542,7 +475,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/other-berry-islands-bahamas/whale-cay-13773453',
   },
   {
-    id: '89f4393b-a210-4324-8895-a6e7eaf0ac4b',
     name: 'Sunseeker 88 Yacht 2011',
     image:
       'https://img.jamesedition.com/listing_images/2024/07/11/16/16/13/570516eb-c406-4efb-a802-b2f8c27b194d/je/2200xxs.jpg',
@@ -551,7 +483,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/yachts/sunseeker/88-yacht/sunseeker-88-yacht-14475764',
   },
   {
-    id: '40ad694d-eff7-4f5f-b71b-12e18faf3b61',
     name: 'Patek Philippe Nautilus',
     image:
       'https://img.jamesedition.com/listing_images/2024/12/25/12/13/55/f8585cf0-9e7a-4ac5-8c3c-30590024331e/je/2200xxs.jpg',
@@ -560,7 +491,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/watches/patek_philippe/nautilus_collection/patek-philippe-5726a-001-nautilus-annual-calendar-moon-phase-in-steel-13633099',
   },
   {
-    id: '8628aad2-3e4b-4904-b08c-35e846c87a34',
     name: 'Luxury House in Texas',
     image:
       'https://img.jamesedition.com/listing_images/2024/08/05/14/56/26/704b52bc-5491-4947-b3ab-d11096cb44f0/je/2200xxs.jpg',
@@ -569,7 +499,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/southlake-tx-usa/1469-sunshine-lane-14562315',
   },
   {
-    id: '12345678-9abc-def0-1234-56789abcde',
     name: 'Villa in Bora Bora',
     image:
       'https://img.jamesedition.com/listing_images/2024/09/27/12/31/20/cc9ae3c7-a379-44a1-8719-23e07c558e0b/je/2200xxs.jpg',
@@ -578,7 +507,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/bora-bora-french-polynesia/villa-aquamaris-14757973',
   },
   {
-    id: '1a2b3c4d-5e6f-7890-abcd-ef1234567890',
     name: 'Private Island in Finland',
     image:
       'https://img.jamesedition.com/listing_images/2023/06/16/13/55/40/d6ee180a-b1c9-4d8f-9e36-04ce8fd446bd/je/2200xxs.jpg',
@@ -587,7 +515,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/espoo-finland/hogkopplan-12949860',
   },
   {
-    id: '2b3c4d5e-6f7a-8901-bcde-f23456789012',
     name: 'Castle in Hungary',
     image:
       'https://img.jamesedition.com/listing_images/2023/12/07/15/18/43/45819d2e-d25e-40d8-9380-ac28fa73e418/je/2200xxs.jpg',
@@ -596,7 +523,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/sopron-hungary/stunning-castle-for-sale-near-austria-13563172',
   },
   {
-    id: '3c4d5e6f-7a8b-9012-cdef-345678901234',
     name: 'Island with 9 Suites in Brazil',
     image:
       'https://img.jamesedition.com/listing_images/2023/07/19/13/14/33/8a818b8b-b516-4a5a-b327-94dfe0dd4b13/je/2200xxs.jpg',
@@ -605,7 +531,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/ilha-sundara-brazil/ang004-splendid-island-with-9-suites-in-angra-11666254',
   },
   {
-    id: '4d5e6f7a-8b9c-0123-def4-456789012345',
     name: 'Richard Mille RM52-06 Tourbillon',
     image:
       'https://img.jamesedition.com/listing_images/2024/11/29/09/40/03/1f02ea70-cb90-4314-bcc1-31c66d1d4065/je/2200xxs.jpg',
@@ -614,7 +539,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/watches/richard_mille/rm52-06/richard-mille-rm52-06-tourbillon-mask-blue-carbon-ntpt-limited-edition-of-18-14978023',
   },
   {
-    id: '5e6f7a8b-9c0d-1234-ef56-567890123456',
     name: 'Audemars Piguet Royal Oak',
     image:
       'https://img.jamesedition.com/listing_images/2022/11/04/15/37/53/7e23662a-721b-4879-91cf-eb3ef3c8d023/je/2200xxs.jpg',
@@ -623,7 +547,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/watches/audemars_piguet/royal_oak/audemars-piguet-royal-oak-iced-out-custom-two-tone-rose-gold-diamond-watch-12335062',
   },
   {
-    id: '6f7a8b9c-0d1e-2345-f678-678901234567',
     name: 'Harry Winston Diamond Bracelet',
     image:
       'https://img.jamesedition.com/listing_images/2025/03/19/15/37/29/78d9ad5c-ce3a-4e80-9e83-d4a974209c2b/je/1040x620xc.jpg',
@@ -632,7 +555,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/jewelry/harry_winston/harry-winston-diamond-bracelet-15370577',
   },
   {
-    id: '7a8b9c0d-1e2f-3456-g789-789012345678',
     name: '1930 Ford Model A',
     image:
       'https://img.jamesedition.com/listing_images/2025/02/11/07/59/03/45134a75-b00b-49d0-a20b-7466faca8736/je/2200xxs.jpg',
@@ -641,7 +563,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/ford/model_a/ford-model-a-for-sale-15201499',
   },
   {
-    id: '8b9c0d1e-2f3a-4567-h890-890123456789',
     name: '2019 Bugatti Chiron 110 ans',
     image:
       'https://img.jamesedition.com/listing_images/2024/10/23/12/07/14/0288e887-6f8f-44f0-84c4-2d7da3f51e69/je/2200xxs.jpg',
@@ -650,7 +571,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/bugatti/chiron_110_ans/2019-bugatti-chiron-110-ans-for-sale-14847338',
   },
   {
-    id: '9c0d1e2f-3a4b-5678-i901-901234567890',
     name: '2019 Lamborghini Aventador',
     image:
       'https://img.jamesedition.com/listing_images/2025/03/19/15/37/38/3b343eb1-216e-4f87-a094-3062a74ebd58/je/2200xxs.jpg',
@@ -659,7 +579,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/cars/lamborghini/aventador/2019-lamborghini-aventador-s-convertible-2d-for-sale-15372705',
   },
   {
-    id: 'a0b1c2d3-e4f5-6789-0123-456789abcdef',
     name: 'PARDO 43 2019',
     image:
       'https://img.jamesedition.com/listing_images/2025/01/23/09/29/34/ae20ea69-88f2-431f-8390-cb7bedc19d44/je/2200xxs.jpg',
@@ -668,7 +587,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/yachts/pardo/43/pardo-43-15124933',
   },
   {
-    id: 'b1c2d3e4-f5a6-7890-1234-567890abcdef',
     name: '2010 Embraer Phenom 100',
     image:
       'https://img.jamesedition.com/listing_images/2025/02/24/17/11/55/a7f3f4a0-bed3-4134-900c-409f29ed5853/je/2200xxs.jpg',
@@ -677,7 +595,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/jets/embraer/phenom_100/2010-embraer-phenom-100-15260008',
   },
   {
-    id: 'c2d3e4f5-a6b7-8901-2345-678901abcdef',
     name: '2,918 sqm Villa in Pattaya, Thailand',
     image:
       'https://img.jamesedition.com/listing_images/2023/01/11/09/38/32/e0fd8305-9b98-43cc-9fc6-a8c4a22a3cd6/je/2200xxs.jpg',
@@ -686,7 +603,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/muang-pattaya-thailand/asongkhai-ultra-luxury-beachfront-pool-villa-in-pattaya-12446601',
   },
   {
-    id: 'd3e4f5a6-b7c8-9012-3456-789012abcdef',
     name: '204 sqm appartment in Paris 16th',
     image:
       'https://img.jamesedition.com/listing_images/2025/03/10/16/26/32/b8c549ed-cc26-492a-a6a0-dfd3416ff466/je/2200xxs.jpg',
@@ -695,7 +611,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/paris-16eme-france/paris-16th-iena-president-wilson-apartment-for-sale-7-rooms-203-68sqm-carrez-5-bedrooms-15320877',
   },
   {
-    id: 'e4f5a6b7-c8d9-0123-4567-890123abcdef',
     name: '200 sqm Villa in Sicily',
     image:
       'https://img.jamesedition.com/listing_images/2023/10/16/12/22/24/05206c13-75d7-4a7a-841c-8a58263b28a2/je/2200xxs.jpg',
@@ -704,7 +619,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/avola-italy/villa-vita-hsh-1780-13385660',
   },
   {
-    id: 'f5a6b7c8-d9e0-1234-5678-901234abcdef',
     name: '500 sqm Villa in Victoria, Australia',
     image:
       'https://img.jamesedition.com/listing_images/2024/11/05/16/15/25/9e4cb2e1-560f-4e09-8c67-5f0e7c210d28/je/2200xxs.jpg',
@@ -713,7 +627,6 @@ export const guesses = [
     url: 'https://www.jamesedition.com/real_estate/safety-beach-australia/la-belle-vie-14893236',
   },
   {
-    id: 'a6b7c8d9-e0f1-2345-6789-012345abcdef',
     name: '290 sqm house in New Zealand',
     image:
       'https://img.jamesedition.com/listing_images/2024/04/15/11/06/26/5955fe08-a3b3-4934-ab5a-027cd5c1e1ab/je/2200xxs.jpg',
