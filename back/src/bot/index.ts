@@ -10,6 +10,7 @@ import { initTelegramBot, useTelegramBot } from './bot'
 let instance: Express | null = null
 const server = async (token: TelegramTokenType, telegramBotWebhook: UrlType) => {
   if (instance) return instance
+  console.log('Creating server instance')
   instance = express()
   const bot = await initTelegramBot(token, telegramBotWebhook)
   instance.use(express.json())
