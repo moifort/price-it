@@ -1,0 +1,9 @@
+---
+description: Front end coding
+globs: front/**/*
+alwaysApply: false
+---
+- Use shadcn library for all UI components
+- Files inside `components` folder must not use router (only in `app` folder)
+- When creating or modifying a component in `components` folder, always update or create a story for Storybook
+- When creating Storybook stories, use the same template as others
