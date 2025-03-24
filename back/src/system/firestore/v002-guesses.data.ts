@@ -1,4 +1,4 @@
-export const products = [
+export const guesses = [
   {
     id: '550e8400-e29b-41d4-a716-446655440000',
     name: 'Mini Spy Hidden Camera',
@@ -482,7 +482,8 @@ export const products = [
   {
     id: '789abcde-f012-3456-78',
     name: '2007 Cessna Citation Jet 2+',
-    image: 'https://img.jamesedition.com/listing_images/2025/01/17/13/52/22/f3783d05-14b7-44e0-971f-753525ba1ac4/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/01/17/13/52/22/f3783d05-14b7-44e0-971f-753525ba1ac4/je/2200xxs.jpg',
     price: 4100000.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/jets/cessna/525a_citation_cj2plus/2007-cessna-citation-jet-2-15111762',
@@ -498,7 +499,8 @@ export const products = [
   {
     id: '9abcdef0-1234-5678',
     name: '2025 Rolls-Royce Spectre',
-    image: 'https://img.jamesedition.com/listing_images/2025/03/13/06/35/06/e96d513c-ed38-4848-a7b3-d94c691eb1e8/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/03/13/06/35/06/e96d513c-ed38-4848-a7b3-d94c691eb1e8/je/2200xxs.jpg',
     price: 814070.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/rolls_royce/Spectre/2025-rolls-royce-spectre-for-sale-15339981',
@@ -506,7 +508,8 @@ export const products = [
   {
     id: 'abcdef01-2345-678',
     name: '2023 Ferrari 812 GTS',
-    image: 'https://img.jamesedition.com/listing_images/2024/12/11/16/34/53/51a2424c-6af7-4456-8aa5-1e35c440ad6e/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/12/11/16/34/53/51a2424c-6af7-4456-8aa5-1e35c440ad6e/je/2200xxs.jpg',
     price: 609990.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/ferrari/812-gts/2023-ferrari-812-gts-rwd-for-sale-15008824',
@@ -514,7 +517,8 @@ export const products = [
   {
     id: 'bcdef012-3456-78',
     name: '2022 Porsche 911 Turbo S',
-    image: 'https://img.jamesedition.com/listing_images/2025/03/03/03/10/20/c7382e52-5092-47dd-9b03-fe48d4a466f4/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/03/03/03/10/20/c7382e52-5092-47dd-9b03-fe48d4a466f4/je/2200xxs.jpg',
     price: 449236.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/porsche/porsche-911-turbo-s/2022-porsche-911-turbo-s-for-sale-15287533',
@@ -522,7 +526,8 @@ export const products = [
   {
     id: 'cdef0123-4567-8',
     name: 'Duplex Penthouse London',
-    image: 'https://img.jamesedition.com/listing_images/2024/11/18/12/55/12/4917fe61-bec7-4df1-a4a1-ac8ad7db010c/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/11/18/12/55/12/4917fe61-bec7-4df1-a4a1-ac8ad7db010c/je/2200xxs.jpg',
     price: 225979070.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/london-united-kingdom/duplex-penthouse-located-in-iconic-one-hyde-park-14060960',
@@ -530,7 +535,8 @@ export const products = [
   {
     id: 'def01234-5678',
     name: 'Private Island in The Bahamas',
-    image: 'https://img.jamesedition.com/listing_images/2024/02/05/12/03/45/94a46e93-c48a-4fdf-bbbc-b476ae3c36cf/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/02/05/12/03/45/94a46e93-c48a-4fdf-bbbc-b476ae3c36cf/je/2200xxs.jpg',
     price: 19995000.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/other-berry-islands-bahamas/whale-cay-13773453',
@@ -538,7 +544,8 @@ export const products = [
   {
     id: 'ef012345-678',
     name: 'Sunseeker 88 Yacht 2011',
-    image: 'https://img.jamesedition.com/listing_images/2024/07/11/16/16/13/570516eb-c406-4efb-a802-b2f8c27b194d/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/07/11/16/16/13/570516eb-c406-4efb-a802-b2f8c27b194d/je/2200xxs.jpg',
     price: 2915000.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/yachts/sunseeker/88-yacht/sunseeker-88-yacht-14475764',
@@ -546,7 +553,8 @@ export const products = [
   {
     id: 'f0123456-78',
     name: 'Patek Philippe Nautilus',
-    image: 'https://img.jamesedition.com/listing_images/2024/12/25/12/13/55/f8585cf0-9e7a-4ac5-8c3c-30590024331e/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/12/25/12/13/55/f8585cf0-9e7a-4ac5-8c3c-30590024331e/je/2200xxs.jpg',
     price: 88250.0,
     category: 'fashion',
     url: 'https://www.jamesedition.com/watches/patek_philippe/nautilus_collection/patek-philippe-5726a-001-nautilus-annual-calendar-moon-phase-in-steel-13633099',
@@ -554,87 +562,98 @@ export const products = [
   {
     id: '01234567-8',
     name: 'Luxury House in Texas',
-    image: 'https://img.jamesedition.com/listing_images/2024/08/05/14/56/26/704b52bc-5491-4947-b3ab-d11096cb44f0/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/08/05/14/56/26/704b52bc-5491-4947-b3ab-d11096cb44f0/je/2200xxs.jpg',
     price: 27500000.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/southlake-tx-usa/1469-sunshine-lane-14562315',
   },
   {
-    id: '12345678',
+    id: '12345678-9abc-def0-1234-56789abcde',
     name: 'Villa in Bora Bora',
-    image: 'https://img.jamesedition.com/listing_images/2024/09/27/12/31/20/cc9ae3c7-a379-44a1-8719-23e07c558e0b/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/09/27/12/31/20/cc9ae3c7-a379-44a1-8719-23e07c558e0b/je/2200xxs.jpg',
     price: 39000000.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/bora-bora-french-polynesia/villa-aquamaris-14757973',
   },
   {
-    id: '1a2b3c4d',
+    id: '1a2b3c4d-5e6f-7890-abcd-ef1234567890',
     name: 'Private Island in Finland',
-    image: 'https://img.jamesedition.com/listing_images/2023/06/16/13/55/40/d6ee180a-b1c9-4d8f-9e36-04ce8fd446bd/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2023/06/16/13/55/40/d6ee180a-b1c9-4d8f-9e36-04ce8fd446bd/je/2200xxs.jpg',
     price: 1297176.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/espoo-finland/hogkopplan-12949860',
   },
   {
-    id: '2b3c4d5e',
+    id: '2b3c4d5e-6f7a-8901-bcde-f23456789012',
     name: 'Castle in Hungary',
-    image: 'https://img.jamesedition.com/listing_images/2023/12/07/15/18/43/45819d2e-d25e-40d8-9380-ac28fa73e418/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2023/12/07/15/18/43/45819d2e-d25e-40d8-9380-ac28fa73e418/je/2200xxs.jpg',
     price: 32429417.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/sopron-hungary/stunning-castle-for-sale-near-austria-13563172',
   },
   {
-    id: '3c4d5e6f',
+    id: '3c4d5e6f-7a8b-9012-cdef-345678901234',
     name: 'Island with 9 Suites in Brazil',
-    image: 'https://img.jamesedition.com/listing_images/2023/07/19/13/14/33/8a818b8b-b516-4a5a-b327-94dfe0dd4b13/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2023/07/19/13/14/33/8a818b8b-b516-4a5a-b327-94dfe0dd4b13/je/2200xxs.jpg',
     price: 5250538.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/ilha-sundara-brazil/ang004-splendid-island-with-9-suites-in-angra-11666254',
   },
   {
-    id: '4d5e6f7g',
+    id: '4d5e6f7a-8b9c-0123-def4-456789012345',
     name: 'Richard Mille RM52-06 Tourbillon',
-    image: 'https://img.jamesedition.com/listing_images/2024/11/29/09/40/03/1f02ea70-cb90-4314-bcc1-31c66d1d4065/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/11/29/09/40/03/1f02ea70-cb90-4314-bcc1-31c66d1d4065/je/2200xxs.jpg',
     price: 1380000.0,
     category: 'fashion',
     url: 'https://www.jamesedition.com/watches/richard_mille/rm52-06/richard-mille-rm52-06-tourbillon-mask-blue-carbon-ntpt-limited-edition-of-18-14978023',
   },
   {
-    id: '5e6f7g8h',
+    id: '5e6f7a8b-9c0d-1234-ef56-567890123456',
     name: 'Audemars Piguet Royal Oak',
-    image: 'https://img.jamesedition.com/listing_images/2022/11/04/15/37/53/7e23662a-721b-4879-91cf-eb3ef3c8d023/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2022/11/04/15/37/53/7e23662a-721b-4879-91cf-eb3ef3c8d023/je/2200xxs.jpg',
     price: 65000.0,
     category: 'fashion',
     url: 'https://www.jamesedition.com/watches/audemars_piguet/royal_oak/audemars-piguet-royal-oak-iced-out-custom-two-tone-rose-gold-diamond-watch-12335062',
   },
   {
-    id: '6f7g8h9i',
+    id: '6f7a8b9c-0d1e-2345-f678-678901234567',
     name: 'Harry Winston Diamond Bracelet',
-    image: 'https://img.jamesedition.com/listing_images/2025/03/19/15/37/29/78d9ad5c-ce3a-4e80-9e83-d4a974209c2b/je/1040x620xc.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/03/19/15/37/29/78d9ad5c-ce3a-4e80-9e83-d4a974209c2b/je/1040x620xc.jpg',
     price: 300000.0,
     category: 'fashion',
     url: 'https://www.jamesedition.com/jewelry/harry_winston/harry-winston-diamond-bracelet-15370577',
   },
   {
-    id: '7g8h9i0j',
+    id: '7a8b9c0d-1e2f-3456-g789-789012345678',
     name: '1930 Ford Model A',
-    image: 'https://img.jamesedition.com/listing_images/2025/02/11/07/59/03/45134a75-b00b-49d0-a20b-7466faca8736/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/02/11/07/59/03/45134a75-b00b-49d0-a20b-7466faca8736/je/2200xxs.jpg',
     price: 35997.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/ford/model_a/ford-model-a-for-sale-15201499',
   },
   {
-    id: '8h9i0j1k',
+    id: '8b9c0d1e-2f3a-4567-h890-890123456789',
     name: '2019 Bugatti Chiron 110 ans',
-    image: 'https://img.jamesedition.com/listing_images/2024/10/23/12/07/14/0288e887-6f8f-44f0-84c4-2d7da3f51e69/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/10/23/12/07/14/0288e887-6f8f-44f0-84c4-2d7da3f51e69/je/2200xxs.jpg',
     price: 4070353.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/bugatti/chiron_110_ans/2019-bugatti-chiron-110-ans-for-sale-14847338',
   },
   {
-    id: '9i0j1k2l',
+    id: '9c0d1e2f-3a4b-5678-i901-901234567890',
     name: '2019 Lamborghini Aventador',
-    image: 'https://img.jamesedition.com/listing_images/2025/03/19/15/37/38/3b343eb1-216e-4f87-a094-3062a74ebd58/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/03/19/15/37/38/3b343eb1-216e-4f87-a094-3062a74ebd58/je/2200xxs.jpg',
     price: 514999.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/cars/lamborghini/aventador/2019-lamborghini-aventador-s-convertible-2d-for-sale-15372705',
@@ -642,7 +661,8 @@ export const products = [
   {
     id: 'a0b1c2d3-e4f5-6789-0123-456789abcdef',
     name: 'PARDO 43 2019',
-    image: 'https://img.jamesedition.com/listing_images/2025/01/23/09/29/34/ae20ea69-88f2-431f-8390-cb7bedc19d44/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/01/23/09/29/34/ae20ea69-88f2-431f-8390-cb7bedc19d44/je/2200xxs.jpg',
     price: 810735.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/yachts/pardo/43/pardo-43-15124933',
@@ -650,7 +670,8 @@ export const products = [
   {
     id: 'b1c2d3e4-f5a6-7890-1234-567890abcdef',
     name: '2010 Embraer Phenom 100',
-    image: 'https://img.jamesedition.com/listing_images/2025/02/24/17/11/55/a7f3f4a0-bed3-4134-900c-409f29ed5853/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/02/24/17/11/55/a7f3f4a0-bed3-4134-900c-409f29ed5853/je/2200xxs.jpg',
     price: 2375000.0,
     category: 'vehicles',
     url: 'https://www.jamesedition.com/jets/embraer/phenom_100/2010-embraer-phenom-100-15260008',
@@ -658,7 +679,8 @@ export const products = [
   {
     id: 'c2d3e4f5-a6b7-8901-2345-678901abcdef',
     name: '2,918 sqm Villa in Pattaya, Thailand',
-    image: 'https://img.jamesedition.com/listing_images/2023/01/11/09/38/32/e0fd8305-9b98-43cc-9fc6-a8c4a22a3cd6/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2023/01/11/09/38/32/e0fd8305-9b98-43cc-9fc6-a8c4a22a3cd6/je/2200xxs.jpg',
     price: 11355843.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/muang-pattaya-thailand/asongkhai-ultra-luxury-beachfront-pool-villa-in-pattaya-12446601',
@@ -666,7 +688,8 @@ export const products = [
   {
     id: 'd3e4f5a6-b7c8-9012-3456-789012abcdef',
     name: '204 sqm appartment in Paris 16th',
-    image: 'https://img.jamesedition.com/listing_images/2025/03/10/16/26/32/b8c549ed-cc26-492a-a6a0-dfd3416ff466/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2025/03/10/16/26/32/b8c549ed-cc26-492a-a6a0-dfd3416ff466/je/2200xxs.jpg',
     price: 7956017.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/paris-16eme-france/paris-16th-iena-president-wilson-apartment-for-sale-7-rooms-203-68sqm-carrez-5-bedrooms-15320877',
@@ -674,7 +697,8 @@ export const products = [
   {
     id: 'e4f5a6b7-c8d9-0123-4567-890123abcdef',
     name: '200 sqm Villa in Sicily',
-    image: 'https://img.jamesedition.com/listing_images/2023/10/16/12/22/24/05206c13-75d7-4a7a-841c-8a58263b28a2/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2023/10/16/12/22/24/05206c13-75d7-4a7a-841c-8a58263b28a2/je/2200xxs.jpg',
     price: 1037741.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/avola-italy/villa-vita-hsh-1780-13385660',
@@ -682,7 +706,8 @@ export const products = [
   {
     id: 'f5a6b7c8-d9e0-1234-5678-901234abcdef',
     name: '500 sqm Villa in Victoria, Australia',
-    image: 'https://img.jamesedition.com/listing_images/2024/11/05/16/15/25/9e4cb2e1-560f-4e09-8c67-5f0e7c210d28/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/11/05/16/15/25/9e4cb2e1-560f-4e09-8c67-5f0e7c210d28/je/2200xxs.jpg',
     price: 1931733.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/safety-beach-australia/la-belle-vie-14893236',
@@ -690,7 +715,8 @@ export const products = [
   {
     id: 'a6b7c8d9-e0f1-2345-6789-012345abcdef',
     name: '290 sqm house in New Zealand',
-    image: 'https://img.jamesedition.com/listing_images/2024/04/15/11/06/26/5955fe08-a3b3-4934-ab5a-027cd5c1e1ab/je/2200xxs.jpg',
+    image:
+      'https://img.jamesedition.com/listing_images/2024/04/15/11/06/26/5955fe08-a3b3-4934-ab5a-027cd5c1e1ab/je/2200xxs.jpg',
     price: 2149969.0,
     category: 'real estate',
     url: 'https://www.jamesedition.com/real_estate/nelson-new-zealand/65-battery-road-patons-rock-14100341',
