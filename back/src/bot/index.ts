@@ -24,6 +24,7 @@ export const bot = onRequest(async (req, res) => {
   const bot = useTelegramBot()
   const request = app(req, res)
   bot.on('message', async (ctx) => {
+    console.log(ctx.message)
     await ctx.reply('Hello! je suis thibaut')
   })
   return request
