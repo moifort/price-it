@@ -3,7 +3,7 @@ import Tasks from '~/components/pages/Tasks.vue'
 import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 
-// TODO: Add logic comment savoir de facon simple qu'il c'est abonné ?
+// TODO: Add logic jsute si il clique sur le lien
 const { data, status } = useAsyncGql('TaskQuery')
 </script>
 

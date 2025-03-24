@@ -1,1 +1,1 @@
-export * as migration from './firestore'
+export * from './firestore'

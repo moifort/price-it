@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ArrowDown, ArrowUp } from 'lucide-vue-next'
 import ActionButton from '~/components/molecules/ActionButton.vue'
+import { formatNumber } from '~/utils/utils'
 import type { Amount } from '../../../../back/src/utils/types'
 
 defineProps<{ isActive: boolean; displayPrice: Amount }>()
@@ -30,7 +31,7 @@ defineEmits<{
       @click="isActive &&  $emit('click:exact')"
     >
       <template #icon>
-        <span class="font-bold text-lg">${{ displayPrice.toFixed(0) }}</span>
+        <span class="font-bold text-lg">${{ formatNumber(displayPrice) }}</span>
       </template>
       <template #label>
         Exact
