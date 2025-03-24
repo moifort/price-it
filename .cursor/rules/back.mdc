@@ -1,0 +1,76 @@
+---
+description: Back coding 
+globs: back/src/**/*.ts
+alwaysApply: false
+---
+Context: @file back/
+
+## Code Style
+- Use clean code methodology
+- Use functionnal programming aproach
+- Avoid creating to many functions; prefer not splitting code into small functions as it complicates readability
+- When it's increase the readability and maintenance use lodash by maintening functional programming approach
+- In arrow functions, do not specify the return type (unless explicitly required)
+- Avoid anti-patterns like `as unknown as`
+- Do not include comments unless they provide critical information for humans
+- Maintain consistent coding style and practices within files
+
+## Development life cycle
+### Starting
+- Knowledge package.json dependencies and scripts
+- Analyze style, methodoly, files organization, functions organisation of the current codes
+
+### Coding (create/update)
+- Apply your modification, using the same way of coding
+
+### Finishing 
+- As code tester, update or create test folowing the testing methodology describe belpw
+- As code reviewer, review your code, by fixing typo, namming, simplifying code etc.
+- Don't need to summurize your changes
+- At the end:
+  1. run `bun run:graphql` if you change graphql codes 
+  2. run `bun test:all` to check if there are no regression
+  3. run `bun tsc` to see typescript error
+  4. run `bun lint:fix` to fix lint error 
+
+## Folder Structure
+- Folders represent domains using Domain Driven Development methodology inside each you find:
+- `business-rules` folder:
+  - Must contain pure functions (not async)
+  - Must not have infrastructure calls (database, repository, etc.)
+  - Must not have API Call
+- `infra` folder:
+  - Defines all external services (API calls, database requests)
+  - repository.ts it's for database call
+  - {api-name].ts it for all externa API call
+- `graphql` folder, apply `#GraphQL Development` rules
+  - typdefs.ts
+  - resolvers.ts
+
+## Specific folder
+- `api`: do not edit code, unless if asking. DO NOT touch `__generated__` folder
+- `system`: do not edit code, unless if asking
+- `utils`: contain code shared by several domain, mostly brand and validators. Add inside if it's a generic brand like Url, Minute type.
+
+## File Naming and Purpose
+- `query.ts`: Entry-point for read actions or query folowing the CQRS Architecture
+- `command.ts`: Entry-point for write actions or command folowing the CQRS Architecture
+- `types.ts`: Define all types here with brand<> 
+- `validators.ts`: all brand types are validators 
+
+## Testing
+- Before creating test files, check if relevant test files already exist
+- Test file types:
+  - `*.unit.test.ts`: For pure, non-async functions; test all possible cases
+  - `*.int.test.ts`: For functions making API calls; test main cases
+  - `*.feat.test.ts`: For functions using Firebase infrastructure; test happy path
+- All files ending with `feat.test.ts` should test the main scenario
+
+## GraphQL Development
+- When updating GraphQL, always update `typedefs.ts` first
+- When updating scalar GraphQL, update `codegen.yml` and `front/nuxt.config.ts`
+
+## Dependency
+- Lodash: Use only if simplify and increase human lisibility. Use chain functions from lodash only for collections or arrays
+- Dayjs:  Use only if simplify and increase human lisibility.
+

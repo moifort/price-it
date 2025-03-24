@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from './validators'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Rank, Seconde, Url } from './validators'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
@@ -125,5 +125,21 @@ describe('Quantity', () => {
 
   it('should throw error for NaN', () => {
     expect(() => Quantity(Number.NaN)).toThrow()
+  })
+})
+
+describe('Rank', () => {
+  it('should create a valid rank', () => {
+    const rank = Rank(1)
+    expect(Number(rank)).toBe(1)
+  })
+
+  it('should throw error for non-integer values', () => {
+    expect(() => Rank(1.5)).toThrow('Rank must be an integer')
+  })
+
+  it('should throw error for zero or negative values', () => {
+    expect(() => Rank(0)).toThrow('Rank must be positive')
+    expect(() => Rank(-1)).toThrow('Rank must be positive')
   })
 })
