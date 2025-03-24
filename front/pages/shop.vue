@@ -4,7 +4,6 @@ import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 import type { ProductId } from '../../back/src/shop-product/types'
 
-// TODO: implement payment https://core.telegram.org/bots/payments-stars et back npm node-telegram-bot-api
 const { open: openInvoice } = useInvoice()
 const { data, status } = useAsyncGql('ShopQuery')
 const buy = async (id?: ProductId) => {
