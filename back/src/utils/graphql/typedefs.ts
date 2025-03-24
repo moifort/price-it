@@ -9,4 +9,5 @@ scalar PercentagePoint
 scalar Url
 scalar Quantity
 scalar TelegramStar
+scalar Rank
 `

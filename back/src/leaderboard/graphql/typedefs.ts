@@ -1,6 +1,6 @@
 export default `#graphql
 type TopPlayer {
-  rank: Int!
+  rank: Rank!
   id: UserId!
   name: String!
   score: Score!

@@ -37,6 +37,7 @@ export default defineNuxtConfig({
         PercentagePoint: '../../../back/src/utils/types#PercentagePoint',
         Url: '../../../back/src/utils/types#Url',
         Quantity: '../../../back/src/utils/types#Quantity',
+        Rank: '../../../back/src/utils/types#Rank',
         Run: '../../../back/src/run/types#Run',
         GuessId: '../../../back/src/game-guess/types#GuessId',
         ProductId: '../../../back/src/shop-product/types#ProductId',

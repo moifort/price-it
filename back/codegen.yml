@@ -23,6 +23,7 @@ generates:
         PlayerId: '../../player/types#PlayerId'
         UserId: '../../player/types#PlayerId'
         Point: '../../score/types#Point'
+        Rank: '../../score/types#Rank'
         Minute: '../../utils/types#Minute'
         Seconde: '../../utils/types#Seconde'
         Limit: '../../utils/types#Limit'

@@ -7,11 +7,11 @@ import type {
   PercentagePoint as PercentagePointType,
   Percentage as PercentageType,
   Quantity as QuantityType,
+  Rank as RankType,
   Seconde as SecondeType,
   Url as UrlType,
 } from './types'
 
-// TODO: Update validators pour que les erreurs soient plus explicites
 export const Limit = make<LimitType>((value) =>
   z
     .number()
@@ -71,3 +71,11 @@ export const Quantity = (value: number) =>
       .min(1, { message: `Quantity must be at least 1, received: ${value}` })
       .parse(value),
   )
+
+export const Rank = make<RankType>((value) =>
+  z
+    .number()
+    .int({ message: `Rank must be an integer, received: ${value}` })
+    .positive({ message: `Rank must be positive, received: ${value}` })
+    .parse(value),
+)

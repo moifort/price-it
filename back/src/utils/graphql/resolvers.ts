@@ -12,10 +12,11 @@ import type {
   PercentagePoint as PercentagePointType,
   Percentage as PercentageType,
   Quantity as QuantityType,
+  Rank as RankType,
   Seconde as SecondeType,
   Url as UrlType,
 } from '../types'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Seconde, Url } from '../validators'
+import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Rank, Seconde, Url } from '../validators'
 
 const MinuteScalar = new GraphQLScalarType({
   name: 'Minute',
@@ -89,6 +90,14 @@ const TelegramStarScalar = new GraphQLScalarType({
   parseLiteral: (ast) => (ast.kind === Kind.INT ? TelegramStar(Number.parseInt(ast.value, 10)) : null),
 })
 
+const RankScalar = new GraphQLScalarType({
+  name: 'Rank',
+  description: 'The `Rank` scalar type represents a positive integer rank.',
+  parseValue: (value: unknown): RankType => Rank(Number(value)),
+  serialize: (value: unknown) => Rank(Number(value)),
+  parseLiteral: (ast) => (ast.kind === Kind.INT ? Rank(Number.parseInt(ast.value, 10)) : null),
+})
+
 export const resolvers: Resolvers = {
   DateTime: DateTimeResolver,
   Minute: MinuteScalar,
@@ -100,4 +109,5 @@ export const resolvers: Resolvers = {
   Url: UrlScalar,
   Quantity: QuantityScalar,
   TelegramStar: TelegramStarScalar,
+  Rank: RankScalar,
 }

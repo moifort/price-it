@@ -4,8 +4,9 @@ import Loading from '~/components/organisms/leaderboard/Loading.vue'
 import Table from '~/components/organisms/leaderboard/Table.vue'
 import MainTemplate from '~/components/template/Main.vue'
 import type { Score } from '../../../back/src/score/types'
+import type { Rank } from '../../../back/src/utils/types'
 
-defineProps<{ topPlayers: { name: string; score: Score; rank: number }[] }>()
+defineProps<{ topPlayers: { name: string; score: Score; rank: Rank }[] }>()
 </script>
 
 <template>

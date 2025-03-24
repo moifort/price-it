@@ -10,6 +10,7 @@ import type { Period } from '../../shop-product/types';
 import type { Point } from '../../score/types';
 import type { ProductId } from '../../shop-product/types';
 import type { Quantity } from '../../utils/types';
+import type { Rank } from '../../score/types';
 import type { Run } from '../../run/types';
 import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
@@ -46,6 +47,7 @@ export type Scalars = {
   Point: { input: Point; output: Point; }
   ProductId: { input: ProductId; output: ProductId; }
   Quantity: { input: Quantity; output: Quantity; }
+  Rank: { input: Rank; output: Rank; }
   Run: { input: Run; output: Run; }
   Score: { input: Score; output: Score; }
   Seconde: { input: Seconde; output: Seconde; }
@@ -170,7 +172,7 @@ export type TopPlayer = {
   __typename?: 'TopPlayer';
   id: Scalars['UserId']['output'];
   name: Scalars['String']['output'];
-  rank: Scalars['Int']['output'];
+  rank: Scalars['Rank']['output'];
   score: Scalars['Score']['output'];
 };
 
@@ -270,6 +272,7 @@ export type ResolversTypes = {
   ProductId: ResolverTypeWrapper<Scalars['ProductId']['output']>;
   Quantity: ResolverTypeWrapper<Scalars['Quantity']['output']>;
   Query: ResolverTypeWrapper<{}>;
+  Rank: ResolverTypeWrapper<Scalars['Rank']['output']>;
   Run: ResolverTypeWrapper<Scalars['Run']['output']>;
   Runs: ResolverTypeWrapper<Runs>;
   Score: ResolverTypeWrapper<Scalars['Score']['output']>;
@@ -278,7 +281,6 @@ export type ResolversTypes = {
   ShopQuery: ResolverTypeWrapper<ShopQuery>;
   TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
   WalletId: ResolverTypeWrapper<Scalars['WalletId']['output']>;
@@ -311,6 +313,7 @@ export type ResolversParentTypes = {
   ProductId: Scalars['ProductId']['output'];
   Quantity: Scalars['Quantity']['output'];
   Query: {};
+  Rank: Scalars['Rank']['output'];
   Run: Scalars['Run']['output'];
   Runs: Runs;
   Score: Scalars['Score']['output'];
@@ -319,7 +322,6 @@ export type ResolversParentTypes = {
   ShopQuery: ShopQuery;
   TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
-  Int: Scalars['Int']['output'];
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
   WalletId: Scalars['WalletId']['output'];
@@ -449,6 +451,10 @@ export type QueryResolvers<ContextType = GraphQlContext, ParentType extends Reso
   shop?: Resolver<ResolversTypes['ShopQuery'], ParentType, ContextType>;
 };
 
+export interface RankScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Rank'], any> {
+  name: 'Rank';
+}
+
 export interface RunScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Run'], any> {
   name: 'Run';
 }
@@ -485,7 +491,7 @@ export interface TelegramStarScalarConfig extends GraphQLScalarTypeConfig<Resolv
 export type TopPlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TopPlayer'] = ResolversParentTypes['TopPlayer']> = {
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  rank?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  rank?: Resolver<ResolversTypes['Rank'], ParentType, ContextType>;
   score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -526,6 +532,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   ProductId?: GraphQLScalarType;
   Quantity?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
+  Rank?: GraphQLScalarType;
   Run?: GraphQLScalarType;
   Runs?: RunsResolvers<ContextType>;
   Score?: GraphQLScalarType;
