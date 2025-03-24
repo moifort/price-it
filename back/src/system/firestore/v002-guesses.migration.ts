@@ -7,7 +7,7 @@ export const migrate: Migrate = async (database) => {
   const collection = database.collection('guesses')
   for (const guess of guesses) {
     const id = uuid()
-    batch.set(collection.doc(id), { id, ...guess })
+    batch.set(collection.doc(id), { ...guess, id })
   }
   await batch.commit()
 }
