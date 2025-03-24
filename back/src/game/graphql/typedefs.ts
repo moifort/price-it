@@ -1,5 +1,4 @@
 export default `#graphql
-
 type GameQuery {
   guesses: [Guess!]!
 }
