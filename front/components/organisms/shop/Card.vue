@@ -20,7 +20,6 @@ const props = defineProps<{
   buy: (id: ProductId) => Promise<void>
 }>()
 
-const noMoreFund = computed(() => props.score < props.amount)
 const success = ref(false)
 const loading = ref(false)
 const error = ref(false)
@@ -61,7 +60,6 @@ const buyProduct = async (id: ProductId) => {
     <CardFooter class="p-3 pt-0">
       <Button variant="default"
               size="lg"
-              :disabled="noMoreFund"
               @click="!loading && buyProduct(id)"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
         <template v-if="success" class="w-16"> <Check/> </template>
