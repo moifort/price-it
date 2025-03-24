@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "if [[ -z \"$CI\" || -n \"$FIREBASE_TOOLS\" ]]; then bun install --global firebase-tools@13.34.0; fi && bun install --cwd back && bun install --cwd front",
-    "dev": "firebase emulators:exec --import .emulators --ui --only functions,firestore 'curl GET http://127.0.0.1:5001/price-it-85b3e/europe-west3/system-migration-api && bun --cwd back tsc --watch & bun --cwd front dev'",
+    "dev": "firebase emulators:exec --import .emulators --ui --only functions,firestore 'curl GET http://127.0.0.1:5001/price-it-85b3e/europe-west3/system-migration && bun --cwd back tsc --watch & bun --cwd front dev'",
     "test:all": "bun --cwd back test:all",
     "dev:https": "bun --cwd front dev:https",
     "clean": "bun --cwd back clean && bun --cwd front clean",

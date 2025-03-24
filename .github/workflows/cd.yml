@@ -34,7 +34,7 @@ jobs:
           args: deploy
       - name: 🔄 Run Firestore Migration
         run: |
-          bunx curl -s -o response.json -w "%{http_code}" https://europe-west3-price-it-85b3e.cloudfunctions.net/system-migration-api > status_code.txt
+          bunx curl -s -o response.json -w "%{http_code}" https://europe-west3-price-it-85b3e.cloudfunctions.net/system-migration > status_code.txt
           if [ "$(cat status_code.txt)" -lt 200 ] || [ "$(cat status_code.txt)" -ge 300 ]; then
             echo "Firestore migration failed!" && cat response.json && exit 1
           fi
