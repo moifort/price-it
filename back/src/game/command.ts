@@ -10,6 +10,7 @@ import { GameQuery } from './query'
 export namespace GameCommand {
   export const create = save
   export const set = update
+
   export const win = (database: Database) => async (userId: UserId, guessId: GuessId) => {
     await Promise.all([
       update(database)(userId, { position: guessId }),
