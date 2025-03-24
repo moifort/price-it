@@ -20,14 +20,14 @@ query GameQuery {
   }
 }
 
-mutation GameCommandWin {
+mutation GameCommandWin($guessId: GuessId!) {
   game {
-    win
+    win(guessId: $guessId)
   }
 }
 
-mutation GameCommandLose {
+mutation GameCommandLose($guessId: GuessId!) {
   game {
-    lose
+    lose(guessId: $guessId)
   }
 }

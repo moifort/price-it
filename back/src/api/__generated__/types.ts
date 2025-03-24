@@ -2,6 +2,7 @@
 // @ts-nocheck
 import type { Amount } from '../../utils/types';
 import type { Category } from '../../shop-product/types';
+import type { GuessId } from '../../game-guess/types';
 import type { Limit } from '../../utils/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
@@ -38,7 +39,7 @@ export type Scalars = {
   Amount: { input: Amount; output: Amount; }
   Category: { input: Category; output: Category; }
   DateTime: { input: any; output: any; }
-  GuessId: { input: any; output: any; }
+  GuessId: { input: GuessId; output: GuessId; }
   Limit: { input: Limit; output: Limit; }
   Minute: { input: Minute; output: Minute; }
   Percentage: { input: Percentage; output: Percentage; }
@@ -77,6 +78,16 @@ export type GameMutation = {
   __typename?: 'GameMutation';
   lose: Scalars['Boolean']['output'];
   win: Scalars['Boolean']['output'];
+};
+
+
+export type GameMutationLoseArgs = {
+  guessId: Scalars['GuessId']['input'];
+};
+
+
+export type GameMutationWinArgs = {
+  guessId: Scalars['GuessId']['input'];
 };
 
 export type GameQuery = {
@@ -350,8 +361,8 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type GameMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['GameMutation'] = ResolversParentTypes['GameMutation']> = {
-  lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GameMutationLoseArgs, 'guessId'>>;
+  win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GameMutationWinArgs, 'guessId'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

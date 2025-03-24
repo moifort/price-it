@@ -11,12 +11,12 @@ export const resolvers: Resolvers = {
     game: () => ({}),
   },
   GameMutation: {
-    win: async (_, __, { userId, database }) => {
-      await GameCommand.win(database)(userId)
+    win: async (_, { guessId }, { userId, database }) => {
+      await GameCommand.win(database)(userId, guessId)
       return true
     },
-    lose: async (_, __, { userId, database }) => {
-      await GameCommand.lose(database)(userId)
+    lose: async (_, { guessId }, { userId, database }) => {
+      await GameCommand.lose(database)(userId, guessId)
       return true
     },
   },
