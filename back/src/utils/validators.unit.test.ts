@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'bun:test'
-import { Amount, Limit, Minute, Percentage, PercentagePoint, Quantity, Rank, Seconde, Url } from './validators'
+import {
+  Amount,
+  Environment,
+  Limit,
+  Minute,
+  Percentage,
+  PercentagePoint,
+  Quantity,
+  Rank,
+  Seconde,
+  Url,
+} from './validators'
 
 describe('Limit', () => {
   it('should throw if the value is not an integer', () => {
@@ -141,5 +152,30 @@ describe('Rank', () => {
   it('should throw error for zero or negative values', () => {
     expect(() => Rank(0)).toThrow('Rank must be positive')
     expect(() => Rank(-1)).toThrow('Rank must be positive')
+  })
+})
+
+describe('Environment', () => {
+  it('should validate valid environment values', () => {
+    expect(() => Environment('production')).not.toThrow()
+    expect(() => Environment('development')).not.toThrow()
+    expect(() => Environment('test')).not.toThrow()
+  })
+
+  it('should reject invalid environment values', () => {
+    expect(() => Environment('staging')).toThrow()
+    expect(() => Environment('')).toThrow()
+    expect(() => Environment('PRODUCTION')).toThrow() // Case sensitive
+  })
+
+  it('should throw with correct error message', () => {
+    let errorMessage = ''
+    try {
+      Environment('invalid')
+    } catch (error) {
+      errorMessage = (error as Error).message
+    }
+    expect(errorMessage).toContain('Environment must be one of: production, development, test')
+    expect(errorMessage).toContain('Received: invalid')
   })
 })

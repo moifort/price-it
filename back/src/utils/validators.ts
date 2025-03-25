@@ -2,6 +2,7 @@ import { make } from 'ts-brand'
 import { z } from 'zod'
 import type {
   Amount as AmountType,
+  Environment as EnvironmentType,
   Limit as LimitType,
   Minute as MinuteType,
   PercentagePoint as PercentagePointType,
@@ -11,6 +12,14 @@ import type {
   Seconde as SecondeType,
   Url as UrlType,
 } from './types'
+
+export const Environment = (value: unknown): EnvironmentType => {
+  const categories: EnvironmentType[] = ['production', 'development', 'test']
+  if (typeof value !== 'string' || !categories.includes(value as EnvironmentType)) {
+    throw new Error(`Environment must be one of: production, development, test. Received: ${value}`)
+  }
+  return value as EnvironmentType
+}
 
 export const Limit = make<LimitType>((value) =>
   z
@@ -56,12 +65,13 @@ export const PercentagePoint = make<PercentagePointType>((value) =>
     .parse(value),
 )
 
-export const Url = make<UrlType>((value) =>
-  z
-    .string()
-    .url({ message: `Url must be a valid URL, received: ${value}` })
-    .parse(value),
-)
+export const Url = (value: unknown) =>
+  make<UrlType>()(
+    z
+      .string()
+      .url({ message: `Url must be a valid URL, received: ${value}` })
+      .parse(value),
+  )
 
 export const Quantity = (value: number) =>
   make<QuantityType>()(

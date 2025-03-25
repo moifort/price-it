@@ -4,11 +4,11 @@ import { PlayerQuery } from '../query'
 
 export const resolvers: Resolvers = {
   Query: {
-    me: (_, __, { userId, user, database }) => PlayerQuery.get(database)(userId),
+    me: (_, __, { context: { $firestore }, user: { id } }) => PlayerQuery.get($firestore)(id),
   },
   PlayerMutation: {
-    createIfNotExist: (_, __, { user, database, runTaskQueue }) =>
-      PlayerCommand.createIfNotExist(database, runTaskQueue)(user.id, user.firstName),
+    createIfNotExist: (_, __, { context: { $firestore, $task__run }, user: { id, firstName } }) =>
+      PlayerCommand.createIfNotExist($firestore, $task__run)(id, firstName),
   },
   Mutation: {
     // @ts-ignore
