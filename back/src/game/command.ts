@@ -1,4 +1,4 @@
-import type { Database } from '../api/types'
+import type { Firestore } from '@google-cloud/firestore'
 import type { GuessId } from '../game-guess/types'
 import { RunCommand } from '../run/command'
 import { ScoreCommand } from '../score/command'
@@ -11,7 +11,7 @@ export namespace GameCommand {
   export const create = save
   export const set = update
 
-  export const win = (database: Database) => async (userId: UserId, guessId: GuessId) => {
+  export const win = (database: Firestore) => async (userId: UserId, guessId: GuessId) => {
     await Promise.all([
       update(database)(userId, { position: guessId }),
       ScoreCommand.addPoints(database)(userId, Point(GameQuery.DEFAULT_WIN_POINTS)),
@@ -19,6 +19,6 @@ export namespace GameCommand {
     ])
   }
 
-  export const lose = (database: Database) => (userId: UserId, guessId: GuessId) =>
+  export const lose = (database: Firestore) => (userId: UserId, guessId: GuessId) =>
     Promise.all([update(database)(userId, { position: guessId }), RunCommand.decrease(database)(userId)])
 }

@@ -9,3 +9,4 @@ export type PercentagePoint = Brand<number, 'PercentagePoint'>
 export type Url = Brand<string, 'Url'>
 export type Quantity = Brand<number, 'Quantity'>
 export type Rank = Brand<number, 'Rank'>
+export type Environment = 'production' | 'development' | 'test'

@@ -5,28 +5,23 @@ import {
   ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginLandingPageProductionDefault,
 } from '@apollo/server/plugin/landingPage/default'
-import type { Firestore } from '@google-cloud/firestore'
 import { loadFilesSync } from '@graphql-tools/load-files'
 import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge'
 import { isValid, parse } from '@telegram-apps/init-data-node'
 import cors from 'cors'
 import type { Express } from 'express'
 import express from 'express'
-import type { TaskQueue } from 'firebase-admin/functions'
-import type { TaskRunReset } from '../run/types'
-import type { TelegramToken } from '../utils/telegram/types'
+import type { Context } from '../module'
 import { TelegramUserId } from '../utils/telegram/validators'
 import { errorLoggingPlugin } from './plugins/logger'
 import { AuthenticationError, type GraphQlContext } from './types'
 
 let instance: Express | null = null
-export const graphQlServer = async (
-  { token, isDev }: { token: TelegramToken; isDev: boolean },
-  { database, runTaskQueue }: { database: Firestore; runTaskQueue: TaskQueue<TaskRunReset> },
-) => {
+export const graphQlServer = async (context: Context) => {
   if (instance) return instance
   const typeDefFiles = loadFilesSync(path.join(__dirname, '../**/graphql/typedefs.*'))
   const resolverFiles = loadFilesSync(path.join(__dirname, '../**/graphql/resolvers.*'))
+  const isDev = context.$environment.ENVIRONMENT === 'development'
   const server = new ApolloServer<GraphQlContext>({
     introspection: true,
     typeDefs: mergeTypeDefs(typeDefFiles),
@@ -61,13 +56,11 @@ export const graphQlServer = async (
         const authData = authorization.split(' ')[1]
         if (!authData) throw new AuthenticationError()
         // TODO: rajouter expiration du token
-        if (!isDev && !isValid(authData, token)) throw new AuthenticationError()
+        if (!isDev && !isValid(authData, context.$environment.TELEGRAM_TOKEN)) throw new AuthenticationError()
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()
         return Promise.resolve({
-          database,
-          runTaskQueue,
-          userId: TelegramUserId(user.id),
+          context,
           user: { id: TelegramUserId(user.id), firstName: user.first_name },
         })
       },

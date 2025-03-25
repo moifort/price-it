@@ -1,10 +1,8 @@
 ---
 description: Back coding 
-globs: back/src/**/*.ts
+globs: back/**/*
 alwaysApply: false
 ---
-Context: @file back/
-
 ## Code Style
 - Use clean code methodology
 - Use functionnal programming aproach
