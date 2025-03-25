@@ -1012,7 +1012,7 @@
         "isOneOf": null,
         "fields": [
           {
-            "name": "invoice",
+            "name": "createInvoice",
             "description": null,
             "args": [
               {
@@ -1037,7 +1037,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Url",
                 "ofType": null
               }
             },

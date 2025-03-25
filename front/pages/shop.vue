@@ -6,16 +6,9 @@ import type { ProductId } from '../../back/src/shop-product/types'
 
 const { open: openInvoice } = useInvoice()
 const { data, status } = useAsyncGql('ShopQuery')
-const buy = async (id?: ProductId) => {
-  try {
-    // const { buyProduct } = await GqlShopBuyProduct({ id })
-    const paymentResult = await openInvoice(
-      `https://t.me/invoice/test-paiement?amount=66&title=Product Purchase&payload=${encodeURIComponent(JSON.stringify({ userId: 'userId', productId: id }))}`,
-    )
-    if (paymentResult === 'paid') {
-    } else if (paymentResult === 'failed' || paymentResult === 'cancelled') {
-    }
-  } catch (error) {}
+const buy = async (productId: ProductId) => {
+  const { shop } = await GqlShopCreateInvoice({ productId })
+  await openInvoice(shop.createInvoice)
 }
 </script>
 

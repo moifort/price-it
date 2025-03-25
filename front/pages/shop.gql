@@ -15,3 +15,9 @@ query ShopQuery {
     }
   }
 }
+
+mutation ShopCreateInvoice($productId: ProductId!) {
+  shop {
+    createInvoice(productId: $productId)
+  }
+}

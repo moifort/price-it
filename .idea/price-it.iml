@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/back/src/api/__generated__" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/front/.nuxt" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/front/.nuxt/gql" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/front/.nuxt/types" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/back/lib" />
       <excludeFolder url="file://$MODULE_DIR$/front/.output" />
     </content>
