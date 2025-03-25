@@ -12,25 +12,23 @@ export const bot = onRequest(async (req, res) => {
   const request = app(req, res)
 
   $telegramBot.command('start', async (ctx) => {
-    await ctx.reply('Welcome ! Clique to start the game 👇', {
-      reply_markup: new InlineKeyboard().url('Start game', 'https://t.me/guessprice_bot'),
+    await ctx.reply('Welcome! Click below to launch the game 👇', {
+      reply_markup: new InlineKeyboard().webApp('Lets go 🚀', 'https://t.me/guessprice_bot'),
     })
   })
 
+  // Payment
   $telegramBot.on('pre_checkout_query', async (ctx) => {
     console.log('pre_checkout_query', ctx)
-    try {
-      const payload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
-      console.log('pre_checkout_query:payload', `${payload}`)
-      await ctx.answerPreCheckoutQuery(true)
-    } catch (error) {
-      console.log('error', error)
-    }
+    const payload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
+    console.log('pre_checkout_query:payload', `${payload}`)
+    await ctx.answerPreCheckoutQuery(true)
   })
 
   $telegramBot.on(':successful_payment', async (ctx) => {
     console.log(':successful_payment', ctx.message?.successful_payment)
     await ctx.reply('Thank you for your purchase!')
   })
+
   return request
 })
