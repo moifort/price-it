@@ -1,0 +1,24 @@
+import type { Firestore } from 'firebase-admin/firestore'
+import { genericDataConverter } from '../../utils/firestore'
+import type { Payment, PaymentId } from '../types'
+
+export const isExist = (db: Firestore) => async (id: PaymentId) => {
+  const doc = await collection(db).doc(id).get()
+  return doc.exists
+}
+
+export const save = (db: Firestore) => async (payment: Payment) => collection(db).doc(payment.id).create(payment)
+
+export const update = (db: Firestore) => async (id: PaymentId, payment: Partial<Payment>) => {
+  if (!(await isExist(db)(id))) throw new Error(`Payment with id ${id} not found`)
+  await collection(db).doc(id).set(payment, { merge: true })
+}
+
+export const findById = (db: Firestore) => async (id: PaymentId) => {
+  const doc = await collection(db).doc(id).get()
+  const payment = doc.data()
+  if (!payment) throw new Error(`Payment with id ${id} not found`)
+  return payment
+}
+
+const collection = (db: Firestore) => db.collection('payments').withConverter(genericDataConverter<Payment>())
