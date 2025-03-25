@@ -1,19 +1,11 @@
-import dayjs from 'dayjs'
-import { getFirestore } from 'firebase-admin/firestore'
-import { getFunctions } from 'firebase-admin/functions'
 import { onTaskDispatched } from 'firebase-functions/tasks'
-import { $app } from '../index'
+import { getContext } from '../module'
 import { RunCommand } from './command'
+import type { TaskArgs__Run } from './module'
 import { RunQuery } from './query'
-import type { TaskRunReset } from './types'
 
-// TODO: Refactor extraire les fonctions dans l'infra
-export const RUN_RESET_TASK_QUEUE_URL = 'locations/europe-west3/functions/run-reset'
-
-export const reset = onTaskDispatched<TaskRunReset>(async ({ data }) => {
-  const firestore = getFirestore($app)
-  const taskQueue = getFunctions($app).taskQueue<TaskRunReset>(RUN_RESET_TASK_QUEUE_URL)
-  const { period, total } = await RunQuery.get(firestore)(data.userId)
-  const updatedRenewAt = dayjs().add(period, 'minutes').toDate()
-  await RunCommand.set(firestore, taskQueue)(data.userId, { remaining: total, renewAt: updatedRenewAt })
+export const reset = onTaskDispatched<TaskArgs__Run>(async ({ data }) => {
+  const { $firestore, $task__run } = getContext()
+  const { period, total } = await RunQuery.get($firestore)(data.userId)
+  await RunCommand.set($firestore, $task__run)(data.userId, { remaining: total, period })
 })

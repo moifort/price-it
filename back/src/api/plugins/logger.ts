@@ -14,7 +14,7 @@ export const errorLoggingPlugin = (): ApolloServerPlugin<GraphQlContext> => ({
             operation: request.operationName,
             variables: request.variables,
             query: request.query,
-            userId: contextValue.user ? contextValue.userId : 'no-authenticated',
+            userId: contextValue?.user?.id ?? 'no-authenticated',
           })
         })
         return Promise.resolve()

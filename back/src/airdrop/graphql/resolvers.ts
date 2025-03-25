@@ -16,8 +16,8 @@ const WalletIdScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   WalletId: WalletIdScalar,
   AirdropMutation: {
-    updateWalletId: async (_, { walletId }, { database, userId }) => {
-      await AirdropCommand.setWalletId(database)(userId, walletId)
+    updateWalletId: async (_, { walletId }, { context: { $firestore }, user: { id } }) => {
+      await AirdropCommand.setWalletId($firestore)(id, walletId)
       return true
     },
   },
