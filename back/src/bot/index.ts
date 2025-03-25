@@ -10,16 +10,16 @@ export const bot = onRequest(async (req, res) => {
   const request = app(req, res)
   $telegramBot.on('message', async (ctx) => {
     console.log(ctx.message)
-    await PaymentCommand.sendInvoice($firestore, $telegramBot)(
+    await PaymentCommand.createInvoice($firestore, $telegramBot)(
       TelegramUserId(ctx.message.chat.id),
       'Product Name',
       'Product description',
-      TelegramStar(10),
+      TelegramStar(1),
     )
     await ctx.reply('Invoice send')
   })
 
-  $telegramBot.on(':successful_payment', async (ctx) => {
+  $telegramBot.on('message:successful_payment', async (ctx) => {
     console.log(ctx.message)
     await ctx.reply(`Merci pour votre paiement ${ctx.message}`)
   })
