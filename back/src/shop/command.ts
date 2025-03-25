@@ -9,6 +9,6 @@ import type { UserId } from '../user/types'
 export namespace ShopCommand {
   export const createInvoice = (database: Firestore, bot: Bot) => async (userId: UserId, id: ProductId) => {
     const { description, name, amount } = await ProductQuery.getProduct(id)
-    return PaymentCommand.createInvoice(database, bot)(userId, name, description, amount)
+    return PaymentCommand.create(database, bot)(userId, name, description, amount)
   }
 }

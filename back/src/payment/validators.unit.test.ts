@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'bun:test'
 import { v4 as uuid } from 'uuid'
 import { PaymentId, PaymentStatus } from './validators'
 
