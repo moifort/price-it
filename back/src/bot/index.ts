@@ -19,9 +19,17 @@ export const bot = onRequest(async (req, res) => {
     await ctx.reply('Invoice send')
   })
 
-  $telegramBot.on('message:successful_payment', async (ctx) => {
+  $telegramBot.command('start', async (ctx) => {
+    await ctx.replyWithGame('guessprice_bot')
+  })
+  $telegramBot.on('pre_checkout_query', async (ctx) => {
     console.log(ctx.message)
-    await ctx.reply(`Merci pour votre paiement ${ctx.message}`)
+    await ctx.reply('En attente de paiement')
+  })
+
+  $telegramBot.on(':successful_payment', async (ctx) => {
+    console.log(ctx.message)
+    await ctx.reply('Merci pour votre paiement')
   })
   return request
 })
