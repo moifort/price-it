@@ -15,7 +15,14 @@ export const bot = onRequest(async (req, res) => {
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
-    console.log('pre_checkout_query', ctx.message)
+    console.log('pre_checkout_query', ctx)
+    try {
+      const payload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
+      console.log('pre_checkout_query:payload', `${payload}`)
+      await ctx.answerPreCheckoutQuery(true)
+    } catch (error) {
+      console.log('error', error)
+    }
   })
 
   $telegramBot.on(':successful_payment', async (ctx) => {
