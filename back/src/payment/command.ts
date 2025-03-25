@@ -10,9 +10,14 @@ export namespace PaymentCommand {
     (database: Firestore, bot: Bot) =>
     async (userId: UserId, title: string, description: string, amount: TelegramStar) => {
       const paymentId = uuid()
-      const link = await bot.api.createInvoiceLink(userId, title, description, paymentId, 'XTR', [
-        { label: title, amount },
-      ])
+      const link = await bot.api.createInvoiceLink(
+        title,
+        description,
+        JSON.stringify({ paymentId, userId }),
+        '',
+        'XTR',
+        [{ label: title, amount }],
+      )
       return Url(link)
     }
 }

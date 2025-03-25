@@ -6,13 +6,13 @@ import { ProductId as ProductIdValidator } from '../validators'
 export const findAll = () =>
   Promise.resolve(<Product[]>[
     {
-      id: ProductIdValidator('10-run-60-minutes'),
-      name: '10 runs all time',
+      id: ProductIdValidator('20-run-all-time'),
+      name: '20 runs all time',
       description: 'Unlock 20 runs NOW for all time.Increase your chance to win more points',
       category: 'run' as const,
-      amount: TelegramStar(15),
+      amount: TelegramStar(1),
       period: 'all-time',
-      quantity: Quantity(1),
+      quantity: Quantity(20),
     },
     {
       id: ProductIdValidator('50-run-all-time'),
