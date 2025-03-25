@@ -6,6 +6,7 @@ import { Amount } from '../../back/src/utils/validators'
  * Generates a display price for guessing game based on actual product price
  * The algorithm creates a price that's sometimes higher, sometimes lower, rarely exact
  */
+// TODO changer l'algorithme pour être plus simple sur les grand chiffre arondir au 1000
 export const generate = (
   actualPrice: AmountType,
 ): { displayPrice: AmountType; expectedGuess: 'less' | 'exact' | 'more' } => {

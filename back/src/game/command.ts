@@ -7,6 +7,7 @@ import type { UserId } from '../user/types'
 import { save, update } from './infra/repository'
 import { GameQuery } from './query'
 
+// TODO quand il arrive au bout de toutes les devinettes placer la position au debut
 export namespace GameCommand {
   export const create = save
   export const set = update
