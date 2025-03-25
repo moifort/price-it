@@ -18,7 +18,7 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().webApp('Lets go 🚀', 'https://t.me/guessprice_bot'),
+      reply_markup: new InlineKeyboard().url('🎮 Play', 'tg://resolve?domain=guessprice_bot&appname=game'),
     })
   })
 
@@ -41,6 +41,7 @@ export const bot = onRequest(async (req, res) => {
     }
     const { paymentId }: InvoicePayload = JSON.parse(payload)
     await PaymentCommand.complete($firestore)(paymentId)
+    await ctx.reply('Thank you for your purchase!')
   })
 
   return request
