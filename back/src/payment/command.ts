@@ -27,16 +27,10 @@ export namespace PaymentCommand {
     }
 
   export const complete = (database: Firestore) => async (paymentId: PaymentIdType) => {
-    await update(database)(paymentId, {
-      status: 'completed',
-      updatedAt: new Date(),
-    })
+    await update(database)(paymentId, { status: 'completed', updatedAt: new Date() })
   }
 
   export const fail = (database: Firestore) => async (paymentId: PaymentIdType) => {
-    await update(database)(paymentId, {
-      status: 'failed',
-      updatedAt: new Date(),
-    })
+    await update(database)(paymentId, { status: 'failed', updatedAt: new Date() })
   }
 }
