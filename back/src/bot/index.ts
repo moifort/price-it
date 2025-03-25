@@ -1,4 +1,5 @@
 import { onRequest } from 'firebase-functions/https'
+import { InlineKeyboard } from 'grammy'
 import { getContext } from '../module'
 import {} from '../utils/telegram/validators'
 import { server } from './server'
@@ -11,7 +12,9 @@ export const bot = onRequest(async (req, res) => {
   const request = app(req, res)
 
   $telegramBot.command('start', async (ctx) => {
-    await ctx.replyWithGame('guessprice_bot')
+    await ctx.reply('Welcome ! Clique to start the game 👇', {
+      reply_markup: new InlineKeyboard().url('Start game', 'https://t.me/guessprice_bot'),
+    })
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
@@ -26,7 +29,8 @@ export const bot = onRequest(async (req, res) => {
   })
 
   $telegramBot.on(':successful_payment', async (ctx) => {
-    console.log(':successful_payment', ctx.message)
+    console.log(':successful_payment', ctx.message?.successful_payment)
+    await ctx.reply('Thank you for your purchase!')
   })
   return request
 })
