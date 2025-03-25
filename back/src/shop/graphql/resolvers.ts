@@ -14,4 +14,8 @@ export const resolvers: Resolvers = {
     // @ts-ignore
     shop: () => ({}),
   },
+  Mutation: {
+    // @ts-ignore
+    shop: () => ({}),
+  },
 }
