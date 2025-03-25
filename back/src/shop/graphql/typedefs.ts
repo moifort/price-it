@@ -4,7 +4,7 @@ type ShopQuery {
 }
 
 type ShopMutation {
-  invoice(productId: ProductId!): String!
+  createInvoice(productId: ProductId!): Url!
 }
 
 type Query {

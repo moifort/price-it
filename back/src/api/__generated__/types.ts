@@ -166,11 +166,11 @@ export type Runs = {
 
 export type ShopMutation = {
   __typename?: 'ShopMutation';
-  invoice: Scalars['String']['output'];
+  createInvoice: Scalars['Url']['output'];
 };
 
 
-export type ShopMutationInvoiceArgs = {
+export type ShopMutationCreateInvoiceArgs = {
   productId: Scalars['ProductId']['input'];
 };
 
@@ -486,7 +486,7 @@ export interface SecondeScalarConfig extends GraphQLScalarTypeConfig<ResolversTy
 }
 
 export type ShopMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['ShopMutation'] = ResolversParentTypes['ShopMutation']> = {
-  invoice?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<ShopMutationInvoiceArgs, 'productId'>>;
+  createInvoice?: Resolver<ResolversTypes['Url'], ParentType, ContextType, RequireFields<ShopMutationCreateInvoiceArgs, 'productId'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

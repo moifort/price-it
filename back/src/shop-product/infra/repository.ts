@@ -12,7 +12,7 @@ export const findAll = () =>
       category: 'run' as const,
       amount: TelegramStar(15),
       period: 'all-time',
-      quantity: Quantity(20),
+      quantity: Quantity(1),
     },
     {
       id: ProductIdValidator('50-run-all-time'),
