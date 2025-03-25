@@ -11,4 +11,5 @@ export function valueUpdater<T extends Updater<unknown>>(updaterOrValue: T, ref:
   ref.value = typeof updaterOrValue === 'function' ? updaterOrValue(ref.value) : updaterOrValue
 }
 
+// TODO mettre des virgule pour les milliers
 export const formatNumber = (amount: number) => new Intl.NumberFormat('us').format(amount)

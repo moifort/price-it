@@ -1,9 +1,13 @@
 import type { Firestore } from '@google-cloud/firestore'
+import type { Bot } from 'grammy'
 import type { UserId } from '../user/types'
-import type { TelegramToken } from '../utils/telegram/types'
+import type { TelegramStar } from '../utils/telegram/types'
 
 export namespace PaymentCommand {
-  export const createInvoice = (database: Firestore, telegramToken: TelegramToken) => async (userId: UserId) => {
-    throw new Error('Not implemented')
-  }
+  export const sendInvoice =
+    (database: Firestore, bot: Bot) =>
+    async (userId: UserId, title: string, description: string, amount: TelegramStar) => {
+      const invoice = await bot.api.sendInvoice(userId, title, description, '', 'XTR', [{ label: 'XTR', amount }])
+      console.log(invoice)
+    }
 }
