@@ -11,10 +11,9 @@ const isOpen = ref(true)
 const openProductLink = (url: Url) => {
   // TODO: Add analytics open product link
   if (openLink.isAvailable()) {
-    // TODO: fix url qui s'ouvre en text chez Jo
-    openLink(url, { tryInstantView: true })
+    openLink(url)
   } else {
-    window.open(url, 'blank_')
+    window.open(url, '_blank')
   }
 }
 </script>
