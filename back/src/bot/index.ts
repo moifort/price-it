@@ -4,7 +4,6 @@ import { InlineKeyboard } from 'grammy'
 import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
 import { PaymentQuery } from '../payment/query'
-import {} from '../utils/telegram/validators'
 import { server } from './server'
 import type { InvoicePayload } from './types'
 
@@ -18,7 +17,7 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().webApp('🎮 Play', 'https://t.me/guessprice_bot/app?mode=fullsize'),
+      reply_markup: new InlineKeyboard().url('🎮 Play', 'https://t.me/guessprice_bot/game&mode=fullsize'),
     })
   })
 

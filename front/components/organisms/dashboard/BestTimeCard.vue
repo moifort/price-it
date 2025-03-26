@@ -4,22 +4,11 @@ import { Badge } from '~/components/atoms/badge'
 import { formatNumber } from '~/utils/utils'
 import type { Seconde } from '../../../../back/src/utils/types'
 
-defineProps<{ time: Seconde; bonus: Seconde }>()
-defineEmits<{ 'click:buy': () => void }>()
+defineProps<{ time: Seconde }>()
 </script>
 
 <template>
-  <Card class="relative overflow-visible">
-    <div class="absolute -top-4 -right-3 z-10">
-      <Badge class="flex items-center gap-1 shadow-lg animate-pulse bg-yellow-400 text-black border-0 px-3 py-1.5 rounded-full"
-             @click="$emit('click:buy')">
-        <Zap class="w-4 h-4"  />
-        <span class="text-sm">+{{  formatNumber(bonus) }}s</span>
-        <div class="h-4 w-px bg-border/70 mx-1 bg-black" />
-        <ShoppingBag class="w-4 h-4" />
-        <span class="text-sm">Buy</span>
-      </Badge>
-    </div>
+  <Card>
     <CardContent class="pt-6">
       <div class="flex flex-col items-center gap-2">
         <Clock class="w-8 h-8 text-green-500" />

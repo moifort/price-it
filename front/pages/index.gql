@@ -6,6 +6,10 @@ query PlayerQuery {
       renewAt
       total
     }
+    bonus {
+      win
+      run
+    }
   }
 }
 
