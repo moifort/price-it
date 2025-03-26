@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { on } from '@telegram-apps/sdk'
+import { on, shareURL } from '@telegram-apps/sdk'
 import Dashboard from '~/components/pages/Dashboard.vue'
 import { Run } from '../../back/src/run/validators'
 import { Point, Score } from '../../back/src/score/validators'
+import type { Url } from '../../back/src/utils/types'
 import { Seconde } from '../../back/src/utils/validators'
 
 // TODO: Add analytics on startGame
