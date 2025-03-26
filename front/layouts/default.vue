@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { viewport } from '@telegram-apps/sdk-vue'
 import Navigation, { type Menu } from '~/components/molecules/layout/Navigation.vue'
+// TODO: Fix probleme avec scroll
 
 const router = useRouter()
 const route = useRoute()
-// TODO: Fix probleme avec scroll
+if (viewport.expand.isAvailable()) {
+  viewport.expand()
+}
 </script>
 
 <template>
