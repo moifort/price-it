@@ -1,6 +1,5 @@
 import { logger } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/https'
-import { InlineKeyboard } from 'grammy'
 import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
 import { PaymentQuery } from '../payment/query'
@@ -17,7 +16,12 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().url('🎮 Play', 'https://t.me/guessprice_bot/game&mode=fullsize'),
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🎮 Play', url: 'tg://resolve?domain=guessprice_bot&appname=game' }],
+          [{ text: '📢 Subscribe to the channel', url: 'https://t.me/guess_price' }],
+        ],
+      },
     })
   })
 
