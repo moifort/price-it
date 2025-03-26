@@ -10,7 +10,9 @@ const { data, status } = useAsyncGql('TaskQuery')
 
 <template>
   {{ shareURL.isAvailable() }}
-  <Button @click="() => shareURL('https://t.me/guessprice_bot??start=ref_1234', 'Invite a friend!')">Referal</Button>
+  <Button @click="() => shareURL('https://t.me/guessprice_bot?start=ref_1234', 'Invite a friend!')">Referal1</Button>
+  <Button @click="() => shareURL('https://t.me/guessprice_bot', 'Invite a friend!')">Referal2</Button>
+  <Button @click="() => openLink('https://t.me/guessprice_bot?start=ref_1234')">Referal3</Button>
   <Tasks :score="status === 'success' ? data.me.score : Score(0)"
          :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
   />
