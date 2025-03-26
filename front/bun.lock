@@ -22,6 +22,7 @@
         "tailwindcss-animate": "1.0.7",
         "ts-brand": "0.2.0",
         "vue": "3.5.13",
+        "vue-confetti-explosion": "1.0.2",
         "vue-number-animation": "2.0.2",
         "vue-router": "4.5.0",
         "zod": "3.24.2",
@@ -2800,6 +2801,8 @@
     "vue-component-meta": ["vue-component-meta@2.2.8", "", { "dependencies": { "@volar/typescript": "~2.4.11", "@vue/language-core": "2.2.8", "path-browserify": "^1.0.1", "vue-component-type-helpers": "2.2.8" }, "peerDependencies": { "typescript": "*" }, "optionalPeers": ["typescript"] }, "sha512-fgcP61P45AA1DacW+/532mivO5j48EEpmI7To8PK3gCVgL023QuEAPzfTA9hB6lW2hgdqiMf4gLON972pYC2+g=="],
 
     "vue-component-type-helpers": ["vue-component-type-helpers@2.2.8", "", {}, "sha512-4bjIsC284coDO9om4HPA62M7wfsTvcmZyzdfR0aUlFXqq4tXxM1APyXpNVxPC8QazKw9OhmZNHBVDA6ODaZsrA=="],
+
+    "vue-confetti-explosion": ["vue-confetti-explosion@1.0.2", "", { "peerDependencies": { "vue": "^3.0.5" } }, "sha512-80OboM3/6BItIoZ6DpNcZFqGpF607kjIVc5af56oKgtFmt5yWehvJeoYhkzYlqxrqdBe0Ko4Ie3bWrmLau+dJw=="],
 
     "vue-demi": ["vue-demi@0.11.4", "", { "peerDependencies": { "@vue/composition-api": "^1.0.0-rc.1", "vue": "^3.0.0-0 || ^2.6.0" }, "optionalPeers": ["@vue/composition-api"], "bin": { "vue-demi-fix": "bin/vue-demi-fix.js", "vue-demi-switch": "bin/vue-demi-switch.js" } }, "sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A=="],
 

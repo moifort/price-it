@@ -1,43 +1,47 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
-import { Check, LoaderCircle, ShoppingBag, Timer, X } from 'lucide-vue-next'
-import { Badge } from '~/components/atoms/badge'
-import { Button } from '~/components/atoms/button'
-import { Card, CardContent, CardFooter } from '~/components/atoms/card'
-import { formatNumber } from '~/utils/utils'
-import type { Score } from '../../../../back/src/score/types'
-import type { Category, Period, ProductId } from '../../../../back/src/shop-product/types'
-import type { TelegramStar } from '../../../../back/src/utils/telegram/types'
-import type { Quantity } from '../../../../back/src/utils/types'
+import dayjs from "dayjs";
+import { Check, LoaderCircle, ShoppingBag, Timer, X } from "lucide-vue-next";
+import { Badge } from "~/components/atoms/badge";
+import { Button } from "~/components/atoms/button";
+import { Card, CardContent, CardFooter } from "~/components/atoms/card";
+import { formatNumber } from "~/utils/utils";
+import type { Score } from "../../../../back/src/score/types";
+import type {
+	Category,
+	Period,
+	ProductId,
+} from "../../../../back/src/shop-product/types";
+import type { TelegramStar } from "../../../../back/src/utils/telegram/types";
+import type { Quantity } from "../../../../back/src/utils/types";
 
 const props = defineProps<{
-  id: ProductId
-  quantity: Quantity
-  period: Period
-  amount: TelegramStar
-  score: Score
-  category: Category
-  buy: (id: ProductId) => Promise<void>
-}>()
+	id: ProductId;
+	quantity: Quantity;
+	period: Period;
+	amount: TelegramStar;
+	score: Score;
+	category: Category;
+	buy: (id: ProductId) => Promise<void>;
+}>();
 
-const success = ref(false)
-const loading = ref(false)
-const error = ref(false)
+const success = ref(false);
+const loading = ref(false);
+const error = ref(false);
 const buyProduct = async (id: ProductId) => {
-  loading.value = true
-  try {
-    await props.buy(id)
-    success.value = true
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    success.value = false
-  } catch (e) {
-    error.value = true
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    error.value = false
-  } finally {
-    loading.value = false
-  }
-}
+	loading.value = true;
+	try {
+		await props.buy(id);
+		success.value = true;
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		success.value = false;
+	} catch (e) {
+		error.value = true;
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		error.value = false;
+	} finally {
+		loading.value = false;
+	}
+};
 </script>
 
 <template>
@@ -61,6 +65,7 @@ const buyProduct = async (id: ProductId) => {
       <Button variant="default"
               size="lg"
               @click="!loading && buyProduct(id)"
+              :disabled="false"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
         <template v-if="success" class="w-16"> <Check/> </template>
         <template v-else-if="error" class="w-16"> <Check/> </template>

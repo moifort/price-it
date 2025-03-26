@@ -20,6 +20,6 @@ export namespace ShopCommand {
   export const activateProduct =
     (database: Firestore, taskQueue: Task__Run) => async (userId: UserId, productId: ProductId) => {
       await ProductCommand.activate(database, taskQueue)(userId, productId)
-      await addPurchased(database)(userId, productId)
+      await addPurchased(database)(userId, productId, new Date())
     }
 }
