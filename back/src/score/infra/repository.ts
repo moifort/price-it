@@ -21,7 +21,7 @@ export const findBy =
   async (userId: UserId): Promise<Score> => {
     const snapshot = await collection(db).doc(userId).get()
     if (!snapshot.exists) throw new Error(`Player with userId ${userId} not found`)
-    return ScoreValidator(snapshot.data()!.score)
+    return ScoreValidator(snapshot.data()?.score)
   }
 
 const collection = (db: Firestore) => db.collection('players').withConverter(genericDataConverter<Player>())

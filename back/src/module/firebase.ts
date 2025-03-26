@@ -1,6 +1,7 @@
 import { getApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { TaskQueue, getFunctions } from 'firebase-admin/functions'
+import { initialize as initializeTaskGame } from '../game/module'
 import { initialize as initializeTaskRun } from '../run/module'
 
 export const initialize = (isEmulator: boolean) => {
@@ -14,5 +15,6 @@ export const initialize = (isEmulator: boolean) => {
     })
   }
   const $task__run = initializeTaskRun($functions)
-  return { $app, $firestore, $functions, $task__run }
+  const $task__game = initializeTaskGame($functions)
+  return { $app, $firestore, $functions, $task__run, $task__game }
 }

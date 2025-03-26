@@ -5,7 +5,7 @@ import type { Point as PointType, Score as ScoreType } from './types'
 export const Score = (value: unknown) =>
   make<ScoreType>()(
     z
-      .number()
+      .number({ message: `Score must be a number, received: ${value}` })
       .int({ message: `Score must be an integer, received: ${value}` })
       .nonnegative({ message: `Score must be non-negative, received: ${value}` })
       .parse(value),
@@ -14,8 +14,8 @@ export const Score = (value: unknown) =>
 export const Point = (value: unknown) =>
   make<PointType>()(
     z
-      .number()
+      .number({ message: `Point must be a number, received: ${value}` })
       .int({ message: `Point must be an integer, received: ${value}` })
-      .positive({ message: `Point must be positive, received: ${value}` })
+      .min(0, { message: `Minute must be non-negative, received: ${value}` })
       .parse(value),
   )

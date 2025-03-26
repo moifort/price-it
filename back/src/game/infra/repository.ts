@@ -16,8 +16,8 @@ export const findBy = (db: Firestore) => async (userId: UserId) => {
   return player.game
 }
 
-export const save = (db: Firestore) => async (userId: UserId) => {
-  await collection(db).doc(userId).set({ game: {} }, { merge: true })
+export const save = (db: Firestore) => async (userId: UserId, game: Game) => {
+  await collection(db).doc(userId).set({ game }, { merge: true })
 }
 
 export const update = (db: Firestore) => async (userId: UserId, game: Partial<Game>) => {

@@ -3,23 +3,23 @@ import dayjs from 'dayjs'
 import { v5 as uuid } from 'uuid'
 import type { Period } from '../shop-product/types'
 import type { UserId } from '../user/types'
-import type { Minute } from '../utils/types'
 import { findBy, save, update } from './infra/repository'
 import type { Task__Run } from './module'
 import { RunQuery } from './query'
-import type { Run, Run as RunType, Runs } from './types'
+import type { Run as RunType, Runs } from './types'
 import { Run as RunValidator } from './validators'
 
 // TODO: Add Score booster bonus
 export namespace RunCommand {
-  export const create =
-    (database: Firestore, taskQueue: Task__Run) =>
-    async (userId: UserId, remaining: Run, total: Run, period: Minute) => {
-      const renewAt = dayjs().add(period, 'minutes').toDate()
-      await save(database)(userId, { remaining, total, period, renewAt })
-      const taskId = uuid(`${userId}-${renewAt}`, uuid.URL)
-      await taskQueue.enqueue({ userId }, { scheduleTime: renewAt, id: taskId })
-    }
+  export const create = (database: Firestore, taskQueue: Task__Run) => async (userId: UserId) => {
+    const remaining = RunQuery.DEFAULT_RUN
+    const total = RunQuery.DEFAULT_RUN
+    const period = RunQuery.DEFAULT_PERIOD
+    const renewAt = dayjs().add(period, 'minutes').toDate()
+    await save(database)(userId, { remaining, total, period, renewAt })
+    const taskId = uuid(`${userId}-${renewAt}`, uuid.URL)
+    await taskQueue.enqueue({ userId }, { scheduleTime: renewAt, id: taskId })
+  }
 
   export const set = (database: Firestore, taskQueue: Task__Run) => async (userId: UserId, runs: Partial<Runs>) => {
     const { renewAt, period } = await findBy(database)(userId)

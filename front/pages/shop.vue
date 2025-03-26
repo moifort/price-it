@@ -6,7 +6,7 @@ import { Score } from '../../back/src/score/validators'
 import type { ProductId } from '../../back/src/shop-product/types'
 
 const { open: openInvoice } = useInvoice()
-const { data, status } = useAsyncGql('ShopQuery')
+const { data, status, refresh } = useAsyncGql('ShopQuery')
 const confetti = ref(false)
 const buy = async (productId: ProductId) => {
   const { shop } = await GqlShopCreateInvoice({ productId })
@@ -14,6 +14,7 @@ const buy = async (productId: ProductId) => {
   if (result === 'paid') {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     confetti.value = true
+    await refresh()
   }
 }
 </script>

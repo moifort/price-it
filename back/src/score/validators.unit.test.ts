@@ -26,10 +26,7 @@ describe('Point', () => {
     expect(() => Point(1)).not.toThrow()
     expect(() => Point(5)).not.toThrow()
     expect(() => Point(100)).not.toThrow()
-  })
-
-  it('should throw error for zero', () => {
-    expect(() => Point(0)).toThrow()
+    expect(() => Point(0)).not.toThrow()
   })
 
   it('should throw error for negative numbers', () => {

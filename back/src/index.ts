@@ -11,5 +11,6 @@ setGlobalOptions({
 export * from './api'
 export * from './shop'
 export * as run from './run'
+export * as game from './game'
 export * as system from './system'
 export * from './bot'

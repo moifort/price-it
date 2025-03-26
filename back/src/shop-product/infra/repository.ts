@@ -1,3 +1,4 @@
+import { GameQuery } from '../../game/query'
 import { TelegramStar } from '../../utils/telegram/validators'
 import { Minute, Quantity } from '../../utils/validators'
 import type { Product, ProductId } from '../types'
@@ -19,7 +20,7 @@ export const findAll = () =>
       name: '50 runs all time',
       description: 'Unlock 50 runs NOW for all time. Increase your chance to win more points',
       category: 'run' as const,
-      amount: TelegramStar(30),
+      amount: TelegramStar(1),
       period: 'all-time',
       quantity: Quantity(50),
     },
@@ -28,36 +29,36 @@ export const findAll = () =>
       name: 'x2 for 1 day',
       description: 'Double your points for 1 day. Increase your chance to win more points',
       category: 'score' as const,
-      amount: TelegramStar(100),
+      amount: TelegramStar(1),
       period: Minute(24 * 60),
-      quantity: Quantity(2),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x2-win-3-days'),
       name: 'x2 for 3 days',
       description: 'Double your points for 3 days. Increase your chance to win more points',
       category: 'score' as const,
-      amount: TelegramStar(200),
+      amount: TelegramStar(1),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(2),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-1-day'),
       name: 'x3 for 1 day',
       description: 'Triple your points for 1 day. Increase your chance to win more points',
       category: 'score' as const,
-      amount: TelegramStar(150),
+      amount: TelegramStar(1),
       period: Minute(24 * 60),
-      quantity: Quantity(3),
+      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-3-days'),
       name: 'x3 for 3 days',
       description: 'Triple your points for 3 days. Increase your chance to win more points',
       category: 'score' as const,
-      amount: TelegramStar(250),
+      amount: TelegramStar(1),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(3),
+      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
     },
   ])
 
