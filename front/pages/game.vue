@@ -23,7 +23,7 @@ const isStartingFinish = ref(false)
 </script>
 
 <template>
-  <GameStart v-if="!isStartingFinish && productStatus === 'pending'" @complete="() => isStartingFinish = true" />
+  <GameStart v-if="!isStartingFinish || productStatus === 'pending'" @complete="() => isStartingFinish = true" />
   <Game v-else-if="productStatus === 'success' && index < guessesData.game.guesses.length"
           :score="data.me.score"
           :runs-left="data.me.runs.remaining"

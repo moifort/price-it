@@ -55,10 +55,10 @@ const buyProduct = async (id: ProductId) => {
           {{ formatNumber(quantity) }}<span v-if="category === 'run'" class="text-lg font-medium">runs</span>
         </span>
         <div v-else-if="category=== 'score'">
-          <div class="text-[60px] font-medium">
-            <span class="text-3xl font-medium">+</span>{{ formatNumber(quantity) }}<span class="text-lg font-medium">pts</span>
+          <div class="text-[55px] font-medium">
+            <span class="text-2xl font-medium">+</span>{{ formatNumber(quantity) }}<span class="text-lg font-medium">pts</span>
           </div>
-          <div class="text-2xl -mt-4">Per win</div>
+          <div class="text-2xl -mt-3">Per win</div>
         </div>
     </CardContent>
 
