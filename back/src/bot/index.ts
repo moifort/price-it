@@ -18,7 +18,7 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().url('🎮 Play', 'tg://resolve?domain=guessprice_bot&appname=game'),
+      reply_markup: new InlineKeyboard().webApp('🎮 Play', 'https://price-it-85b3e.web.app/'),
     })
   })
 
@@ -33,14 +33,18 @@ export const bot = onRequest(async (req, res) => {
   })
 
   $telegramBot.on(':successful_payment', async (ctx) => {
-    const payload = ctx.message?.successful_payment?.invoice_payload ?? null
-    if (!payload) {
-      logger.error(`No payload found, received message: ${ctx.message}`)
-      return
+    try {
+      const payload = ctx.message?.successful_payment?.invoice_payload ?? null
+      if (!payload) {
+        logger.error(`No payload found, received message: ${ctx.message}`)
+        return
+      }
+      const { paymentId }: InvoicePayload = JSON.parse(payload)
+      await PaymentCommand.complete($firestore)(paymentId)
+      await ctx.reply('Thank you for your purchase!')
+    } catch (error) {
+      logger.error(`:successful_payment, error: ${error}`)
     }
-    const { paymentId }: InvoicePayload = JSON.parse(payload)
-    await PaymentCommand.complete($firestore)(paymentId)
-    await ctx.reply('Thank you for your purchase!')
   })
 
   return request
