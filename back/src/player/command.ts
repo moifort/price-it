@@ -1,4 +1,5 @@
 import type { Firestore } from '@google-cloud/firestore'
+import { AffiliationCommand } from '../affiliation/command'
 import { GameCommand } from '../game/command'
 import { RunCommand } from '../run/command'
 import type { Task__Run } from '../run/module'
@@ -20,6 +21,7 @@ export namespace PlayerCommand {
           GameCommand.create(database)(id),
           ScoreCommand.create(database)(id),
           RunCommand.create(database, runTaskQueue)(id),
+          AffiliationCommand.create(database)(id),
         ])
       }
       return exists

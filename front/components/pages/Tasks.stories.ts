@@ -11,5 +11,7 @@ export const Default: Story = {
   args: {
     score: Score(60000),
     runsLeft: Run(10),
+    friends: 3,
+    'onClick:invite': () => console.log('onClick:invite'),
   },
 }

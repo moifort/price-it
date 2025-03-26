@@ -10,6 +10,7 @@ type Player {
     runs: Runs!
     airdrop: Airdrop
     bonus: Bonus!
+    affiliation: Affiliation!
 }
 
 extend type Query {

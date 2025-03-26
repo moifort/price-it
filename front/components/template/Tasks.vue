@@ -5,6 +5,10 @@
     </div>
 
     <div class="flex-none">
+      <slot name="invite" />
+    </div>
+
+    <div class="flex-none">
       <slot name="join" />
     </div>
 
@@ -13,3 +17,5 @@
     </div>
   </div>
 </template>
+<script setup lang="ts">
+</script>

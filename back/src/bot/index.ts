@@ -29,7 +29,7 @@ export const bot = onRequest(async (req, res) => {
     if (args.startsWith('ref_')) {
       const referrerId = TelegramUserId(args.split('_')[1])
       await AffiliationCommand.addFriend($firestore)(referrerId, TelegramUserId(ctx.from?.id))
-      await ctx.reply(`Welcome! Your referrer ${referrerId} will get points once you complete onboarding.`)
+      await ctx.reply('Welcome! Your friend will get points once you start to play.')
     }
   })
 

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   fontawesome: {
     icons: {
-      solid: ['piggy-bank'],
+      solid: ['link'],
       regular: [],
       brands: ['twitter', 'telegram', 'youtube', 'tiktok', 'instagram', 'facebook'],
     },

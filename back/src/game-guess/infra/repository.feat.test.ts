@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it } from 'bun:test'
-import { $testDatabase } from '../../utils/setup.test'
+import { $testFirestore } from '../../utils/setup.test'
 import { Amount, Limit, Url } from '../../utils/validators'
 import { GuessId } from '../validators'
 import { findAll } from './repository'
 
 describe('findAll', () => {
   beforeEach(async () => {
-    await $testDatabase
+    await $testFirestore
       .collection('guesses')
       .doc('00000000-0000-0000-0000-000000000001')
       .set({
@@ -18,7 +18,7 @@ describe('findAll', () => {
         category: 'Category 1',
         url: Url('https://example.com/product1'),
       })
-    await $testDatabase
+    await $testFirestore
       .collection('guesses')
       .doc('00000000-0000-0000-0000-000000000002')
       .set({
@@ -30,7 +30,7 @@ describe('findAll', () => {
         category: 'Category 2',
         url: Url('https://example.com/product2'),
       })
-    await $testDatabase
+    await $testFirestore
       .collection('guesses')
       .doc('00000000-0000-0000-0000-000000000003')
       .set({
@@ -46,7 +46,7 @@ describe('findAll', () => {
 
   it('should find guesses with pagination limit', async () => {
     // When
-    const results = await findAll($testDatabase)(Limit(2))
+    const results = await findAll($testFirestore)(Limit(2))
 
     // Then
     expect(results).toHaveLength(2)
@@ -56,7 +56,7 @@ describe('findAll', () => {
 
   it('should find guesses with pagination after a position', async () => {
     // When - Get with pagination starting after guess2
-    const results = await findAll($testDatabase)(Limit(5), GuessId('00000000-0000-0000-0000-000000000002'))
+    const results = await findAll($testFirestore)(Limit(5), GuessId('00000000-0000-0000-0000-000000000002'))
 
     // Then
     expect(results).toHaveLength(1)

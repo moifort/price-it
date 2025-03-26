@@ -3,7 +3,7 @@ import { GuessId } from '../game-guess/validators'
 import { PlayerId } from '../player/validators'
 import { Run } from '../run/validators'
 import { Score } from '../score/validators'
-import { $testDatabase } from '../utils/setup.test'
+import { $testFirestore } from '../utils/setup.test'
 import { GameCommand } from './command'
 
 describe('GameCommand', () => {
@@ -11,7 +11,7 @@ describe('GameCommand', () => {
     it('should add default win points to the user score and decrease run', async () => {
       // Given
       const playerId = PlayerId('9876543210')
-      await $testDatabase
+      await $testFirestore
         .collection('players')
         .doc(playerId)
         .create({
@@ -27,10 +27,10 @@ describe('GameCommand', () => {
         })
 
       // When
-      await GameCommand.win($testDatabase)(playerId, GuessId('00000000-0000-0000-0000-000000000001'))
+      await GameCommand.win($testFirestore)(playerId, GuessId('00000000-0000-0000-0000-000000000001'))
 
       // Then
-      const doc = (await $testDatabase.collection('players').doc(playerId).get()).data()!
+      const doc = (await $testFirestore.collection('players').doc(playerId).get()).data()!
       expect(doc.score).toBe(1100)
       expect(doc.runs.remaining).toBe(2)
       expect(doc.game.position).toBe('00000000-0000-0000-0000-000000000001')
@@ -41,7 +41,7 @@ describe('GameCommand', () => {
     it('should add default win points to the user score and decrease run', async () => {
       // Given
       const playerId = PlayerId('9876543210')
-      await $testDatabase
+      await $testFirestore
         .collection('players')
         .doc(playerId)
         .create({
@@ -53,10 +53,10 @@ describe('GameCommand', () => {
         })
 
       // When
-      await GameCommand.lose($testDatabase)(playerId, GuessId('00000000-0000-0000-0000-000000000001'))
+      await GameCommand.lose($testFirestore)(playerId, GuessId('00000000-0000-0000-0000-000000000001'))
 
       // Then
-      const doc = (await $testDatabase.collection('players').doc(playerId).get()).data()!
+      const doc = (await $testFirestore.collection('players').doc(playerId).get()).data()!
       expect(doc.score).toBe(1000)
       expect(doc.runs.remaining).toBe(2)
       expect(doc.game.position).toBe('00000000-0000-0000-0000-000000000001')
