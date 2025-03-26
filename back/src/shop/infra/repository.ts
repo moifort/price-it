@@ -1,7 +1,9 @@
 import type { Firestore } from 'firebase-admin/firestore'
 import { FieldValue } from 'firebase-admin/firestore'
+import type { Player } from '../../player/types'
 import type { ProductId } from '../../shop-product/types'
 import type { UserId } from '../../user/types'
+import { genericDataConverter } from '../../utils/firestore'
 
 export const isExist = (db: Firestore) => async (id: UserId) => {
   const doc = await collection(db).doc(id).get()
