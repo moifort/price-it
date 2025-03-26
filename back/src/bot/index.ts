@@ -1,8 +1,10 @@
 import { logger } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/https'
+import { AffiliationCommand } from '../affiliation/command'
 import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
 import { PaymentQuery } from '../payment/query'
+import { TelegramUserId } from '../utils/telegram/validators'
 import { server } from './server'
 import type { InvoicePayload } from './types'
 
@@ -25,7 +27,8 @@ export const bot = onRequest(async (req, res) => {
     })
     const args = ctx.match?.toString() || ''
     if (args.startsWith('ref_')) {
-      const referrerId = args.split('_')[1]
+      const referrerId = TelegramUserId(args.split('_')[1])
+      await AffiliationCommand.addFriend($firestore)(referrerId, TelegramUserId(ctx.from?.id))
       await ctx.reply(`Welcome! Your referrer ${referrerId} will get points once you complete onboarding.`)
     }
   })
