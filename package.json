@@ -11,8 +11,5 @@
     "cleanup": "bun --cwd back cleanup && bun --cwd front cleanup",
     "graphql:gen": "bun --cwd back graphql:gen && bun --cwd front nuxt prepare",
     "firestore:save": "firebase emulators:export --force .emulators"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4"
   }
 }

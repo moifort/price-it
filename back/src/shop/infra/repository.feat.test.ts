@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+import { Timestamp } from '@google-cloud/firestore'
 import { PlayerId } from '../../player/validators'
 import { ProductId } from '../../shop-product/validators'
 import { $testDatabase } from '../../utils/setup.test'
@@ -36,7 +37,7 @@ describe('Shop Repository', () => {
 
     // Then
     const doc = await $testDatabase.collection('players').doc(PlayerId('7123456789')).get()
-    expect(doc.data()!.shop).toEqual({ purchased: {} })
+    expect(doc.data()?.shop).toEqual({ purchased: {} })
   })
 
   it('should add a purchased product to the user', async () => {
@@ -47,11 +48,14 @@ describe('Shop Repository', () => {
       .create({ id: '6123456789', shop: { purchased: {} } })
 
     // When
-    await addPurchased($testDatabase)(PlayerId('6123456789'), ProductId('product-123'))
+    await addPurchased($testDatabase)(PlayerId('6123456789'), ProductId('product-123'), new Date('2025-01-01'))
 
     // Then
     const doc = await $testDatabase.collection('players').doc(PlayerId('6123456789')).get()
-    expect(doc.data()!.shop.purchased).toEqual({ 'product-123': 1 })
+    expect(doc.data()?.shop.purchased).toEqual({
+      'product-123': 1,
+      updatedAt: Timestamp.fromDate(new Date('2025-01-01')),
+    })
   })
 
   it('should increment the count of a previously purchased product', async () => {
@@ -62,10 +66,13 @@ describe('Shop Repository', () => {
       .create({ id: '5123456789', shop: { purchased: { 'product-456': 1 } } })
 
     // When
-    await addPurchased($testDatabase)(PlayerId('5123456789'), ProductId('product-456'))
+    await addPurchased($testDatabase)(PlayerId('5123456789'), ProductId('product-456'), new Date('2025-01-01'))
 
     // Then
     const doc = await $testDatabase.collection('players').doc(PlayerId('5123456789')).get()
-    expect(doc.data()!.shop.purchased).toEqual({ 'product-456': 2 })
+    expect(doc.data()?.shop.purchased).toEqual({
+      'product-456': 2,
+      updatedAt: Timestamp.fromDate(new Date('2025-01-01')),
+    })
   })
 })

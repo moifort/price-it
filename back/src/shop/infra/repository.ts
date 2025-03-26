@@ -16,10 +16,13 @@ export const save = (db: Firestore) => async (userId: UserId) => {
     .set({ shop: { purchased: {} } }, { merge: true })
 }
 
-export const addPurchased = (db: Firestore) => async (userId: UserId, productId: ProductId) => {
+export const addPurchased = (db: Firestore) => async (userId: UserId, productId: ProductId, updatedAt: Date) => {
   await collection(db)
     .doc(userId)
     .set({ shop: { purchased: { [productId]: FieldValue.increment(1) } } }, { merge: true })
+  await collection(db)
+    .doc(userId)
+    .set({ shop: { purchased: { updatedAt } } }, { merge: true })
 }
 
 const collection = (db: Firestore) => db.collection('players').withConverter(genericDataConverter<Player>())

@@ -61,6 +61,7 @@ const buyProduct = async (id: ProductId) => {
       <Button variant="default"
               size="lg"
               @click="!loading && buyProduct(id)"
+              :disabled="false"
               class="bg-yellow-500 text-slate-900 w-full font-bold">
         <template v-if="success" class="w-16"> <Check/> </template>
         <template v-else-if="error" class="w-16"> <Check/> </template>
