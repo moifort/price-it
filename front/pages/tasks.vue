@@ -21,6 +21,12 @@ const openT = () => {
 const openL = () => {
   openLink('https://t.me/guessprice_bot?start=ref_1234')
 }
+
+const openW = () => {
+  Telegram.WebApp.shareTelegram({
+    message: 'Check this out! https://t.me/guessprice_bot?start=ref_1234',
+  })
+}
 </script>
 
 <template>
@@ -28,6 +34,7 @@ const openL = () => {
   <Button @click="share">ShareUrl</Button>
   <Button @click="openT">telegram</Button>
   <Button @click="openL">Link</Button>
+  <Button @click="openW">openW</Button>
   <Button @click="copy">Copy</Button>
   <Tasks :score="status === 'success' ? data.me.score : Score(0)"
          :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
