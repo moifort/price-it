@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'bun:test'
 import { PlayerId } from '../../player/validators'
 import { Score } from '../../score/validators'
-import { $testDatabase } from '../../utils/setup.test'
+import { $testFirestore } from '../../utils/setup.test'
 import { findPlayersOrderByScore } from './repository'
 
 describe('Leaderboard Repository', () => {
   describe('getTopPlayers', () => {
     it('should return players ordered by score with correct rank', async () => {
       // Given
-      await $testDatabase
+      await $testFirestore
         .collection('players')
         .doc(PlayerId('1111111111'))
         .create({
@@ -16,7 +16,7 @@ describe('Leaderboard Repository', () => {
           firstName: 'John',
           score: Score(100),
         })
-      await $testDatabase
+      await $testFirestore
         .collection('players')
         .doc(PlayerId('22222222222'))
         .create({
@@ -24,7 +24,7 @@ describe('Leaderboard Repository', () => {
           firstName: 'Pierre',
           score: Score(1400),
         })
-      await $testDatabase
+      await $testFirestore
         .collection('players')
         .doc(PlayerId('33333333333'))
         .create({
@@ -34,7 +34,7 @@ describe('Leaderboard Repository', () => {
         })
 
       // When
-      const topPlayers = await findPlayersOrderByScore($testDatabase)(2)
+      const topPlayers = await findPlayersOrderByScore($testFirestore)(2)
 
       // Then
       expect(topPlayers).toHaveLength(2)

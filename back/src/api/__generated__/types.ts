@@ -59,6 +59,11 @@ export type Scalars = {
   _FieldSet: { input: any; output: any; }
 };
 
+export type Affiliation = {
+  __typename?: 'Affiliation';
+  friends: Scalars['Int']['output'];
+};
+
 export type Airdrop = {
   __typename?: 'Airdrop';
   walletId?: Maybe<Scalars['WalletId']['output']>;
@@ -132,6 +137,7 @@ export type Mutation = {
 
 export type Player = {
   __typename?: 'Player';
+  affiliation: Affiliation;
   airdrop?: Maybe<Airdrop>;
   bonus: Bonus;
   firstName: Scalars['String']['output'];
@@ -265,6 +271,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Affiliation: ResolverTypeWrapper<Affiliation>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Airdrop: ResolverTypeWrapper<Airdrop>;
   AirdropMutation: ResolverTypeWrapper<AirdropMutation>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
@@ -307,6 +315,8 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Affiliation: Affiliation;
+  Int: Scalars['Int']['output'];
   Airdrop: Airdrop;
   AirdropMutation: AirdropMutation;
   Boolean: Scalars['Boolean']['output'];
@@ -345,6 +355,11 @@ export type ResolversParentTypes = {
   Url: Scalars['Url']['output'];
   UserId: Scalars['UserId']['output'];
   WalletId: Scalars['WalletId']['output'];
+};
+
+export type AffiliationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Affiliation'] = ResolversParentTypes['Affiliation']> = {
+  friends?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type AirdropResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Airdrop'] = ResolversParentTypes['Airdrop']> = {
@@ -434,6 +449,7 @@ export interface PeriodScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 }
 
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
+  affiliation?: Resolver<ResolversTypes['Affiliation'], ParentType, ContextType>;
   airdrop?: Resolver<Maybe<ResolversTypes['Airdrop']>, ParentType, ContextType>;
   bonus?: Resolver<ResolversTypes['Bonus'], ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -536,6 +552,7 @@ export interface WalletIdScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type Resolvers<ContextType = GraphQlContext> = {
+  Affiliation?: AffiliationResolvers<ContextType>;
   Airdrop?: AirdropResolvers<ContextType>;
   AirdropMutation?: AirdropMutationResolvers<ContextType>;
   Amount?: GraphQLScalarType;

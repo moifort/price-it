@@ -1,8 +1,12 @@
 query TaskQuery {
   me {
+    id
     score
     runs {
       remaining
+    }
+    affiliation {
+      friends
     }
   }
 }

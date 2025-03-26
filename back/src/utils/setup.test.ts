@@ -5,10 +5,10 @@ import { initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import type { Task__Run } from '../run/module'
 
-let database: Firestore | undefined
+let firestore: Firestore | undefined
 if (Bun.env.npm_lifecycle_event === 'test:feat') {
   let testEnv: RulesTestEnvironment
-  database = getFirestore(initializeApp())
+  firestore = getFirestore(initializeApp())
 
   beforeAll(async () => {
     testEnv = await initializeTestEnvironment({})
@@ -19,7 +19,7 @@ if (Bun.env.npm_lifecycle_event === 'test:feat') {
   })
 }
 
-export const $testDatabase = database!
+export const $testFirestore = firestore!
 
 export const $testTaskQueue = {
   enqueue: (data: unknown, params: unknown) => Promise.resolve(),
