@@ -6,13 +6,36 @@ import { Score } from '../../back/src/score/validators'
 
 // TODO: Add logic jsute si il clique sur le lien
 const { data, status } = useAsyncGql('TaskQuery')
+const copy = () => {
+  navigator.clipboard.writeText('https://t.me/guessprice_bot?start=ref_1234')
+  alert('Invitation link copied!')
+}
+const share = () => {
+  shareURL('https://t.me/guessprice_bot?start=ref_1234', 'Invite a friend!')
+}
+
+const openT = () => {
+  openTelegramLink('https://t.me/guessprice_bot?start=ref_1234')
+}
+
+const openL = () => {
+  openLink('https://t.me/guessprice_bot?start=ref_1234')
+}
+
+const openW = () => {
+  Telegram.WebApp.shareTelegram({
+    message: 'Check this out! https://t.me/guessprice_bot?start=ref_1234',
+  })
+}
 </script>
 
 <template>
   {{ shareURL.isAvailable() }}
-  <Button @click="() => shareURL('https://t.me/guessprice_bot?start=ref_1234', 'Invite a friend!')">Referal1</Button>
-  <Button @click="() => shareURL('https://t.me/guessprice_bot', 'Invite a friend!')">Referal2</Button>
-  <Button @click="() => openLink('https://t.me/guessprice_bot?start=ref_1234')">Referal3</Button>
+  <Button @click="share">ShareUrl</Button>
+  <Button @click="openT">telegram</Button>
+  <Button @click="openL">Link</Button>
+  <Button @click="openW">openW</Button>
+  <Button @click="copy">Copy</Button>
   <Tasks :score="status === 'success' ? data.me.score : Score(0)"
          :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
   />
