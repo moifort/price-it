@@ -5,6 +5,7 @@ import type { Task__Run } from '../run/module'
 import { RunQuery } from '../run/query'
 import { ScoreCommand } from '../score/command'
 import { ScoreQuery } from '../score/query'
+import { ShopCommand } from '../shop/command'
 import { UserCommand } from '../user/command'
 import { UserQuery } from '../user/query'
 import type { UserId } from '../user/types'
@@ -17,6 +18,7 @@ export namespace PlayerCommand {
       if (!exists) {
         await UserCommand.create(database)(id, firstName)
         await Promise.all([
+          ShopCommand.create(database)(id),
           GameCommand.create(database)(id),
           ScoreCommand.create(database)(id, ScoreQuery.DEFAULT_SCORE),
           RunCommand.create(database, runTaskQueue)(
