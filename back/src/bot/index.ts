@@ -18,11 +18,16 @@ export const bot = onRequest(async (req, res) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
       reply_markup: {
         inline_keyboard: [
-          [{ text: '🎮 Play', web_app: { url: 'https://price-it-85b3e.web.app/' } }],
+          [{ text: '🎮 Play', web_app: { url: 'https://price-it-85b3e.web.app/?tgWebAppStartParam=fullsize' } }],
           [{ text: '📢 Subscribe to the channel', url: 'https://t.me/guess_price' }],
         ],
       },
     })
+    const args = ctx.match?.toString() || ''
+    if (args.startsWith('ref_')) {
+      const referrerId = args.split('_')[1]
+      await ctx.reply(`Welcome! Your referrer ${referrerId} will get points once you complete onboarding.`)
+    }
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
