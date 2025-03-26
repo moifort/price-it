@@ -9,6 +9,7 @@ setGlobalOptions({
 })
 
 export * from './api'
+export * from './shop'
 export * as run from './run'
 export * as system from './system'
 export * from './bot'

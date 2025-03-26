@@ -18,12 +18,11 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().webApp('Lets go 🚀', 'https://t.me/guessprice_bot'),
+      reply_markup: new InlineKeyboard().url('🎮 Play', 'tg://resolve?domain=guessprice_bot&appname=game'),
     })
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
-    console.log('pre_checkout_query', ctx)
     const { paymentId }: InvoicePayload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
     const isExist = await PaymentQuery.exist($firestore)(paymentId)
     if (!isExist) {
@@ -41,6 +40,7 @@ export const bot = onRequest(async (req, res) => {
     }
     const { paymentId }: InvoicePayload = JSON.parse(payload)
     await PaymentCommand.complete($firestore)(paymentId)
+    await ctx.reply('Thank you for your purchase!')
   })
 
   return request

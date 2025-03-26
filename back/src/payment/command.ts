@@ -2,6 +2,7 @@ import type { Firestore } from '@google-cloud/firestore'
 import type { Bot } from 'grammy'
 import { v4 as uuid } from 'uuid'
 import { BotCommand } from '../bot/command'
+import type { ProductId } from '../shop-product/types'
 import type { UserId } from '../user/types'
 import type { TelegramStar } from '../utils/telegram/types'
 import { save, update } from './infra/repository'
@@ -11,11 +12,12 @@ import { PaymentId } from './validators'
 export namespace PaymentCommand {
   export const create =
     (database: Firestore, bot: Bot) =>
-    async (userId: UserId, title: string, description: string, amount: TelegramStar) => {
+    async (userId: UserId, productId: ProductId, title: string, description: string, amount: TelegramStar) => {
       const paymentId = PaymentId(uuid())
       const invoiceLink = await BotCommand.createInvoiceLink(bot)(paymentId, userId, title, description, amount)
       await save(database)({
         id: paymentId,
+        productId,
         userId,
         amount,
         status: 'pending',
