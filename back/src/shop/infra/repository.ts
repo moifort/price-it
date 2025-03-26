@@ -1,0 +1,23 @@
+import type { Firestore } from 'firebase-admin/firestore'
+import { FieldValue } from 'firebase-admin/firestore'
+import type { ProductId } from '../../shop-product/types'
+import type { UserId } from '../../user/types'
+
+export const isExist = (db: Firestore) => async (id: UserId) => {
+  const doc = await collection(db).doc(id).get()
+  return doc.exists
+}
+
+export const save = (db: Firestore) => async (userId: UserId) => {
+  await collection(db)
+    .doc(userId)
+    .set({ shop: { purchased: {} } }, { merge: true })
+}
+
+export const addPurchased = (db: Firestore) => async (userId: UserId, productId: ProductId) => {
+  await collection(db)
+    .doc(userId)
+    .update({ shop: { purchased: { [productId]: FieldValue.increment(1) } } })
+}
+
+const collection = (db: Firestore) => db.collection('players').withConverter(genericDataConverter<Player>())

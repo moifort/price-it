@@ -18,7 +18,10 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().webApp('🎮 Play', 'https://price-it-85b3e.web.app/'),
+      reply_markup: new InlineKeyboard().url(
+        '🎮 Play',
+        'tg://resolve?domain=price-it-85b3e.web&appname=game&startapp=new',
+      ),
     })
   })
 
