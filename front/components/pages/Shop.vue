@@ -9,6 +9,7 @@ import type { Category, Period, ProductId } from '../../../back/src/shop-product
 import type { TelegramStar } from '../../../back/src/utils/telegram/types'
 import type { Quantity as QuantityTYpe } from '../../../back/src/utils/types'
 
+// TODO: If win bonus disabled item
 defineProps<{
   products: { id: ProductId; quantity: QuantityTYpe; period: Period; amount: TelegramStar; category: Category }[]
   score: Score
