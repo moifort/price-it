@@ -31,7 +31,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(1),
       period: Minute(24 * 60),
-      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
+      quantity: Quantity(GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x2-win-3-days'),
@@ -40,7 +40,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(1),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
+      quantity: Quantity(GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-1-day'),
@@ -49,7 +49,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(1),
       period: Minute(24 * 60),
-      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-3-days'),
@@ -58,7 +58,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(1),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
   ])
 

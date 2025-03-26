@@ -18,10 +18,7 @@ export const bot = onRequest(async (req, res) => {
 
   $telegramBot.command('start', async (ctx) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
-      reply_markup: new InlineKeyboard().url(
-        '🎮 Play',
-        'tg://resolve?domain=price-it-85b3e&appname=game&startapp=new&mode=fullsize',
-      ),
+      reply_markup: new InlineKeyboard().url('🎮 Play', 'https://t.me/guessprice_bot?mode=fullsize'),
     })
   })
 
