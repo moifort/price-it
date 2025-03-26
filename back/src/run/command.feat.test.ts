@@ -7,12 +7,12 @@ import { RunCommand } from './command'
 import { Run } from './validators'
 
 describe('RunCommand', () => {
-  describe('set', () => {
+  describe('create', () => {
     it('should set total and remaining runs and schedule task queue', async () => {
       // Given
       const userId = PlayerId('9876543210')
       await $testDatabase.collection('players').doc(userId).create({ id: userId })
-      await RunCommand.create($testDatabase, $testTaskQueue)(userId, Run(5), Run(5), Minute(60))
+      await RunCommand.create($testDatabase, $testTaskQueue)(userId)
 
       // When
       await RunCommand.set($testDatabase, $testTaskQueue)(userId, {
@@ -23,7 +23,7 @@ describe('RunCommand', () => {
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()
-      expect(doc.data()!.runs).toEqual({
+      expect(doc.data()?.runs).toEqual({
         total: 20,
         remaining: 20,
         period: Minute(120),
@@ -46,7 +46,7 @@ describe('RunCommand', () => {
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()
-      expect(doc.data()!.runs.remaining).toBe(2)
+      expect(doc.data()?.runs.remaining).toBe(2)
     })
 
     it('should not decrease below zero', async () => {
@@ -62,7 +62,7 @@ describe('RunCommand', () => {
 
       // Then
       const doc = await $testDatabase.collection('players').doc(userId).get()
-      expect(doc.data()!.runs.remaining).toBe(0)
+      expect(doc.data()?.runs.remaining).toBe(0)
     })
   })
 })

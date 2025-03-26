@@ -1,5 +1,6 @@
 import type { Firestore } from '@google-cloud/firestore'
 import type { Bot } from 'grammy'
+import type { Task__Game } from '../game/module'
 import { PaymentCommand } from '../payment/command'
 import type { Task__Run } from '../run/module'
 import { ProductCommand } from '../shop-product/command'
@@ -18,8 +19,9 @@ export namespace ShopCommand {
   }
 
   export const activateProduct =
-    (database: Firestore, taskQueue: Task__Run) => async (userId: UserId, productId: ProductId) => {
-      await ProductCommand.activate(database, taskQueue)(userId, productId)
+    (database: Firestore, runTaskQueue: Task__Run, gameTaskQueue: Task__Game) =>
+    async (userId: UserId, productId: ProductId) => {
+      await ProductCommand.activate(database, runTaskQueue, gameTaskQueue)(userId, productId)
       await addPurchased(database)(userId, productId, new Date())
     }
 }

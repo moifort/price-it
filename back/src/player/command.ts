@@ -2,9 +2,7 @@ import type { Firestore } from '@google-cloud/firestore'
 import { GameCommand } from '../game/command'
 import { RunCommand } from '../run/command'
 import type { Task__Run } from '../run/module'
-import { RunQuery } from '../run/query'
 import { ScoreCommand } from '../score/command'
-import { ScoreQuery } from '../score/query'
 import { ShopCommand } from '../shop/command'
 import { UserCommand } from '../user/command'
 import { UserQuery } from '../user/query'
@@ -20,13 +18,8 @@ export namespace PlayerCommand {
         await Promise.all([
           ShopCommand.create(database)(id),
           GameCommand.create(database)(id),
-          ScoreCommand.create(database)(id, ScoreQuery.DEFAULT_SCORE),
-          RunCommand.create(database, runTaskQueue)(
-            id,
-            RunQuery.DEFAULT_RUN,
-            RunQuery.DEFAULT_RUN,
-            RunQuery.DEFAULT_PERIOD,
-          ),
+          ScoreCommand.create(database)(id),
+          RunCommand.create(database, runTaskQueue)(id),
         ])
       }
       return exists

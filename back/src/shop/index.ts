@@ -7,7 +7,7 @@ export const onPaymentUpdate = onDocumentUpdated('payments/{paymentId}', async (
   const before = event.data!.before.data() as Payment
   const after = event.data!.after.data() as Payment
   if (before.status === 'pending' && after.status === 'completed') {
-    const { $firestore, $task__run } = getContext()
-    await ShopCommand.activateProduct($firestore, $task__run)(after.userId, after.productId)
+    const { $firestore, $task__run, $task__game } = getContext()
+    await ShopCommand.activateProduct($firestore, $task__run, $task__game)(after.userId, after.productId)
   }
 })

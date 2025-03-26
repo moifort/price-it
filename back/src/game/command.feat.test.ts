@@ -19,7 +19,11 @@ describe('GameCommand', () => {
           firstName: 'Jane',
           score: Score(1000),
           runs: { remaining: Run(3) },
-          game: {},
+          game: {
+            winBonus: 0,
+            winBonusValidPeriod: 'all-time',
+            winBonusExpiredAt: new Date(),
+          },
         })
 
       // When

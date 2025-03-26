@@ -1,3 +1,4 @@
+import { GameQuery } from '../../game/query'
 import { TelegramStar } from '../../utils/telegram/validators'
 import { Minute, Quantity } from '../../utils/validators'
 import type { Product, ProductId } from '../types'
@@ -30,7 +31,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(100),
       period: Minute(24 * 60),
-      quantity: Quantity(2),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x2-win-3-days'),
@@ -39,7 +40,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(200),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(2),
+      quantity: Quantity(2 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-1-day'),
@@ -48,7 +49,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(150),
       period: Minute(24 * 60),
-      quantity: Quantity(3),
+      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
     },
     {
       id: ProductIdValidator('x3-win-3-days'),
@@ -57,7 +58,7 @@ export const findAll = () =>
       category: 'score' as const,
       amount: TelegramStar(250),
       period: Minute(3 * 24 * 60),
-      quantity: Quantity(3),
+      quantity: Quantity(3 * GameQuery.DEFAULT_WIN_POINTS),
     },
   ])
 
