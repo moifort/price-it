@@ -20,7 +20,7 @@ export const bot = onRequest(async (req, res) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
       reply_markup: new InlineKeyboard().url(
         '🎮 Play',
-        'tg://resolve?domain=price-it-85b3e&appname=game&startapp=new&mode=fullsize',
+        'https://t.me/guessprice_bot?mode=fullsize',
       ),
     })
   })
