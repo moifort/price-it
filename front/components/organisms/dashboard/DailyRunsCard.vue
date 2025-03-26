@@ -21,7 +21,7 @@ defineEmits<{ 'click:buy': () => void }>()
           class="flex items-center gap-1 shadow-lg animate-pulse bg-yellow-400 text-black border-0 px-3 py-1.5 rounded-full"
           @click="$emit('click:buy')"
       >
-        <template v-if="current=== Run(0)">
+        <template v-if="current === 0">
           <ShoppingBag class="w-4 h-4" />
           <span class="text-sm">Buy runs</span>
         </template>
