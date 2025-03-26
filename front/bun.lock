@@ -13,7 +13,7 @@
         "clsx": "2.1.1",
         "dayjs": "1.11.13",
         "lodash": "4.17.21",
-        "lucide-vue-next": "0.483.0",
+        "lucide-vue-next": "0.484.0",
         "nuxt": "3.16.1",
         "nuxt-graphql-client": "0.2.43",
         "reka-ui": "2.1.1",
@@ -1983,7 +1983,7 @@
 
     "lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
 
-    "lucide-vue-next": ["lucide-vue-next@0.483.0", "", { "peerDependencies": { "vue": ">=3.0.1" } }, "sha512-oMX1hfH7hOAdwaJdddYTSN0Z+WomndF3KXryCP/I6iu+4jZL6a4YyYi1J23EzP3/wOWCaj9mDuVhxgK+xqX8vQ=="],
+    "lucide-vue-next": ["lucide-vue-next@0.484.0", "", { "peerDependencies": { "vue": ">=3.0.1" } }, "sha512-QvMgOpsXtZZ0gSNS/cs8NLcQkDsowQI1zbMLmDtIbxN8l/Qd9J7jImC0LpmdjGegLPDTRd1OXJOICzXtAKEQ8Q=="],
 
     "lz-string": ["lz-string@1.5.0", "", { "bin": { "lz-string": "bin/bin.js" } }, "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ=="],
 
