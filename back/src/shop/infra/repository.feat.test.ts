@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+import { Timestamp } from '@google-cloud/firestore'
 import { PlayerId } from '../../player/validators'
 import { ProductId } from '../../shop-product/validators'
 import { $testDatabase } from '../../utils/setup.test'
@@ -53,7 +54,7 @@ describe('Shop Repository', () => {
     const doc = await $testDatabase.collection('players').doc(PlayerId('6123456789')).get()
     expect(doc.data()?.shop.purchased).toEqual({
       'product-123': 1,
-      updatedAt: new Date('2025-01-01'),
+      updatedAt: Timestamp.fromDate(new Date('2025-01-01')),
     })
   })
 
@@ -71,7 +72,7 @@ describe('Shop Repository', () => {
     const doc = await $testDatabase.collection('players').doc(PlayerId('5123456789')).get()
     expect(doc.data()?.shop.purchased).toEqual({
       'product-456': 2,
-      updatedAt: new Date('2025-01-01'),
+      updatedAt: Timestamp.fromDate(new Date('2025-01-01')),
     })
   })
 })
