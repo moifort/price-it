@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import ConfettiExplosion from "vue-confetti-explosion";
-import Shop from "~/components/pages/Shop.vue";
-import { Run } from "../../back/src/run/validators";
-import { Score } from "../../back/src/score/validators";
-import type { ProductId } from "../../back/src/shop-product/types";
+import ConfettiExplosion from 'vue-confetti-explosion'
+import Shop from '~/components/pages/Shop.vue'
+import { Run } from '../../back/src/run/validators'
+import { Score } from '../../back/src/score/validators'
+import type { ProductId } from '../../back/src/shop-product/types'
 
-const { open: openInvoice } = useInvoice();
-const { data, status, refresh } = useAsyncGql("ShopQuery");
-const confetti = ref(false);
+const { open: openInvoice } = useInvoice()
+const { data, status, refresh } = useAsyncGql('ShopQuery')
+const confetti = ref(false)
 const buy = async (productId: ProductId) => {
-	const { shop } = await GqlShopCreateInvoice({ productId });
-	const result = await openInvoice(shop.createInvoice);
-	if (result === "paid") {
-		await new Promise((resolve) => setTimeout(resolve, 1500));
-		confetti.value = true;
-		await refresh();
-	}
-};
+  const { shop } = await GqlShopCreateInvoice({ productId })
+  const result = await openInvoice(shop.createInvoice)
+  if (result === 'paid') {
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    confetti.value = true
+    await refresh()
+  }
+}
 </script>
 
 <template>
