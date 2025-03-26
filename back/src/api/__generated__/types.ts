@@ -74,6 +74,12 @@ export type AirdropMutationUpdateWalletIdArgs = {
   walletId: Scalars['WalletId']['input'];
 };
 
+export type Bonus = {
+  __typename?: 'Bonus';
+  run: Scalars['Run']['output'];
+  win: Scalars['Point']['output'];
+};
+
 export type GameMutation = {
   __typename?: 'GameMutation';
   lose: Scalars['Boolean']['output'];
@@ -127,6 +133,7 @@ export type Mutation = {
 export type Player = {
   __typename?: 'Player';
   airdrop?: Maybe<Airdrop>;
+  bonus: Bonus;
   firstName: Scalars['String']['output'];
   id: Scalars['UserId']['output'];
   runs: Runs;
@@ -262,6 +269,7 @@ export type ResolversTypes = {
   AirdropMutation: ResolverTypeWrapper<AirdropMutation>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Amount: ResolverTypeWrapper<Scalars['Amount']['output']>;
+  Bonus: ResolverTypeWrapper<Bonus>;
   Category: ResolverTypeWrapper<Scalars['Category']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   GameMutation: ResolverTypeWrapper<GameMutation>;
@@ -303,6 +311,7 @@ export type ResolversParentTypes = {
   AirdropMutation: AirdropMutation;
   Boolean: Scalars['Boolean']['output'];
   Amount: Scalars['Amount']['output'];
+  Bonus: Bonus;
   Category: Scalars['Category']['output'];
   DateTime: Scalars['DateTime']['output'];
   GameMutation: GameMutation;
@@ -351,6 +360,12 @@ export type AirdropMutationResolvers<ContextType = GraphQlContext, ParentType ex
 export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Amount'], any> {
   name: 'Amount';
 }
+
+export type BonusResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Bonus'] = ResolversParentTypes['Bonus']> = {
+  run?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
+  win?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export interface CategoryScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Category'], any> {
   name: 'Category';
@@ -420,6 +435,7 @@ export interface PeriodScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 
 export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Player'] = ResolversParentTypes['Player']> = {
   airdrop?: Resolver<Maybe<ResolversTypes['Airdrop']>, ParentType, ContextType>;
+  bonus?: Resolver<ResolversTypes['Bonus'], ParentType, ContextType>;
   firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
@@ -523,6 +539,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Airdrop?: AirdropResolvers<ContextType>;
   AirdropMutation?: AirdropMutationResolvers<ContextType>;
   Amount?: GraphQLScalarType;
+  Bonus?: BonusResolvers<ContextType>;
   Category?: GraphQLScalarType;
   DateTime?: GraphQLScalarType;
   GameMutation?: GameMutationResolvers<ContextType>;

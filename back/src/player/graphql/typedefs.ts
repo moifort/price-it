@@ -1,10 +1,15 @@
 export default `#graphql
+type Bonus {
+    run: Run!
+    win: Point!
+}
 type Player {
     id : UserId!
     firstName: String!
     score: Score!
     runs: Runs!
     airdrop: Airdrop
+    bonus: Bonus!
 }
 
 extend type Query {

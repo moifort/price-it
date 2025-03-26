@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { Run } from '../../../back/src/run/validators'
-import { Score } from '../../../back/src/score/validators'
+import { Point, Score } from '../../../back/src/score/validators'
 import { Seconde } from '../../../back/src/utils/validators'
 import Component from './Dashboard.vue'
 
@@ -19,10 +19,10 @@ export const Default: Story = {
     runRenewAt: new Date(),
     timeLimit: Seconde(8),
     runBonus: Run(10),
-    timeBonus: Seconde(10),
+    winBonus: Point(10),
     'onClick:startGame': () => console.log('onClick:startGame'),
     'onClick:buyRuns': () => console.log('onClick:buyRuns'),
-    'onClick:buyTime': () => console.log('onClick:buyTime'),
+    'onClick:buyWin': () => console.log('onClick:buyWin'),
   },
 }
 

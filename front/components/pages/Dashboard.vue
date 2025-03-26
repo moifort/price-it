@@ -7,7 +7,7 @@ import DailyRunsCard from '~/components/organisms/dashboard/DailyRunsCard.vue'
 import ScoreCard from '~/components/organisms/dashboard/ScoreCard.vue'
 import Dashboard from '~/components/template/Dashboard.vue'
 import type { Run } from '../../../back/src/run/types'
-import type { Score } from '../../../back/src/score/types'
+import type { Point, Score } from '../../../back/src/score/types'
 import type { Seconde } from '../../../back/src/utils/types'
 
 defineProps<{
@@ -17,12 +17,13 @@ defineProps<{
   remainingRun: Run
   runRenewAt: Date
   runBonus: Run
-  timeBonus: Seconde
+  winBonus: Point
 }>()
 
 defineEmits<{
   (e: 'click:startGame'): void
   (e: 'click:buyRuns'): void
+  (e: 'click:buyWin'): void
   (e: 'click:buyTime'): void
 }>()
 </script>
@@ -39,13 +40,13 @@ defineEmits<{
     </template>
 
     <template #body>
-        <ScoreCard :score="score" class="h-full"/>
+        <ScoreCard :score="score" :win-bonus="winBonus"  @click:buy="$emit('click:buyWin')" class="h-full"/>
     </template>
 
     <template #subbody>
       <div class="grid grid-cols-2 gap-4 pt-2">
         <DailyRunsCard :current="remainingRun" :total="totalRun" :renew-at="runRenewAt" :bonus="runBonus" @click:buy="$emit('click:buyRuns')"/>
-        <BestTimeCard :time="timeLimit" :bonus="timeBonus" @click:buy="$emit('click:buyTime')"/>
+        <BestTimeCard :time="timeLimit" @click:buy="$emit('click:buyTime')"/>
       </div>
     </template>
 
