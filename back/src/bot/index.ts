@@ -23,7 +23,6 @@ export const bot = onRequest(async (req, res) => {
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
-    console.log('pre_checkout_query', ctx)
     const { paymentId }: InvoicePayload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
     const isExist = await PaymentQuery.exist($firestore)(paymentId)
     if (!isExist) {
