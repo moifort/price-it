@@ -31,6 +31,7 @@ const buy = async (productId: ProductId) => {
       :runs-left="status === 'success' ? data.me.runs.remaining : Run(0)"
       :products="status === 'success' ? data.shop.products :  []"
       :buy="buy"
+      :has-win-bonus="status === 'success' ? data.me.bonus.win > 0 : true"
   />
 </template>
 

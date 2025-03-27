@@ -14,7 +14,14 @@ export namespace PaymentCommand {
     (database: Firestore, bot: Bot) =>
     async (userId: UserId, productId: ProductId, title: string, description: string, amount: TelegramStar) => {
       const paymentId = PaymentId(uuid())
-      const invoiceLink = await BotCommand.createInvoiceLink(bot)(paymentId, userId, title, description, amount)
+      const invoiceLink = await BotCommand.createInvoiceLink(bot)(
+        paymentId,
+        userId,
+        productId,
+        title,
+        description,
+        amount,
+      )
       await save(database)({
         id: paymentId,
         productId,
