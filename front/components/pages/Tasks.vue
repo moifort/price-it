@@ -17,9 +17,7 @@ defineEmits<(e: 'click:invite') => void>()
   <TasksTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <div class="flex-grow">
-          <h1 class="text-3xl font-medium opacity-60">Invite</h1>
-        </div>
+        <div class="flex-grow" />
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>

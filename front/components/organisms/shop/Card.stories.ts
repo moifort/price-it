@@ -41,3 +41,14 @@ export const Booster: Story = {
     score: Score(5000),
   },
 }
+
+export const Disabled: Story = {
+  args: {
+    ...Run.args,
+    quantity: Quantity(100),
+    amount: TelegramStar(500),
+    category: 'score' as const,
+    score: Score(5000),
+    disabled: true,
+  },
+}

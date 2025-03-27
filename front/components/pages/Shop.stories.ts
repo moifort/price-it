@@ -55,6 +55,13 @@ export const Default: Story = {
   },
 }
 
+export const WinBonusActivated: Story = {
+  args: {
+    ...Default.args,
+    hasWinBonus: true,
+  },
+}
+
 export const Loading: Story = {
   args: {
     ...Default.args,
