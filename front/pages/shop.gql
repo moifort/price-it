@@ -4,6 +4,9 @@ query ShopQuery {
     runs {
       remaining
     }
+    bonus {
+      win
+    }
   }
   shop {
     products {
