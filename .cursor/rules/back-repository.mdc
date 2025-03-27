@@ -1,17 +1,7 @@
 ---
 description: [Back] Repository best practice
 globs: repository.*
-alwaysApply: true
-commands:
-  - command: bun tsc
-    description: Type checking
-    runAutomatically: true
-  - command: bun test:feat
-    description: Feature tests
-    runAutomatically: true
-  - command: bun lint:fix
-    description: Fix linting issues
-    runAutomatically: true
+alwaysApply: false
 ---
 # MDC Rules for repository
 These rules strictly apply to repository implementations. Repository are all the read/write function from a database (here firestore).

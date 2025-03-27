@@ -1,17 +1,7 @@
 ---
 description: [Back] Graphql best practice
 globs: graphql/*.ts
-alwaysApply: true
-commands:
-  - command: bun graphql:gen
-    description: Generate GraphQL types
-    runAutomatically: true
-  - command: bun tsc
-    description: Type checking
-    runAutomatically: true
-  - command: bun lint:fix
-    description: Fix linting issues
-    runAutomatically: true
+alwaysApply: false
 ---
 # MDC Rules for GraphQl
 ## General Rules

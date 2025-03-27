@@ -1,3 +1,4 @@
+import { logger } from 'firebase-functions'
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
@@ -16,10 +17,14 @@ const MediaScalar = new GraphQLScalarType({
 export const resolvers: Resolvers = {
   Media: MediaScalar,
   TaskMutation: {
-    join: (_, { media }, { context: { $firestore }, user: { id } }) =>
-      TaskCommand.join($firestore)(id, media)
-        .then(() => true)
-        .catch(() => false),
+    join: (_, { media }, { context: { $firestore }, user: { id } }) => {
+      try {
+        TaskCommand.join($firestore)(id, media)
+      } catch (error) {
+        logger.error(error)
+      }
+      return true
+    },
   },
   Mutation: {
     // @ts-ignore

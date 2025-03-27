@@ -1,17 +1,7 @@
 ---
 description: [Back] Commands best practice
 globs: command.*
-alwaysApply: true
-commands:
-  - command: bun tsc
-    description: Type checking
-    runAutomatically: true
-  - command: bun test:feat
-    description: Feature tests
-    runAutomatically: true
-  - command: bun lint:fix
-    description: Fix linting issues
-    runAutomatically: true
+alwaysApply: false
 ---
 # MDC Rules for command
 These rules strictly apply to command implementations. Command are all the write action of your domain at the opposite of query defined in `query.ts` file.
