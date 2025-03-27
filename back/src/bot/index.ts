@@ -5,6 +5,7 @@ import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
 import { PaymentQuery } from '../payment/query'
 import { ShopCommand } from '../shop/command'
+import { UserQuery } from '../user/query'
 import { TelegramUserId } from '../utils/telegram/validators'
 import { server } from './server'
 import type { InvoicePayload } from './types'
@@ -29,7 +30,12 @@ export const bot = onRequest(async (req, res) => {
     const args = ctx.match?.toString() || ''
     if (args.startsWith('ref_')) {
       const referrerId = TelegramUserId(args.split('_')[1])
-      await AffiliationCommand.addFriend($firestore)(referrerId, TelegramUserId(ctx.from?.id))
+      const friendId = TelegramUserId(ctx.from?.id)
+      if (await UserQuery.isExist($firestore)(friendId)) {
+        logger.warn(`Friend ${friendId} has already an account`)
+        return
+      }
+      await AffiliationCommand.addFriend($firestore)(referrerId, friendId)
       await ctx.reply('Welcome! Your friend will get points once you start to play.')
     }
   })
