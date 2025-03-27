@@ -10,7 +10,6 @@ setGlobalOptions({
 
 export * from './api'
 export * from './bot'
-export * as shop from './shop'
 export * as run from './run'
 export * as game from './game'
 export * as system from './system'
