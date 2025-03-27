@@ -18,7 +18,7 @@ These rules strictly apply to command implementations. Command are all the write
 - test should use on top `{DOMAIN_NAME} command` describe block, fellow by the command function name, like `setWalletId`
 
 ## Development Lifecycle Process
-When developing command, follow this step-by-step process:
+When developing command, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts of the domain**: read the `types.ts`, `query.ts`, `command.ts` from other domain identify what you need.
 2. **Create or Update Code**: Implement command following the command implementation definition
 3. **Create or Update `command.feat.test.ts`** by following the test implementation definition

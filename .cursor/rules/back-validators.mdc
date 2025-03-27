@@ -17,7 +17,7 @@ These rules strictly apply to validator implementations:
 - If validation is needed for record or array fields, it should be done at the service layer, not with dedicated validators.
 
 ## Development Lifecycle Process
-When developing validators, follow this step-by-step process:
+When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
 2. **Create Code**: Implement validators following the patterns shown below
 3. **Create `validators.unit.test.ts`**

@@ -9,7 +9,7 @@ alwaysApply: false
 
 
 ## Development Lifecycle Process
-When developing validators, follow this step-by-step process:
+When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze all `**/graphql/typedefs.ts`**: Analyze all graphql type definition to understand the domain and all scalars you will need. Focus on `util/graphql/typedefs.ts` where you will find some generic type.
 2. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
 3. **Create or Update `typedefs.ts`**: Implement scalar, type, query and mutation following the definition below
