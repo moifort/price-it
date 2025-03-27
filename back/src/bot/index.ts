@@ -4,6 +4,7 @@ import { AffiliationCommand } from '../affiliation/command'
 import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
 import { PaymentQuery } from '../payment/query'
+import { ShopCommand } from '../shop/command'
 import { TelegramUserId } from '../utils/telegram/validators'
 import { server } from './server'
 import type { InvoicePayload } from './types'
@@ -12,7 +13,7 @@ import type { InvoicePayload } from './types'
 // TODO: prevenir que les run sont reset
 // TODO: pas de message quand achat failed doit implementer un cron ou task pour les passer a failed
 export const bot = onRequest(async (req, res) => {
-  const { $telegramBot, $firestore } = getContext()
+  const { $telegramBot, $firestore, $task__run, $task__game } = getContext()
   const app = await server($telegramBot)
   const request = app(req, res)
 
@@ -44,18 +45,15 @@ export const bot = onRequest(async (req, res) => {
   })
 
   $telegramBot.on(':successful_payment', async (ctx) => {
-    try {
-      const payload = ctx.message?.successful_payment?.invoice_payload ?? null
-      if (!payload) {
-        logger.error(`No payload found, received message: ${ctx.message}`)
-        return
-      }
-      const { paymentId }: InvoicePayload = JSON.parse(payload)
-      await PaymentCommand.complete($firestore)(paymentId)
-      await ctx.reply('Thank you for your purchase!')
-    } catch (error) {
-      logger.error(`:successful_payment, error: ${error}`)
+    const payload = ctx.message?.successful_payment?.invoice_payload ?? null
+    if (!payload) {
+      logger.error(`No payload found, received message: ${ctx.message}`)
+      return
     }
+    const { paymentId, userId, productId }: InvoicePayload = JSON.parse(payload)
+    await PaymentCommand.complete($firestore)(paymentId)
+    await ShopCommand.activateProduct($firestore, $task__run, $task__game)(userId, productId)
+    await ctx.reply('🎉 Thank you for your purchase!')
   })
 
   return request
