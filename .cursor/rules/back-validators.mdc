@@ -1,7 +1,17 @@
 ---
 description: [Back] Validators best practice
 globs: validators.*
-alwaysApply: false
+alwaysApply: true
+commands:
+  - command: bun tsc
+    description: Type checking
+    runAutomatically: true
+  - command: bun test:unit
+    description: Unit tests
+    runAutomatically: true
+  - command: bun lint:fix
+    description: Fix linting issues
+    runAutomatically: true
 ---
 # MDC Rules for Validators
 
@@ -21,9 +31,9 @@ When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
 2. **Create Code**: Implement validators following the patterns shown below
 3. **Create `validators.unit.test.ts`**
-4. **Run Tests and Fix Issues**: Run `bun test:unit` to execute all unit tests and fix any issues
-5. **Type Check and Fix Issues**: Run `bun tsc` to execute type checking and fix any issues
-6. **Fix linting**: when all finish run `bun lint:fix` to auto-fix linting issues
+4. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:unit` to execute all unit tests when you save a validators file
+5. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a validators file
+6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a validators file
 
 ## Pattern for Validator Implementation
 ### Union Type Validator Implementation

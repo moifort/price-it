@@ -1,7 +1,17 @@
 ---
 description: [Back] Commands best practice
 globs: command.*
-alwaysApply: false
+alwaysApply: true
+commands:
+  - command: bun tsc
+    description: Type checking
+    runAutomatically: true
+  - command: bun test:feat
+    description: Feature tests
+    runAutomatically: true
+  - command: bun lint:fix
+    description: Fix linting issues
+    runAutomatically: true
 ---
 # MDC Rules for command
 These rules strictly apply to command implementations. Command are all the write action of your domain at the opposite of query defined in `query.ts` file.
@@ -22,9 +32,9 @@ When developing command, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts of the domain**: read the `types.ts`, `query.ts`, `command.ts` from other domain identify what you need.
 2. **Create or Update Code**: Implement command following the command implementation definition
 3. **Create or Update `command.feat.test.ts`** by following the test implementation definition
-4. **Type Check and Fix Issues**: Run `bun tsc` to execute type checking and fix any issues
-5. **Run Tests and Fix Issues**: Run `bun test:feat` to execute all feature testing and fix any issues
-6. **Fix linting**: when all finish run `bun lint:fix` to auto-fix linting issues
+4. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a command file
+5. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:feat` to execute all feature testing when you save a command file
+6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a command file
 
 ## Test Implementation Definition
 - You will test only the happy path, no need to test all the edge cases. 

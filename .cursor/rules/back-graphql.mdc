@@ -1,7 +1,17 @@
 ---
 description: [Back] Graphql best practice
 globs: graphql/*.ts
-alwaysApply: false
+alwaysApply: true
+commands:
+  - command: bun graphql:gen
+    description: Generate GraphQL types
+    runAutomatically: true
+  - command: bun tsc
+    description: Type checking
+    runAutomatically: true
+  - command: bun lint:fix
+    description: Fix linting issues
+    runAutomatically: true
 ---
 # MDC Rules for GraphQl
 ## General Rules
@@ -13,10 +23,10 @@ When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze all `**/graphql/typedefs.ts`**: Analyze all graphql type definition to understand the domain and all scalars you will need. Focus on `util/graphql/typedefs.ts` where you will find some generic type.
 2. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
 3. **Create or Update `typedefs.ts`**: Implement scalar, type, query and mutation following the definition below
-4. **Generate**: after updating the typedefs and before create or update `resolvers.ts`, you **MUST** run  `bun graphql:gen` to update the generated types used by `resolvers.ts`
+4. **Generate**: After updating the typedefs and before creating or updating `resolvers.ts`, Cursor will automatically run `bun graphql:gen` to update the generated types used by `resolvers.ts`
 5. **Create or Update `resolvers.ts`**: Implement resolvers following the resolvers definition
-6. **Type Check and Fix Issues**: Run `bun tsc` to execute type checking and fix any issues
-7. **Fix linting**: when all finish run `bun lint:fix` to auto-fix linting issues
+6. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a GraphQL file
+7. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a GraphQL file
 
 ## Scalar Implementation Definition
 - Use scalar when the query or mutation use a Value object: **union type**, **brand type** with `brand-ts` (ie: `Brand<string, 'PaymentId'>`)

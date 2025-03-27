@@ -1,7 +1,17 @@
 ---
 description: [Back] Repository best practice
 globs: repository.*
-alwaysApply: false
+alwaysApply: true
+commands:
+  - command: bun tsc
+    description: Type checking
+    runAutomatically: true
+  - command: bun test:feat
+    description: Feature tests
+    runAutomatically: true
+  - command: bun lint:fix
+    description: Fix linting issues
+    runAutomatically: true
 ---
 # MDC Rules for repository
 These rules strictly apply to repository implementations. Repository are all the read/write function from a database (here firestore).
@@ -18,9 +28,9 @@ When developing repository, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts and validators.ts of the domain**: read the `types.ts`  and `validators.ts` from your domain and `utils` folder.
 2. **Create or Update Code**: Implement repository following the repository implementation definition
 3. **Create or Update `repository.feat.test.ts`** by following the test implementation definition
-4. **Type Check and Fix Issues**: **YOU MUST** run `bun tsc` to execute type checking and fix any issues
-5. **Run Tests and Fix Issues**: **YOU MUST** run `bun test:feat` to execute all feature testing and fix any issues
-6. **Fix linting**: when all finish **YOU MUST** run `bun lint:fix` to auto-fix linting issues
+4. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a repository file
+5. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:feat` to execute all feature testing when you save a repository file
+6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a repository file
 
 ## Repository Implementation Definition
 ```typescript
