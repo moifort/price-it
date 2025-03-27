@@ -16,6 +16,7 @@ When developing validators, follow this step-by-step process:
 4. **Generate**: after updating the typedefs and before create or update `resolvers.ts`, you **MUST** run  `bun graphql:gen` to update the generated types used by `resolvers.ts`
 5. **Create or Update `resolvers.ts`**: Implement resolvers following the resolvers definition
 6. **Type Check and Fix Issues**: Run `bun tsc` to execute type checking and fix any issues
+7. **Fix linting**: when all finish run `bun lint:fix` to auto-fix linting issues
 
 ## Scalar Implementation Definition
 - Use scalar when the query or mutation use a Value object: **union type**, **brand type** with `brand-ts` (ie: `Brand<string, 'PaymentId'>`)
