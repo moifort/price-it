@@ -5,6 +5,7 @@ import { RunCommand } from '../run/command'
 import type { Task__Run } from '../run/module'
 import { ScoreCommand } from '../score/command'
 import { ShopCommand } from '../shop/command'
+import { TaskCommand } from '../task/commmand'
 import { UserCommand } from '../user/command'
 import { UserQuery } from '../user/query'
 import type { UserId } from '../user/types'
@@ -22,6 +23,7 @@ export namespace PlayerCommand {
           ScoreCommand.create(database)(id),
           RunCommand.create(database, runTaskQueue)(id),
           AffiliationCommand.create(database)(id),
+          TaskCommand.create(database)(id),
         ])
       }
       return exists
