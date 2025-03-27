@@ -10,11 +10,11 @@ export const isExist = (db: Firestore) => async (id: UserId) => {
   return doc.exists
 }
 
-export const set = (db: Firestore) => async (userId: UserId, affiliation: Affiliation) => {
+export const save = (db: Firestore) => async (userId: UserId, affiliation: Affiliation) => {
   await collection(db).doc(userId).set({ affiliation }, { merge: true })
 }
 
-export const addFriendToArray = (db: Firestore) => async (userId: UserId, friendId: UserId) => {
+export const addFriend = (db: Firestore) => async (userId: UserId, friendId: UserId) => {
   if (!(await isExist(db)(userId))) throw new Error(`Player not found id: ${userId}`)
   await collection(db)
     .doc(userId)
