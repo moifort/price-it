@@ -1,0 +1,30 @@
+---
+description: [Back] Validators best practice
+globs: command.*
+alwaysApply: false
+---
+# MDC Rules for command
+
+These rules strictly apply to command implementations. Command are all the write action of your domain at the opposite of query defined in `query.ts` file.
+
+## General Rules
+- Command **MUST** be feat tested by creating file `command.feat.test.ts` to ensure correctness and robustness.
+- Command **ONLY** implement write business logic of the domain.
+- Command **MUST** use type define by priority order, inside domain folder in `types.ts`, `util/types.ts` and other domain `types.ts`.
+- Use the `lodash` when is necessary for all chaining items processing it's more human-readable.
+
+## Development Lifecycle Process
+When developing validators, follow this step-by-step process:
+1. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
+2. **Create or Update Code**: Implement validators following the patterns shown below
+3. **Create or Update `validators.unit.test.ts`** by following the test implementation definition
+4. **Run Tests and Fix Issues**: Run `bun test:unit` to execute all unit tests and fix any issues
+5. **Type Check and Fix Issues**: Run `bun tsc` to execute type checking and fix any issues
+
+## Test Implementation Definition
+
+```typescript
+
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.
