@@ -1,7 +1,7 @@
 import { Kind } from 'graphql/language'
 import { GraphQLScalarType } from 'graphql/type'
 import type { Resolvers } from '../../api/__generated__/types'
-import { TaskCommand } from '../commmand'
+import { TaskCommand } from '../command'
 import type { Media as MediaType } from '../types'
 import { Media } from '../validators'
 

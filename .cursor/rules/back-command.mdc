@@ -1,5 +1,5 @@
 ---
-description: [Back] Validators best practice
+description: [Back] Commands best practice
 globs: command.*
 alwaysApply: false
 ---
@@ -7,6 +7,7 @@ alwaysApply: false
 These rules strictly apply to command implementations. Command are all the write action of your domain at the opposite of query defined in `query.ts` file.
 
 ## General Rules
+- in `command.ts` always create a namespace like `export namespace {DOMAIN_NAME}Command {` to group all the command of the domain.
 - Command **MUST** be feat tested by creating file `command.feat.test.ts` to ensure correctness and robustness.
 - Command **ONLY** implement business logic of the domain calling the `infra/repository.ts` and calling **query** or **command** functions from other domain.
 - Command **MUST** use type define by priority order, inside domain folder in `types.ts`, `util/types.ts` and other domain `types.ts`.
