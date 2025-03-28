@@ -1,0 +1,13 @@
+---
+description: General coding
+globs: 
+alwaysApply: true
+---
+
+
+- NEVER comment code
+- NEVER use 'any'
+- NEVER use 'as'
+- NEVER use '@ignore-ts'
+- NEVER update, delete or add any line of code inside `__generated__` folder
+- NEVER create `index.ts` files

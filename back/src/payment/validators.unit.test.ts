@@ -2,7 +2,7 @@ import { describe, expect, it } from 'bun:test'
 import { v4 as uuid } from 'uuid'
 import { PaymentId, PaymentStatus } from './validators'
 
-describe('PaymentId validator', () => {
+describe('PaymentId', () => {
   it('should validate a proper UUID', () => {
     const id = uuid()
     expect(() => PaymentId(id)).not.toThrow()
@@ -22,7 +22,7 @@ describe('PaymentId validator', () => {
   })
 })
 
-describe('PaymentStatus validator', () => {
+describe('PaymentStatus', () => {
   it('should validate valid payment statuses', () => {
     expect(() => PaymentStatus('pending')).not.toThrow()
     expect(() => PaymentStatus('completed')).not.toThrow()
