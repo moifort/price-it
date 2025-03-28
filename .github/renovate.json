@@ -17,6 +17,15 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "firebase-tools",
       "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
+    },
+    {
+      "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "matchStrings": [
+        "bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "oven-sh/bun",
+      "versioningTemplate": "semver"
     }
   ],
   "packageRules": [
@@ -26,6 +35,10 @@
     },
     {
       "matchPackageNames": ["firebase-tools"],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["oven-sh/bun"],
       "automerge": true
     },
     {
