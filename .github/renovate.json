@@ -8,10 +8,25 @@
   "prHourlyLimit": 10,
   "recreateWhen": "always",
   "platform": "github",
+  "regexManagers": [
+    {
+      "fileMatch": ["^package\\.json$"],
+      "matchStrings": [
+        "\"postinstall\":\\s*\"(?:.*\\s)?(?:npx\\s+)?firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*)\""
+      ],
+      "datasourceTemplate": "npm",
+      "depNameTemplate": "firebase-tools",
+      "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
+    }
+  ],
   "packageRules": [
     {
       "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
+    },
+    {
+      "matchPackageNames": ["firebase-tools"],
+      "automerge": true
     },
     {
       "groupName": "all non-major dependencies",
