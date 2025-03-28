@@ -1,0 +1,79 @@
+---
+description: [Back] Repository best practice
+globs: repository.*
+alwaysApply: false
+---
+# MDC Rules for repository
+These rules strictly apply to repository implementations. Repository are all the read/write function from a database (here firestore).
+
+## General Rules
+- Repository **MUST** must use `withConverter` to type the collection data 
+- Repository **MUST** check if player exist before updating
+
+## Naming convention
+- Use the naming convention for spring boot data JPA like `findBy`, `findAll`, `save`, `delete`, `countBy`, `isExist`, `update` etc.
+
+## Development Lifecycle Process
+When developing repository, **YOU MUST FOLLOW** this step-by-step process:
+1. **Analyze types.ts and validators.ts of the domain**: read the `types.ts`  and `validators.ts` from your domain and `utils` folder.
+2. **Create or Update Code**: Implement repository following the repository implementation definition
+3. **Create or Update `repository.feat.test.ts`** by following the test implementation definition
+4. **Type Check and Fix Issues**: Use the terminal and run `bun tsc` and fix error if any
+5. **Run Tests and Fix Issues**: Use the terminal and run `bun test:feat` and fix error if any
+6. **Fix linting**: Use the terminal and run `bun lint:fix`
+
+## Repository Implementation Definition
+```typescript
+import { genericDataConverter } from '../../utils/firestore'
+import type { Airdrop } from '../types'
+
+export const isExist = (db: Firestore) => async (id: UserId) => {
+    const doc = await collection(db).doc(id).get()
+    return doc.exists
+}
+
+export const update = (db: Firestore) => async (userId: UserId, airdrop: Partial<Airdrop>) => {
+    if (!(await isExist(db)(userId))) throw new Error(`Player not found id: ${userId}`)
+    await collection(db).doc(userId).set({ airdrop }, { merge: true })
+}
+
+const collection = (db: Firestore) => db.collection('players').withConverter(genericDataConverter<Player>())
+```
+
+## Test Implementation Definition
+- You **MUST** test all cases 
+- To use the firestore, use $testFirestore
+- Split using `Given`, `When`, `Then` to make the test more readable
+
+```typescript
+import { describe, expect, it } from 'bun:test'
+import { PlayerId } from '../../player/validators'
+import { Score } from '../../score/validators'
+import { $testFirestore } from '../../utils/setup.test'
+import { findPlayersOrderByScore } from './repository'
+
+describe('Leaderboard Repository', () => {
+  describe('getTopPlayers', () => {
+    it('should return players ordered by score with correct rank', async () => {
+      // Given
+      await $testFirestore
+        .collection('players')
+        .doc(PlayerId('1111111111'))
+        .create({
+          id: PlayerId('1111111111'),
+          firstName: 'John',
+          score: Score(100),
+        })
+
+      // When
+      const topPlayers = await findPlayersOrderByScore($testFirestore)(2)
+
+      // Then
+      expect(topPlayers).toHaveLength(2)
+      expect(topPlayers[0].score).toBe(Score(1400))
+    })
+  })
+})
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.

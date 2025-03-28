@@ -4,6 +4,7 @@ import type { Amount } from '../../utils/types';
 import type { Category } from '../../shop-product/types';
 import type { GuessId } from '../../game-guess/types';
 import type { Limit } from '../../utils/types';
+import type { Media } from '../../task/types';
 import type { Minute } from '../../utils/types';
 import type { Percentage } from '../../utils/types';
 import type { PercentagePoint } from '../../utils/types';
@@ -41,6 +42,7 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
   GuessId: { input: GuessId; output: GuessId; }
   Limit: { input: Limit; output: Limit; }
+  Media: { input: Media; output: Media; }
   Minute: { input: Minute; output: Minute; }
   Percentage: { input: Percentage; output: Percentage; }
   PercentagePoint: { input: PercentagePoint; output: PercentagePoint; }
@@ -133,6 +135,7 @@ export type Mutation = {
   game: GameMutation;
   me: PlayerMutation;
   shop: ShopMutation;
+  task: TaskMutation;
 };
 
 export type Player = {
@@ -190,6 +193,16 @@ export type ShopMutationCreateInvoiceArgs = {
 export type ShopQuery = {
   __typename?: 'ShopQuery';
   products: Array<Product>;
+};
+
+export type TaskMutation = {
+  __typename?: 'TaskMutation';
+  join: Scalars['Boolean']['output'];
+};
+
+
+export type TaskMutationJoinArgs = {
+  media: Scalars['Media']['input'];
 };
 
 export type TopPlayer = {
@@ -287,6 +300,7 @@ export type ResolversTypes = {
   GuessId: ResolverTypeWrapper<Scalars['GuessId']['output']>;
   LeaderboardQuery: ResolverTypeWrapper<LeaderboardQuery>;
   Limit: ResolverTypeWrapper<Scalars['Limit']['output']>;
+  Media: ResolverTypeWrapper<Scalars['Media']['output']>;
   Minute: ResolverTypeWrapper<Scalars['Minute']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Percentage: ResolverTypeWrapper<Scalars['Percentage']['output']>;
@@ -306,6 +320,7 @@ export type ResolversTypes = {
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
   ShopMutation: ResolverTypeWrapper<ShopMutation>;
   ShopQuery: ResolverTypeWrapper<ShopQuery>;
+  TaskMutation: ResolverTypeWrapper<TaskMutation>;
   TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
@@ -331,6 +346,7 @@ export type ResolversParentTypes = {
   GuessId: Scalars['GuessId']['output'];
   LeaderboardQuery: LeaderboardQuery;
   Limit: Scalars['Limit']['output'];
+  Media: Scalars['Media']['output'];
   Minute: Scalars['Minute']['output'];
   Mutation: {};
   Percentage: Scalars['Percentage']['output'];
@@ -350,6 +366,7 @@ export type ResolversParentTypes = {
   Seconde: Scalars['Seconde']['output'];
   ShopMutation: ShopMutation;
   ShopQuery: ShopQuery;
+  TaskMutation: TaskMutation;
   TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
   Url: Scalars['Url']['output'];
@@ -425,6 +442,10 @@ export interface LimitScalarConfig extends GraphQLScalarTypeConfig<ResolversType
   name: 'Limit';
 }
 
+export interface MediaScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Media'], any> {
+  name: 'Media';
+}
+
 export interface MinuteScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Minute'], any> {
   name: 'Minute';
 }
@@ -434,6 +455,7 @@ export type MutationResolvers<ContextType = GraphQlContext, ParentType extends R
   game?: Resolver<ResolversTypes['GameMutation'], ParentType, ContextType>;
   me?: Resolver<ResolversTypes['PlayerMutation'], ParentType, ContextType>;
   shop?: Resolver<ResolversTypes['ShopMutation'], ParentType, ContextType>;
+  task?: Resolver<ResolversTypes['TaskMutation'], ParentType, ContextType>;
 };
 
 export interface PercentageScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Percentage'], any> {
@@ -527,6 +549,11 @@ export type ShopQueryResolvers<ContextType = GraphQlContext, ParentType extends 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TaskMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TaskMutation'] = ResolversParentTypes['TaskMutation']> = {
+  join?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<TaskMutationJoinArgs, 'media'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface TelegramStarScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['TelegramStar'], any> {
   name: 'TelegramStar';
 }
@@ -565,6 +592,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   GuessId?: GraphQLScalarType;
   LeaderboardQuery?: LeaderboardQueryResolvers<ContextType>;
   Limit?: GraphQLScalarType;
+  Media?: GraphQLScalarType;
   Minute?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Percentage?: GraphQLScalarType;
@@ -584,6 +612,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Seconde?: GraphQLScalarType;
   ShopMutation?: ShopMutationResolvers<ContextType>;
   ShopQuery?: ShopQueryResolvers<ContextType>;
+  TaskMutation?: TaskMutationResolvers<ContextType>;
   TelegramStar?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;

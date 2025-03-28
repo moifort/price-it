@@ -39,4 +39,5 @@ generates:
         Period: '../../shop-product/types#Period'
         Category: '../../shop-product/types#Category'
         WalletId: '../../airdrop/types#WalletId'
+        Media: '../../task/types#Media'
         Date: 'Date'
