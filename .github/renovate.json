@@ -8,10 +8,38 @@
   "prHourlyLimit": 10,
   "recreateWhen": "always",
   "platform": "github",
+  "regexManagers": [
+    {
+      "fileMatch": ["^package\\.json$"],
+      "matchStrings": [
+        "\"postinstall\":\\s*\"(?:.*\\s)?(?:npx\\s+)?firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*)\""
+      ],
+      "datasourceTemplate": "npm",
+      "depNameTemplate": "firebase-tools",
+      "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
+    },
+    {
+      "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "matchStrings": [
+        "bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "oven-sh/bun",
+      "versioningTemplate": "semver"
+    }
+  ],
   "packageRules": [
     {
       "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
+    },
+    {
+      "matchPackageNames": ["firebase-tools"],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["oven-sh/bun"],
+      "automerge": true
     },
     {
       "groupName": "all non-major dependencies",
