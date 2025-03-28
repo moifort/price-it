@@ -1,0 +1,90 @@
+---
+description: [Back] Validators best practice
+globs: validators.*
+alwaysApply: false
+---
+# MDC Rules for Validators
+
+These rules strictly apply to validator implementations:
+
+## General Rules
+- Validators **MUST** be unit-tested by creating file `validators.unit.test.ts` to ensure correctness and robustness.
+- Validators **ONLY** implement validation logic for types defined in the `types.ts` file.
+- **ONLY** Branded types or Union types from `types.ts` should be represented as Value Objects, following Domain-Driven Design (DDD) practices.
+- Use the `zod` validation library consistently to provide clear, human-readable error messages.
+- **MUST NEVER** create validators for record types. Example: `export type User = { id: UserId, name: string } /* NO VALIDATOR ALLOWED */`
+- **MUST NEVER** create validators for array types. Example: `export type MediaList = Media[] /* NO VALIDATOR ALLOWED */`
+- If validation is needed for record or array fields, it should be done at the service layer, not with dedicated validators.
+
+## Development Lifecycle Process
+When developing validators, **YOU MUST FOLLOW** this step-by-step process:
+1. **Analyze types.ts of the domain**: Review the `types.ts` file to identify which types need validators
+2. **Create Code**: Implement validators following the patterns shown below
+3. **Create `validators.unit.test.ts`**
+4. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:unit` to execute all unit tests when you save a validators file
+5. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a validators file
+6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a validators file
+
+## Pattern for Validator Implementation
+### Union Type Validator Implementation
+When implementing Union type validators, follow this pattern:
+
+```typescript
+export const Media = (value: unknown): MediaType => {
+  const validStatuses: MediaType[] = ['telegram', 'youtube'];
+  if (typeof value !== 'string' || !validStatuses.includes(value as MediaType)) {
+    throw new Error(`Media must be one of: ${validStatuses.join(', ')}. Received: ${value}`);
+  }
+  return value as MediaType;
+};
+```
+
+**Key points:**
+- Clearly list allowed values explicitly in the error message.
+- Avoid hard-coding duplicate entries in the error message.
+
+### Branded Type Validator Implementation
+When implementing Branded type validators, follow this structure:
+
+```typescript
+import { make } from 'sod';
+import { z } from 'zod';
+
+export const PaymentId = (value: unknown) =>
+  make<PaymentIdType>()(
+    z.string({ message: `PaymentId must be a string, received: ${value}` })
+     .uuid({ message: `PaymentId must be a valid UUID, received: ${value}` })
+     .parse(value),
+  );
+```
+
+**Key points:**
+- Always specify the expected type explicitly (e.g., UUID, email).
+- Provide precise, human-readable error messages including the invalid input.
+
+### Unit Testing Rules
+Example unit test structure:
+
+```typescript
+import { describe, expect, it } from 'bun:test'
+
+describe('PaymentId', () => {
+  it('should validate a proper UUID', () => {
+    expect(() => PaymentId(uuid())).not.toThrow()
+  })
+
+  it('should throw an error for invalid string UUIDs', () => {
+    PaymentId('not-uuid').toThrow()
+    PaymentId('123').toThrow()
+    PaymentId('').toThrow()
+  })
+
+  it('should throw an error for non-string inputs', () => {
+    expect(() => PaymentId(null as unknown as string)).toThrow()
+    expect(() => PaymentId(undefined as unknown as string)).toThrow()
+    expect(() => PaymentId(123 as unknown as string)).toThrow()
+  })
+})
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.

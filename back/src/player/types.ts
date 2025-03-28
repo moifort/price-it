@@ -4,6 +4,7 @@ import type { Game } from '../game/types'
 import type { Runs } from '../run/types'
 import type { Score } from '../score/types'
 import type { Shop } from '../shop/types'
+import type { Task } from '../task/types'
 import type { User } from '../user/types'
 
 export type Player = User & {
@@ -13,4 +14,5 @@ export type Player = User & {
   game: Game
   shop: Shop
   affiliation: Affiliation
+  task: Task
 }

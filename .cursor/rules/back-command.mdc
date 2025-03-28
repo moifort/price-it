@@ -1,0 +1,60 @@
+---
+description: [Back] Commands best practice
+globs: command.*
+alwaysApply: false
+---
+# MDC Rules for command
+These rules strictly apply to command implementations. Command are all the write action of your domain at the opposite of query defined in `query.ts` file.
+
+## General Rules
+- in `command.ts` always create a namespace like `export namespace {DOMAIN_NAME}Command {` to group all the command of the domain.
+- Command **MUST** be feat tested by creating file `command.feat.test.ts` to ensure correctness and robustness.
+- Command **ONLY** implement business logic of the domain calling the `infra/repository.ts` and calling **query** or **command** functions from other domain.
+- Command **MUST** use type define by priority order, inside domain folder in `types.ts`, `util/types.ts` and other domain `types.ts`.
+- Use the `lodash` when is necessary for all chaining items processing for more human-readable.
+
+## Naming convention
+- function name **MUST** be a verb in the imperative mood, like `create`, `addPoint`, `makeDeposite`
+- test should use on top `{DOMAIN_NAME} command` describe block, fellow by the command function name, like `setWalletId`
+
+## Development Lifecycle Process
+When developing command, **YOU MUST FOLLOW** this step-by-step process:
+1. **Analyze types.ts of the domain**: read the `types.ts`, `query.ts`, `command.ts` from other domain identify what you need.
+2. **Create or Update Code**: Implement command following the command implementation definition
+3. **Create or Update `command.feat.test.ts`** by following the test implementation definition
+4. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a command file
+5. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:feat` to execute all feature testing when you save a command file
+6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a command file
+
+## Test Implementation Definition
+- You will test only the happy path, no need to test all the edge cases. 
+- You should lighten the test by focusing only of the element of the test
+- To use the firestore, use $testFirestore
+- Split using `Given`, `When`, `Then` to make the test more readable
+
+```typescript
+import { describe, expect, it } from 'bun:test'
+import { $testFirestore } from '../utils/setup.test'
+
+describe('Airdrop Commands', () => {
+    describe('setWalletId', () => {
+        it('should update wallet ID for a user', async () => {
+            // Given
+            await $testFirestore
+                .collection('players')
+                .doc('2')
+                .create({ id: PlayerId('2') })
+
+            // When
+            await AirdropCommand.setWalletId($testFirestore)(PlayerId('2'), WalletId('10393884-03982039832'))
+
+            // Then
+            const doc = await $testFirestore.collection('players').doc('2').get()
+            expect(doc.data()!.airdrop?.walletId).toBe('10393884-03982039832')
+        })
+    })
+})
+
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.
