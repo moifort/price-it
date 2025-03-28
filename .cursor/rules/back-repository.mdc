@@ -18,9 +18,9 @@ When developing repository, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze types.ts and validators.ts of the domain**: read the `types.ts`  and `validators.ts` from your domain and `utils` folder.
 2. **Create or Update Code**: Implement repository following the repository implementation definition
 3. **Create or Update `repository.feat.test.ts`** by following the test implementation definition
-4. **Type Check and Fix Issues**: Cursor will automatically run `bun tsc` to execute type checking when you save a repository file
-5. **Run Tests and Fix Issues**: Cursor will automatically run `bun test:feat` to execute all feature testing when you save a repository file
-6. **Fix linting**: Cursor will automatically run `bun lint:fix` to auto-fix linting issues when you save a repository file
+4. **Type Check and Fix Issues**: Use the terminal and run `bun tsc` and fix error if any
+5. **Run Tests and Fix Issues**: Use the terminal and run `bun test:feat` and fix error if any
+6. **Fix linting**: Use the terminal and run `bun lint:fix`
 
 ## Repository Implementation Definition
 ```typescript
