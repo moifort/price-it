@@ -8,7 +8,10 @@ These rules strictly apply to storybook stories
 
 ## General Rules
 - Stories **MUST** be created for every component.
-- 
+- You **MUST** implement all defined props in the component in the stories.
+- If conditional props are used, you **MUST** implement a specific story with a short readable title.
+- If optional props are used, you **MUST** implement a specific story with a short readable title.
+- If function or emit are defined, you **MUST** implement using `fn()` from `@storybook/test`.
 
 ## Development Lifecycle Process
 When developing validators, **YOU MUST FOLLOW** this step-by-step process:
@@ -21,6 +24,7 @@ When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 When implementing stories, follow this pattern:
 
 ```typescript
+import { fn } from '@storybook/test'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import component from './my-component.vue'
 
@@ -32,7 +36,7 @@ export const Default: Story = {
     args: {
         score: Score(3984), 
         totalRun: Run(10), 
-        'onClick:buyWin': () => console.log('onClick:buyWin'), 
+        'onClick:buyWin': fn(), 
     },
 }
 

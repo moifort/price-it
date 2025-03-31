@@ -5,6 +5,12 @@ describe('Media', () => {
   it('should validate proper media types', () => {
     expect(() => Media('telegram')).not.toThrow()
     expect(() => Media('youtube')).not.toThrow()
+    expect(() => Media('tiktok')).not.toThrow()
+    expect(() => Media('instagram')).not.toThrow()
+    expect(() => Media('twitter')).not.toThrow()
+    expect(() => Media('reddit')).not.toThrow()
+    expect(() => Media('facebook')).not.toThrow()
+    expect(() => Media('twitch')).not.toThrow()
   })
 
   it('should throw an error for invalid string media types', () => {

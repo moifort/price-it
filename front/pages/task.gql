@@ -8,5 +8,14 @@ query TaskQuery {
     affiliation {
       friends
     }
+    task {
+      join
+    }
+  }
+}
+
+mutation TaskJoinMedia($media: Media!) {
+  task {
+    join(media: $media)
   }
 }
