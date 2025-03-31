@@ -31,7 +31,7 @@ jobs:
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         with:
-          args: deploy
+          args: deploy --force
       - name: 🔄 Run Firestore Migration
         run: |
           bunx curl -s -o response.json -w "%{http_code}" https://europe-west3-price-it-85b3e.cloudfunctions.net/system-migration > status_code.txt

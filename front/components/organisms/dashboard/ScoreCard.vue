@@ -4,6 +4,8 @@ import { Badge } from '~/components/atoms/badge'
 import { formatNumber } from '~/utils/utils'
 import type { Point, Score } from '../../../../back/src/score/types'
 
+// TODO: add time left in winBonus
+
 defineProps<{ score: Score; winBonus: Point }>()
 defineEmits<{ 'click:buy': () => void }>()
 </script>
