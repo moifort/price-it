@@ -7,5 +7,6 @@ alwaysApply: true
 # MDC Rules for bun commands
 When finishing run automatically
   - `bun lint:fix`
-  - `bun tsc`
+  - `bun --cwd back  tsc`
   - `bun graphql:gen` if `typedefs.ts` created or modified
+  - `bun --cwd front  typecheck` if `*.stories.*` created or modified

@@ -10,7 +10,7 @@ type Player {
     runs: Runs!
     airdrop: Airdrop
     bonus: Bonus!
-    task: Task
+    task: Task!
     affiliation: Affiliation!
 }
 

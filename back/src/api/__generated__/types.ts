@@ -147,7 +147,7 @@ export type Player = {
   id: Scalars['UserId']['output'];
   runs: Runs;
   score: Scalars['Score']['output'];
-  task?: Maybe<Task>;
+  task: Task;
 };
 
 export type PlayerMutation = {
@@ -486,7 +486,7 @@ export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends Res
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
   score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
-  task?: Resolver<Maybe<ResolversTypes['Task']>, ParentType, ContextType>;
+  task?: Resolver<ResolversTypes['Task'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

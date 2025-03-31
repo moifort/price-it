@@ -1,0 +1,95 @@
+---
+description: [Front] Storybook best practice
+globs: front/**/*.stories.*
+alwaysApply: false
+---
+# MDC Rules for storybook stories
+These rules strictly apply to storybook stories
+
+## General Rules
+- Stories **MUST** be created for every component.
+- You **MUST** implement all defined props in the component in the stories.
+- If conditional props are used, you **MUST** implement a specific story with a short readable title.
+- If optional props are used, you **MUST** implement a specific story with a short readable title.
+- If function or emit are defined, you **MUST** implement using `fn()` from `@storybook/test`.
+- When testing a modal component follow the template show in Modal Stories implementation
+- On `meta` you **MUST** import component using `component` name to inline meta parameter.
+- On `meta` parameters you **MUST NOT** use `title`, `tags: ['autodocs']`, `argTypes` those parameters are automatically generated.
+- If components are typed using value object type like `Url`,  `Amount`, etc. fetch the validators in `back/scr/**/*.validators.ts` files. 
+
+## Development Lifecycle Process
+When developing validators, **YOU MUST FOLLOW** this step-by-step process:
+1. **Analyze {my-component}.vue** file to identify which story you need to creat. 
+2. **Create Code**: Implement {my-component}.stories.ts following the patterns shown in Stories Implementation
+3. **Run Typecheck**: Run automatically run `bun typecheck` to validate yours types
+
+## Stories Implementation
+When implementing stories, follow this template:
+
+```typescript
+import { fn } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/vue3'
+import component from './my-component.vue'
+
+const meta = { component } satisfies Meta<typeof Component>
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+    args: {
+        score: Score(3984), 
+        totalRun: Run(10), 
+        'onClick:buyWin': fn(), 
+    },
+}
+
+export const NoMoreRun: Story = {
+    args: {
+        ...Default.args,
+        remainingRun: Run(0),
+    },
+}
+```
+
+## Modal Stories Implementation
+When implementing modal stories, follow this template:
+
+```typescript
+import { fn } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/vue3'
+import { Amount, Url } from '../../../../back/src/utils/validators'
+import component from './Modal.vue'
+
+const meta = {
+    component,
+    decorators: [() => ({ template: '<div style="height: 330px; position: relative;"><story /></div>' })],
+    render: (args) => ({
+        components: { Modal: component },
+        setup: () => ({ args }),
+        template: `
+      <Modal v-bind="args">
+        <template #icon>
+            <Trophy class="h-12 w-12 text-yellow-500" />
+        </template>
+        
+        <template #title>
+         <div class="text-yellow-500">You Won!</div>
+        </template>
+      </Modal>
+    `,
+    }),
+} satisfies Meta<typeof component>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+    args: {
+        price: Amount(89),
+        productLink: Url('https://example.com/product'),
+        close: fn(),
+    },
+}
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.
