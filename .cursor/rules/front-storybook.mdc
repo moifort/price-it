@@ -1,0 +1,47 @@
+---
+description: [Back] Validators best practice
+globs: front/**/*.stories.*
+alwaysApply: false
+---
+# MDC Rules for storybook stories
+These rules strictly apply to storybook stories
+
+## General Rules
+- Stories **MUST** be created for every component.
+- 
+
+## Development Lifecycle Process
+When developing validators, **YOU MUST FOLLOW** this step-by-step process:
+1. **Analyze {my-component}.vue** file to identify which story you need to creat. 
+2. **Create Code**: Implement {my-component}.stories.ts following the patterns shown in Stories Validator Implementation
+3. **Run Typecheck**: Run automatically run `bun typecheck` to validate yours types
+
+
+## Stories Validator Implementation
+When implementing stories, follow this pattern:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/vue3'
+import component from './my-component.vue'
+
+const meta = { component } satisfies Meta<typeof Component>
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+    args: {
+        score: Score(3984), 
+        totalRun: Run(10), 
+        'onClick:buyWin': () => console.log('onClick:buyWin'), 
+    },
+}
+
+export const NoMoreRun: Story = {
+    args: {
+        ...Default.args,
+        remainingRun: Run(0),
+    },
+}
+```
+
+Following these guidelines ensures validators remain clear, maintainable, and aligned with best DDD practices.

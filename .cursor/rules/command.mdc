@@ -9,3 +9,4 @@ When finishing run automatically
   - `bun lint:fix`
   - `bun tsc`
   - `bun graphql:gen` if `typedefs.ts` created or modified
+  - `bun typecheck` if `*.stories.*` created or modified
