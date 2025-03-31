@@ -4,7 +4,6 @@ import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 import type { UserId } from '../../back/src/user/types'
 
-// TODO: Add logic juste si il clique sur le lien
 const { data, status } = useAsyncGql('TaskQuery')
 const copyInvitationLink = (referrerId: UserId) => {
   // TODO: faire marcher le lien de partage

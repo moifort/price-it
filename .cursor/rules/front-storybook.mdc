@@ -1,5 +1,5 @@
 ---
-description: [Back] Validators best practice
+description: [Front] Storybook best practice
 globs: front/**/*.stories.*
 alwaysApply: false
 ---
@@ -16,11 +16,10 @@ These rules strictly apply to storybook stories
 ## Development Lifecycle Process
 When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 1. **Analyze {my-component}.vue** file to identify which story you need to creat. 
-2. **Create Code**: Implement {my-component}.stories.ts following the patterns shown in Stories Validator Implementation
+2. **Create Code**: Implement {my-component}.stories.ts following the patterns shown in Stories Implementation
 3. **Run Typecheck**: Run automatically run `bun typecheck` to validate yours types
 
-
-## Stories Validator Implementation
+## Stories Implementation
 When implementing stories, follow this pattern:
 
 ```typescript
