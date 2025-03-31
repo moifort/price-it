@@ -147,6 +147,7 @@ export type Player = {
   id: Scalars['UserId']['output'];
   runs: Runs;
   score: Scalars['Score']['output'];
+  task?: Maybe<Task>;
 };
 
 export type PlayerMutation = {
@@ -193,6 +194,11 @@ export type ShopMutationCreateInvoiceArgs = {
 export type ShopQuery = {
   __typename?: 'ShopQuery';
   products: Array<Product>;
+};
+
+export type Task = {
+  __typename?: 'Task';
+  join: Array<Scalars['Media']['output']>;
 };
 
 export type TaskMutation = {
@@ -320,6 +326,7 @@ export type ResolversTypes = {
   Seconde: ResolverTypeWrapper<Scalars['Seconde']['output']>;
   ShopMutation: ResolverTypeWrapper<ShopMutation>;
   ShopQuery: ResolverTypeWrapper<ShopQuery>;
+  Task: ResolverTypeWrapper<Task>;
   TaskMutation: ResolverTypeWrapper<TaskMutation>;
   TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
@@ -366,6 +373,7 @@ export type ResolversParentTypes = {
   Seconde: Scalars['Seconde']['output'];
   ShopMutation: ShopMutation;
   ShopQuery: ShopQuery;
+  Task: Task;
   TaskMutation: TaskMutation;
   TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
@@ -478,6 +486,7 @@ export type PlayerResolvers<ContextType = GraphQlContext, ParentType extends Res
   id?: Resolver<ResolversTypes['UserId'], ParentType, ContextType>;
   runs?: Resolver<ResolversTypes['Runs'], ParentType, ContextType>;
   score?: Resolver<ResolversTypes['Score'], ParentType, ContextType>;
+  task?: Resolver<Maybe<ResolversTypes['Task']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -549,6 +558,11 @@ export type ShopQueryResolvers<ContextType = GraphQlContext, ParentType extends 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TaskResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Task'] = ResolversParentTypes['Task']> = {
+  join?: Resolver<Array<ResolversTypes['Media']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TaskMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['TaskMutation'] = ResolversParentTypes['TaskMutation']> = {
   join?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<TaskMutationJoinArgs, 'media'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -612,6 +626,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   Seconde?: GraphQLScalarType;
   ShopMutation?: ShopMutationResolvers<ContextType>;
   ShopQuery?: ShopQueryResolvers<ContextType>;
+  Task?: TaskResolvers<ContextType>;
   TaskMutation?: TaskMutationResolvers<ContextType>;
   TelegramStar?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;

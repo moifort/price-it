@@ -17,6 +17,7 @@ export const resolvers: Resolvers = {
         affiliation: {
           friends: player.affiliation.friends.length,
         },
+        task: player.task,
       }
     },
   },

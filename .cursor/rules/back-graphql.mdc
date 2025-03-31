@@ -1,6 +1,6 @@
 ---
 description: [Back] Graphql best practice
-globs: graphql/*.ts
+globs: **/graphql/*.ts
 alwaysApply: false
 ---
 # MDC Rules for GraphQl
