@@ -13,6 +13,12 @@ declare module 'vue' {
   }
 }
 
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $open: <T = unknown>(component: Component, props?: Record<string, unknown>, slot?: unknown) => Promise<T>
+  }
+}
+
 export default defineNuxtPlugin(({ vueApp, provide }) => {
   const $open =
     (app: App<Element>) => async (component: Component, props?: Record<string, unknown>, slot?: unknown) => {

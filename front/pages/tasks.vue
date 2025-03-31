@@ -1,14 +1,29 @@
 <script setup lang="ts">
+import Modal from '~/components/molecules/task/Modal.vue'
+import type { ReturnType } from '~/components/molecules/task/Modal.vue'
 import Tasks from '~/components/pages/Tasks.vue'
 import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
+import type { Media } from '../../back/src/task/types'
 import type { UserId } from '../../back/src/user/types'
 
-const { data, status } = useAsyncGql('TaskQuery')
+const { $open } = useNuxtApp()
+const { data, status, refresh } = useAsyncGql('TaskQuery')
 const copyInvitationLink = (referrerId: UserId) => {
   // TODO: faire marcher le lien de partage
   navigator.clipboard.writeText(`https://t.me/guessprice_bot?start=ref_${referrerId}`)
   alert('Invitation link copied!')
+}
+
+const join = async (media: Media) => {
+  const status = await $open<ReturnType>(Modal, { media, url: 'https://t.me/guess_price' })
+  if (status === 'joined') {
+    await GqlTaskJoinMedia({ media })
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    refresh()
+    return
+  }
+  return
 }
 </script>
 
@@ -18,6 +33,6 @@ const copyInvitationLink = (referrerId: UserId) => {
          @click:invite="status === 'success' && copyInvitationLink(data.me.id)"
          :friends="status === 'success' ? data.me.affiliation.friends : 0"
          :joined="status === 'success' ? data.me.task.join : []"
-         @click:join="status === 'success' && copyInvitationLink(data.me.id)"
+         @click:join="(media) => join(media)"
   />
 </template>
