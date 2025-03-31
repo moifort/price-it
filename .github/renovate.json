@@ -5,6 +5,7 @@
   "automerge": false,
   "prCreation": "immediate",
   "dependencyDashboard": true,
+  "configWarningReuseIssue": false,
   "prHourlyLimit": 10,
   "recreateWhen": "always",
   "platform": "github",
@@ -22,7 +23,7 @@
       "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
       "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "oven-sh/bun",
+      "depNameTemplate": "bun",
       "versioningTemplate": "semver"
     }
   ],
@@ -30,14 +31,6 @@
     {
       "matchPackageNames": ["node", "nuxt", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
-    },
-    {
-      "matchPackageNames": ["firebase-tools"],
-      "automerge": true
-    },
-    {
-      "matchPackageNames": ["oven-sh/bun"],
-      "automerge": true
     },
     {
       "groupName": "all non-major dependencies",
