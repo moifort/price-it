@@ -7,7 +7,7 @@ import type { UserId } from '../../back/src/user/types'
 // TODO: Add logic juste si il clique sur le lien
 const { data, status } = useAsyncGql('TaskQuery')
 const copyInvitationLink = (referrerId: UserId) => {
-  // TODO: faire marcher le partage
+  // TODO: faire marcher le lien de partage
   navigator.clipboard.writeText(`https://t.me/guessprice_bot?start=ref_${referrerId}`)
   alert('Invitation link copied!')
 }
