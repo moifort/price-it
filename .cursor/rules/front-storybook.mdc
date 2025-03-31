@@ -12,6 +12,10 @@ These rules strictly apply to storybook stories
 - If conditional props are used, you **MUST** implement a specific story with a short readable title.
 - If optional props are used, you **MUST** implement a specific story with a short readable title.
 - If function or emit are defined, you **MUST** implement using `fn()` from `@storybook/test`.
+- When testing a modal component follow the template show in Modal Stories implementation
+- On `meta` you **MUST** import component using `component` name to inline meta parameter.
+- On `meta` parameters you **MUST NOT** use `title`, `tags: ['autodocs']`, `argTypes` those parameters are automatically generated.
+- If components are typed using value object type like `Url`,  `Amount`, etc. fetch the validators in `back/scr/**/*.validators.ts` files. 
 
 ## Development Lifecycle Process
 When developing validators, **YOU MUST FOLLOW** this step-by-step process:
@@ -20,7 +24,7 @@ When developing validators, **YOU MUST FOLLOW** this step-by-step process:
 3. **Run Typecheck**: Run automatically run `bun typecheck` to validate yours types
 
 ## Stories Implementation
-When implementing stories, follow this pattern:
+When implementing stories, follow this template:
 
 ```typescript
 import { fn } from '@storybook/test'
@@ -43,6 +47,47 @@ export const NoMoreRun: Story = {
     args: {
         ...Default.args,
         remainingRun: Run(0),
+    },
+}
+```
+
+## Modal Stories Implementation
+When implementing modal stories, follow this template:
+
+```typescript
+import { fn } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/vue3'
+import { Amount, Url } from '../../../../back/src/utils/validators'
+import component from './Modal.vue'
+
+const meta = {
+    component,
+    decorators: [() => ({ template: '<div style="height: 330px; position: relative;"><story /></div>' })],
+    render: (args) => ({
+        components: { Modal: component },
+        setup: () => ({ args }),
+        template: `
+      <Modal v-bind="args">
+        <template #icon>
+            <Trophy class="h-12 w-12 text-yellow-500" />
+        </template>
+        
+        <template #title>
+         <div class="text-yellow-500">You Won!</div>
+        </template>
+      </Modal>
+    `,
+    }),
+} satisfies Meta<typeof component>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+    args: {
+        price: Amount(89),
+        productLink: Url('https://example.com/product'),
+        close: fn(),
     },
 }
 ```
