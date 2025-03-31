@@ -20,9 +20,7 @@
     },
     {
       "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
-      "matchStrings": [
-        "bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"
-      ],
+      "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "oven-sh/bun",
       "versioningTemplate": "semver"
@@ -30,7 +28,7 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["node", "tailwindcss", "@telegram-apps/sdk-vue"],
+      "matchPackageNames": ["node", "nuxt", "tailwindcss", "@telegram-apps/sdk-vue"],
       "enabled": false
     },
     {
