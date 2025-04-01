@@ -7,9 +7,12 @@ import type { Media } from '../../../../back/src/task/types'
 import type { Url } from '../../../../back/src/utils/types'
 
 export type ReturnType = 'later' | 'joined'
-defineProps<{ close?: (status: ReturnType) => void; media: Media; url: Url }>()
+const { close } = defineProps<{ close?: (status: ReturnType) => void; media: Media; url: Url }>()
 const isOpen = ref(true)
 const openMediaLink = (url: Url) => {
+  isOpen.value = false
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
+  close!('joined')
   if (openLink.isAvailable()) {
     openLink(url)
   } else {
@@ -34,11 +37,7 @@ const openMediaLink = (url: Url) => {
           <Button
               variant="outline"
               class="w-full py-6 text-lg"
-              @click="() =>{
-                openMediaLink(url)
-                isOpen = false
-                close!('joined')
-              }"
+              @click="openMediaLink(url)"
           >
             <ExternalLink class="w-5 h-5" />
             Go to {{ media }}
