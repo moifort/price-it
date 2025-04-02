@@ -8,7 +8,7 @@ import type { UserId } from '../../back/src/user/types'
 const { data, status, refresh } = useAsyncGql('TaskQuery')
 const copyInvitationLink = (referrerId: UserId) => {
   const text = 'Join me on Guess Price!'
-  const url = `https://t.me/guessprice_bot?start=ref_${referrerId}`
+  const url = `https://t.me/PriceItGameBot?game=priceit&start=ref_${referrerId}`
   window.location.href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`
   // navigator.clipboard.writeText(url)
   // alert('Invitation link copied!')
