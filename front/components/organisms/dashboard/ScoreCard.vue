@@ -23,7 +23,7 @@ defineEmits<{ 'click:buy': () => void }>()
         <template v-else>
           <Zap class="w-4 h-4" />
           <span class="text-sm">+{{  formatNumber(winBonus) }}</span>
-          <span class="text-sm">| expired {{ $dayjs(winExpiredAt).fromNow() }}</span>
+          <span class="text-sm">| expire {{ $dayjs(winExpiredAt).fromNow() }}</span>
         </template>
       </Badge>
     </div>
