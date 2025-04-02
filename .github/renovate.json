@@ -1,25 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "repositories": ["moifort/price-it"],
   "platformAutomerge": true,
   "automerge": false,
   "prCreation": "immediate",
   "dependencyDashboard": true,
-  "configWarningReuseIssue": false,
+  "configWarningReuseIssue": true,
   "prHourlyLimit": 10,
   "recreateWhen": "always",
-  "platform": "github",
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": ["^package\\.json$"],
       "matchStrings": [
-        "\"postinstall\":\\s*\"(?:.*\\s)?(?:npx\\s+)?firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*)\""
+        "\"postinstall\":\\s*\"(?:.*?)firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*?)\""
       ],
       "datasourceTemplate": "npm",
       "depNameTemplate": "firebase-tools",
       "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
     },
     {
+      "customType": "regex",
       "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
       "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
       "datasourceTemplate": "github-releases",
