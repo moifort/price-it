@@ -11,9 +11,7 @@
     {
       "customType": "regex",
       "fileMatch": ["^package\\.json$"],
-      "matchStrings": [
-        "\"postinstall\":\\s*\"(?:.*?)firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*?)\""
-      ],
+      "matchStrings": ["\"postinstall\":\\s*\"(?:.*?)firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*?)\""],
       "datasourceTemplate": "npm",
       "depNameTemplate": "firebase-tools",
       "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
@@ -29,7 +27,7 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["node", "nuxt", "tailwindcss", "@telegram-apps/sdk-vue"],
+      "matchPackageNames": ["node", "nuxt", "@telegram-apps/sdk-vue"],
       "enabled": false
     },
     {
