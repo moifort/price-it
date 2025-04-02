@@ -55,7 +55,7 @@ export const graphQlServer = async (context: Context) => {
         if (!authorization) throw new AuthenticationError()
         const authData = authorization.split(' ')[1]
         if (!authData) throw new AuthenticationError()
-        // TODO: rajouter expiration du token
+        // TODO: rajouter expiration du token retour sur l'app to refresh
         if (!isDev && !isValid(authData, context.$environment.TELEGRAM_TOKEN)) throw new AuthenticationError()
         const { user } = parse(authData)
         if (!user) throw new AuthenticationError()
