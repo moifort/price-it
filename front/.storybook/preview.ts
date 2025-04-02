@@ -27,8 +27,8 @@ const preview: Preview = {
 const withMainApplication = (storyFn) => ({
   components: { storyFn },
   template: '<div id="main-application"><story /></div>',
-});
+})
 
-preview.decorators = [withMainApplication];
+preview.decorators = [withMainApplication]
 
 export default preview
