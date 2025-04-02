@@ -13,6 +13,7 @@ export const resolvers: Resolvers = {
         bonus: {
           run: Run(player.runs.total - RunQuery.DEFAULT_RUN),
           win: player.game.winBonus,
+          winExpiredAt: player.game.winBonusExpiredAt,
         },
         affiliation: {
           friends: player.affiliation.friends.length,

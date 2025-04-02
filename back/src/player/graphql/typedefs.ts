@@ -2,6 +2,7 @@ export default `#graphql
 type Bonus {
     run: Run!
     win: Point!
+    winExpiredAt: DateTime!
 }
 type Player {
     id : UserId!

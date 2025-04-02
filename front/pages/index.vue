@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { on, shareURL } from '@telegram-apps/sdk'
+import { on } from '@telegram-apps/sdk'
 import Dashboard from '~/components/pages/Dashboard.vue'
 import { Run } from '../../back/src/run/validators'
 import { Point, Score } from '../../back/src/score/validators'
-import type { Url } from '../../back/src/utils/types'
 import { Seconde } from '../../back/src/utils/validators'
 
 // TODO: Add analytics on startGame
@@ -26,6 +25,7 @@ onUnmounted(() => removeListener())
              :run-renew-at="status === 'success' ? data.me.runs.renewAt : $dayjs().subtract(2, 'hours').toDate()"
              :run-bonus="status === 'success' ? data.me.bonus.run: Run(0)"
              :win-bonus="status === 'success' ? data.me.bonus.win : Point(0)"
+             :win-expired-at="status === 'success' ? data.me.bonus.winExpiredAt : new Date()"
              @click:startGame="router.push(`/game/0`)"
              @click:buy-runs="router.push(`/shop`)"
              @click:buy-win="router.push(`/shop`)"

@@ -9,6 +9,7 @@ query PlayerQuery {
     bonus {
       win
       run
+      winExpiredAt
     }
   }
 }

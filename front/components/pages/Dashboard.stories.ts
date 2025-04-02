@@ -20,6 +20,7 @@ export const Default: Story = {
     timeLimit: Seconde(8),
     runBonus: Run(10),
     winBonus: Point(10),
+    winExpiredAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
     'onClick:startGame': () => console.log('onClick:startGame'),
     'onClick:buyRuns': () => console.log('onClick:buyRuns'),
     'onClick:buyWin': () => console.log('onClick:buyWin'),
