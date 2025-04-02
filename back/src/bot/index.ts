@@ -1,5 +1,6 @@
 import { logger } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/https'
+import { InlineKeyboard } from 'grammy'
 import { AffiliationCommand } from '../affiliation/command'
 import { getContext } from '../module'
 import { PaymentCommand } from '../payment/command'
@@ -38,6 +39,19 @@ export const bot = onRequest(async (req, res) => {
       await AffiliationCommand.addFriend($firestore)(referrerId, friendId)
       await ctx.reply('Welcome! Your friend will get points once you start to play.')
     }
+  })
+
+  $telegramBot.command('play', async (ctx) => {
+    const keyboard = new InlineKeyboard()
+      .game('Play now!')
+      .row()
+      .text('Leaderboard', 'leaderboard')
+      .text('About', 'about')
+    await ctx.replyWithGame('settle_mints_game', {
+      reply_markup: keyboard,
+      protect_content: true,
+      disable_notification: true,
+    })
   })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
