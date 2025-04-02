@@ -23,4 +23,12 @@ const preview: Preview = {
   },
   tags: ['autodocs'],
 }
+
+const withMainApplication = (storyFn) => ({
+  components: { storyFn },
+  template: '<div id="main-application"><story /></div>',
+})
+
+preview.decorators = [withMainApplication]
+
 export default preview

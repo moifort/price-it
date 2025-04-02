@@ -16,14 +16,9 @@ const copyInvitationLink = (referrerId: UserId) => {
 }
 
 const join = async (media: Media) => {
-  const status = await $open<ReturnType>(Modal, { media, url: 'https://t.me/guess_price' })
-  if (status === 'joined') {
-    await GqlTaskJoinMedia({ media })
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    refresh()
-    return
-  }
-  return
+  await GqlTaskJoinMedia({ media })
+  await new Promise((resolve) => setTimeout(resolve, 2000))
+  refresh()
 }
 </script>
 
