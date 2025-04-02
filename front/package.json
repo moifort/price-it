@@ -62,7 +62,7 @@
     "@tanstack/vue-table": "8.21.2",
     "@vitest/browser": "3.0.9",
     "playwright": "1.51.1",
-    "shadcn-vue": "1.0.3",
+    "shadcn-vue": "2.0.0",
     "storybook": "8.6.10",
     "storybook-dark-mode": "4.0.2",
     "typescript": "5.8.2",
