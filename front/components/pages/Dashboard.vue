@@ -18,6 +18,7 @@ defineProps<{
   runRenewAt: Date
   runBonus: Run
   winBonus: Point
+  winExpiredAt: Date
 }>()
 
 defineEmits<{
@@ -40,7 +41,10 @@ defineEmits<{
     </template>
 
     <template #body>
-        <ScoreCard :score="score" :win-bonus="winBonus"  @click:buy="$emit('click:buyWin')" class="h-full"/>
+        <ScoreCard :score="score"
+                   :win-bonus="winBonus"
+                   :winExpiredAt="winExpiredAt"
+                   @click:buy="$emit('click:buyWin')" class="h-full"/>
     </template>
 
     <template #subbody>

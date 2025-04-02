@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { ShoppingBag, Trophy, Zap } from 'lucide-vue-next'
 import { Badge } from '~/components/atoms/badge'
 import { formatNumber } from '~/utils/utils'
@@ -6,7 +7,7 @@ import type { Point, Score } from '../../../../back/src/score/types'
 
 // TODO: add time left in winBonus
 
-defineProps<{ score: Score; winBonus: Point }>()
+defineProps<{ score: Score; winBonus: Point; winExpiredAt: Date }>()
 defineEmits<{ 'click:buy': () => void }>()
 </script>
 
@@ -22,6 +23,7 @@ defineEmits<{ 'click:buy': () => void }>()
         <template v-else>
           <Zap class="w-4 h-4" />
           <span class="text-sm">+{{  formatNumber(winBonus) }}</span>
+          <span class="text-sm">| expired {{ $dayjs(winExpiredAt).fromNow() }}</span>
         </template>
       </Badge>
     </div>

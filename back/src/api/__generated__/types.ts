@@ -85,6 +85,7 @@ export type Bonus = {
   __typename?: 'Bonus';
   run: Scalars['Run']['output'];
   win: Scalars['Point']['output'];
+  winExpiredAt: Scalars['DateTime']['output'];
 };
 
 export type GameMutation = {
@@ -404,6 +405,7 @@ export interface AmountScalarConfig extends GraphQLScalarTypeConfig<ResolversTyp
 export type BonusResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Bonus'] = ResolversParentTypes['Bonus']> = {
   run?: Resolver<ResolversTypes['Run'], ParentType, ContextType>;
   win?: Resolver<ResolversTypes['Point'], ParentType, ContextType>;
+  winExpiredAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
