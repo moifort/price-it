@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { Button } from '~/components/atoms/button'
 
 defineProps({ error: Object })
-const router = useRouter()
 const handleError = () => {
   clearError()
-  router.push('/')
+  window.location.href = '/'
 }
 </script>
 
