@@ -11,6 +11,7 @@ import type { Score } from '../../../back/src/score/types'
 import { Point } from '../../../back/src/score/validators'
 import type { Media as MediaType } from '../../../back/src/task/types'
 import { Media } from '../../../back/src/task/validators'
+import { Url } from '../../../back/src/utils/validators'
 
 defineProps<{ score: Score; runsLeft: Run; friends: number; joined: MediaType[] }>()
 defineEmits<{
@@ -50,17 +51,42 @@ defineEmits<{
         <h1 class="text-3xl font-medium opacity-60 mb-2">Join</h1>
       </div>
       <div class="grid grid-cols-2 gap-3">
-        <Card :points="Point(3000)" brand="telegram" class="bg-blue-400" :disabled="joined.includes(Media('telegram'))" @click="$emit('click:join', Media('telegram'))"/>
+        <Card class="bg-blue-400"
+              :points="Point(3000)"
+              media="telegram"
+              :url="Url('https://t.me/guess_price')"
+              :disabled="joined.includes(Media('telegram'))"
+              @click:join="media => $emit('click:join', media)"/>
       </div>
     </template>
 
     <template #follow>
       <h1 class="text-3xl font-medium opacity-60 mb-2">Follow</h1>
       <div class="grid grid-cols-2 gap-3">
-        <Card :points="Point(5000)" brand="youtube" class="bg-red-700" :disabled="joined.includes(Media('youtube'))" @click="$emit('click:join', Media('youtube'))"/>
-        <Card :points="Point(5000)" brand="tiktok" class="bg-slate-800" :disabled="joined.includes(Media('tiktok'))" @click="$emit('click:join', Media('tiktok'))"/>
-        <Card :points="Point(5000)" brand="instagram" class="bg-pink-800" :disabled="joined.includes(Media('instagram'))" @click="$emit('click:join', Media('instagram'))"/>
-        <Card :points="Point(5000)" brand="twitter" class="bg-blue-400" :disabled="joined.includes(Media('twitter'))" @click="$emit('click:join', Media('twitter'))"/>
+        <Card class="bg-red-700"
+              :points="Point(5000)"
+              media="youtube"
+              :url="Url('https://www.youtube.com')"
+              :disabled="joined.includes(Media('youtube'))"
+              @click:join="media => $emit('click:join', media)"/>
+        <Card class="bg-slate-800"
+              :points="Point(5000)"
+              media="tiktok"
+              :url="Url('https://www.tiktok.com')"
+              :disabled="joined.includes(Media('tiktok'))"
+              @click:join="media => $emit('click:join', media)"/>
+        <Card class="bg-pink-800"
+              :points="Point(5000)"
+              media="instagram"
+              :url="Url('https://www.instagram.com')"
+              :disabled="joined.includes(Media('instagram'))"
+              @click:join="media => $emit('click:join', media)"/>
+        <Card class="bg-blue-400"
+              :points="Point(5000)"
+              media="twitter"
+              :url="Url('https://www.twitter.com')"
+              :disabled="joined.includes(Media('twitter'))"
+              @click:join="media => $emit('click:join', media)"/>
       </div>
     </template>
   </TasksTemplate>

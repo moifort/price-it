@@ -7,12 +7,12 @@ import type { Media } from '../../../../back/src/task/types'
 import type { Url } from '../../../../back/src/utils/types'
 
 export type ReturnType = 'later' | 'joined'
-const { close } = defineProps<{ close?: (status: ReturnType) => void; media: Media; url: Url }>()
+const { close } = defineProps<{ close?: (status: ReturnType) => Promise<void>; media: Media; url: Url }>()
 const isOpen = ref(true)
-const openMediaLink = (url: Url) => {
+const openMediaLink = async (url: Url) => {
   isOpen.value = false
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  close!('joined')
+  await close!('joined')
   if (openLink.isAvailable()) {
     openLink(url)
   } else {
@@ -22,7 +22,7 @@ const openMediaLink = (url: Url) => {
 </script>
 
 <template>
-  <AlertDialog :open="isOpen" >
+  <AlertDialog :open="isOpen">
     <AlertDialogContent class="rounded-xl">
         <AlertDialogHeader class="justify-center items-center mt-4">
           <font-awesome :icon="['fab', media]" size="3x" />
