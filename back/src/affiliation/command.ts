@@ -9,7 +9,6 @@ export namespace AffiliationCommand {
     await save($firestore)(userId, { friends: [] })
   }
 
-  // TODO Ajouter les points seulement si l'ami est ajouté a la base de donnée
   export const addFriend = ($firestore: Firestore) => async (userId: UserId, friendId: UserId) => {
     await addFriendRepository($firestore)(userId, friendId)
     await ScoreCommand.addPoints($firestore)(userId, Point(5000))

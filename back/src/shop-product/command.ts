@@ -9,7 +9,6 @@ import type { UserId } from '../user/types'
 import { findById } from './infra/repository'
 import type { ProductId } from './types'
 
-// TODO: Add tests
 export namespace ProductCommand {
   export const activate =
     (database: Firestore, runTaskQueue: Task__Run, gameTaskQueue: Task__Game) =>

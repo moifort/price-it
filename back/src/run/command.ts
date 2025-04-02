@@ -9,7 +9,6 @@ import { RunQuery } from './query'
 import type { Run as RunType, Runs } from './types'
 import { Run as RunValidator } from './validators'
 
-// TODO: Add Score booster bonus
 export namespace RunCommand {
   export const create = (database: Firestore, taskQueue: Task__Run) => async (userId: UserId) => {
     const remaining = RunQuery.DEFAULT_RUN

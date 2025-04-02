@@ -10,8 +10,14 @@ export const initialize = (isEmulator: boolean) => {
   const $functions = getFunctions($app)
   if (isEmulator) {
     Object.assign(TaskQueue.prototype, {
-      enqueue: (data: unknown, params: unknown) => console.log('tasks: ', data, params),
-      delete: (id: unknown) => console.log('delete task id: ', id),
+      enqueue: (data: unknown, params: unknown) => {
+        console.log('tasks: ', data, params)
+        return Promise.resolve()
+      },
+      delete: (id: unknown) => {
+        console.log('delete task id: ', id)
+        return Promise.resolve()
+      },
     })
   }
   const $task__run = initializeTaskRun($functions)
