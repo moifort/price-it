@@ -10,7 +10,6 @@ import { UserCommand } from '../user/command'
 import { UserQuery } from '../user/query'
 import type { UserId } from '../user/types'
 
-// TODO: Add tests
 export namespace PlayerCommand {
   export const createIfNotExist =
     (database: Firestore, runTaskQueue: Task__Run) => async (id: UserId, firstName: string) => {
