@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { shareURL } from '@telegram-apps/sdk'
 import Tasks from '~/components/pages/Tasks.vue'
 import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
