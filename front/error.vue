@@ -2,14 +2,9 @@
 import { useRouter } from 'vue-router'
 import { Button } from '~/components/atoms/button'
 
-defineProps({
-  error: Object,
-})
-
+defineProps({ error: Object })
 const router = useRouter()
-
-function handleError() {
-  // Clear the error and navigate to index page
+const handleError = () => {
   clearError()
   router.push('/')
 }
@@ -21,7 +16,7 @@ function handleError() {
       <div class="space-y-6 max-w-md">
         <h1 class="text-3xl font-bold">Oops! Something went wrong</h1>
         <p class="text-muted-foreground">
-          We encountered an error while processing your request. 
+          We encountered an error while processing your request.
           Please try again or return to the home page.
         </p>
         <div class="flex justify-center pt-4">
@@ -32,4 +27,4 @@ function handleError() {
       </div>
     </div>
   </NuxtLayout>
-</template> 
+</template>
