@@ -9,7 +9,7 @@ const handleError = () => {
 </script>
 
 <template>
-  <NuxtLayout name="default">
+  <NuxtLayout name="fullscreen">
     <div class="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center">
       <div class="space-y-6 max-w-md">
         <h1 class="text-3xl font-bold">Oops! Something went wrong</h1>

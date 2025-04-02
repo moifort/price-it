@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import Modal from '~/components/molecules/task/Modal.vue'
-import type { ReturnType } from '~/components/molecules/task/Modal.vue'
+import { shareURL } from '@telegram-apps/sdk'
 import Tasks from '~/components/pages/Tasks.vue'
 import { Run } from '../../back/src/run/validators'
 import { Score } from '../../back/src/score/validators'
 import type { Media } from '../../back/src/task/types'
 import type { UserId } from '../../back/src/user/types'
 
-const { $open } = useNuxtApp()
 const { data, status, refresh } = useAsyncGql('TaskQuery')
 const copyInvitationLink = (referrerId: UserId) => {
-  // TODO: faire marcher le lien de partage
-  navigator.clipboard.writeText(`https://t.me/guessprice_bot?start=ref_${referrerId}`)
-  alert('Invitation link copied!')
+  if (shareURL.isAvailable()) {
+    shareURL(`https://t.me/guessprice_bot?start=ref_${referrerId}`, 'Join me on Guess Price!')
+  } else {
+    navigator.clipboard.writeText(`https://t.me/guessprice_bot?start=ref_${referrerId}`)
+    alert('Invitation link copied!')
+  }
 }
 
 const join = async (media: Media) => {
