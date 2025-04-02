@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import { Button } from '~/components/atoms/button'
 
 defineProps({
-  error: Object
+  error: Object,
 })
 
 const router = useRouter()
