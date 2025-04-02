@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*TODO: Fix zoom to double tap*/
-/*TODO: no select text*/
-/*TODO: scroll on refresh*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -67,5 +63,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Fix double tap zoom on mobile */
+    touch-action: manipulation;
+    /* Prevent text selection */
+    user-select: none;
+    /* Control scroll behavior on refresh */
+    overflow-anchor: none;
+    scroll-behavior: smooth;
   }
 }
