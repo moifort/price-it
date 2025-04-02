@@ -22,7 +22,7 @@ export const bot = onRequest(async (req, res) => {
     await ctx.reply('Welcome! Click below to launch the game 👇', {
       reply_markup: {
         inline_keyboard: [
-          [{ text: '🎮 Play', url: 'https://t.me/PriceItGameBot/game' }],
+          [{ text: '🎮 Play', web_app: { url: 'https://price-it-85b3e.web.app/' } }],
           [{ text: '📢 Subscribe to the channel', url: 'https://t.me/guess_price' }],
         ],
       },
