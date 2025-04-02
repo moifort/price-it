@@ -17,7 +17,7 @@ export const bot = onRequest(async (req, res) => {
   const request = app(req, res)
 
   $telegramBot.on('callback_query:game_short_name', async (ctx) => {
-    await ctx.answerCallbackQuery({ url: 'https://price-it-85b3e.web.app/' })
+    await ctx.answerCallbackQuery({ url: 'https://t.me/PriceItGameBot/game' })
   })
 
   $telegramBot.command('start', async (ctx) => {
