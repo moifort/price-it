@@ -1,4 +1,5 @@
 import {
+  disableVerticalSwipes,
   init,
   initData,
   isTMA,
@@ -6,6 +7,7 @@ import {
   mockTelegramEnv,
   parseInitData,
   retrieveLaunchParams,
+  swipeBehavior,
 } from '@telegram-apps/sdk-vue'
 import type { LaunchParams } from '@telegram-apps/sdk-vue'
 
@@ -47,6 +49,23 @@ export default defineNuxtPlugin(async (isDev) => {
     )
   }
   init()
+  swipeBehavior.mount()
   miniApp.mount()
   initData.restore()
+
+  if (disableVerticalSwipes.isAvailable()) {
+    disableVerticalSwipes()
+  }
+  // It will listen for changes in viewport size (even with the changes by opening a Virtual Keyboard), then apply the correct size into body of HTML.
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      document.body.style.height = `${window.visualViewport?.height}px`
+    })
+  }
+  // This will ensure user never overscroll the page
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      window.scrollTo(0, 0)
+    }
+  })
 })
