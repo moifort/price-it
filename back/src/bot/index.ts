@@ -16,8 +16,14 @@ export const bot = onRequest(async (req, res) => {
   const app = await server($telegramBot)
   const request = app(req, res)
 
+  $telegramBot.on('callback_query:game_short_name', async (ctx) => {
+    await ctx.answerCallbackQuery({ url: 'https://price-it-85b3e.web.app/' })
+  })
+
   $telegramBot.command('start', async (ctx) => {
-    await ctx.replyWithGame('priceit')
+    await ctx.replyWithGame('priceit', {
+      reply_markup: new InlineKeyboard().game('Start to play'),
+    })
   })
 
   // $telegramBot.command('start', async (ctx) => {
@@ -41,19 +47,6 @@ export const bot = onRequest(async (req, res) => {
   //     await ctx.reply('Welcome! Your friend will get points once you start to play.')
   //   }
   // })
-
-  $telegramBot.command('play', async (ctx) => {
-    const keyboard = new InlineKeyboard()
-      .game('Play now!')
-      .row()
-      .text('Leaderboard', 'leaderboard')
-      .text('About', 'about')
-    await ctx.replyWithGame('settle_mints_game', {
-      reply_markup: keyboard,
-      protect_content: true,
-      disable_notification: true,
-    })
-  })
 
   $telegramBot.on('pre_checkout_query', async (ctx) => {
     const { paymentId }: InvoicePayload = JSON.parse(ctx.preCheckoutQuery.invoice_payload)
