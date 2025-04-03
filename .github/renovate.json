@@ -5,6 +5,8 @@
   "repositories": ["moifort/price-it"],
   "prCreation": "immediate",
   "dependencyDashboard": true,
+  "configMigration": true,
+  "onboarding": true,
   "configWarningReuseIssue": true,
   "prHourlyLimit": 10,
   "platform": "github",
