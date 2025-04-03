@@ -13,6 +13,10 @@ export namespace GameQuery {
     const { remaining } = await RunQuery.get(database)(userId)
     if (remaining === 0) throw new Error('No more remaining guesses')
     const { position } = await findBy(database)(userId)
-    return await GuessQuery.getAll(database)(Limit(remaining), position)
+    const guesses = await GuessQuery.getAll(database)(Limit(remaining), position)
+    if (guesses.length === 0 || guesses.length < RunQuery.DEFAULT_RUN) {
+      return await GuessQuery.getAll(database)(Limit(RunQuery.DEFAULT_RUN), undefined)
+    }
+    return guesses
   }
 }
