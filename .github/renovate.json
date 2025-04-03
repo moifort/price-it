@@ -2,10 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "platformAutomerge": true,
   "automerge": false,
+  "repositories": ["moifort/price-it"],
   "prCreation": "immediate",
   "dependencyDashboard": true,
   "configWarningReuseIssue": true,
   "prHourlyLimit": 10,
+  "platform": "github",
   "recreateWhen": "always",
   "customManagers": [
     {
