@@ -7,45 +7,32 @@ import TimeoutModal from '~/components/organisms/game/TimeoutModal.vue'
 import Timer from '~/components/organisms/game/Timer.vue'
 import WinModal from '~/components/organisms/game/WinModal.vue'
 import { getIntPathParam } from '~/composables/useRoute'
-import { generate } from '~/utils/game'
 import type { GuessId } from '../../../back/src/game-guess/types'
+import type { UserGuess } from '../../../back/src/game/types'
 
-type Guess = 'win' | 'lose'
-
-const router = useRouter()
-const { $open } = useNuxtApp()
-const index = getIntPathParam('id')
-const { product, totalTime } = defineProps(['product', 'totalTime'])
-const { displayPrice, expectedGuess } = generate(product.price)
-const counterPlay = ref(true)
-
-const next = async (playerGuess: 'less' | 'exact' | 'more', guessId: GuessId) => {
-  counterPlay.value = false
-  const guess: Guess = playerGuess === expectedGuess ? 'win' : 'lose'
-  if (guess === 'win') {
-    // TODO: Add analytics
-    await GqlGameCommandWin({ guessId })
-    await $open(WinModal, { price: product.price, productLink: product.url })
-  }
-  if (guess === 'lose') {
-    // TODO: Add analytics
-    await GqlGameCommandLose({ guessId })
-    await $open(LoseModal, { price: product.price, productLink: product.url })
-  }
-  await router.push(`/game/${index + 1}`)
-}
-
-const timeout = async (guessId: GuessId) => {
-  // TODO: Add analytics
-  await GqlGameCommandLose({ guessId })
-  await $open(TimeoutModal, { price: product.price, productLink: product.url })
-  await router.push(`/game/${index + 1}`)
-}
 // TODO: Think simplifier l'écran, le rendre moins hostère
 // TODO: Add le titre en haut de l'écran et le timer sur le coté
 // TODO: Add une description en bas
 // TODO: Think de retirer les modales
 // TODO: Add une animation de bulle qui monte avec les points gagnés ou perdus
+// TODO: Add analytics
+const router = useRouter()
+const { $open } = useNuxtApp()
+const index = getIntPathParam('id')
+const { product, totalTime } = defineProps(['product', 'totalTime'])
+const counterPlay = ref(true)
+const next = async (userGuess: UserGuess, guessId: GuessId) => {
+  counterPlay.value = false
+  const { game } = await GqlGameCommandGuess({ guessId, userGuess })
+  await $open(game.guess ? WinModal : LoseModal, { price: product.price, productLink: product.url })
+  await router.push(`/game/${index + 1}`)
+}
+
+const timeout = async (guessId: GuessId) => {
+  await GqlGameCommandLose({ guessId })
+  await $open(TimeoutModal, { price: product.price, productLink: product.url })
+  await router.push(`/game/${index + 1}`)
+}
 </script>
 
 <template>
@@ -61,7 +48,7 @@ const timeout = async (guessId: GuessId) => {
     <div class="flex-none">
       <ActionButtons
           :isActive="true"
-          :displayPrice="displayPrice"
+          :displayPrice="product.displayed"
           @click:less="next('less', product.id)"
           @click:exact="next('exact', product.id)"
           @click:more="next('more', product.id)"

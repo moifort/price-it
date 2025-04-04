@@ -7,6 +7,7 @@ type Guess {
   description: String
   image: Url!
   price: Amount!
+  displayed: Amount!
   category: String!
   url: Url!
 }

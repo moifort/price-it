@@ -40,6 +40,7 @@ export default defineNuxtConfig({
         Rank: '../../../back/src/utils/types#Rank',
         Run: '../../../back/src/run/types#Run',
         GuessId: '../../../back/src/game-guess/types#GuessId',
+        UserGuess: '../../../back/src/game/types#UserGuess',
         ProductId: '../../../back/src/shop-product/types#ProductId',
         Period: '../../../back/src/shop-product/types#Period',
         Category: '../../../back/src/shop-product/types#Category',

@@ -2,9 +2,9 @@ query GameGuessesQuery {
   game {
     guesses {
       id
-      category
-      name
       price
+      displayed
+      name
       image
       url
     }
@@ -20,14 +20,14 @@ query GameQuery {
   }
 }
 
-mutation GameCommandWin($guessId: GuessId!) {
-  game {
-    win(guessId: $guessId)
-  }
-}
-
 mutation GameCommandLose($guessId: GuessId!) {
   game {
     lose(guessId: $guessId)
+  }
+}
+
+mutation GameCommandGuess($guessId: GuessId!, $userGuess: UserGuess!) {
+  game {
+    guess(guessId: $guessId, userGuess: $userGuess)
   }
 }

@@ -22,7 +22,7 @@
     "rules": {
       "recommended": true,
       "correctness": {
-        "noUnusedImports": "off"
+        "noUnusedImports": "error"
       }
     }
   },
@@ -42,7 +42,7 @@
           },
           "style": {
             "useConst": "off",
-            "useImportType": "off"
+            "useImportType": "error"
           }
         }
       }
