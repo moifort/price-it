@@ -1,6 +1,8 @@
 import type { Firestore } from '@google-cloud/firestore'
 import dayjs from 'dayjs'
+import { match } from 'ts-pattern'
 import { v5 as uuid } from 'uuid'
+import { GuessQuery } from '../game-guess/query'
 import type { GuessId } from '../game-guess/types'
 import { RunCommand } from '../run/command'
 import { ScoreCommand } from '../score/command'
@@ -12,7 +14,8 @@ import { Minute } from '../utils/validators'
 import { findBy, save, update } from './infra/repository'
 import type { Task__Game } from './module'
 import { GameQuery } from './query'
-import type { UserGuess } from './types'
+import type { UserGuess as UserGuessType } from './types'
+import { UserGuess } from './validators'
 
 export namespace GameCommand {
   export const create = (database: Firestore) => async (userId: UserId) => {
@@ -51,7 +54,20 @@ export namespace GameCommand {
     })
   }
 
-  export const guess = (database: Firestore) => async (userId: UserId, guessId: GuessId, userGuess: UserGuess) => {}
+  export const guess = (database: Firestore) => async (userId: UserId, guessId: GuessId, userGuess: UserGuessType) => {
+    const guess = await GuessQuery.getById(database)(guessId)
+    /* biome-ignore format: keep when clauses inline */
+    const correctGuess = match(guess)
+      .when(({price, displayed}) => price < displayed, () => UserGuess('less'))
+      .when(({price, displayed}) => price > displayed, () => UserGuess('more'))
+      .otherwise(() => UserGuess('exact'))
+    if (userGuess === correctGuess) {
+      await win(database)(userId, guessId)
+      return true
+    }
+    await lose(database)(userId, guessId)
+    return false
+  }
 
   export const win = (database: Firestore) => async (userId: UserId, guessId: GuessId) => {
     const { winBonus } = await findBy(database)(userId)

@@ -2,6 +2,7 @@ query GameGuessesQuery {
   game {
     guesses {
       id
+      price
       displayed
       name
       image
@@ -22,5 +23,11 @@ query GameQuery {
 mutation GameCommandLose($guessId: GuessId!) {
   game {
     lose(guessId: $guessId)
+  }
+}
+
+mutation GameCommandGuess($guessId: GuessId!, $userGuess: UserGuess!) {
+  game {
+    guess(guessId: $guessId, userGuess: $userGuess)
   }
 }

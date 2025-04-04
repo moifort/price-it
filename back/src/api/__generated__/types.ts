@@ -18,6 +18,7 @@ import type { Score } from '../../score/types';
 import type { Seconde } from '../../utils/types';
 import type { TelegramStar } from '../../utils/telegram/types';
 import type { Url } from '../../utils/types';
+import type { UserGuess } from '../../game/types';
 import type { PlayerId } from '../../player/types';
 import type { WalletId } from '../../airdrop/types';
 import type { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
@@ -56,6 +57,7 @@ export type Scalars = {
   Seconde: { input: Seconde; output: Seconde; }
   TelegramStar: { input: TelegramStar; output: TelegramStar; }
   Url: { input: Url; output: Url; }
+  UserGuess: { input: UserGuess; output: UserGuess; }
   UserId: { input: PlayerId; output: PlayerId; }
   WalletId: { input: WalletId; output: WalletId; }
   _FieldSet: { input: any; output: any; }
@@ -90,8 +92,15 @@ export type Bonus = {
 
 export type GameMutation = {
   __typename?: 'GameMutation';
+  guess: Scalars['Boolean']['output'];
   lose: Scalars['Boolean']['output'];
   win: Scalars['Boolean']['output'];
+};
+
+
+export type GameMutationGuessArgs = {
+  guessId: Scalars['GuessId']['input'];
+  userGuess: Scalars['UserGuess']['input'];
 };
 
 
@@ -333,6 +342,7 @@ export type ResolversTypes = {
   TelegramStar: ResolverTypeWrapper<Scalars['TelegramStar']['output']>;
   TopPlayer: ResolverTypeWrapper<TopPlayer>;
   Url: ResolverTypeWrapper<Scalars['Url']['output']>;
+  UserGuess: ResolverTypeWrapper<Scalars['UserGuess']['output']>;
   UserId: ResolverTypeWrapper<Scalars['UserId']['output']>;
   WalletId: ResolverTypeWrapper<Scalars['WalletId']['output']>;
 };
@@ -380,6 +390,7 @@ export type ResolversParentTypes = {
   TelegramStar: Scalars['TelegramStar']['output'];
   TopPlayer: TopPlayer;
   Url: Scalars['Url']['output'];
+  UserGuess: Scalars['UserGuess']['output'];
   UserId: Scalars['UserId']['output'];
   WalletId: Scalars['WalletId']['output'];
 };
@@ -419,6 +430,7 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type GameMutationResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['GameMutation'] = ResolversParentTypes['GameMutation']> = {
+  guess?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GameMutationGuessArgs, 'guessId' | 'userGuess'>>;
   lose?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GameMutationLoseArgs, 'guessId'>>;
   win?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GameMutationWinArgs, 'guessId'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -588,6 +600,10 @@ export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes[
   name: 'Url';
 }
 
+export interface UserGuessScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['UserGuess'], any> {
+  name: 'UserGuess';
+}
+
 export interface UserIdScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['UserId'], any> {
   name: 'UserId';
 }
@@ -635,6 +651,7 @@ export type Resolvers<ContextType = GraphQlContext> = {
   TelegramStar?: GraphQLScalarType;
   TopPlayer?: TopPlayerResolvers<ContextType>;
   Url?: GraphQLScalarType;
+  UserGuess?: GraphQLScalarType;
   UserId?: GraphQLScalarType;
   WalletId?: GraphQLScalarType;
 };

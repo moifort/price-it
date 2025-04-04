@@ -21,9 +21,10 @@ const { $open } = useNuxtApp()
 const index = getIntPathParam('id')
 const { product, totalTime } = defineProps(['product', 'totalTime'])
 const counterPlay = ref(true)
-const next = async (playerGuess: UserGuess, guessId: GuessId) => {
+const next = async (userGuess: UserGuess, guessId: GuessId) => {
   counterPlay.value = false
-  await $open(guess === 'win' ? WinModal : LoseModal, { price: product.price, productLink: product.url })
+  const { game } = await GqlGameCommandGuess({ guessId, userGuess })
+  await $open(game.guess ? WinModal : LoseModal, { price: product.price, productLink: product.url })
   await router.push(`/game/${index + 1}`)
 }
 

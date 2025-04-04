@@ -10,4 +10,11 @@ export const findAll = (db: Firestore) => async (limit: Limit, position?: GuessI
   return query.docs.map((doc) => doc.data())
 }
 
+export const findById = (db: Firestore) => async (id: GuessId) => {
+  const doc = await collection(db).doc(id).get()
+  const data = doc.data()
+  if (!data) throw new Error(`Guess with id ${id} not found`)
+  return data
+}
+
 const collection = (db: Firestore) => db.collection('guesses').withConverter(genericDataConverter<Guess>())
