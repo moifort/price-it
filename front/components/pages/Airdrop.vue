@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Check, LoaderCircle, Wallet2 } from 'lucide-vue-next'
-import { Card } from '~/components/atoms/card'
-import MainTemplate from '~/components/template/Main.vue'
 import type { WalletId as WalletIdType } from '../../../back/src/airdrop/types'
 
 const { saveWalletId, walletId } = defineProps<{
@@ -25,35 +23,70 @@ const saveWallet = async (walletId: WalletIdType | undefined) => {
 </script>
 
 <template>
-  <MainTemplate>
-    <template #title>
-      <h1 class="text-3xl font-medium opacity-60">Airdrop</h1>
-    </template>
-
-    <template #body>
-      <Card>
-        <CardHeader>
-<!--          TODO: Add a piggy bank avec de l'argent qui s'incrémente -->
-          <CardTitle class="flex text-2xl items-center">Participate and earn coins ! </CardTitle>
-          <CardDescription>An airdrop is the distribution of tokens to players' wallets. These tokens will be exchanged on the main exchanges, and you can either sell them or keep them. To receive your tokens, you need to complete the two tasks above.</CardDescription>
-          <CardDescription>
-            <div class="flex w-full max-w items-center gap-1.5 my-2">
-              <div class="relative w-full max-w items-center">
-<!--                TODO: Fix le clavier du téléphone ne se ferme pas quand on clique a coté -->
-                <Input v-model="walletIdRef" type="text" placeholder="Wallet Id" class="pl-10" />
-                <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
-                  <Wallet2 class="size-5 text-muted-foreground" />
-                </span>
-              </div>
-              <Button v-if="isLoading" disabled class="w-16"> <LoaderCircle class="animate-spin duration-500"/> </Button>
-              <Button v-else-if="isSaved" class="w-16"> <Check/> </Button>
-              <Button v-else class="w-16" @click="saveWallet(walletIdRef)" :disabled="!walletIdRef"> Save </Button>
-            </div>
-
-          </CardDescription>
-          <CardDescription>We are currently in the mining phase where all players earn more <strong>points</strong> for the airdrop. The Airdrop date will be announced soon on our Telegram channel.</CardDescription>
-        </CardHeader>
-      </Card>
-    </template>
-  </MainTemplate>
+  <div class="flex flex-col items-center justify-center min-h-screen bg-blue-800 px-4 py-8 text-white overflow-x-hidden">
+    <div class="w-full max-w-md flex flex-col items-center">
+      <img src="~/assets/images/chest.png" alt="Treasure chest" class="w-48 md:w-56 mb-6" />
+      
+      <h1 class="text-3xl md:text-4xl font-bold text-center mb-3 leading-tight">
+        Participate and earn coins!
+      </h1>
+      
+      <p class="text-xl md:text-2xl font-normal text-center mb-8 leading-snug max-w-xs">
+        Airdrop is thaqistrution storlp tulae pre score!
+      </p>
+      
+      <div class="bg-navy-900 w-full p-4 rounded-3xl mb-8 flex items-center shadow-lg">
+        <Wallet2 class="size-5 text-yellow-400 mr-3 flex-shrink-0" />
+        <input 
+          v-model="walletIdRef" 
+          type="text" 
+          inputmode="text"
+          placeholder="Wallet Id" 
+          class="w-full bg-transparent border-none text-white text-lg placeholder:text-gray-400 outline-none" 
+          autocomplete="off"
+        />
+        <button 
+          v-if="isLoading" 
+          disabled 
+          class="ml-2 p-2 flex-shrink-0"
+          aria-label="Loading"
+        >
+          <LoaderCircle class="animate-spin duration-500 text-white size-5" />
+        </button>
+        <button 
+          v-else-if="isSaved" 
+          class="ml-2 p-2 flex-shrink-0"
+          aria-label="Saved"
+        >
+          <Check class="text-white size-5" />
+        </button>
+        <button 
+          v-else 
+          class="ml-2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium flex-shrink-0" 
+          @click="saveWallet(walletIdRef)" 
+          :disabled="!walletIdRef"
+          aria-label="Save wallet ID"
+        >
+          Save
+        </button>
+      </div>
+      
+      <p class="text-lg md:text-xl font-normal text-center leading-relaxed max-w-xs">
+        Currently in the mining phase where players map
+        <span class="block mt-1">Telegram channel!</span>
+      </p>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.bg-navy-900 {
+  background-color: #141f38;
+}
+
+@media screen and (max-width: 768px) {
+  input {
+    font-size: 16px;
+  }
+}
+</style>
