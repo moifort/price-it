@@ -113,6 +113,7 @@ export type Guess = {
   __typename?: 'Guess';
   category: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
+  displayed: Scalars['Amount']['output'];
   id: Scalars['GuessId']['output'];
   image: Scalars['Url']['output'];
   name: Scalars['String']['output'];
@@ -431,6 +432,7 @@ export type GameQueryResolvers<ContextType = GraphQlContext, ParentType extends 
 export type GuessResolvers<ContextType = GraphQlContext, ParentType extends ResolversParentTypes['Guess'] = ResolversParentTypes['Guess']> = {
   category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  displayed?: Resolver<ResolversTypes['Amount'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['GuessId'], ParentType, ContextType>;
   image?: Resolver<ResolversTypes['Url'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;

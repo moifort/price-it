@@ -12,6 +12,7 @@ import { Minute } from '../utils/validators'
 import { findBy, save, update } from './infra/repository'
 import type { Task__Game } from './module'
 import { GameQuery } from './query'
+import type { UserGuess } from './types'
 
 export namespace GameCommand {
   export const create = (database: Firestore) => async (userId: UserId) => {
@@ -49,6 +50,8 @@ export namespace GameCommand {
       winBonusExpiredAt: new Date(),
     })
   }
+
+  export const guess = (database: Firestore) => async (userId: UserId, guessId: GuessId, userGuess: UserGuess) => {}
 
   export const win = (database: Firestore) => async (userId: UserId, guessId: GuessId) => {
     const { winBonus } = await findBy(database)(userId)

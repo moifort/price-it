@@ -8,6 +8,7 @@ export type Guess = {
   description: string
   image: Url
   price: Amount
+  displayed: Amount
   category: string
   url: Url
 }

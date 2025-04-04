@@ -2,8 +2,7 @@
 import Game from '~/components/pages/Game/Game.vue'
 import GameEnd from '~/components/pages/Game/GameEnd.vue'
 import GameStart from '~/components/pages/Game/GameStart.vue'
-import type { Run } from '../../back/src/run/types'
-import { Limit, Seconde } from '../../back/src/utils/validators'
+import { Seconde } from '../../back/src/utils/validators'
 
 definePageMeta({ layout: 'fullscreen' })
 
