@@ -1,6 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["node", "nuxt", "@telegram-apps/sdk-vue"],
+      "enabled": false
+    },
+    {
+      "groupName": "all non-major dependencies",
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupSlug": "all-minor-patch",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "enabled": true
+    }
   ]
 }
