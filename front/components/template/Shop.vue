@@ -4,9 +4,12 @@
       <slot name="title" />
     </div>
 
-    <div class="flex-grow">
+    <div>
       <slot name="run" />
+    </div>
+
+    <div>
+      <slot name="win" />
     </div>
   </div>
 </template>
-
