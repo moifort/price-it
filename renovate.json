@@ -12,14 +12,6 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^package.json$"],
-      "matchStrings": ["bun@(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
-      "datasourceTemplate": "npm",
-      "depNameTemplate": "bun",
-      "autoReplaceStringTemplate": "bun@{{{ newValue }}}"
-    },
-    {
-      "customType": "regex",
       "fileMatch": ["^\\.github/workflows/.*\\.yml$"],
       "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
       "datasourceTemplate": "npm",
