@@ -8,7 +8,7 @@
       "matchStrings": ["firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
       "datasourceTemplate": "npm",
       "depNameTemplate": "firebase-tools",
-      "replaceStringTemplate": "firebase-tools@{{{ newValue }}}"
+      "autoReplaceStringTemplate": "firebase-tools@{{{ newValue }}}"
     }
   ],
   "packageRules": [
