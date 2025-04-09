@@ -43,12 +43,12 @@ defineEmits<{
               <div class="text-end flex-grow flex flex-row items-center"><div class="flex-grow">{{ friends }}</div> <User :size="28" class="flex"/></div>
             </div>
             <div class="flex justify-between mt-3 gap-2">
-              <button class="flex-1 bg-white text-yellow-500 p-2 rounded font-medium" @click="$emit('click:copy-invite')">
+              <Button class="flex-1 bg-white text-yellow-500 font-medium" @click="$emit('click:copy-invite')">
                 Copy Link
-              </button>
-              <button class="flex-1 bg-white text-yellow-500 p-2 rounded font-medium" @click="$emit('click:invite')">
+              </Button>
+              <Button class="flex-1 bg-white text-yellow-500 font-medium" @click="$emit('click:invite')">
                 Share
-              </button>
+              </Button>
             </div>
           </div>
         </NativeCard>
