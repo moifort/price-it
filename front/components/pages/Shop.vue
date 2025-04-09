@@ -22,7 +22,7 @@ defineProps<{
   <ShopTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-medium opacity-60">Bonus</h1>
+        <h1 class="text-3xl font-medium opacity-60">Runs bonus</h1>
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>
@@ -31,16 +31,79 @@ defineProps<{
     <template #run>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
-          v-for="{ id, quantity, period, amount, category } in products"
-          :key="id"
-          :id="id"
-          :quantity="quantity"
-          :period="period"
-          :amount="amount"
+          :key="products[0].id"
+          :id="products[0].id"
+          :quantity="products[0].quantity"
+          :period="products[0].period"
+          :amount="products[0].amount"
           :buy="buy"
           :score="score"
-          :category="category"
-          :disabled="category === 'score' && hasWinBonus"
+          :category="products[0].category"
+          :disabled="products[0].category === 'score' && hasWinBonus"
+        />
+        <ShopCard
+            :key="products[1].id"
+            :id="products[1].id"
+            :quantity="products[1].quantity"
+            :period="products[1].period"
+            :amount="products[1].amount"
+            :buy="buy"
+            :score="score"
+            :category="products[1].category"
+            :disabled="products[1].category === 'score' && hasWinBonus"
+        />
+      </div>
+      <Loading v-else />
+    </template>
+
+    <template #win>
+      <div class="flex items-center justify-between mb-3">
+        <h1 class="text-3xl font-medium opacity-60">Win Bonus</h1>
+      </div>
+      <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
+        <ShopCard
+            :key="products[2].id"
+            :id="products[2].id"
+            :quantity="products[2].quantity"
+            :period="products[2].period"
+            :amount="products[2].amount"
+            :buy="buy"
+            :score="score"
+            :category="products[2].category"
+            :disabled="products[2].category === 'score' && hasWinBonus"
+        />
+        <ShopCard
+            :key="products[3].id"
+            :id="products[3].id"
+            :quantity="products[3].quantity"
+            :period="products[3].period"
+            :amount="products[3].amount"
+            :buy="buy"
+            :score="score"
+            :category="products[3].category"
+            :disabled="products[3].category === 'score' && hasWinBonus"
+        />
+        <ShopCard
+            :key="products[4].id"
+            :id="products[4].id"
+            :quantity="products[4].quantity"
+            :period="products[4].period"
+            :amount="products[4].amount"
+            :buy="buy"
+            :score="score"
+            :category="products[4].category"
+            :disabled="products[4].category === 'score' && hasWinBonus"
+        />
+        <ShopCard
+            :key="products[5].id"
+            :id="products[5].id"
+            :quantity="products[5].quantity"
+            :period="products[5].period"
+            :amount="products[5].amount"
+            :buy="buy"
+            :score="score"
+            :category="products[5].category"
+            :disabled="products[5].category === 'score' && hasWinBonus"
         />
       </div>
       <Loading v-else />
