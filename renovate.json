@@ -9,6 +9,14 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "firebase-tools",
       "autoReplaceStringTemplate": "firebase-tools@{{{ newValue }}}"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/.*\\.yml$"],
+      "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
+      "datasourceTemplate": "npm",
+      "depNameTemplate": "bun",
+      "autoReplaceStringTemplate": "bun-version: '{{{ newValue }}}'"
     }
   ],
   "packageRules": [
