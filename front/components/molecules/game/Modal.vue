@@ -11,7 +11,7 @@ const isOpen = ref(true)
 const openProductLink = (url: Url) => {
   // TODO: Add analytics open product link
   if (openLink.isAvailable()) {
-    openLink(url)
+    openLink(url, { tryInstantView: true, tryBrowser: 'chrome' })
   } else {
     window.open(url, '_blank')
   }
