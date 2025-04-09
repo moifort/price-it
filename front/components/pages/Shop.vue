@@ -31,7 +31,6 @@ defineProps<{
     <template #run>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
-          :key="products[0].id"
           :id="products[0].id"
           :quantity="products[0].quantity"
           :period="products[0].period"
@@ -42,7 +41,6 @@ defineProps<{
           :disabled="products[0].category === 'score' && hasWinBonus"
         />
         <ShopCard
-            :key="products[1].id"
             :id="products[1].id"
             :quantity="products[1].quantity"
             :period="products[1].period"
@@ -62,7 +60,6 @@ defineProps<{
       </div>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
-            :key="products[2].id"
             :id="products[2].id"
             :quantity="products[2].quantity"
             :period="products[2].period"
@@ -73,7 +70,6 @@ defineProps<{
             :disabled="products[2].category === 'score' && hasWinBonus"
         />
         <ShopCard
-            :key="products[3].id"
             :id="products[3].id"
             :quantity="products[3].quantity"
             :period="products[3].period"
@@ -84,7 +80,6 @@ defineProps<{
             :disabled="products[3].category === 'score' && hasWinBonus"
         />
         <ShopCard
-            :key="products[4].id"
             :id="products[4].id"
             :quantity="products[4].quantity"
             :period="products[4].period"
@@ -95,7 +90,6 @@ defineProps<{
             :disabled="products[4].category === 'score' && hasWinBonus"
         />
         <ShopCard
-            :key="products[5].id"
             :id="products[5].id"
             :quantity="products[5].quantity"
             :period="products[5].period"

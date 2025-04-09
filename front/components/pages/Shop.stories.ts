@@ -50,6 +50,13 @@ export const Default: Story = {
         quantity: Quantity(20),
         category: 'score' as const,
       },
+      {
+        id: ProductId('shop-product-40-run-all-time'),
+        amount: TelegramStar(150),
+        period: 'all-time' as const,
+        quantity: Quantity(40),
+        category: 'score' as const,
+      },
     ],
     buy: async () => new Promise((resolve) => setTimeout(resolve, 1500)),
   },
