@@ -16,6 +16,7 @@ import { Url } from '../../../back/src/utils/validators'
 defineProps<{ score: Score; runsLeft: Run; friends: number; joined: MediaType[] }>()
 defineEmits<{
   (e: 'click:invite'): void
+  (e: 'click:copy-invite'): void
   (e: 'click:join', media: MediaType): void
 }>()
 </script>
@@ -31,7 +32,7 @@ defineEmits<{
 
     <template #invite>
       <div class="grid grid-cols-1 gap-3">
-        <NativeCard class="p-3 h-[140px] text-white border-none shadow-md bg-yellow-500" @click="$emit('click:invite')">
+        <NativeCard class="p-3 h-[180px] text-white border-none shadow-md bg-yellow-500">
           <div class="flex flex-col justify-between h-full">
             <div class="flex items-start">
               <font-awesome :icon="['fa', 'link']" size="4x" />
@@ -40,6 +41,14 @@ defineEmits<{
             <div class="text-3xl font-medium flex items-baseline">
               <div class="flex-grow">+{{ formatNumber(5000) }}<span class="text-sm opacity-65">pts</span></div>
               <div class="text-end flex-grow flex flex-row items-center"><div class="flex-grow">{{ friends }}</div> <User :size="28" class="flex"/></div>
+            </div>
+            <div class="flex justify-between mt-3 gap-2">
+              <button class="flex-1 bg-white text-yellow-500 p-2 rounded font-medium" @click="$emit('click:copy-invite')">
+                Copy Link
+              </button>
+              <button class="flex-1 bg-white text-yellow-500 p-2 rounded font-medium" @click="$emit('click:invite')">
+                Share
+              </button>
             </div>
           </div>
         </NativeCard>
