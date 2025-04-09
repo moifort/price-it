@@ -25,7 +25,7 @@
       "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
       "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "bun",
+      "depNameTemplate": "oven-sh/bun",
       "versioningTemplate": "semver"
     }
   ],
