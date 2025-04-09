@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^package\\.json$"],
+      "matchStrings": ["\"postinstall\":\\s*\"(?:.*?)firebase-tools@(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:.*?)\""],
+      "datasourceTemplate": "npm",
+      "depNameTemplate": "firebase-tools",
+      "autoReplaceStringTemplate": "firebase-tools@{{{newValue}}}"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "matchStrings": ["bun-version: ['|\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['|\"]?"],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "oven-sh/bun",
+      "versioningTemplate": "semver"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["node", "nuxt", "@telegram-apps/sdk-vue"],
+      "enabled": false
+    },
+    {
+      "groupName": "all non-major dependencies",
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupSlug": "all-minor-patch",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "enabled": true
+    }
+  ]
+}
