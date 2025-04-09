@@ -22,7 +22,7 @@ defineProps<{
   <ShopTemplate>
     <template #title>
       <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-medium opacity-60">Runs bonus</h1>
+        <h1 class="text-3xl font-medium opacity-60">Runs</h1>
         <Stats :score="score" :runsLeft="runsLeft" />
       </div>
     </template>
@@ -58,7 +58,7 @@ defineProps<{
 
     <template #win>
       <div class="flex items-center justify-between mb-3">
-        <h1 class="text-3xl font-medium opacity-60">Win Bonus</h1>
+        <h1 class="text-3xl font-medium opacity-60">Win</h1>
       </div>
       <div class="grid grid-cols-2 gap-3" v-if="products.length > 0">
         <ShopCard
