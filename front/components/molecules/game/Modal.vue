@@ -9,10 +9,9 @@ import type { Amount, Url } from '../../../../back/src/utils/types'
 defineProps<{ close?: () => void; price: Amount; productLink: Url }>()
 const isOpen = ref(true)
 const openProductLink = (url: Url) => {
-  // @ts-ignore
-  const tgApp = window.Telegram.WebApp
-  if (tgApp) {
-    tgApp.openLink(url)
+  if (openLink.isAvailable()) {
+    // openLink(url, { tryInstantView: false })
+    window.open(url)
   } else {
     window.open(url, '_blank')
   }
