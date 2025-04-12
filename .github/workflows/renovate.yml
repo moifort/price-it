@@ -13,7 +13,7 @@ jobs:
         with:
           ref: main
       - name: 💪🏻 Update dependencies
-        uses: renovatebot/github-action@v41.0.18
+        uses: renovatebot/github-action@v41.0.19
         with:
           configurationFile: renovate.json
           token: ${{ secrets.RENOVATE_TOKEN }}
