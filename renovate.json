@@ -1,9 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "onboarding": false,
-  "platform": "github",
+  "extends": ["config:base"],
   "repositories": ["moifort/price-it"],
+  "requireConfig": "optional",
   "customManagers": [
     {
       "customType": "regex",
