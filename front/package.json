@@ -39,7 +39,7 @@
     "vue-confetti-explosion": "1.0.2",
     "vue-number-animation": "2.0.2",
     "vue-router": "4.5.0",
-    "zod": "3.24.2"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
